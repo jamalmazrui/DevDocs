@@ -1,0 +1,3281 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Installing Applications Using Inno Setup</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI Symbol";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:12.25pt;
+	margin-bottom:.2pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:106%;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:.15pt;
+	margin-bottom:0in;
+	margin-left:.5pt;
+	text-align:right;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:30.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;
+	font-weight:normal;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	color:black;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;
+	color:black;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Arial",sans-serif;
+	color:black;
+	font-weight:bold;
+	font-style:italic;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Arial",sans-serif;
+	color:black;
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Times New Roman",serif;
+	color:black;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 71.85pt 73.95pt 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.8pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+style='font-size:20.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.7pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:20.0pt;
+line-height:107%'> </span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:79.45pt;text-align:center;text-indent:0in;
+line-height:107%'><span style='font-size:30.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:79.45pt;text-align:center;text-indent:0in;
+line-height:107%'><span style='font-size:30.0pt;line-height:107%'> </span></p>
+
+<h1 style='margin-right:-.6pt'>Installing Applications Using Inno Setup </h1>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:79.45pt;text-align:center;text-indent:0in;
+line-height:107%'><span style='font-size:30.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:79.45pt;text-align:center;text-indent:0in;
+line-height:107%'><span style='font-size:30.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.65pt;
+margin-bottom:0in;margin-left:.5pt;text-align:right;line-height:107%'><i><span
+style='font-size:11.0pt;line-height:107%;font-family:"Arial",sans-serif'>Doug
+Hennig </span></i></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.65pt;
+margin-bottom:0in;margin-left:.5pt;text-align:right;line-height:107%'><i><span
+style='font-size:11.0pt;line-height:107%;font-family:"Arial",sans-serif'>Stonefield
+Software Inc. </span></i></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.55pt;
+margin-bottom:0in;margin-left:.5pt;text-align:right;line-height:107%'><i><span
+style='font-size:11.0pt;line-height:107%;font-family:"Arial",sans-serif'>Email:
+</span></i><i><u><span style='font-size:11.0pt;line-height:107%;font-family:
+"Arial",sans-serif;color:blue'>dhennig@stonefield.com</span></u></i><i><span
+style='font-size:11.0pt;line-height:107%;font-family:"Arial",sans-serif'> </span></i></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.55pt;
+margin-bottom:0in;margin-left:.5pt;text-align:right;line-height:107%'><i><span
+style='font-size:11.0pt;line-height:107%;font-family:"Arial",sans-serif'>Web
+site: </span></i><a href="http://www.stonefield.com/"><i><span
+style='font-size:11.0pt;line-height:107%;font-family:"Arial",sans-serif;
+color:blue'>http://www.stonefield.com</span></i></a><a
+href="http://www.stonefield.com/"><i><span style='font-size:11.0pt;line-height:
+107%;font-family:"Arial",sans-serif;color:black;text-decoration:none'> </span></i></a></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.55pt;
+margin-bottom:0in;margin-left:.5pt;text-align:right;line-height:107%'><i><span
+style='font-size:11.0pt;line-height:107%;font-family:"Arial",sans-serif'>Web
+site: </span></i><a href="http://www.stonefieldquery.com/"><i><span
+style='font-size:11.0pt;line-height:107%;font-family:"Arial",sans-serif;
+color:blue'>http://www.stonefieldquery.com</span></i></a><a
+href="http://www.stonefieldquery.com/"><i><span style='font-size:11.0pt;
+line-height:107%;font-family:"Arial",sans-serif;color:black;text-decoration:
+none'> </span></i></a></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.55pt;
+margin-bottom:0in;margin-left:.5pt;text-align:right;line-height:107%'><i><span
+style='font-size:11.0pt;line-height:107%;font-family:"Arial",sans-serif'>Blog: </span></i><a
+href="http://doughennig.blogspot.com/"><i><span style='font-size:11.0pt;
+line-height:107%;font-family:"Arial",sans-serif;color:blue'>http://doughennig.blogspot.com</span></i></a><a
+href="http://doughennig.blogspot.com/"><i><span style='font-size:11.0pt;
+line-height:107%;font-family:"Arial",sans-serif;color:black;text-decoration:
+none'> </span></i></a></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.4pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Overview </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.25pt;margin-bottom:
+6.35pt;margin-left:-.25pt'>Although a limited edition of InstallShield Express
+comes with VFP, many developers are unhappy with Windows Installer-based
+installation tools: the tools are slow and cumbersome, the resulting SETUP.EXE
+files are huge and slow, and Windows Installer sometimes has a mind of its own.
+Introducing Inno Setup, a free, fast, easy-to-use installation tool that
+generates fast, lightweight setup executables. This document shows you how to
+quickly implement Inno Setup to create great setups for your applications. You
+will learn: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.65pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>How Inno Setup works </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.6pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The basics of creating Inno Setup scripts </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.7pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>How to obtain and use add-ons that provide extended features </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Advanced Inno Setup scripts </p>
+
+<h2 style='margin-left:-.25pt'>Introduction </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Although it’s sometimes a last-minute consideration,
+deploying your application is an extremely important part of the development
+process. After all, if the user can’t install your software, you won’t get
+paid. The installer is often the first interaction the user has with your
+software; if something goes wrong, it gives them a bad impression about the
+software and your company in general. Also, problems during installation can be
+the cause of a lot of technical support calls. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>Although a free installer tool, a limited
+version of InstallShield Express, has shipped with VFP for several versions, it
+may not be the best choice to use for your software. This document introduces
+Inno Setup, a free installer tool written by Jordan Russell. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.4pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Why I Hate Windows Installer </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.3pt;
+margin-left:-.25pt'>Perhaps “hate” is too strong a word, but I’ve had my fill
+of using Windows Installer-based installation tools (primarily InstallShield
+Express). Here are the issues I ran into and why I like Inno Setup better: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.25pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The setup executables generated are quite large, especially if
+you include the Windows Installer itself in the package (perhaps not as
+necessary as in past years, but you never know when a user will install on an
+older operating system that doesn’t have Windows Installer installed). The
+executables created by Inno Setup are half the size (your mileage may vary). </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.1pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Everything about Windows Installer is slow. It seems to take
+forever to start InstallShield Express, it takes a long time to generate a
+setup executable, the setups take quite a while to start (while Windows
+Installer initializes), and uninstallation is slow. Inno Setup starts up
+instantly, generates executables somewhat faster, there’s no initialization
+required so the executables start immediately, and uninstallation takes only a
+few seconds. <span style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+style='font-family:"Arial",sans-serif'>     </span>Windows Installer leaves
+what I call “poops” on your system: Registry entries and files all over the
+place. I understand why it does that—fixing broken installations is one of the
+features of Windows Installer—but that doesn’t make it any more palatable. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.2pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Related to the previous point: have you ever installed a new
+application only to find that running an old application now brings up a dialog
+asking to install it or a completely different application? That happens
+because when updated ActiveX controls are installed, their InprocServer setting
+in the Windows Registry, which points to the physical location of the OCX file,
+is overwritten with a Windows Installer encrypted key. For some reason, when
+you run an older application that uses those ActiveX controls, Windows
+Installer thinks there’s something wrong with the ActiveX control and so
+prompts you to reinstall the application. Fixing it is easy if you know which
+ActiveX controls are involved—hack the Registry and change InprocServer back to
+the correct value—but figuring out which ones are the culprits may be a
+challenge. <span style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+style='font-family:"Arial",sans-serif'>  </span>Windows Installer uses a
+database of settings. While that isn’t inherently bad, given that we’re
+database people, the database is in a proprietary format, so you have to use
+third-party tools like InstallShield Express or Orca to maintain the database.
+The database structure is fairly complex and the tools aren’t the easiest
+things to use. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:15.55pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The deal-breaker for me: Windows Installer sometimes appears to
+have a mind of its own. We had a situation where new installs of Stonefield
+Query for ACT! (one of the products my company makes) worked just fine but
+upgrades for existing installs didn’t; one of our DBFs kept getting corrupted
+as part of the installation. It was likely some type of versioning issue or
+something we didn’t do quite right, so perhaps it isn’t completely fair to
+blame the installer for this, but I don’t want to make it my life’s work to
+figure out every nuance of Windows Installer; I just want to build a simple
+installation package and move on to more important tasks. </p>
+
+<h2 style='margin-left:-.25pt'>Introducing Inno Setup </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Unlike Windows Installer, Inno Setup is a fast, lightweight
+installation tool. Rather than using a proprietary database for installation
+settings, it uses script files, which are just text files similar in structure
+to INI files. Although most people use the graphical interface that comes with
+Inno Setup, the compiler is actually a command-line application; parameters
+passed to it specify how to build a setup executable. The Inno Setup editor is
+really just a text editor with a few additional tools, such as access to the
+Inno Setup compiler. You don’t have to use it if you don’t want to; you can use
+any text editor, or even generate Inno Setup scripts programmatically, and run
+the compiler from a command window. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.4pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Installing Inno Setup </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>The home page for Inno Setup is <a
+href="http://www.jrsoftware.org/isinfo.php"><span style='color:blue'>http://www.jrsoftware.org/isinfo.php</span></a><a
+href="http://www.jrsoftware.org/isinfo.php"><span style='color:black;
+text-decoration:none'>.</span></a> From this page, choose the Download Inno
+Setup link to access the downloads page, and click the link to download the
+Inno Setup installer. Be sure to also download and install the Inno Setup
+QuickStart pack, as it contains two invaluable add-ons for Inno Setup, the
+ISTool script editor and the Inno Setup Preprocessor (ISPP). </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.4pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Creating Inno Setup Scripts the Easy Way </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:11.0pt;
+margin-left:-.25pt'>Let’s create our first script, Sample1.ISS. Run Inno Setup
+and click the New button in the toolbar. This launches the Inno Setup Script
+Wizard (although that can be turned off in the Tools, Options dialog so New
+simply creates an empty script). The first step after the welcome screen, shown
+in <b>Figure 1</b>, requests information about the application and your
+company; required items are shown in bold. </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:195.1pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=361 height=277 id="Picture 274"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image001.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+1.</span></i></b><i><span style='font-family:"Arial",sans-serif'> The
+Application Information step asks for information about the application and
+your company. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>Specify options for the application
+directory on the target system in the next step (<b>Figure 2</b>). The default
+base directory is the Program Files directory on the target system, but you can
+choose Custom from the combo box and enter a different base directory if you
+wish. The default for the application’s directory name is the application name
+you entered in the previous step, but you can of course change that. You can
+also specify whether the user is allowed to change the directory or not or
+whether the application even needs a directory (you might turn the latter
+option off if, for example, your setup simply installs files in the Windows
+System directory). </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:195.1pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=361 height=277 id="Picture 308"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image002.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+2.</span></i></b><i><span style='font-family:"Arial",sans-serif'> Specify the
+base and application directories in this step, as well as some
+directory-related options. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:6.65pt;margin-bottom:
+10.95pt;margin-left:-.75pt;text-align:justify;text-justify:inter-ideograph;
+text-indent:17.5pt;line-height:105%'>In the next step, shown in <b>Figure 3</b>,
+you specify the files to install: the main executable (if there is one) and
+other required files. There’s a setting that specifies whether a “Run this
+application” option is available in the setup executable or not. </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:195.1pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=361 height=277 id="Picture 327"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image003.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+3.</span></i></b><i><span style='font-family:"Arial",sans-serif'> Specify the
+files the setup should install on the target system. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>The Application Icons step (see <b>Figure
+4</b>) allows you to specify what folder in the Windows Start Menu the
+installer should create and whether the user can change the name of that folder
+or disable its creation. You can also indicate that it should create a shortcut
+to your company’s Web site and an uninstall icon in the Start Menu folder. Two
+other options allow you to specify whether the setup has options allowing the
+user to create icons for your application’s main executable on their desktop or
+Quick Launch bar. </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:195.1pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=361 height=277 id="Picture 351"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image004.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+4.</span></i></b><i><span style='font-family:"Arial",sans-serif'> The
+Application Icons step allows you to specify the name of the Start Menu folder
+for the application and which icons the installer should create. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:11.0pt;
+margin-left:-.75pt;text-indent:.25in'>You can specify a file that contains
+license information to display to the user in the next step (<b>Figure 5</b>);
+this file can contain either text or Rich Text Format (RTF), which allows you
+to display nicely formatted text including colors and bolding. You can also
+specify files containing pre- and post-installation information; I find the
+preinstallation information useful for telling the user about the different
+types of installs they can perform (complete versus workstation-only, for
+example). </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:195.1pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=361 height=277 id="Picture 378"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image005.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+5</span></i></b><i><span style='font-family:"Arial",sans-serif'>. In this step,
+you can specify license, pre-, and post-installation information to display to
+the user. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>If you have customers who speak languages
+other than English, you’ll like the next step, shown in <b>Figure 6</b>: it
+allow you to create a unilingual or multilingual setup by choosing the
+appropriate languages to use. </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:195.1pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=361 height=277 id="Picture 400"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image006.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+6.</span></i></b><i><span style='font-family:"Arial",sans-serif'> You can
+create multilingual setups using the Setup Languages step. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:10.95pt;
+margin-left:-.75pt;text-indent:.25in'>The Compiler Settings step (<b>Figure 7</b>)
+allows you to specify the path and file name for the setup executable created
+when you run the Inno Setup compiler; if you don’t specify a path, the compiler
+places the executable into the Output subdirectory of wherever the script file
+is located. You can also specify an icon to use for the executable, a password
+the user must enter to run the installer, and whether that password is used to
+encrypt the application’s files within the setup executable. </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:195.1pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=361 height=277 id="Picture 420"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image007.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:13.3pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+7.</span></i></b><i><span style='font-family:"Arial",sans-serif'> You can
+specify where the setup executable is created, which icon it uses, and a
+password for the installation. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>The last step, shown in <b>Figure 8</b>,
+only appears if you have the Inno Setup Preprocessor (ISPP) installed. I’ll
+discuss this optional add-on later in this document, but one of the things ISPP
+does is allow #DEFINE constants to be used in scripts. The benefit of using
+constants in Inno scripts is similar to that in VFP and other languages: all
+the constants are defined at the start of the script file, making it easier to
+edit them later than hunting through the script file looking for the things you
+want to change. </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:195.1pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=361 height=277 id="Picture 449"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image008.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+8.</span></i></b><i><span style='font-family:"Arial",sans-serif'> If the wizard
+detects ISPP on your system, it’ll allow you to create #DEFINE constants, which
+make it easier to edit the script later. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:10.95pt;
+margin-left:-.75pt;text-indent:.25in'>That was a lot of steps, but for the most
+part you can accept the default settings in each one. Click the Finish button
+to generate the Inno Setup script for your settings. <b>Figure 9</b> shows the
+results. </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:163.8pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=402 height=408 id="Picture 464"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image009.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+9.</span></i></b><i><span style='font-family:"Arial",sans-serif'> The result of
+the Inno Setup Script Wizard is an Inno Setup script you can compile to create
+a setup executable. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:11.0pt;
+margin-left:-.75pt;text-indent:.25in'>Save the script and click the Compile
+Setup button in the toolbar. This will compile the script, generating a setup
+executable using the path and name you specified in the Compiler Settings step,
+and can optionally run the setup so you can test it. <b>Figures 10</b> through <b>16</b>
+shows the resulting setup executable being run. </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:193.55pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=363 height=279 id="Picture 489"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image010.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.1pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+10.</span></i></b><i><span style='font-family:"Arial",sans-serif'>
+Congratulations: you’ve created your first Inno Setup executable. </span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:193.55pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=363 height=279 id="Picture 496"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image011.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+11.</span></i></b><i><span style='font-family:"Arial",sans-serif'> The user
+must accept the license agreement before going on. </span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:193.55pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=363 height=279 id="Picture 506"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image012.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.2pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+12.</span></i></b><i><span style='font-family:"Arial",sans-serif'> The settings
+you specified in the Application Directory step of the Wizard define how the
+Select Destination Location step works. </span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:193.55pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=363 height=279 id="Picture 514"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image013.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+13.</span></i></b><i><span style='font-family:"Arial",sans-serif'> The settings
+in this setup step depend on the options you selected in the Application Icons
+step of the Wizard. </span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:193.55pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=363 height=279 id="Picture 526"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image014.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.2pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+14.</span></i></b><i><span style='font-family:"Arial",sans-serif'> If you
+turned on the appropriate settings in the Application Icons step of the Wizard,
+the user can have the installer create desktop and other icons. </span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:193.55pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=363 height=279 id="Picture 534"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image015.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+15.</span></i></b><i><span style='font-family:"Arial",sans-serif'> The last
+step of the installer summarizes the user’s settings. Clicking Install starts
+the installation. </span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:193.55pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=363 height=279 id="Picture 546"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image016.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+16.</span></i></b><i><span style='font-family:"Arial",sans-serif'> After the
+installation is complete, the user can launch the application if you turned the
+appropriate option on in the Wizard. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.3pt;
+margin-left:-.75pt;text-indent:.25in'>Go ahead and run the installer to install
+the application. Once it’s finished, you should find the following on your
+system: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.6pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>A shortcut for the main executable on the desktop if you turned
+that option on. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.6pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>A new folder for the application in the Windows Start menu. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.6pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>An entry for the application in the Add/Remove Programs Control
+Panel applet. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>A folder in the location you specified in the Destination
+Location step in the installer (see <b>Figure 17) </b>with the files you
+indicated to install in the Wizard, along with two other files: UnIns000.EXE
+and </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:16.95pt;
+margin-left:36.5pt'>UnIns000.DAT. These two files are the application
+uninstaller; running the EXE is way faster than opening Add/Remove Programs and
+removing the application from there. </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:102.7pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=484 height=230 id="Picture 584"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image017.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+17.</span></i></b><i><span style='font-family:"Arial",sans-serif'> Running the
+setup executable installs the application. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.2pt;
+margin-left:18.5pt'>Here are a few things you may have noticed about this
+process: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.65pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Starting Inno Setup is significantly faster than starting
+InstallShield Express. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The compilation is significantly faster. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.65pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The setup executable is significantly (about 10 MB) smaller. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.65pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The installation process is significantly faster. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:9.85pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Uninstalling the application is significantly faster. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>Overall, it’s a better experience both
+for you and for the user. Now you see why I haven’t looked back since I started
+using Inno Setup. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:1.4pt;
+margin-left:18.5pt'>One thing to be aware of when running the Inno Setup
+compiler: the files specified in the script must not be open </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>in any other application or you’ll get an error message and
+the compilation will terminate. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.4pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>The Inno Setup UI </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:10.95pt;
+margin-left:-.25pt'>The Inno Setup user interface is fairly sparse, but that’s
+actually one of the things I like about it. As you can see in <b>Figure 18</b>,
+it’s not much more than a text editor. However, it does provide functions to
+compile the current script and run the resulting setup executable with a
+debugger attached so you can see what happens at every step of the
+installation. It also uses syntax coloring, making it easier to identify
+certain elements in a script. </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:59.95pt;
+margin-bottom:0in;margin-left:0in;text-align:right;text-indent:0in;line-height:
+107%'><img border=0 width=541 height=400 id="Picture 644"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image018.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+18.</span></i></b><i><span style='font-family:"Arial",sans-serif'> The Inno
+Setup user interface isn’t much more than a text editor. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>Some people prefer to use ISTool, one of
+the add-ons installed with the Inno Setup QuickStart Pack. As you can see in <b>Figure
+19</b>, it provides a richer, easier-to-user interface to scripts. While you
+can see the script in its entirety by selecting the Script node in the
+TreeView, you can also select one of the specific sections and see the settings
+in a section-specific panel. Figure 19 shows the dialog that appears when you
+right-click and choose New Item when the Icons section is selected. Rather than
+remembering somewhat obscure directives for flags and other settings, you can
+select the settings you want using controls with descriptive captions. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><img
+border=0 width=510 height=373 id="Picture 677"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image019.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+19.</span></i></b><i><span style='font-family:"Arial",sans-serif'> ISTool
+provides a richer user interface for creating Inno Setup scripts. </span></i></p>
+
+<h2 style='margin-left:-.25pt'>Inno Setup Scripts </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Now that we’ve seen how easy it is to create a setup
+executable, let’s dig into the script file to see what they look like. </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:9.55pt;
+margin-bottom:.95pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'>Inno Setup scripts are just text files with a layout very
+similar to an INI file: they have named sections (such as </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.9pt;
+margin-left:-.25pt'>“[Setup]”) and settings within each section. Here’s the
+script file generated by the Inno Setup Script Wizard in the previous section
+of this document (although some of the script entries span more than one line
+due to formatting for this document, each should be a single line of text): </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:122.5pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>; Script generated by the Inno
+Setup Script Wizard. ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP
+SCRIPT FILES! </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyAppName &quot;My First
+Application&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyAppVerName &quot;My First
+Application 1.0&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyAppPublisher &quot;My
+Company, Inc.&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyAppURL
+&quot;http://www.mycompany.com&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyAppExeName
+&quot;sample1.exe&quot; </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Setup] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppName={#MyAppName} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppVerName={#MyAppVerName} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppPublisher={#MyAppPublisher} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppPublisherURL={#MyAppURL} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppSupportURL={#MyAppURL} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppUpdatesURL={#MyAppURL} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>DefaultDirName={pf}\{#MyAppName} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>DefaultGroupName={#MyAppName} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>LicenseFile=D:\Writing\Sessions\InnoSetup\Samples\license.txt
+</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>OutputBaseFilename=setup </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Compression=lzma </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>SolidCompression=yes </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Languages] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: english; MessagesFile:
+compiler:Default.isl </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Tasks] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: desktopicon; Description:
+{cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Flags:
+unchecked </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Files] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.1in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+D:\Writing\Sessions\InnoSetup\Samples\sample1.exe; DestDir: {app}; Flags:
+ignoreversion Source: D:\Writing\Sessions\InnoSetup\Samples\readme.txt;
+DestDir: {app}; Flags: ignoreversion ; NOTE: Don't use &quot;Flags:
+ignoreversion&quot; on any shared system files </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Icons] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: {group}\{#MyAppName};
+Filename: {app}\{#MyAppExeName} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:55.25pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: {userdesktop}\{#MyAppName};
+Filename: {app}\{#MyAppExeName}; Tasks: desktopicon  </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Run] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+14.3pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Filename: {app}\{#MyAppExeName};
+Description: {cm:LaunchProgram,{#MyAppName}}; Flags: nowait postinstall
+skipifsilent </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>Like INI files, lines starting with “;”
+are comments; you can use this for real comments, like the first couple of
+lines in the file, or to disable settings you want to keep in the script file. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>The #DEFINE statements near the beginning
+of the script define some constants used later in the script. As you can see in
+the Setup section, constants are referenced as “{#<i>ConstantName</i>}.” </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:6.6pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'>Inno Setup includes a number of pre-defined constants, such as “pf” for
+the user’s Program Files directory, </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>“app” for the directory selected by the user to install the
+application into, “userdesktop” for the user’s Desktop directory, and so forth;
+see the Inno Setup documentation for a complete list. Similar to #DEFINE
+constants, built-in constants are referenced using “{<i>ConstantName</i>}.” </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>Note that hard-coded paths are used in
+several places in this script; the wizard inserted those. To make the script
+more portable, you can specify relative paths; since these files are in the
+same folder as the script file is, you can remove the paths altogether. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>The Setup section specifies settings
+using name-value pairs similar to settings in an INI file. Other sections use
+parameter lines. The values of values or parameters may be delimited with
+quotes, although that isn’t required. Parameters are separated with
+semi-colons. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.35pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h3 style='margin-left:-.25pt'>Setup </h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>The Setup section specifies global settings used by the
+installer and uninstaller. There are a lot of settings you can use; <b>Table 1</b>
+lists some of the more commonly used ones. See the Inno Setup documentation for
+a complete list. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Table
+1</span></i></b><i><span style='font-family:"Arial",sans-serif'>. Commonly-used
+settings for the Setup section. </span></i></p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=639
+ style='width:478.9pt;margin-left:-5.4pt;border-collapse:collapse'>
+ <tr style='height:11.3pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:11.3pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='font-size:9.0pt;line-height:107%;font-family:"Arial",sans-serif'>Setting
+  </span></b></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border:solid black 1.0pt;
+  border-left:none;padding:.4pt 4.5pt 0in 5.4pt;height:11.3pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><b><span
+  style='font-size:9.0pt;line-height:107%;font-family:"Arial",sans-serif'>Description
+  </span></b></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>AppName
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The application name. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>AppVerName
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The application name
+  including version number. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>AppVersion
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The application
+  version number. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>AppPublisher
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The company publishing
+  the application. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>AppPublisherURL
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The URL for the
+  publisher. </span></p>
+  </td>
+ </tr>
+ <tr style='height:18.95pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:18.95pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>AppSupportURL
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:18.95pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The URL for technical
+  support; this is shown in the Add/Remove Programs Control Panel applet. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>AppUpdatesURL
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The URL for updates;
+  this is shown in the Add/Remove Programs Control Panel applet. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>AppCopyright
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The copyright for the
+  application. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>DefaultDirName
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The default directory
+  to install into. </span></p>
+  </td>
+ </tr>
+ <tr style='height:18.95pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:18.95pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>AppendDefaultDirName
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:18.95pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-align:justify;text-justify:inter-ideograph;text-indent:
+  0in;line-height:107%'><span style='font-size:8.0pt;line-height:107%;
+  font-family:"Arial",sans-serif'>If “yes,” appends the last portion of
+  DefaultDirName onto the path chosen by the user (default is “yes”). </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>DefaultGroupName
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The default folder in
+  the Start menu. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.75pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.75pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>LicenseFile
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.75pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The name of a file
+  containing license text. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>OutputBaseFileName
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The file name (without
+  path or extension) for the setup executable. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>Compression
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The type of
+  compression to use, such as “lzma” or “zip.” </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>SolidCompression
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>If “yes,” all files
+  are compressed at once rather than individually (default is “no”). </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>Password
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The password to use. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>PrivilegesRequired
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The privileges the user
+  requires to run the installer, such as “admin” for administrative rights. </span></p>
+  </td>
+ </tr>
+ <tr style='height:18.95pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:18.95pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>VersionInfoDescription
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:18.95pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The description for
+  the installer displayed in Windows Explorer when the user selects the setup
+  executable. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>VersionInfoVersion
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The version number for
+  the installer. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>VersionInfoCompany
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The company publishing
+  the installer. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>VersionInfoCopyright
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The copyright for the
+  installer. </span></p>
+  </td>
+ </tr>
+ <tr style='height:21.75pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 4.5pt 0in 5.4pt;height:21.75pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>InfoBeforeFile
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 4.5pt 0in 5.4pt;height:21.75pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>The name of a file
+  containing pre-installation text to display to the user. </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.35pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h3 style='margin-left:-.25pt'>Languages </h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>The Languages section defines the languages used by the
+setup executable and the names of the message files containing localized
+strings used by the installer. Although this section is inserted by the Inno
+Setup Script Wizard, it isn’t required if you want an English-only setup. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.35pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h3 style='margin-left:-.25pt'>Tasks </h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>The Tasks section specifies optional choices the user can
+make on the Select Additional Tasks step of the installer. A task doesn’t do
+anything by itself, but is used by items in other sections to indicate whether
+something should be installed or not; we’ll see an example of this in the Icons
+section. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:1.3pt;
+margin-left:18.5pt'>The Name parameter specifies the task name, Description is
+the prompt to display to the user, and </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>GroupDescription is a description to group tasks under
+(“Additional icons” in Figure 14). Notice in the sample script, messages are
+used for both Description and GroupDescription rather than hard-coded prompts;
+this makes it much easier to create a multilingual or localized installer.
+Messages are referenced as “{cm:<i>MessageName</i>}.” Flags indicates how to
+handle the task; in this example, “unchecked” indicates the task is turned off
+by default. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.35pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h3 style='margin-left:-.25pt'>Files </h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>The Files section lists the files to install and where to
+install them. Unlike InstallShield Express and other Windows </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Installer tools, Inno Setup doesn’t natively support merge
+modules, so every file you want to install must be listed in this section,
+including runtime files, ActiveX controls, and system DLLs. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>The source file is specified in the
+Source parameter and the destination in the DestDir parameter. The Flags
+parameter tells the installer how to deal with the file; “ignoreversion” is
+commonly used with application files because we want them always overwritten if
+they exist. We’ll see different flags in other examples later. Other parameters
+can also be used; see the Inno Setup documentation for a complete list. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.35pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h3 style='margin-left:-.25pt'>Icons </h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>The Icons section lists shortcuts to create. Name is the
+path and name of the shortcut file and Filename is the path and name of the
+target for the shortcut. If the optional Tasks is specified (as it is in the
+case of the desktop shortcut), it specifies the name of an entry in the Tasks
+section. The shortcut is only created if that task is turned on by the user. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.35pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h3 style='margin-left:-.25pt'>Run </h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>You can specify applications to execute after the
+installation is complete in the Run section. Applications are executed in the
+order they appear in the list. The installer will wait for one application to
+finish executing before running the next one unless “nowait” is specified in
+the Flags parameter. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>Filename is the path and name of the
+application to execute. Description is the prompt to display to the user if the
+“postinstall” flag is specified (discussed later in this paragraph); in this
+example, a message is used to avoid hardcoding the prompt. Parameters specifies
+parameters to pass to the application. Flags specifies how to handle the
+application to execute. “nowait” means the installer won’t wait for the
+application to terminate before carrying on. “postinstall” tells Inno Setup to
+display the prompt specified in the Description parameter and only execute the
+application if the user turns the option on. “skipifsilent” means this
+application isn’t executed if the user performs a </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>“silent” install (discussed later in this document). See
+the Inno Setup documentation for other flags and parameters. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.35pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h3 style='margin-left:-.25pt'>Other Sections </h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.2pt;
+margin-left:-.25pt'>There are several other sections you can include: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.65pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Types: allows you to define different types of setups, such as
+complete or workstation only. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.65pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Components: this section is related to Types. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.6pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Dirs: specifies additional directories to create. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.65pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Registry: specifies entries to create in the Windows Registry. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>INI: specifies settings to add to INI files. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.65pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>InstallDelete: specifies files and folders to delete as the first
+step of installation. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.25pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>UninstallDelete: specified additional files and folders to delete
+as the last step of uninstallation besides those installed by the setup
+executable. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.6pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>UninstallRun: similar to Run, but specifies applications to run
+as the first step of uninstallation. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.65pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Messages: overrides the strings displayed for built-in messages. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.6pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>CustomMessages: allows you to define custom messages. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:11.25pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>LangOptions: specifies language-specific settings, such as fonts.
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:18.5pt'>We’ll see examples of some of these sections later. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.4pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Uninstalling </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>As I mentioned earlier, Inno Setup automatically creates
+UnIns000.EXE and UnIns000.DAT in the install directory. These two files are the
+application uninstaller; running the EXE is way faster than opening Add/Remove
+Programs and removing the application from there. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>When the user uninstalls an application,
+Inno Setup only deletes those files and Registry entries it installed. If the
+user ran the application and the application created additional files or
+Registry entries, they aren’t deleted. Inno Setup will delete the install
+directory if it created the directory and there are no other files in that
+directory; otherwise, the user will have to delete the additional files and the
+directory themselves. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>If the install folder already contains
+UnIns000.EXE, it names the uninstaller files UnIns001.EXE and UnIns001.DAT, or
+whatever the next available sequential numbers available are. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.4pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Command Line Parameters </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Inno Setup supports a number of command line parameters
+which allow the user to customize the installation behavior. <b>Table 2</b>
+lists some of them; see the Inno Setup documentation for a complete list. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Table
+2</span></i></b><i><span style='font-family:"Arial",sans-serif'>. Commonly-used
+command line parameters. </span></i></p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=639
+ style='width:478.9pt;margin-left:-5.4pt;border-collapse:collapse'>
+ <tr style='height:11.3pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  padding:.4pt 5.75pt 0in 5.4pt;height:11.3pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='font-size:9.0pt;line-height:107%;font-family:"Arial",sans-serif'>Parameter
+  </span></b></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border:solid black 1.0pt;
+  border-left:none;padding:.4pt 5.75pt 0in 5.4pt;height:11.3pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><b><span
+  style='font-size:9.0pt;line-height:107%;font-family:"Arial",sans-serif'>Description
+  </span></b></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 5.75pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>/SILENT
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 5.75pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>Installs the
+  application without displaying the installer; only a progress dialog appears.
+  </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 5.75pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>/VERYSILENT
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 5.75pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>Installs the
+  application without displaying the installer or any progress dialog. </span></p>
+  </td>
+ </tr>
+ <tr style='height:9.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 5.75pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>/LOG </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 5.75pt 0in 5.4pt;height:9.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>Creates a log file of
+  setup tasks, useful for debugging if something goes wrong. </span></p>
+  </td>
+ </tr>
+ <tr style='height:21.7pt'>
+  <td width=169 valign=top style='width:126.95pt;border:solid black 1.0pt;
+  border-top:none;padding:.4pt 5.75pt 0in 5.4pt;height:21.7pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:8.0pt;line-height:107%;font-family:"Arial",sans-serif'>/LANG
+  </span></p>
+  </td>
+  <td width=469 valign=top style='width:351.9pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:.4pt 5.75pt 0in 5.4pt;height:21.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.05pt;text-indent:0in;line-height:107%'><span style='font-size:
+  8.0pt;line-height:107%;font-family:"Arial",sans-serif'>Specifies the language
+  file to use. </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:6.65pt;margin-bottom:
+11.5pt;margin-left:-.75pt;text-align:justify;text-justify:inter-ideograph;
+text-indent:17.5pt;line-height:134%'>The compiler also accepts command line
+parameters, allowing you to automate setup creation if desired. The name of the
+compiler is Compil32.EXE in the Inno Setup program directory; you can find it
+programmatically from the HKEY_CLASS_ROOT\InnoSetupScriptFile\Shell\Compile\Command
+key in the Windows Registry. Pass /CC and the name of the script file to
+compile; for example: <b><span style='font-size:8.0pt;line-height:134%;
+font-family:"Courier New"'>compil32 /cc c:\MyApp\Setup\MyScript.iss </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.8pt;
+margin-left:18.5pt'>You can also use the console-mode compiler, ISCC.EXE: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:248.0pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:172%'><b><span style='font-size:8.0pt;
+line-height:172%;font-family:"Courier New"'>iscc c:\MyApp\Setup\MyScript.iss </span></b><b><span
+style='font-size:14.0pt;line-height:172%;font-family:"Arial",sans-serif'>Installing
+VFP Applications </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>One of the things you may have noticed about the first
+example script is that it just installed the EXE for an application. VFP
+applications have other requirements, including some system DLLs and, of
+course, the VFP runtime files. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.9pt;
+margin-left:-.75pt;text-indent:.25in'>The following script, taken from
+VFP9Runtimes.ISS (included in the source files accompanying this document),
+does the necessary tasks to install all runtime files required by VFP
+applications. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Files] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>; VC++ files </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;D:\Installer\asycfilt.dll&quot;; DestDir: &quot;{sys}&quot;; Flags:
+uninsneveruninstall sharedfile onlyifdoesntexist </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;D:\Installer\comcat.dll&quot;;   DestDir: &quot;{sys}&quot;; Flags:
+uninsneveruninstall sharedfile onlyifdoesntexist regserver </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;D:\Installer\oleaut32.dll&quot;; DestDir: &quot;{sys}&quot;; Flags:
+uninsneveruninstall sharedfile onlyifdoesntexist regserver </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;D:\Installer\olepro32.dll&quot;; DestDir: &quot;{sys}&quot;; Flags:
+uninsneveruninstall sharedfile onlyifdoesntexist regserver </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;D:\Installer\stdole2.tlb&quot;;  DestDir: &quot;{sys}&quot;; Flags:
+uninsneveruninstall sharedfile onlyifdoesntexist regtypelib </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>; Help system files </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;D:\Installer\HH.EXE&quot;;     DestDir: &quot;{win}&quot;; Flags:
+uninsneveruninstall sharedfile onlyifdoesntexist </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;D:\Installer\HHCtrl.ocx&quot;;
+DestDir: &quot;{sys}&quot;; Flags: uninsneveruninstall sharedfile
+onlyifdoesntexist </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;D:\Installer\ITIRCL.dll&quot;; DestDir: &quot;{sys}&quot;; Flags:
+uninsneveruninstall sharedfile onlyifdoesntexist </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:36.1pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;D:\Installer\ITSS.dll&quot;;   DestDir: &quot;{sys}&quot;; Flags:
+uninsneveruninstall sharedfile onlyifdoesntexist  </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>; VFP 9 runtime files. Note
+MSVCR71.DLL is temporarily installed in the same directory; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>; without it, they won't register
+properly. See http://fox.wikis.com/wc.dll?Wiki~InnoScripts </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;D:\Installer\Inno
+Setup\msvcr71.dll&quot;;                                DestDir:
+&quot;{cf}\Microsoft Shared\VFP&quot;; Flags: onlyifdoesntexist
+deleteafterinstall </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;C:\Program
+Files\Common Files\Microsoft Shared\VFP\gdiplus.dll&quot;;     DestDir:
+&quot;{cf}\Microsoft Shared\VFP&quot;; Flags: sharedfile </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;C:\Program
+Files\Common Files\Microsoft Shared\VFP\vfp9r.dll&quot;;       DestDir:
+&quot;{cf}\Microsoft Shared\VFP&quot;; Flags: sharedfile regserver </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;C:\Program
+Files\Common Files\Microsoft Shared\VFP\vfp9renu.dll&quot;;    DestDir:
+&quot;{cf}\Microsoft Shared\VFP&quot;; Flags: sharedfile </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;C:\Program
+Files\Common Files\Microsoft Shared\VFP\foxhhelp9.exe&quot;;   DestDir:
+&quot;{cf}\Microsoft Shared\VFP&quot;; Flags: sharedfile </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:55.25pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;C:\Program
+Files\Common Files\Microsoft Shared\VFP\foxhhelpps9.dll&quot;; DestDir:
+&quot;{cf}\Microsoft Shared\VFP&quot;; Flags: sharedfile regserver  </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>; Install MSVCR71.DLL in the
+application directory as per </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>;
+http://fox.wikis.com/wc.dll?Wiki~InnoScripts </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:108.05pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;D:\Installer\msvcr71.dll&quot;;
+DestDir: &quot;{app}&quot;; Flags: ignoreversion  </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Run] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>; Need to run FOXHHELP9.EXE to
+register it </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+14.25pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Filename: {cf}\Microsoft
+Shared\VFP\foxhhelp9.exe; Parameters: /regserver </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.1pt;
+margin-left:18.5pt'>There are a few interesting things to note about this
+script: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:1.45pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Files installed in the user’s Windows or System directories
+(specified as “{win}” and “{sys},” respectively) cannot use your own Windows or
+System directory for the source location. The reason is discussed in the </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.0pt;
+margin-left:36.5pt'>“Unsafe Files” topic in the Inno Setup help file, so I
+won’t go into details here. So, I’ve created an Installer folder on the D:
+drive of my system and copied the files I need to install on the user’s system
+into that folder. Feel free to modify the script and specify a different source
+location if you wish. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.25pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Those files are also flagged as “uninsneveruninstall” so they’re
+never uninstalled, “sharedfile” since these files are most likely shared by
+other applications, and “onlyisdoesntexist” so existing files aren’t
+overwritten. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:7.15pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The “regserver” and “regtypelib” flags on some files tells the
+installer to register COM components and type libraries in the Windows
+Registry. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>VFP runtime files are installed in the Microsoft Shared\VFP
+folder of the user’s Common Files folder </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.3pt;
+margin-left:36.5pt'>(specified as “{cf}”, usually C:\Program Files\Common
+Files) rather than the System directory, since that’s been the correct place to
+install them since VFP 8. Included with the VFP runtime files are the files
+necessary for the help system to work within VFP applications. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>According to the VFP help file, MSVCR71.DLL should be installed
+in your application directory rather than a system directory, so the final file
+listed in the Files section does that. However, during installation, </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.15pt;
+margin-left:36.5pt'>the installer needs to register some of the VFP COM
+components, and that fails if MSVCR71.DLL can’t be found. So, earlier in the
+script, MSVCR71.DLL is temporarily installed in the same location as the VFP
+runtime files; the “deleteafterinstall” flag tells the installer to delete the
+file after installation is complete. Thanks to Rick Borup for discovering this
+quirk and posting it at <a href="http://fox.wikis.com/wc.dll?Wiki~InnoScripts"><span
+style='color:blue'>http://fox.wikis.com/wc.dll?Wiki~InnoScripts</span></a><a
+href="http://fox.wikis.com/wc.dll?Wiki~InnoScripts"><span style='color:black;
+text-decoration:none'>.</span></a> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:5.65pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Although specifying a flag of “regserver” registers a COM
+component, that doesn’t work for EXE COM components. Instead, you have to run
+the EXE with “/regserver” as a parameter to register it. That’s why the Run
+section runs FOXHHELP9.EXE; without this, help won’t work in VFP applications. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>There’s no need to copy and paste the
+lines in VFP9Runtimes.ISS into each script file you create. If you install the
+Inno Setup Preprocessor (ISPP) optional add-on, which I highly recommend, you
+can #INCLUDE this file in your scripts much like you can #INCLUDE files in VFP
+code. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.4pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Setup Types </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.85pt;
+margin-left:-.25pt'>A common scenario is to install an application on a server
+and only install the minimum files necessary on a workstation along with a
+shortcut that points to the application’s EXE on the server. Like InstallShield
+Express, Inno Setup allows you to create a setup executable with different
+setup types so the user can choose whether to perform a </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.85pt;
+margin-left:-.25pt'>complete install (all files) or a workstation install (the
+runtime files and shortcut). To do that, add Types and Components sections to
+the script, and then a Components parameter on the entries in the Files
+section. Here’s an example, taken from Sample2.ISS included with this document:
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Types] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;complete&quot;;   
+Description: &quot;Full installation&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;workstation&quot;;
+Description: &quot;Workstation only&quot; </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Components] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;complete&quot;;
+Description: &quot;Program files&quot;;  Types: complete </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:31.25pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;required&quot;;
+Description: &quot;Required files&quot;; Types: complete workstation; Flags:
+fixed  </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Files] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: sample1.exe; DestDir:
+{app}; Components: complete; Flags: ignoreversion </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+14.25pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: readme.txt;  DestDir:
+{app}; Components: complete; Flags: ignoreversion </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>The Types section defines the type of
+installations available on the Select Components page of the setup executable.
+Name is the name of the type and Description is the prompt displayed to the
+user. If you want the user to be able to select or deselect specific components
+with a type, add “Flags: iscustom” to one of the types, the one you want to be
+considered a “custom” installation. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>The Components section specifies the
+components the user can install. Each component is associated with one or more
+types using the Types parameter; in the example above, the “required” component
+is associated with both the “complete” and “workstation” installs, while the
+“complete” component is only associated with the “complete” install. Name is
+the name of the component and Description is its prompt. A number of different
+flags are available; in the example, “fixed” means the user cannot select or deselect
+the component, so it’s always installed. If “fixed” isn’t specified for at
+least one component, any types defined as “iscustom” are not displayed.
+Components can have child components (for example, under a “Data Files”, you
+might have “Production” and “Test Data” subcomponents). These are specified as
+“<i>ParentComponent\ChildComponent</i>”. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'> A component isn’t a true component; you
+associate a file with a component by adding a Components parameter to the
+file’s entry in the Files section. If a file doesn’t have such a parameter,
+it’s always installed (that’s the case for the VFP 9 runtime files discussed in
+the previous section). In the sample script, both files listed in the Files
+section are only installed if the user chooses the “complete” component. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'><b>Figure 20</b> shows the Select
+Components page of the setup executable created by compiling Sample2.ISS. “Full
+installation” will install all files while “Workstation only” will install only
+VFP runtime files and optionally a shortcut to the application’s executable on
+the server (the user has to select the correct server directory in the Select
+Destination Location step). </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:193.55pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=363 height=279 id="Picture 2014"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image020.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:13.25pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+20.</span></i></b><i><span style='font-family:"Arial",sans-serif'> Installation
+types allow the user to select which components they want to install.  </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:13.7pt;margin-bottom:
+9.0pt;margin-left:-.75pt;text-align:justify;text-justify:inter-ideograph;
+text-indent:17.5pt;line-height:105%'>Note that since the “iscustom” flag wasn’t
+specified for either of the types, the user cannot select individual
+components. One of the sample files that comes with Inno Setup, Components.ISS,
+demonstrates a more complete example: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Types] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;full&quot;;
+Description: &quot;Full installation&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;compact&quot;;
+Description: &quot;Compact installation&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;custom&quot;;
+Description: &quot;Custom installation&quot;; Flags: iscustom </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Components] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;program&quot;;
+Description: &quot;Program Files&quot;; Types: full compact custom; Flags:
+fixed </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;help&quot;;
+Description: &quot;Help File&quot;; Types: full </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;readme&quot;;
+Description: &quot;Readme File&quot;; Types: full </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;readme\en&quot;;
+Description: &quot;English&quot;; Flags: exclusive </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;readme\de&quot;;
+Description: &quot;German&quot;; Flags: exclusive </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Files] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;MyProg.exe&quot;;
+DestDir: &quot;{app}&quot;; Components: program </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;MyProg.hlp&quot;;
+DestDir: &quot;{app}&quot;; Components: help </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;Readme.txt&quot;;
+DestDir: &quot;{app}&quot;; Components: readme\en; Flags: isreadme </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+9.0pt;margin-left:-.75pt;text-align:justify;text-justify:inter-ideograph;
+text-indent:0in;line-height:132%'><b><span style='font-size:8.0pt;line-height:
+132%;font-family:"Courier New"'>Source: &quot;Readme-German.txt&quot;;
+DestName: &quot;Liesmich.txt&quot;; DestDir: &quot;{app}&quot;; Components:
+readme\de; Flags: isreadme </span>Figure 21</b> shows this installer. Note the
+“Program Files” component is disabled since it’s flagged as “fixed”. Also
+notice that child components under “Readme File” appear as radio buttons rather
+than check boxes, since they’re flagged as mutually exclusive. As soon as the
+user changes one of the options, the installation type automatically changes to
+the one specified as “iscustom” (“Custom installation” in this case). </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:193.55pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=363 height=279 id="Picture 2098"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image021.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:13.05pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+21.</span></i></b><i><span style='font-family:"Arial",sans-serif'> With the
+“iscustom” flag on a type, the user can select which components to install. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>One other thing to note about this
+script: the “isreadme” flag on the Readme.txt and Readme-German.txt files tells
+the installer to place a checkbox on the last page, allowing the user the
+option of reading whichever of these files the user chose to install using the
+application associated with the file type (for example, Notepad for TXT files).
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.4pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>A More Complete Example </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.9pt;
+margin-left:-.25pt'>The following script is taken from a real-world
+application; it’s the installation script for Stonefield Query for ACT!
+2005-2006, a commercial product my company sells. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyApplication
+&quot;sfquery.exe&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyPassword
+&quot;bambi#thumper&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyBeforeFile
+&quot;actinnosetupbeforefile.rtf&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyAppName &quot;Stonefield
+Query for ACT! 2005-2006&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyCopyright &quot;Copyright
+© 1996-2006 Stonefield Software Inc. All rights reserved.&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyVersion
+GetFileVersion(MyApplication) </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyURL
+&quot;http://www.stonefieldquery.com&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#define MyCompany &quot;Stonefield
+Software Inc.&quot; </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Setup] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Password={#MyPassword} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppName={#MyAppName} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppVerName={#MyAppName} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppVersion={#MyVersion} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppPublisher={#MyCompany} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppPublisherURL={#MyURL} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppSupportURL={#MyURL} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppUpdatesURL={#MyURL} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>DefaultDirName={pf}\{#MyAppName} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>DefaultGroupName={#MyAppName} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppendDefaultDirName=no </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>LicenseFile=D:\SFQuery\SFQueryDDEditor9\eula.rtf
+</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Compression=lzma </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>SolidCompression=true </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>PrivilegesRequired=admin </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>UninstallDisplayIcon=D:\SFQuery\SFQueryDDEditor9\SFQuery.ico
+</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>AppCopyright={#MyCopyright} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>VersionInfoDescription={#MyAppName}
+Setup </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>VersionInfoVersion={#MyVersion} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:146.45pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>VersionInfoTextVersion={#MyVersion}
+VersionInfoCompany={#MyCompany} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>VersionInfoCopyright={#MyCopyright}
+</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>WizardImageFile=compiler:WizModernImage-IS.bmp
+</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>WizardSmallImageFile=compiler:WizModernSmallImage-IS.bmp
+</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>InfoBeforeFile={#MyBeforeFile} </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#include &quot;D:\SFQuery\Inno
+Setup\SQ9Runtimes.iss&quot; </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[InstallDelete] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Type: files; Name:
+&quot;{app}\sfscript.*&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Type: files; Name:
+&quot;{app}\sfconfig.*&quot; </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Files] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>; Stonefield Query </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:50.45pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;{#MyApplication}&quot;; Components: complete; DestDir: {app}; Flags:
+ignoreversion  </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>; Project files </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;repmeta.*&quot;;  
+DestDir: &quot;{app}&quot;;         Components: complete; Flags: ignoreversion </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;sfquery.ini&quot;;
+DestDir: &quot;{app}&quot;;         Components: complete; Flags: ignoreversion </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;sfquery.chm&quot;;
+DestDir: &quot;{app}&quot;;         Components: complete; Flags: ignoreversion </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:26.45pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: &quot;sfquery.pdf&quot;;
+DestDir: &quot;{app}&quot;;         Components: complete; Flags: ignoreversion
+Source: &quot;Reports\*&quot;;   DestDir: &quot;{app}\Reports&quot;;
+Components: complete; Flags: ignoreversion  </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>; ACT 2005-2006 specific files </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;fieldutil.dbf&quot;;          DestDir: &quot;{app}&quot;; Components:
+complete; Flags: ignoreversion Source: &quot;D:\SFQuery\Inno
+Setup\RichTx32.ocx&quot;; DestDir: &quot;{sys}&quot;; Flags: onlyifdoesntexist
+sharedfile regserver </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;SFQueryAct2005COM.dll&quot;;  DestDir: &quot;{app}&quot;; Flags:
+ignoreversion </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;SFQUtil.dll&quot;;            DestDir: &quot;{app}&quot;; Flags:
+ignoreversion </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;RegAsm.exe&quot;;             DestDir: &quot;{app}&quot;; Flags:
+ignoreversion </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source:
+&quot;qwmeta.*&quot;;               DestDir: &quot;{app}&quot;; Components:
+complete; Flags: ignoreversion  </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Run] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Filename:
+&quot;{app}\sfquery.exe&quot;; Description: &quot;{cm:LaunchProgram,Stonefield
+Query}&quot;; Flags: nowait postinstall skipifsilent </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>; ACT 2005-2006 specific execution </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Filename:
+&quot;{app}\RegAsm.exe&quot;; Parameters: &quot;SFQUtil.dll
+/codebase&quot;;           WorkingDir: &quot;{app}&quot;; Flags: runhidden </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Filename:
+&quot;{app}\RegAsm.exe&quot;; Parameters: &quot;SFQueryAct2005COM.dll
+/codebase&quot;; WorkingDir: &quot;{app}&quot;; Flags: runhidden </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Icons] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: {group}\{#MyAppName};        
+Filename: {app}\sfquery.exe; WorkingDir: {app} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: {group}\{#MyAppName} Help;   
+Filename: {app}\sfquery.chm </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:36.1pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: {commondesktop}\{#MyAppName};
+Filename: {app}\sfquery.exe; WorkingDir: {app}; Tasks: desktopicon  </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Registry] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Root: HKCU; Subkey:
+Software\Stonefield Software Inc.\{#MyAppName}; Flags: uninsdeletekey noerror </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>; ACT 2005-2006 specific key: Rich
+Text Control license </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+14.3pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Root: HKCR; Subkey:
+&quot;Licenses\DC4D7920-6AC8-11cf-8ADB-00AA00C00905&quot;; ValueType: string;
+ValueName: &quot;&quot;; ValueData:
+&quot;iokouhloohrojhhhtnooiokomiwnmohosmsl&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.2pt;
+margin-left:18.5pt'>Here are the interesting things about this example: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The MyVersion constant is assigned the return value of the
+GetFileVersion function with the name of the main EXE (which comes from another
+constant). GetFileVersion is a function included in ISPP that does what its
+name says: it gets the version for the specified file. Assigning the version
+number this way means you don’t have to assign the version number in two
+places—the project manager, which then assigns that number to the EXE, and the
+installation script. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.6pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>UninstallDisplayIcon specifies the icon used for UnIns000.EXE. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.25pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The VersionInfo* settings apply to the setup executable itself.
+That way, when the user selects SETUP.EXE in Windows Explorer, they’ll see
+information about the installer, including a description, company name, and
+version number. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.4pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>WizardImageFile and WizardSmallImageFile allow you to specify
+different images on the left side and upper right corner of the installer
+dialogs, respectively. I downloaded these images from a link on the Inno Setup
+Third-Party Files page of the Inno Setup Web site. Rather than hard-coding the
+path, you can use the built-in “compiler:” prefix, which specifies the location
+of the Inno Setup compiler (if that’s where you placed the files). </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.15pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>InfoBeforeFile specifies some help information I want displayed
+before the user is asked where to install the application. This tells them to
+choose a server location even if they do a workstation install so the installer
+creates a shortcut with the proper path to the application’s EXE. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.2pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>This script #INCLUDEs another script, SQ9Runtimes.ISS, which, in
+addition to specifying the VFP 9 runtime files, has Types and Components
+sections defining complete and workstation only installations, a Tasks section
+for the desktop icon as I discussed earlier, and a Run section to run
+FOXHHELP.EXE. It also includes some custom code I’ll discuss later. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.25pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>An older version of our application included a couple of files we
+no longer need, so the InstallDelete section deletes these files if the user
+installs the new version in the same location as the older one (which is
+normally the case). </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.25pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>All the files in the Reports subdirectory are installed because
+of the wildcard in the Source=&quot;Reports\*&quot; parameter. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The Run section lists three applications to execute (actually,
+four, since SQ9Runtimes.ISS runs </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:6.15pt;
+margin-left:36.5pt'>FOXHHELP.EXE): the application if the user chooses to do so
+and RegAsm.EXE, which register a couple of .NET components as COM objects so
+our VFP application can use them. Notice the WorkingDir parameter, which
+specifies “{app}” so we don’t have to pass the path to the DLLs on the command
+line, and the “runhidden” flag, which prevents a DOS window from appearing
+while RegAsm.EXE does its thing. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The installer creates two entries in the Windows Registry. One is
+the parent for all Registry entries used by </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:36.5pt'>Stonefield Query, installed in HKEY_CURRENT_USER (“HKCU” in
+Inno Setup); it’s there so the entire set of entries is deleted, thanks to the
+“uninsdeletekey” flag, if the user uninstalls the application. The second
+installs a license for the Microsoft Rich Text ActiveX control in
+HKEY_CLASSES_ROOT </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:9.5pt;
+margin-left:36.5pt'>(“HKCR”); because we instantiate that control
+programmatically rather than adding it to a form or class, the license isn’t
+included in our EXE, so we need to ensure it’s installed in the Registry or the
+user will get a “license not found” error when they run the application. </p>
+
+<h2 style='margin-left:-.25pt'>Scripting </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>What makes Inno Setup really powerful is the ability to
+script various stages of the installation process to customize the appearance
+and behavior of the installer. Since Inno Setup was actually written in Delphi,
+it uses Pascal as its scripting language. Although you may not be familiar with
+Pascal, it doesn’t take long to learn and you likely don’t have to learn it in
+a great amount of detail to accomplish the tasks you need in Inno Setup. Script
+code goes in the Code section of a script file. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.35pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h3 style='margin-left:-.25pt'>Example 1: Custom Type Descriptions </h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Let’s look at an example. Notice the descriptions for the
+two install types in Sample2.ISS is fairly sparse; they don’t indicate to the
+user how to decide which type to use. It would be nice if we could provide a
+more detailed explanation of what each type is for. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.6pt;
+margin-left:-.75pt;text-indent:.25in'>Sample3.ISS is based on Sample2.ISS with
+a few changes: the Type section was changed and two new sections were added.
+Here’s the changed script text: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Types] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;complete&quot;;   
+Description: {cm:T_Complete} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;workstation&quot;;
+Description: {cm:T_Workstation} </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[CustomMessages] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>T_Complete=Full installation </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>TD_Complete=Choose this option to
+install My Second Application on a network server or an individual computer
+that will not run the application from the server. </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>T_Workstation=Workstation only </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>TD_Workstation=Choose this option
+if My Second Application is already installed on a network server and you want
+to run it from this computer. </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Code] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:300.05pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>#include
+&quot;DescriptiveTypes.isi&quot; procedure InitializeWizard(); begin </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:295.25pt;margin-bottom:
+14.3pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  InitializeDescriptiveTypes();
+end; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:6.65pt;margin-bottom:
+0in;margin-left:-.75pt;text-align:justify;text-justify:inter-ideograph;
+text-indent:17.5pt;line-height:105%'>The CustomMessages section defines four
+custom messages used by the setup. Two of these messages are used as the
+descriptions for the types in the Types section; note the {cm:MessageName}
+syntax to specify a custom message. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>The code section #INCLUDEs another script
+file, DescriptiveTypes.ISI, and defines an InitializeWizard function. This
+function is automatically called from Inno Setup so it is normally used for
+initialization tasks. In this case, it calls a function named
+InitializeDescriptiveTypes, which is defined in DescriptiveTypes.ISI. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>I won’t discuss the code in
+DescriptiveTypes.ISI; it’s well-commented if you want to examine it yourself.
+It was written by Gavin Lambert, a Inno Setup guru who generously posted in on
+his Web site </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:10.9pt;
+margin-left:-.25pt'><a href="http://www.mirality.co.nz/inno.php"><span
+style='color:black;text-decoration:none'>(</span></a><a
+href="http://www.mirality.co.nz/inno.php"><span style='color:blue'>http://www.mirality.co.nz/inno.php</span></a><a
+href="http://www.mirality.co.nz/inno.php"><span style='color:black;text-decoration:
+none'>)</span></a>. It creates a panel on the Select Components page displaying
+the custom message matching the selected install type (the message with the
+name “TD_” followed by the install type name). <b>Figure 22</b> shows what this
+page looks like. </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:193.55pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=363 height=279 id="Picture 2668"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image022.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:13.8pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+22</span></i></b><i><span style='font-family:"Arial",sans-serif'>. Using
+scripting, you can change the appearance of setup pages, including adding a
+panel of descriptive text. </span></i></p>
+
+<h3 style='margin-left:-.25pt'>Example 2: Prompting for the Data Location </h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>My second example comes courtesy of Rick Borup. Rather than
+assuming the data files for an application are installed in a particular
+folder, you could ask the user where they should go. This allows someone to
+install the application on their local machine but have the data stored on a
+server. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>Sample4.ISS is based on Sample2.ISS but
+defines some additional types and components and has script code that adds a
+new page to the setup executable. It also stores the locations the user
+selected for the application and the data files in the Registry so the
+application can determine where its data is located. <b>Figure 23</b> shows the
+new page. </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:193.55pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><img border=0 width=363 height=279 id="Picture 2700"
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image023.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:104%'><b><i><span style='font-family:"Arial",sans-serif'>Figure
+23</span></i></b><i><span style='font-family:"Arial",sans-serif'>. You can add
+new pages to a setup executable, such as asking the user for the location of
+the data. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.8pt;
+margin-left:18.5pt'>Here are the pertinent sections of the script (the Code
+section is shown separately later in this document): </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Types] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;complete&quot;;   
+Description: &quot;Full installation&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;workstation&quot;;
+Description: &quot;Workstation only&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;database&quot;;   
+Description: &quot;Database installation&quot; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:112.85pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;custom&quot;;     
+Description: &quot;Custom installation&quot;;  Flags: iscustom  </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Components] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;complete&quot;;
+Description: &quot;Program files&quot;;  Types: complete </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Name: &quot;required&quot;;
+Description: &quot;Required files&quot;; Types: complete workstation custom;
+Flags: fixed Name: &quot;database&quot;; Description: &quot;Database
+files&quot;; Types: complete database  </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Files] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: sample1.exe;       
+DestDir: {app};             Components: complete; Flags: </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>ignoreversion </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: readme.txt;        
+DestDir: {app};             Components: complete; Flags: </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>ignoreversion </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: data\customers.dbf;
+DestDir: {code:GetDataDir}; Components: database; Flags: </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>onlyifdoesntexist </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Source: data\customers.cdx;
+DestDir: {code:GetDataDir}; Components: database; Flags: </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>onlyifdoesntexist </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Registry] </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Root: HKCU; Subkey:
+Software\{#MyAppPublisher}\{#MyAppName}\Settings; ValueType: string; ValueName:
+AppDir;  ValueData: {code:GetAppDir};  Components: required </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+14.3pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>Root: HKCU; Subkey:
+Software\{#MyAppPublisher}\{#MyAppName}\Settings; ValueType: string; ValueName:
+DataDir; ValueData: {code:GetDataDir}; Components: database </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:1.35pt;
+margin-left:-.75pt;text-indent:.25in'>Sample4.ISS adds two new types: database,
+which allows the user to install just the database files, and custom, which
+allows the user to choose any combination of the components to install. There’s
+also a new component, database, which installs the data files. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>The Files section includes the customer
+table and its index as part of the database component, but they’re also flagged
+as “onlyifdoesntexist” so existing files aren’t overwritten with empty copies
+when the user installs an update. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Note the destination is specified as “{code:GetDataDir}”;
+this tells Inno Setup to call the GetDataDir function in the Code section and
+use the return value as the destination. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>The Registry section adds new keys to the
+Registry, storing the location of the application and data files. Again, these
+get their values from script functions using “{code}”. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:39.45pt;margin-bottom:
+9.0pt;margin-left:-.75pt;text-align:justify;text-justify:inter-ideograph;
+text-indent:17.5pt;line-height:105%'>Let’s look at the Code section. The first
+statement defines a variable named DataDirPage of type TInputDirWizardPage,
+which is a wizard page class containing edit boxes and Browse buttons for
+selecting directories. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:420.1pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>[Code] var </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+14.25pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>   DataDirPage:
+TInputDirWizardPage; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.9pt;
+margin-left:-.75pt;text-indent:.25in'>The InitializeWizard function creates a
+new page into that variable using the built-in CreateInputDirPage function. The
+first parameter is the ID of the page after which the new page will appear
+(wpSelectComponents is a built-in constant specifying the Select Components
+page). The next three parameters are the caption, description, and subcaption
+for the page. The False parameter indicates that the last parameter should not
+be appended to any directory name the user selects. The following line of code
+adds a directory selection box to the page; the parameter specifies the
+caption. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:309.65pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>procedure InitializeWizard; begin </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  { Create the data directory page
+} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  DataDirPage :=
+CreateInputDirPage( wpSelectComponents, </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>    'Select Data Directory', 'Where
+should the data files be installed?', </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>    'Setup will install the
+database files into the following folder.', </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>    False, 'New Folder'); </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.85pt;margin-bottom:
+14.3pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  DataDirPage.Add( 'To continue,
+click Next. If you would like to select a different location, click Browse');
+end; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:6.65pt;margin-bottom:
+9.0pt;margin-left:-.75pt;text-align:justify;text-justify:inter-ideograph;
+text-indent:17.5pt;line-height:105%'>The RegisterPreviousData function,
+automatically called by Inno Setup, calls SetPreviousData to save the value
+entered by the user in a DataDir key; this allows it to be restored as a
+default value the next time the user runs the installer. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:160.85pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>procedure RegisterPreviousData(
+PreviousDataKey: Integer); begin </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:108.05pt;margin-bottom:
+14.3pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  { Save the DataDir setting so we
+can restore it next time }   SetPreviousData( PreviousDataKey, 'DataDir',
+DataDirPage.Values[0]); end; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.9pt;
+margin-left:-.75pt;text-indent:.25in'>ShouldSkipPage is called from Inno Setup
+to determine if the specified page should be skipped or not. We want to skip
+the new page if the user didn’t select the database component, so the
+WizardSelectedComponents function is called to return a list of selected
+components and the Pos function, like the VFP AT() function, returns the
+location of one string within another. The Result variable, which contains the
+value of the return code of the function, is set to True if Pos contains 0
+(that is, the database component was not selected), so the page is skipped. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:194.45pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>function ShouldSkipPage( PageID:
+Integer): Boolean; begin </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:122.45pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  { Skip the DataDir page if the
+database component is not selected }   if ( PageID = DataDirPage.ID) then </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:117.65pt;margin-bottom:
+14.3pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>    Result := pos( 'database',
+WizardSelectedComponents( false)) = 0 end; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.85pt;
+margin-left:-.75pt;text-indent:.25in'>Inno Setup calls the NextButtonClick
+function when the user clicks the Next button, passing it the ID of the current
+page. For the Select Directory page (wpSelectDir), this code retrieves the data
+directory they chose the last time they ran the installer. If there is one,
+that value is placed into the directory control on the data directory page. If
+not, the code calls the ExpandConstant function to expand the {app} constant,
+which returns the directory selected by the user, appends “\Data” to it, and stores
+that in the control. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:175.25pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>function NextButtonClick(
+CurPageID: Integer): Boolean; begin </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:45.65pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  { If we're leaving the
+wpSelectDir page we now have the value for the 'app' variable,     which we can
+use to create the default value for the DataDir variable if there is no    
+value already available from a previous install. }   if ( CurPageID = wpSelectDir)
+then </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>    begin </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.8pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>      { Set the value of the data
+directory to the value of DataDir from the previous         install, if any. } </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:136.9pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>      DataDirPage.Values[0] :=
+GetPreviousData( 'DataDir', '');       { If there was no previous value then
+supply a default value. }       if DataDirPage.Values[0] = '' then </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:141.65pt;margin-bottom:
+14.3pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>        DataDirPage.Values[0] :=
+ExpandConstant( '{app}') + '\Data';     end;   Result := True; end; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.9pt;
+margin-left:-.75pt;text-indent:.25in'>If it exists, Inno Setup calls the
+UpdateReadyMemo function to update the display on the Ready to Install page.
+This code adds a couple of blank lines to the end of the current display
+(MemoComponentsInfo and NewLine are both passed as parameters). If the user
+chose the workstation component, the code adds the install directory, passed in
+the MemoDirInfo parameter, to the text. If the user chose the database
+components, the code adds the data directory to the text (Space is a string of
+spaces passed as a parameter). Finally, it returns the string to Inno Setup by
+setting Result. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>function UpdateReadyMemo( Space,
+NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo, </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:141.7pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  MemoComponentsInfo,
+MemoGroupInfo, MemoTasksInfo: String): String; var   S: String; begin </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:93.65pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  { Fill the 'Ready Memo' with the
+normal settings and the custom settings }   S := MemoComponentsInfo + NewLine +
+NewLine; </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  { Workstation component is
+selected } </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  if pos( 'workstation',
+WizardSelectedComponents( false)) &gt; 0 then </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>    S := S + MemoDirInfo + '
+(workstation)' + NewLine; </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  { Database component is selected
+} </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:136.9pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  if pos( 'database',
+WizardSelectedComponents( false)) &gt; 0 then     if pos( 'workstation',
+WizardSelectedComponents( false)) &gt; 0 then </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>      { Workstation component is
+also selected } </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:108.05pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>      S := S + Space +
+DataDirPage.Values[0] + ' (database)' + NewLine     else begin </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>      { Workstation component is
+not selected } </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>      S := S + 'Destination
+Directory:' + NewLine; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:103.25pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>      S := S + Space +
+DataDirPage.Values[0] + ' (database)' + NewLine;     end; </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:8.0pt;line-height:107%;font-family:"Courier New"'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:376.9pt;margin-bottom:
+14.3pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  Result := S; end; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.9pt;
+margin-left:-.75pt;text-indent:.25in'>GetDataDir, which as we saw earlier is
+called from a couple of places in the script file, simply returns the selected
+data directory from the value of the directory control on the new page. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:247.25pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>function GetDataDir( S: String):
+String; begin </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:280.85pt;margin-bottom:
+14.3pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  { Return the selected DataDir }  
+Result := DataDirPage.Values[0]; end; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.8pt;
+margin-left:18.5pt'>Similarly, GetAppDir returns the install directory by
+retrieving the value of the {app} constant. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:223.25pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>function GetAppDir( Default:
+String): String; begin </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:290.5pt;margin-bottom:
+16.35pt;margin-left:-.25pt;line-height:104%'><b><span style='font-size:8.0pt;
+line-height:104%;font-family:"Courier New"'>  { Return the install dir }  
+Result := ExpandConstant( '{app}'); end; </span></b></p>
+
+<h3 style='margin-left:-.25pt'>Other Examples </h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Inno Setup comes with several sample scripts in its Example
+folder. Two of the more interesting ones are </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-align:justify;text-justify:inter-ideograph;text-indent:
+0in;line-height:105%'>CodeAutomation.ISS, which shows how to use COM objects in
+Inno Setup scripts—the examples it uses are creating a SQL Server database and
+an IIS virtual directory—and CodeClasses.ISS, which shows how to use the
+various types of controls built into Inno Setup on custom pages. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.4pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Vista Issues </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Although Microsoft has been telling us for years not to run
+our systems while logged in as administrators, Windows Vista finally enforces
+that with the new User Access Control (UAC). As a result, many users will run
+as a standard user, which limits their rights on the machine but also limits
+the damage malware can do. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>Most installations require administrative
+privileges because they need to install files in certain protected folders,
+such as Program Files. If a standard user runs a setup program, Vista displays
+the UAC dialog, asking them to enter the user name and password of an
+administrative user. It then “elevates,” or runs the installer as that user. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>A result of running as an administrative
+user is that user-specific tasks relate to that user rather than the standard
+user. For example, suppose the installer stores some settings in the
+HKEY_CURRENT_USER hive in the Registry. The problem is that it stores those
+settings for the administrative user, so once the installer is done and the
+user runs the application (now running it as the standard user), they can’t see
+those settings. The same is true if the user launches the application from the
+installer using the [Run] section in an Inno script. Since Vista was still
+elevated when it started the application, the application runs as the
+administrative user. If the user specifies configuration settings and the
+application stores those settings in a user-specific location (the
+HKEY_CURRENT_USER hive in the Registry or a user-specific folder), the next
+time the user runs the application, they will do so as the standard user and
+won’t see those settings. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:8.1pt;
+margin-left:18.5pt'>The solution is to not allow any user-specific tasks in an
+Inno script. This means: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:5.75pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Don’t write settings to HKEY_CURRENT_USER in the Registry. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:4.6pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Don’t write to files in user-specific folders. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:5.85pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Create icons for all users rather than the current user: use
+{commondesktop} rather than {userdesktop}. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:15.55pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:106%;font-family:
+"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Don’t allow the application to be launched from the installer:
+add OnlyBelowVersion: 0,6 to the [Run] command so the option is only available
+for Windows XP or lower. </p>
+
+<h2 style='margin-left:-.25pt'>Resources </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Because it’s a very popular tool, there are lots of
+resources available for Inno Setup. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>The Inno Setup Web site, <a
+href="http://www.jrsoftware.org/isinfo.php"><span style='color:blue'>http://www.jrsoftware.org/isinfo.php</span></a><a
+href="http://www.jrsoftware.org/isinfo.php"><span style='color:black;
+text-decoration:none'>,</span></a> is a great place to start. It has a
+Frequently Asked Questions page, a Knowledge Base, and links to third-party
+add-on tools (such as a custom page editor) and information Web sites. There’s
+also a fairly active newsgroup available at news.jrsoftware.org. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>Rick Borup has a couple of white papers
+and a video on using Inno Setup on his Web site, <a
+href="http://www.ita-software.com/foxpage.aspx"><span style='color:blue'>http://www.ita</span></a><a
+href="http://www.ita-software.com/foxpage.aspx"></a><a
+href="http://www.ita-software.com/foxpage.aspx"><span style='color:blue'>software.com/foxpage.aspx</span></a><a
+href="http://www.ita-software.com/foxpage.aspx"><span style='color:black;
+text-decoration:none'>.</span></a> These are excellent resources for getting
+started. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>In addition to the DescriptiveTypes.ISI
+file I mentioned earlier, Gavin Lambert’s Web site, <a
+href="http://www.mirality.co.nz/inno.php"><span style='color:blue'>http://www.mirality.co.nz/inno.php</span></a><a
+href="http://www.mirality.co.nz/inno.php"><span style='color:black;text-decoration:
+none'>,</span></a> has several white papers on using Inno Setup. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>Nicholas Sherlock’s Web site, <a
+href="http://www.sherlocksoftware.org/page.php?id=11"><span style='color:blue'>http://www.sherlocksoftware.org/page.php?id=11</span></a><a
+href="http://www.sherlocksoftware.org/page.php?id=11"><span style='color:black;
+text-decoration:none'>,</span></a> includes a downloader utility you can use to
+download files as part of your installation. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.75pt;text-indent:.25in'>For ideas about deployment in general, I
+highly recommend Deploying Visual FoxPro Solutions, by Rick Schummer, Rick
+Borup, and Jacci Adams, Hentzenwerke Publishing, ISBN 1-930919-32-8, available
+from <a href="http://www.hentzenwerke.com/"><span style='color:blue'>www.hentzenwerke.com</span></a><a
+href="http://www.hentzenwerke.com/"><span style='color:black;text-decoration:
+none'>.</span></a> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.4pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Summary </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Inno Setup is a free, fast, easy-to-use installation tool
+that generates fast, lightweight setup executables. I’ve been using it
+exclusively for several years now and can attest to its power and freedom from
+the problems that drove me away from Windows Installer-based installation
+tools. I recommend giving it a try; you’ll likely find you don’t want to go
+back. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.4pt;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Biography </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Doug Hennig is a partner with Stonefield Systems Group Inc.
+and Stonefield Software Inc. He is the author of the award-winning Stonefield
+Database Toolkit (SDT), the award-winning Stonefield Query, and the MemberData
+Editor, Anchor Editor, and CursorAdapter and DataEnvironment builders that come
+with Microsoft Visual FoxPro, and the My namespace and updated Upsizing Wizard
+in Sedna. Doug is co-author of the “What’s New in Visual FoxPro” series (the
+latest being “What’s New in Nine”) and “The Hacker’s Guide to Visual FoxPro
+7.0.” He was the technical editor of “The Hacker’s Guide to Visual FoxPro 6.0”
+and “The Fundamentals.” All of these books are from Hentzenwerke Publishing <a
+href="http://www.hentzenwerke.com/"><span style='color:black;text-decoration:
+none'>(</span></a><a href="http://www.hentzenwerke.com/"><span
+style='color:blue'>http://www.hentzenwerke.com</span></a><a
+href="http://www.hentzenwerke.com/"><span style='color:black;text-decoration:
+none'>)</span></a>. Doug wrote over 100 articles in 10 years for FoxTalk. He
+has spoken at every Microsoft FoxPro Developers Conference (DevCon) since 1997
+and at user groups and developer conferences all over the world. He is one of
+the administrators for the VFPX VFP community extensions Web site (<a
+href="http://www.codeplex.com/Wiki/View.aspx?ProjectName=VFPX"><span
+style='color:blue'>http://www.codeplex.com/Wiki/View.aspx?ProjectName=VFPX</span></a><a
+href="http://www.codeplex.com/Wiki/View.aspx?ProjectName=VFPX"><span
+style='color:black;text-decoration:none'>)</span></a>. He has been a Microsoft
+Most Valuable Professional (MVP) since 1996. Doug was awarded the 2006 FoxPro
+Community Lifetime Achievement Award <a
+href="http://fox.wikis.com/wc.dll?Wiki~FoxProCommunityLifetimeAchievementAward~VFP"><span
+style='color:black;text-decoration:none'>(</span></a><a
+href="http://fox.wikis.com/wc.dll?Wiki~FoxProCommunityLifetimeAchievementAward~VFP"><span
+style='color:blue'>http://fox.wikis.com/wc.dll?Wiki~FoxProCommunityLifetimeAchievementAward~VFP</span></a><a
+href="http://fox.wikis.com/wc.dll?Wiki~FoxProCommunityLifetimeAchievementAward~VFP"><span
+style='color:black;text-decoration:none'>)</span></a>. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15in;
+margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:2.95pt;
+margin-bottom:0in;margin-left:0in;text-align:right;text-indent:0in;line-height:
+107%'><span style='font-size:11.0pt;line-height:107%;font-family:"Calibri",sans-serif'><img
+border=0 width=617 height=195
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image024.gif"></span> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.35pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:11.0pt;
+line-height:107%;font-family:"Calibri",sans-serif'><img border=0 width=360
+height=170
+src="Installing%20Applications%20Using%20Inno%20Setup_files/image025.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.5pt;margin-bottom:.2pt;
+margin-left:-.25pt'>Copyright © 2006-2007 Doug Hennig. All Rights Reserved. </p>
+
+</div>
+
+</body>
+
+</html>

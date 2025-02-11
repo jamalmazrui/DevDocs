@@ -1,0 +1,1988 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Visual Studio Code - Tips &amp; Tricks Vol. 1</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI Symbol";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:7.75pt;
+	margin-left:1.2pt;
+	text-indent:-.5pt;
+	line-height:110%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:1.3pt;
+	margin-left:1.2pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Calibri",sans-serif;
+	color:#2E74B5;
+	font-weight:normal;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.2pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Calibri",sans-serif;
+	color:#2E74B5;
+	font-weight:normal;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.2pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Calibri",sans-serif;
+	color:#2E74B5;
+	font-weight:normal;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{margin-top:0in;
+	margin-right:7.95pt;
+	margin-bottom:4.65pt;
+	margin-left:1.95pt;
+	text-indent:-.5pt;
+	line-height:110%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{margin-top:0in;
+	margin-right:8.45pt;
+	margin-bottom:4.9pt;
+	margin-left:12.25pt;
+	text-align:right;
+	text-indent:-.5pt;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Calibri",sans-serif;
+	color:#2E74B5;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Calibri",sans-serif;
+	color:#2E74B5;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Calibri",sans-serif;
+	color:#2E74B5;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:70.8pt 63.5pt 95.7pt 70.1pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:531.85pt;margin-bottom:
+0in;margin-left:-70.1pt;text-indent:0in;line-height:107%'><img width=792
+height=1120
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image001.jpg"><br
+clear=ALL>
+<br clear=all style='page-break-before:always'>
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.45pt;line-height:107%'><span style='font-size:30.0pt;line-height:
+107%;font-family:"Segoe UI",sans-serif;color:#622976'>Contents</span><span
+style='font-size:18.0pt;line-height:107%;color:#2E74B5'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:4.1pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><span style='font-size:12.0pt;
+line-height:107%'> </span></p>
+
+<p class=MsoToc1><a href="#_Toc25453"><span style='color:black;text-decoration:
+none'>Visual Studio Code?......................................................................................................................... </span><span style='color:black;text-decoration:none'>4 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25454"><span style='color:black;text-decoration:
+none'>Preface............................................................................................................................................ </span><span style='color:black;text-decoration:none'>5 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25455"><span style='color:black;text-decoration:
+none'>What is Visual Studio Code?............................................................................................................. </span><span style='color:black;text-decoration:none'>6 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25456"><span style='color:black;text-decoration:
+none'>Tip 1 – Getting the Latest and Greatest as a VS Code Insider............................................................... </span><span style='color:black;text-decoration:none'>6 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25457"><span style='color:black;text-decoration:
+none'>Tip 2 – Multiple Cursors.................................................................................................................... </span><span style='color:black;text-decoration:none'>8 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25458"><span style='color:black;text-decoration:
+none'>Tip 3 – Using the Command Palette to Control VS Code...................................................................... </span><span style='color:black;text-decoration:none'>8 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25459"><span style='color:black;text-decoration:
+none'>Tip 4 – Selecting a Language for a File............................................................................................... </span><span style='color:black;text-decoration:none'>9 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25460"><span style='color:black;text-decoration:
+none'>Tip 5 – AutoSave............................................................................................................................ </span><span style='color:black;text-decoration:none'>10 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25461"><span style='color:black;text-decoration:
+none'>Tip 6 – Hiding Undesired Folders..................................................................................................... </span><span style='color:black;text-decoration:none'>10 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25462"><span style='color:black;text-decoration:
+none'>Tip 7 – Hiding Search Results.......................................................................................................... </span><span style='color:black;text-decoration:none'>11 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25463"><span style='color:black;text-decoration:
+none'>Tip 8 – Re-Inserting Regex Matches................................................................................................. </span><span style='color:black;text-decoration:none'>11 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25464"><span style='color:black;text-decoration:
+none'>Tip 9 – Emmet Snippets.................................................................................................................. </span><span style='color:black;text-decoration:none'>12 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25465"><span style='color:black;text-decoration:
+none'>Tip 10 – Keyboard Shortcut Chords................................................................................................. </span><span style='color:black;text-decoration:none'>13 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25466"><span style='color:black;text-decoration:
+none'>Tip 11 – Markdown Preview........................................................................................................... </span><span style='color:black;text-decoration:none'>14 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25467"><span style='color:black;text-decoration:
+none'>Tip 12 – Visualizing CSS Selectors.................................................................................................... </span><span style='color:black;text-decoration:none'>14 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25468"><span style='color:black;text-decoration:
+none'>Tip 13 – Latest Version of Dependencies in package.json.................................................................. </span><span style='color:black;text-decoration:none'>15 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25469"><span style='color:black;text-decoration:
+none'>Tip 14 – Git Quick Change Info........................................................................................................ </span><span style='color:black;text-decoration:none'>15 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25470"><span style='color:black;text-decoration:
+none'>Tip 15 – Refreshing Git-Views.......................................................................................................... </span><span style='color:black;text-decoration:none'>16 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25471"><span style='color:black;text-decoration:
+none'>Tip 16 – Git Inline Comparison........................................................................................................ </span><span style='color:black;text-decoration:none'>17 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25472"><span style='color:black;text-decoration:
+none'>Tip 17 – Comparing Files................................................................................................................. </span><span style='color:black;text-decoration:none'>17 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25473"><span style='color:black;text-decoration:
+none'>Tip 18 – Extensions........................................................................................................................ </span><span style='color:black;text-decoration:none'>18 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25474"><span style='color:black;text-decoration:
+none'>Tip 19 – Automatic Task Discovery for Gulp, Grunt and Jake.............................................................. </span><span style='color:black;text-decoration:none'>19 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25475"><span style='color:black;text-decoration:
+none'>Tip 20 – Configuring PHP for Visual Studio Code............................................................................... </span><span style='color:black;text-decoration:none'>19 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25476"><span style='color:black;text-decoration:
+none'>Tip 21 – Command Line Parameters................................................................................................ </span><span style='color:black;text-decoration:none'>20 </span></a></p>
+
+<p class=MsoToc2><a href="#_Toc25477"><span style='color:black;text-decoration:
+none'>Console Support for Linux........................................................................................................... </span><span style='color:black;text-decoration:none'>20 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25478"><span style='color:black;text-decoration:
+none'>Tip 22 – Storage Locations.............................................................................................................. </span><span style='color:black;text-decoration:none'>21 </span></a></p>
+
+<p class=MsoToc2><a href="#_Toc25479"><span style='color:black;text-decoration:
+none'>Settings, Keyboard Shortcuts and Code Snippets.......................................................................... </span><span style='color:black;text-decoration:none'>21 </span></a></p>
+
+<p class=MsoToc2><a href="#_Toc25480"><span style='color:black;text-decoration:
+none'>Extensions................................................................................................................................. </span><span style='color:black;text-decoration:none'>21 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25481"><span style='color:black;text-decoration:
+none'>Tip 23 – Synchronizing Settings and Extensions................................................................................ </span><span style='color:black;text-decoration:none'>21 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25482"><span style='color:black;text-decoration:
+none'>Tip 24 – Deactivating Crash Reports................................................................................................ </span><span style='color:black;text-decoration:none'>22 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25483"><span style='color:black;text-decoration:
+none'>Tip 25 – Deactivating Telemetry...................................................................................................... </span><span style='color:black;text-decoration:none'>22 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25484"><span style='color:black;text-decoration:
+none'>Tip 26 – Navigating Files in the Editor.............................................................................................. </span><span style='color:black;text-decoration:none'>22 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25485"><span style='color:black;text-decoration:
+none'>Tip 27 – Opening Files in Dedicated Editor Windows........................................................................ </span><span style='color:black;text-decoration:none'>22 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25486"><span style='color:black;text-decoration:
+none'>Tip 28 – Customizing Keyboard Shortcuts........................................................................................ </span><span style='color:black;text-decoration:none'>23 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25487"><span style='color:black;text-decoration:
+none'>Tip 29 – Authors’ Favorite Keyboard Shortcuts................................................................................. </span><span style='color:black;text-decoration:none'>24 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25488"><span style='color:black;text-decoration:
+none'>Tip 30 – Changing the UI Language.................................................................................................. </span><span style='color:black;text-decoration:none'>24 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc25489"><span style='color:black;text-decoration:
+none'>Tip 31 – Enforcing Word Wrap in the Editor..................................................................................... </span><span style='color:black;text-decoration:none'>25 </span></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:32.5pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'><span style='font-size:30.0pt;
+line-height:107%;font-family:"Segoe UI",sans-serif;color:#622976'>     </span><br
+clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.45pt'><a
+name="_Toc25453"><span style='font-size:30.0pt;line-height:107%;font-family:
+"Segoe UI",sans-serif;color:#622976'>Visual Studio Code?</span></a><span
+style='font-size:30.0pt;line-height:107%;font-family:"Segoe UI",sans-serif;
+color:#181717'> </span> </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'><a href="http://code.visualstudio.com/"><span
+style='color:#0563C1'>Visual Studio Code</span></a><a
+href="http://code.visualstudio.com/"><span style='color:black;text-decoration:
+none'> </span></a>provides developers with a new choice of developer tool that
+combines the simplicity and streamlined experience of a code editor with the
+best of what developers need for their core code-build-debug cycle. Visual
+Studio Code is the first code editor, and first cross-platform development tool
+- supporting OS X, Linux, and Windows - in the <a
+href="https://www.visualstudio.com/vs-2015-product-editions"><span
+style='color:#0563C1'>Visual Studio family</span></a><a
+href="https://www.visualstudio.com/vs-2015-product-editions"><span
+style='color:black;text-decoration:none'>.</span></a> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>At its heart, Visual Studio Code (VS Code) features a
+powerful, fast code editor great for day-to-day use. The Beta release of Code
+already has many of the features developers need in a code and text editor,
+including navigation, keyboard support with customizable bindings, syntax
+highlighting, bracket matching, auto indentation, and snippets, with support
+for dozens of languages. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>For serious coding, developers often need to work
+with code as more than just text. Visual Studio Code includes built-in support
+for always-on IntelliSense code completion, richer semantic code understanding
+and navigation, and code refactoring. In the Preview, Code includes enriched
+built-in support for ASP.NET Core development with C#, and Node.js development
+with TypeScript and JavaScript, powered by the same underlying technologies
+that drive Visual Studio. Code includes great tooling for web technologies such
+as HTML, CSS, Less, Sass, and JSON. Code also integrates with package managers
+and repositories, and builds and other common tasks to make everyday workflows
+faster. And VS Code understands Git, and delivers great Git workflows and
+source diffs integrated with the editor. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>But developers don't spend all their time just
+writing code: they go back and forth between coding and debugging. Debugging is
+the most popular feature in Visual Studio, and often the one feature from an
+IDE that developers want in a leaner coding experience. Visual Studio Code
+includes a streamlined, integrated debugging experience, with support for
+Node.js debugging and more to come later. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Architecturally, Visual Studio Code combines the best
+of web, native, and language-specific technologies. Using the <a
+href="https://github.com/atom/electron"><span style='color:#0563C1'>GitHub
+Electron Shell</span></a><a href="https://github.com/atom/electron"><span
+style='color:black;text-decoration:none'>,</span></a> Visual Studio Code
+combines web technologies such as JavaScript and Node.js with the speed and
+flexibility of native apps. Visual Studio Code uses a newer, faster version of
+the same industrial-strength HTML-based editor that has powered the “Monaco” cloud
+editor, Internet Explorer's F12 Tools, and other projects. And Visual Studio
+Code uses a tools service architecture that enables it to use many of the same
+technologies that power Visual Studio, including Roslyn for .NET, TypeScript,
+the Visual Studio debugging engine, and more. Visual Studio Code includes a
+public extensibility model that lets developers build and use plug-ins, and
+richly customize their edit-build-debug experience. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>If you prefer a code editor-centric development tool
+or are building cross-platform web and cloud applications, we invite you to try
+out Visual Studio Code and let us know what you think! </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'>                 </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.45pt'><a
+name="_Toc25454"><span style='font-size:30.0pt;line-height:107%;font-family:
+"Segoe UI",sans-serif;color:#622976'>Preface </span></a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>Less than<a
+href="https://channel9.msdn.com/Events/TechDays/TechDays16Baden/Keynote-1-Visual-Studio-Code-made-in-Switzerland?ocid=player"><span
+style='color:black;text-decoration:none'> </span></a><a
+href="https://channel9.msdn.com/Events/TechDays/TechDays16Baden/Keynote-1-Visual-Studio-Code-made-in-Switzerland?ocid=player"><span
+style='color:#0563C1'>five years</span></a><a
+href="https://channel9.msdn.com/Events/TechDays/TechDays16Baden/Keynote-1-Visual-Studio-Code-made-in-Switzerland?ocid=player"><span
+style='color:black;text-decoration:none'> </span></a>ago we started developing
+the components for what was to become Visual Studio Code. Right from the start
+we were aware that if we wanted to build a tool for developers, we must
+aggressively use it ourselves. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>It took us only four months before we started to do
+all our development using the predecessor of Code. There were many limitations
+and it was pretty rough. For example, in the beginning we did not have mouse
+support. As a team we used the tool daily – something we call “eating your own
+dogfood”, this helped us to tune and improve the tool continuously. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Since we released a first beta of Code in May 2015, a
+vibrant community has formed with the shared goal of improving Code. We keep
+receiving feedback in bug reports, tweets, questions on Stack Overflow, and we
+try to react to this feedback in our monthly releases. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'><a href="https://www.xing.com/profile/Tobias_Kahlert"><span
+style='color:#0563C1'>Tobias Kahlert</span></a><a
+href="https://www.xing.com/profile/Tobias_Kahlert"><span style='color:black;
+text-decoration:none'> </span></a>and <a href="https://linkedin.com/in/kaygiza"><span
+style='color:#0563C1'>Kay Giza</span></a><a
+href="https://linkedin.com/in/kaygiza"><span style='color:black;text-decoration:
+none'> </span></a>(from Microsoft Germany) were two of the early users of Code,
+and they have been helping us answer questions from the community for some time
+now. This eBook is the next logical step in that process. In this collection of
+tips and tricks, the authors share their experiences using Code with you. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>My goal is that our users can use Code as
+productively as the core development team does in their daily coding work. In
+this book, Tobias and Kay describe dozens of tips and tricks that will help you
+to get closer to this goal. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Happy Coding! </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>Dr. Erich Gamma </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>Microsoft Distinguished Engineer </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:169.25pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Open Tools Group, Development Lead Visual Studio
+Code  Zurich, March 2016 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.9pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.9pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.45pt;line-height:107%'><b>About Erich Gamma</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'><a href="https://en.wikipedia.org/wiki/Erich_Gamma"><span
+style='color:#0563C1'>Erich Gamma</span></a><a
+href="https://en.wikipedia.org/wiki/Erich_Gamma"><span style='color:black;
+text-decoration:none'> </span></a>is a Microsoft Distinguished Engineer and
+leads the Visual Studio Code project. He and his team work out of a small
+development lab in Zurich. The team is also responsible for the on-line Monaco
+editor, which is used in many Microsoft products. Previously he worked for IBM
+and he was one of the fathers of Eclipse and was leading the Eclipse Java
+development tools. Erich is also a member of the Gang of Four, which is known
+for its classical book, “Design Patterns - Elements of Reusable Object-Oriented
+Software.” Erich has collaborated with Kent Beck on developing JUnit, the de
+facto standard testing tool for Java software. </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.45pt'><a
+name="_Toc25455"><span style='font-size:30.0pt;line-height:107%;font-family:
+"Segoe UI",sans-serif;color:#622976'>What is Visual Studio Code?  </span></a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Visual Studio Code (VS Code) is a free open source <b>code
+editor</b> for development and debugging modern cloud and web applications
+which is available for free on Linux, OS X and Windows. VS Code supports more
+than 30 different programming, markup and database languages, some of which are
+JavaScript, C#, C++, PHP, Java, HTML, R, CSS, SQL, Markdown, TypeScript, Less,
+Sass, JSON, XML and Python. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>The lightning fast editor does not only satisfy
+developers with integrated debugging (including ASP.NET 5 and Node.js
+applications): Even Git support is available by the push of a button. Numerous
+Keyboard Shortcuts take care of your productivity at work. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>In contradiction to Visual Studio 2015 and its
+predecessors, Visual Studio Code does not work with project files, but with
+files and folders. The environment can flexibly be enriched through the use of <a
+href="https://code.visualstudio.com/docs/editor/extension-gallery"><span
+style='color:#0563C1'>Extensions</span></a><a
+href="https://code.visualstudio.com/docs/editor/extension-gallery"><span
+style='color:black;text-decoration:none'> </span></a>that remain independent
+from the underlying operating system. Code genuinely qualifies as the <b>perfect
+addition to the preferred development tools</b>. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Thanks to the integrated update functionality, Visual
+Studio Code is always up-to-date. Monthly update cycles reflect a dynamic
+advancement that is being driven in parallel for all supported platforms. And
+for <a href="https://code.visualstudio.com/insiders"><span style='color:#0563C1'>Visual
+Studio Code Insiders</span></a><a href="https://code.visualstudio.com/insiders"><span
+style='color:black;text-decoration:none'>,</span></a> there is even a feature
+preview edition available that can safely and securely coexist with the regular
+build on the same machine. </p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:3.45pt;
+margin-bottom:16.9pt;margin-left:0in;text-align:center;text-indent:0in;
+line-height:107%'><img border=0 width=300 height=76 id="Picture 1106"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image002.jpg"><a
+href="http://code.visualstudio.com/"><span style='font-size:14.0pt;line-height:
+107%;color:black;text-decoration:none'> </span></a></p>
+
+<div style='border:solid black 1.0pt;padding:0in 0in 0in 0in;margin-left:11.15pt;
+margin-right:0in'>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.6pt;
+margin-left:0in;text-indent:0in;line-height:107%;border:none;padding:0in'><span
+style='font-size:14.0pt;line-height:107%;color:#2E74B5'> </span><b>A couple of
+notes about the eBook</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.95pt;
+margin-left:.5pt;line-height:107%;border:none;padding:0in'>This eBook was
+released to the public in March 2016. The development team is enhancing and
+extending Visual Studio Code day by day and upgrading existing installations on
+a monthly schedule. Even for an eBook, it’s hard to keep pace with that. That’s
+why based on your feedback, we are planning to <a
+href="https://github.com/Microsoft/vscode"><span style='color:#0563C1'>transfer
+this book to GitHub</span></a><a href="https://github.com/Microsoft/vscode"><span
+style='color:black;text-decoration:none'>,</span></a> so that you, our valuable
+readers, can contribute to existing and new tips for Visual Studio Code. Please
+tell us what you think. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.95pt;
+margin-left:.5pt;line-height:107%;border:none;padding:0in'>If you’re a Mac or a
+Linux user, we would also like to bring to your attention that this book has
+been written based on Windows and its key bindings. Kindly find <a
+href="https://code.visualstudio.com/Docs/customization/keybindings"><span
+style='color:#0563C1'>all keyboard shortcuts for your operating</span></a><a
+href="https://code.visualstudio.com/Docs/customization/keybindings"><span
+style='color:#0563C1;text-decoration:none'> </span></a><a
+href="https://code.visualstudio.com/Docs/customization/keybindings"><span
+style='color:#0563C1'>system</span></a><a
+href="https://code.visualstudio.com/Docs/customization/keybindings"><span
+style='color:black;text-decoration:none'> </span></a>at code.visualstudio.com. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5pt;line-height:107%;border:none;padding:0in'>Finally, we’d like
+to suggest you visit the VS Code team’s own and <a
+href="https://github.com/Microsoft/vscode-tips-and-tricks"><span
+style='color:#0563C1'>latest collection of tips and tricks</span></a><a
+href="https://github.com/Microsoft/vscode-tips-and-tricks"><span
+style='color:#0563C1;text-decoration:none'> </span></a><a
+href="https://github.com/Microsoft/vscode-tips-and-tricks"><span
+style='color:#0563C1'>for Visual Studio Code</span></a><a
+href="https://github.com/Microsoft/vscode-tips-and-tricks"><span
+style='color:black;text-decoration:none'>,</span></a> as you can never know
+enough tips and tricks. You may also want to check Valerii Iatsko’s <a
+href="https://github.com/viatsko/awesome-vscode"><span style='color:#0563C1'>repository
+with code packages and resources for VS Code</span></a><a
+href="https://github.com/viatsko/awesome-vscode"><span style='color:black;
+text-decoration:none'>:</span></a> We recommend it! </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%;
+border:none;padding:0in'> </p>
+
+</div>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25456">Tip 1 – Getting the Latest
+and Greatest as a VS Code Insider </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Visual Studio is an open source project under steady
+development. Even though changes are being documented in a public repository at
+<a href="https://github.com/Microsoft/vscode"><span style='color:#0563C1'>https://github.com/Microsoft/vscode</span></a><a
+href="https://github.com/Microsoft/vscode"><span style='color:black;text-decoration:
+none'>,</span></a> it takes its time before new features have made it to the
+next public release. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>If you want to work with prerelease versions of VS
+Code, you can additionally install the Insiders build. It is an isolated
+application with its own settings and extensions coexisting with the regular
+build on your machine. This allows you to test the latest features but still
+switch to the public release in case anything is malfunctioning. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+5.65pt;margin-left:.45pt'>You can download the Insiders build from <a
+href="https://code.visualstudio.com/insiders"><span style='color:#0563C1'>https://code.visualstudio.com/insiders</span></a><a
+href="https://code.visualstudio.com/insiders"><span style='color:black;
+text-decoration:none'>.</span></a> <span style='color:#BFBFBF'>#VisualStudioCodeInsiders
+</span></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:4.95pt;
+margin-bottom:11.3pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><img border=0 width=605 height=336 id="Picture 1220"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image003.jpg"><a
+href="https://code.visualstudio.com/insiders"><span style='color:black;
+text-decoration:none'> </span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'>                <span
+style='font-size:16.0pt;line-height:107%;color:#2E74B5'> </span></p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25457">Tip 2 – Multiple Cursors </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+3.25pt;margin-left:.45pt'>Visual Studio lets you work on different sections of
+a file at the same time. This can come in handy when you need to perform many
+identical changes. To create a new cursor, simply click on the </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:.8pt;text-indent:0in;line-height:107%'><img border=0 width=604
+height=201 id="Picture 1344"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image004.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.45pt;margin-left:.45pt'>respective area in the text editor while holding
+down the <b><span style='color:#C7254E'>Alt</span></b> key. From that point
+onwards any keyboard input will be applied to all cursor positions. It is also
+possible to select multiple sections in your code. </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25458">Tip 3 – Using the Command
+Palette to Control VS Code </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>When using Visual Studio Code, you will scarcely be
+able to avoid the commands palette. It is usually being accessed by pressing <b><span
+style='color:#2E74B5'>F1</span></b> to enable command entries. Still, it can do
+a lot more. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>If you watch closely, you will notice the <b><span
+style='color:#C7254E'>„&gt;“</span></b> in the command line after pressing <b><span
+style='color:#2E74B5'>F1</span></b>. This is because the first letter or word
+will determine the input mode. Starting with <b><span style='color:#C7254E'>„&gt;“
+</span></b>sets the palette to command mode. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Press <b><span style='color:#2E74B5'>Ctrl+P</span></b>
+if you want to open the palette without any preset input, which gets you into
+navigation mode: It initially displays a list of open files. Entering a couple
+of letters filters the opened files and the files in opened folders for
+display. This is an easy means of quickly hopping between files. If you’re
+within a project that supports IntelliSense, this functionality even searches
+detected symbols. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Additional modes allow you to control many areas of
+VS Code. You can display a list of all combinations by entering <b><span
+style='color:#C7254E'>„?“</span></b>. It’s really worth memorizing and using
+the various options. They often help you in keeping your hand away from the
+mouse, thus improving your productivity. </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:3.95pt;
+margin-bottom:25.75pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><img border=0 width=605 height=335 id="Picture 1388"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image005.jpg"> </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25459">Tip 4 – Selecting a Language
+for a File </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Every now and then, VS Code might not recognize the
+language of an opened file. Oftentimes this happens when creating a new file or
+when a file name does not come with a file extension. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+5.7pt;margin-left:.45pt'>VS Code supports syntax highlighting for many
+programming languages. Not making use of this would be too bad. To select a
+language for the active file, either run the command <b><span style='color:
+#C7254E'>Change Language Mode</span></b> or click the statusbar’s current
+language area in the bottom right corner, which will open a list of available
+languages to make a selection. </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:3.95pt;
+margin-bottom:0in;margin-left:0in;text-align:right;text-indent:0in;line-height:
+107%'><img border=0 width=605 height=229 id="Picture 1390"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image006.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>There is another case in which VS Code might not
+recognize the language for a file: That is if no language has been associated
+to the file name suffix. You can create the lacking association in the Select
+Language Mode list. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:28.3pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><img border=0 width=384
+height=268 id="Picture 1498"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image007.jpg"></p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25460">Tip 5 – AutoSave </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>VS Code supports AutoSave. This feature automatically
+saves the current document after each change. This is especially useful for web
+related files. You do not need to click on Save and still all files are
+up-to-date when clicking refresh in the browser. Take care when using automated
+tasks that keep repeating when a file changes (e. g. for transpile TypeScript
+to JavaScript) as this can cause heavy CPU loads. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>AutoSave can be activated and deactivated in the
+settings using the option <b><span style='color:#C7254E'>&quot;files.autoSave&quot;</span></b>.
+It is also possible to delay AutoSave operations for a specified amount of time
+by setting <b><span style='color:#C7254E'>&quot;files.autoSave&quot;</span></b>
+to <b><span style='color:#C7254E'>&quot;afterDelay&quot;</span></b> and setting
+<b><span style='color:#C7254E'>&quot;files.autoSave&quot;</span></b> to the
+desired delay in milliseconds, e. g.: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:218.75pt;margin-bottom:
+28.4pt;margin-left:1.2pt;line-height:110%'><b><span style='color:#C7254E'>&quot;files.autoSave&quot;:
+&quot;afterDelay&quot; &quot;files.autoSaveDelay&quot;: 1000</span></b> </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25461">Tip 6 – Hiding Undesired
+Folders </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>If you have files or folders that you’ll never edit
+within opened folders, you can hide those files or folders in the explorer
+view. One example would be the <b><span style='color:#C7254E'>node_modules</span></b>
+folder in a Node.js project. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>To hide the file, folder or any pattern, you need to
+reference them in the <b><span style='color:#C7254E'>&quot;files.exclude&quot; </span></b>option
+in your global or workspace settings. User the workspace settings to hide those
+entries only within the active project. </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:3.95pt;
+margin-bottom:5.0pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><img border=0 width=605 height=109 id="Picture 1595"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image008.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Opening the workspace settings is as easy as
+executing the command <b><span style='color:#C7254E'>Preferences: Open
+Workspace Settings</span></b>. If there is no workspace settings file yet, VS
+Code will create it automatically. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>One useful example of pattern use is hiding any
+JacaScript resources generated from TypeScript:  </p>
+
+<p class=MsoNormal style='margin-bottom:.5pt;line-height:110%'><b><span
+style='color:#C7254E'>&quot;files.exclude&quot;: { </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:0in;text-indent:0in;line-height:110%'><b><span style='color:#C7254E'>               &quot;**/*.js&quot;:
+{ &quot;when&quot;: &quot;$(basename).ts&quot;}  </span></b></p>
+
+<p class=MsoNormal style='margin-bottom:28.55pt;line-height:110%'><b><span
+style='color:#C7254E'>}</span></b> </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25462">Tip 7 – Hiding Search Results
+</a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>Visual Studio offers a neat search function
+incorporating all active files. When iterating through the search results it
+can be helpful to hide results from that list for files that you already
+checked. If areas within the found files need to be modified, this can help
+keeping an eye on areas that you already touched. Beneath each filename, VS
+Code displays the number of search hits within that file. If you hover that
+number with your mouse pointer, you’ll see a cross appear which you can click
+to hide that filename from the list. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.7pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><img border=0 width=248
+height=255 id="Picture 1597"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image009.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.6pt;margin-left:.45pt'>All files will be listed again after executing
+another search. </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25463">Tip 8 – Re-Inserting Regex
+Matches </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Visual Studio Code’s search functionality supports
+regular expressions. This allows you to not only find text, but also entire
+syntactical constructs. Its real power however lies in combining it with the
+replace function, which does not only insert static text, but can also relate
+to the results of the regular expression search. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Use brackets to define groups within regular
+expressions. The text fragments being found for these groups can be referred to
+using <b><span style='color:#C7254E'>$1</span></b>, <b><span style='color:#C7254E'>$2</span></b>,
+<b><span style='color:#C7254E'>$3</span></b>, … in the text to be replaced. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>If, for example, you want all string expressions to be
+embraced by double quotes, enter <b><span style='color:#C7254E'>017</span></b>
+in the search textbox and <b><span style='color:#C7254E'>&quot;$1&quot;</span></b>
+in the replace textbox. The first expression finds all string expressions
+embraced by single quotes, with the content between the quotes being defined as
+group 1. The second expression replaces the entire text fragment with two
+double quotes and the content of the original string expression (the value of
+group 1) in between. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.7pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><img border=0 width=605
+height=149 id="Picture 1736"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image010.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.55pt;margin-left:.45pt'>Note: If you want to use the dollar sign as a term,
+simply use two of them subsequently ($$). </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25464">Tip 9 – Emmet Snippets </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>In spite of their good readability, HTML and XML are
+often hard to write. To accelerate the creation of such documents, VS Code
+supports Emmet snippets. Emmet snippets are expressions similar to CSS which
+are being converted to e. g. HTML or XML after pressing the tab key. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>In its easiest form, just one element would be
+created. If, for example, you write <b><span style='color:#C7254E'>„html“ </span></b>to
+a file that VS Code recognizes as an HTML file, and you press the tab key twice
+after that, this text is being replace with <b><span style='color:#C7254E'>„&lt;html&gt;&lt;/html&gt;“</span></b>.
+The cursor is being positioned between the two tags. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>But Emmet snippets can do more. There is a group of
+constructs that are being supported by Emmet snippets:  If you press the tab
+key after entering <b><span style='color:#C7254E'>„li*5“</span></b>, VS Code
+will insert five <b><span style='color:#C7254E'>„&lt;li&gt;&lt;/li&gt;“</span></b>
+fragments. Find all sorts of Emmet constructs at <a
+href="http://docs.emmet.io/cheat-sheet/"><span style='color:#0563C1'>http://docs.emmet.io/cheat</span></a><a
+href="http://docs.emmet.io/cheat-sheet/"><span style='color:#0563C1'>-</span></a><a
+href="http://docs.emmet.io/cheat-sheet/"><span style='color:#0563C1'>sheet/</span></a><a
+href="http://docs.emmet.io/cheat-sheet/"><span style='color:black;text-decoration:
+none'> </span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.7pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><img border=0 width=605
+height=409 id="Picture 1812"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image011.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.6pt;margin-left:.45pt'>Other than HTML and XML, VS Code also supports
+additional formats, currently this includes Razor, CSS, Less, SCSS, XSL, Jade,
+Handlebars, HBS, JSX and TSX. </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25465">Tip 10 – Keyboard Shortcut
+Chords </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Just like Visual Studio, Visual Studio Code supports
+keyboard shortcut chords: The editor is awaiting a second keyboard shortcut
+after the first keyboard shortcut has been entered. This allows for grouping of
+similar commands. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+2.0pt;margin-left:.45pt'>As an example, you could change the search in a file
+from <b><span style='color:#2E74B5'>Ctrl+F</span></b> to <b><span
+style='color:#2E74B5'>Ctrl+F</span></b> <b><span style='color:#2E74B5'>Ctrl+F</span></b>
+and the global search in all files to <b><span style='color:#2E74B5'>Ctrl+F
+Ctrl+G</span></b>. In <b><span style='color:#C7254E'>keybindings.json</span></b>,
+the keyboard shortcuts for the chord must be separated using a blank space. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'><img border=0 width=605
+height=152 id="Picture 1814"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image012.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.45pt;margin-left:.45pt'>Visual Studio Code is awaiting additional input
+after the first shortcut of a chord has been applied. You’ll find this
+referenced in the status bar as <b><span style='color:#C7254E'>„(Ctrl+F) was
+pressed. Waiting for second key of chord“</span></b>. </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25466">Tip 11 – Markdown Preview </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Markdown is a simple markup language for authoring
+formatted text. Even if markdown is well legible in its original shape, it is a
+lot easier to read when it is being displayed as a properly formatted document,
+especially regarding external resources like images and such. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>Visual Studio offers a markdown preview function that
+can be opened beneath the text. VS Code is using the GitHub Flavoured Markdown
+which offers additional functions over the original markdown format. This comes
+in handy especially for GitHub “read me” documents. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><img border=0 width=604
+height=265 id="Picture 1944"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image013.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.45pt;margin-left:.45pt'>Using <b><span style='color:#2E74B5'>Ctrl+Shift+V</span></b>,
+you can switch between Markdown and Preview. The chord <b><span
+style='color:#2E74B5'>Ctrl+K, V</span></b> opens the preview to the side. <b><span
+style='color:#2E74B5'>Alt+Z</span></b> toggles word wrapping, which can also be
+done using the <b><span style='color:#C7254E'>View</span></b> menu. </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25467">Tip 12 – Visualizing CSS
+Selectors </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>CSS selectors precede any CSS clause. They define
+what HTML elements to style with the subsequent properties. Selectors can
+become pretty complicated – and be it because sometimes you just might not be
+too familiar with one of them that you are using less frequently. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Visual Studio Code solves this problem by presenting
+a preview for the current selector that shows what HTML elements would have to
+be like to be covered by the selector. </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:21.95pt;
+margin-bottom:25.75pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><img border=0 width=581 height=286 id="Picture 2021"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image014.jpg"> </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25468">Tip 13 – Latest Version of
+Dependencies in package.json </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>When working on a Node.js project, <b><span
+style='color:#C7254E'>package.json</span></b> contains a couple of sections
+that define dependencies. For each dependency, one or more version numbers have
+to be specified. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>VS Code allows you to display module information.
+Simply move the mouse pointer above one of the dependencies to display the
+name, a short description and the latest version number for that module. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+5.6pt;margin-left:.45pt'>You can add new dependencies for modules using <b><span
+style='color:#2E74B5'>Ctrl+Spacebar</span></b>. </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:5.3pt;
+margin-bottom:25.75pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><img border=0 width=604 height=215 id="Picture 2023"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image015.jpg"> </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25469">Tip 14 – Git Quick Change
+Info </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>When working with a Git repository, VS Code offers a
+neat way of comparing the version you’re working on with the current one in the
+repository using Git Compare View. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>VS Code even shows code changes when simply editing a
+file that is under Git source control. At the left hand side of the editor,
+right between row numbers and code, you’ll find indicators for changed, deleted
+and new rows. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+.8pt;margin-left:36.7pt;text-indent:-.25in'><span style='line-height:110%;
+font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Green line:          Rows with green markers habe been added </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+.75pt;margin-left:36.7pt;text-indent:-.25in'><span style='line-height:110%;
+font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Blue line:             Rows with blue markers have been altered </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+6.4pt;margin-left:36.7pt;text-indent:-.25in'><span style='line-height:110%;
+font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Red arrow:          A red arrow indicates a row has been deleted </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+5.6pt;margin-left:.45pt'>You can change to Changes View by clicking the <b><span
+style='color:#C7254E'>Switch To Changes View</span></b> icon. </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:3.95pt;
+margin-bottom:25.8pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><img border=0 width=605 height=396 id="Picture 2103"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image016.gif"> </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25470">Tip 15 – Refreshing Git-Views
+</a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+5.7pt;margin-left:.45pt'>Visual Studio Code makes use of the external program
+Git to track changes in a public Git directory. Sometimes you’ll face a view
+that’s not entirely up-to-date or even cluttered. To refresh a messy view, use
+the refresh icons located at the Git header or at the status bar. </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:3.95pt;
+margin-bottom:0in;margin-left:0in;text-align:right;text-indent:0in;line-height:
+107%'><img border=0 width=605 height=226 id="Picture 2105"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image017.jpg"> </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25471">Tip 16 – Git Inline
+Comparison </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Having Visual Studio Code display changes in a file
+as compared to the current Git version opens a view which displays the changes
+side-by-side. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+5.6pt;margin-left:.45pt'>But Visual Studio also offers a way to display all the
+changes in a single code window: Use the sub menu <b><span style='color:#C7254E'>Switch
+to Inline View</span></b> from the header’s <b><span style='color:#C7254E'>“…”</span></b>
+menu to get to the Git inline comparison. </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:5.4pt;
+margin-bottom:8.95pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><img border=0 width=604 height=408 id="Picture 2205"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image018.gif"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.55pt;margin-left:.45pt'>Simply use the same menu item again to return to
+side-by-side view. </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25472">Tip 17 – Comparing Files </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>VS Code offers a great viewport for comparing two
+files. You’ll often get this view when using Git with VS Code. If you click on
+a file name within the Git area, all alterations to the previous file are being
+displayed. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>But VS Code can do more than that. It can actually
+compare any file to any other file. You can launch the comparative view using
+the Command Palette or the explorer area’s context menu. For the Command
+Palette, you execute <b><span style='color:#C7254E'>Files: Compare Active File
+With...</span></b> and choose a file that you wish to compare to the currently
+opened file. To take the context menu route, activate the context menu for a
+file in explorer view and click on <b><span style='color:#C7254E'>Select for
+Compare</span></b>. If you subsequently activate the context menu for another
+file, you can click on <b><span style='color:#C7254E'>Compare with ‚&lt;First
+File&gt;‘</span></b>. Any of the two options launches the mparison view. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:28.15pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><img border=0 width=605
+height=245 id="Picture 2286"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image019.jpg"></p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25473">Tip 18 – Extensions </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Visual Studio Code comes with a built-in bunch of
+functionality. But the best of all features is to create new functionality and
+easily share it with the rest of the world: Extensions. Extensions are being
+developed with TypeScript of JavaScript, they can be shared in the Visual
+Studio Code Marketplace. Other users can then search the Marketplace and
+install available extensions with no more than a few mouse clicks. This way, VS
+Code can be extended by third parties. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>All Extensions can be checked at<a
+href="https://marketplace.visualstudio.com/#VSCode"><span style='color:black;
+text-decoration:none'> </span></a><a
+href="https://marketplace.visualstudio.com/#VSCode"><span style='color:#0563C1'>https://marketplace.visualstudio.com/#VSCode</span></a><a
+href="https://marketplace.visualstudio.com/#VSCode"><span style='color:black;
+text-decoration:none'> </span></a>and are ready to be installed by simply
+executing <b><span style='color:#C7254E'>Extension: Install Extension</span></b>.
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.85pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><img border=0 width=446
+height=321 id="Picture 2288"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image020.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>Additional information about Extensions is available at </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.55pt;margin-left:.45pt'><a
+href="https://code.visualstudio.com/Docs/editor/extension-gallery"><span
+style='color:#0563C1'>https://code.visualstudio.com/Docs/editor/extension</span></a><a
+href="https://code.visualstudio.com/Docs/editor/extension-gallery"><span
+style='color:#0563C1'>-</span></a><a
+href="https://code.visualstudio.com/Docs/editor/extension-gallery"><span
+style='color:#0563C1'>gallery</span></a><a
+href="https://code.visualstudio.com/Docs/editor/extension-gallery"><span
+style='color:black;text-decoration:none'>.</span></a> The neatest thing about
+Extensions is than you can create them yourself. We have detailed information
+on that, including developer guidance and samples, at<a
+href="https://code.visualstudio.com/Docs/extensions/overview"><span
+style='color:black;text-decoration:none'> </span></a><a
+href="https://code.visualstudio.com/Docs/extensions/overview"><span
+style='color:#0563C1'>https://code.visualstudio.com/Docs/extensions/overview</span></a><a
+href="https://code.visualstudio.com/Docs/extensions/overview"><span
+style='color:black;text-decoration:none'>.</span></a> </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25474">Tip 19 – Automatic Task
+Discovery for Gulp, Grunt and Jake </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Tasks enable Visual Studio Code to execute all kinds
+of external applications. To make them available from the Command Palette,
+tasks have to be listed in <b><span style='color:#C7254E'>.vscode/tasks.json</span></b>
+with their respective parameters and options. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+5.65pt;margin-left:.45pt'>If you’re working on a Node.js project using Gulp,
+Grunt or Jake however, VS Code can automatically detect all tasks defined by
+those, releasing you from having to create a respective <b><span
+style='color:#C7254E'>tasks.json</span></b>. You can simply execute <b><span
+style='color:#C7254E'>Tasks: Run Task</span></b> to display a list of available
+tasks for you to choose from. </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:5.4pt;
+margin-bottom:25.65pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><img border=0 width=604 height=234 id="Picture 2421"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image021.jpg"> </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25475">Tip 20 – Configuring PHP for
+Visual Studio Code </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Visual Studio Code supports syntax highlighting for
+PHP, including help texts and parameter information for many of its functions. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>But VS Code can also validate source code and display
+errors live. This requires that the path to a PHP interpreter be configured.
+You’ll get an appropriate warning after opening a PHP file if this is not yet </p>
+
+<p class=MsoNormal style='margin-bottom:.5pt;line-height:110%'>been done: <b><span
+style='color:#C7254E'>“Cannot validate the php file. The php program was not
+found. Use the 'php.validate.executablePath' setting to configure the location
+of 'php'”</span></b>. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.85pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><img border=0 width=605
+height=117 id="Picture 2423"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image022.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>If there is no PHP installed on your machine yet, you
+can download it from </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'><a href="http://php.net/downloads.php"><span
+style='color:#0563C1'>http://php.net/downloads.php</span></a><a
+href="http://php.net/downloads.php"><span style='color:black;text-decoration:
+none'> </span></a>and install it (i. e. copy the archive files) locally. The
+target folder should now contain php.exe (for Windows). You need to provide the
+path to this file as the value for Visual Studio Code’s setting <b><span
+style='color:#C7254E'>&quot;php.validate.executablePath&quot;</span></b>. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>Now opening a PHP file should result in the errors being
+displayed. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.8pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><img border=0 width=605
+height=117 id="Picture 2588"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image023.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.45pt;margin-left:.45pt'>Hint: To be able to debug PHP with VS Code, install
+the following Extension from the Marketplace: <a
+href="https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug"><span
+style='color:#0563C1'>PHP Debug adapter for Visual Studio Code</span></a><a
+href="https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug"><span
+style='color:#0563C1'>.</span></a> </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25476">Tip 21 – Command Line
+Parameters </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>On install, Visual Studio Code is being added to the
+environment variable PATH so that you can start it from the console simply
+typing <b><span style='color:#C7254E'>code</span></b>. This comes in handy,
+among other examples, when you need to open code created by other programs.
+Just typing <b><span style='color:#C7254E'>code</span></b> results in an empty
+VS Code editor launching, though. The following lists available parameters to
+the call. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>First of all, VS Code looks at any parameters as paths
+to files and folders. They are being opened in a new window of VS Code.
+Specifying multiple folders will result in multiple instances of VS Code. You
+can include specific options before, within or after path parameters. These are
+the most common ones: </p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=549
+ style='width:411.7pt;margin-left:36.7pt;border-collapse:collapse'>
+ <tr style='height:27.4pt'>
+  <td width=141 valign=top style='width:105.65pt;padding:0in 0in 0in 0in;
+  height:27.4pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b>-r,
+  --reuse-window </b></p>
+  </td>
+  <td width=408 valign=top style='width:306.05pt;padding:0in 0in 0in 0in;
+  height:27.4pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Opens
+  the specified files in an existing VS Code instance if possible (or launches
+  a new one otherwise). </p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width=141 valign=top style='width:105.65pt;padding:0in 0in 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b>-n,
+  --new-window </b></p>
+  </td>
+  <td width=408 valign=top style='width:306.05pt;padding:0in 0in 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Forces
+  VS Code to launch a new instance anyway. </p>
+  </td>
+ </tr>
+ <tr style='height:28.95pt'>
+  <td width=141 valign=top style='width:105.65pt;padding:0in 0in 0in 0in;
+  height:28.95pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b>-g,
+  --goto </b></p>
+  </td>
+  <td width=408 valign=top style='width:306.05pt;padding:0in 0in 0in 0in;
+  height:28.95pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Files
+  passed in the format <b><span style='color:#C7254E'>„PathToFile:Row:Column“</span></b>
+  are being opened with the cursor positioned at the specified row and column. </p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width=141 valign=top style='width:105.65pt;padding:0in 0in 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b>--disable-extensions
+  </b></p>
+  </td>
+  <td width=408 valign=top style='width:306.05pt;padding:0in 0in 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Launches
+  VS Code without loading any Extensions. </p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width=141 valign=top style='width:105.65pt;padding:0in 0in 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b>--verbose 
+  </b></p>
+  </td>
+  <td width=408 valign=top style='width:306.05pt;padding:0in 0in 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Have
+  VS Code output debug information. </p>
+  </td>
+ </tr>
+ <tr style='height:12.9pt'>
+  <td width=141 valign=top style='width:105.65pt;padding:0in 0in 0in 0in;
+  height:12.9pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b>--diff
+  &lt;file1&gt; &lt;file2&gt;</b> </p>
+  </td>
+  <td width=408 valign=top style='width:306.05pt;padding:0in 0in 0in 0in;
+  height:12.9pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Open a
+  diff view for the two files. </p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:9.95pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:.45pt'><a name="_Toc25477">Console Support for Linux </a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:24.25pt;margin-bottom:
+11.0pt;margin-left:.7pt;text-align:justify;text-justify:inter-ideograph;
+text-indent:0in;line-height:127%'>To be able to launch Visual Studio Code from
+a console in Linux you will need to create a symbolic link from <b><span
+style='color:#C7254E'>/usr/local/bin/code </span></b>to the VS Code executable.
+You can achieve this using the following command: <span style='font-size:8.0pt;
+line-height:127%;font-family:"Courier New"'>sudo ln -s /path/to/vscode/Code
+/usr/local/bin/code</span> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'>                <span
+style='font-size:16.0pt;line-height:107%;color:#2E74B5'> </span></p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25478">Tip 22 – Storage Locations </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+9.7pt;margin-left:.45pt'>Visual Studio saves files to different locations
+within the file system. It can come in handy to know what is being stored
+where. </p>
+
+<h2 style='margin-left:.45pt'><a name="_Toc25479">Settings, Keyboard Shortcuts
+and Code Snippets </a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+10.1pt;margin-left:.45pt'>VS Code Settings are easily accessed using the
+Command Palette. They are being stored in <b><span style='color:#C7254E'>settings.json</span></b>.
+Depending on what operating system you use, this file can be found at different
+locations. In this folder, you’ll additionally find <b><span style='color:#C7254E'>keybindings.json</span></b>
+at this location, and also a folder named <i>snippets</i> which is the user
+storage containing code snippets for respective languages. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:53.95pt;text-indent:-.25in;line-height:110%'><span
+style='line-height:110%;font-family:"Arial",sans-serif;color:#C7254E'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><b>Windows</b>:
+<b><span style='color:#C7254E'>%APPDATA%\Code\User\ </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:53.95pt;text-indent:-.25in;line-height:110%'><span
+style='line-height:110%;font-family:"Arial",sans-serif;color:#C7254E'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><b>Mac</b>:
+             <b><span style='color:#C7254E'>$HOME/Library/Application
+Support/Code/User/ </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.35pt;
+margin-left:53.95pt;text-indent:-.25in;line-height:110%'><span
+style='line-height:110%;font-family:"Arial",sans-serif;color:#C7254E'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><b>Linux:
+           </b><b><span style='color:#C7254E'>$HOME/.config/Code/User/ </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+9.85pt;margin-left:.45pt'>If you’re using the Insiders build, go for <b><span
+style='color:#C7254E'>%APPDATA%\Code Insiders</span></b> or <b><span
+style='color:#C7254E'>.vscode-insiders</span></b>. </p>
+
+<h2 style='margin-left:.45pt'><a name="_Toc25480">Extensions </a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+10.0pt;margin-left:.45pt'>Extensions are being stored within a specific folder.
+Any Extension has its own sub folder named after the Extension’s title and its
+author’s name. Upon launch, Visual Studio Code searches this folder to load all
+the Extensions stored in it. That means installing an Extension requires no
+more than just moving or copying the Extension’s folder to VS Code’s Extensions
+folder: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:53.95pt;text-indent:-.25in;line-height:110%'><span
+style='line-height:110%;font-family:"Arial",sans-serif;color:#C7254E'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><b>Windows</b>:
+<b><span style='color:#C7254E'>%USERPROFILE%\.vscode\extensions\ </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:53.95pt;text-indent:-.25in;line-height:110%'><span
+style='line-height:110%;font-family:"Arial",sans-serif;color:#C7254E'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><b>Mac</b>:
+             <b><span style='color:#C7254E'>$HOME/.vscode/extensions </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:27.25pt;
+margin-left:53.95pt;text-indent:-.25in;line-height:110%'><span
+style='line-height:110%;font-family:"Arial",sans-serif;color:#C7254E'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><b>Linux:
+           </b><b><span style='color:#C7254E'>$HOME/.vscode/extensions </span></b></p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25481">Tip 23 – Synchronizing
+Settings and Extensions </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Visual Studio Code does not natively come with
+functionality that supports synchronizing settings and installed Extensions
+between machines. But as all settings are being stored in files and folders, it
+is sufficient to synchronize those. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+10.0pt;margin-left:.45pt'>Services like OneDrive or Dropbox can provide machine
+independent storage accessible from anywhere. An easy way is to replace the
+folders referred to in tip 22 with new, synchronized folders. Of course you
+would first move all settings and Extensions to those new folders. Creating the
+links for them can easily be done using the console: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:36.7pt;text-indent:-.25in;line-height:110%'><span style='line-height:
+110%;font-family:"Arial",sans-serif;color:#C7254E'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b>Windows</b>:           <b><span style='color:#C7254E'>mklink
+/d &lt;VSCode-Folder&gt; &lt;Synchronized-Folder&gt; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.35pt;
+margin-left:36.7pt;text-indent:-.25in;line-height:110%'><span style='line-height:
+110%;font-family:"Arial",sans-serif;color:#C7254E'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b>Mac &amp; Linux</b>:     <b><span style='color:#C7254E'>ln -s
+&lt; Synchronized-Folder&gt; &lt;VSCode-Folder&gt; </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+14.0pt;margin-left:.45pt'>Another, even easier way to get the synchronization
+task done is using the Extension <a
+href="https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync"><span
+style='color:#0563C1'>Visual Studio</span></a><a
+href="https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync"><span
+style='color:#0563C1;text-decoration:none'> </span></a><a
+href="https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync"><span
+style='color:#0563C1'>Code Settings Sync</span></a><a
+href="https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync"><span
+style='color:black;text-decoration:none'> </span></a>from the Visual Studio
+Marketplace which takes advantage of GitHub GIST. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'>                <span
+style='font-size:16.0pt;line-height:107%;color:#2E74B5'> </span></p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25482">Tip 24 – Deactivating Crash
+Reports </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.55pt;margin-left:.45pt'>When Visual Studio Code crashes, it creates a report
+to be sent to Microsoft in order to help improve the product. If you prefer not
+to create and transfer such a report, you can set the option value of <b><span
+style='color:#C7254E'>&quot;telemetry.enableCrashReporter&quot;</span></b> in
+your settings to <b><span style='color:#C7254E'>false</span></b>. VS Code needs
+to be restarted in order for the change to take effect. </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25483">Tip 25 – Deactivating
+Telemetry </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.45pt;margin-left:.45pt'>VS Code collects data about how it is being used.
+This data is being sent to Microsoft where it is anonymously being used to
+improve VS Code. If you prefer not to transfer such telemetric data, you can
+deactivate telemetry altogether in your settings. Find <b><span
+style='color:#C7254E'>&quot;telemetry.enableTelemetry&quot;: true</span></b>
+and copy it to your desired <b><span style='color:#C7254E'>settings.json</span></b>
+with a modified value as <b><span style='color:#C7254E'>&quot;telemetry.enableTelemetry&quot;:
+false</span></b>. VS Code needs to be restarted in order for the change to take
+effect. </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25484">Tip 26 – Navigating Files in
+the Editor </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>The VS Code editor is a powerful tool that shows its
+strength especially when using <a
+href="https://github.com/Microsoft/vscode-docs/issues/200#issuecomment-190757159"><span
+style='color:#0563C1'>keyboard</span></a><a
+href="https://github.com/Microsoft/vscode-docs/issues/200#issuecomment-190757159"><span
+style='color:#0563C1;text-decoration:none'> </span></a><a
+href="https://github.com/Microsoft/vscode-docs/issues/200#issuecomment-190757159"><span
+style='color:#0563C1'>shortcuts</span></a><a
+href="https://github.com/Microsoft/vscode-docs/issues/200#issuecomment-190757159"><span
+style='color:black;text-decoration:none'>.</span></a> Many of the existing
+shortcuts can be retrieved from VS Code’s menu, where they are being listed
+right beside the menu item captions, and from the Command Palette after
+pressing <b><span style='color:#2E74B5'>Ctrl+Shift+P</span></b>. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.45pt;margin-left:.45pt'>A special shortcut is <b><span style='color:#2E74B5'>Ctrl+E</span></b>
+(which can be used synonymously with <b><span style='color:#2E74B5'>Ctrl+Tab</span></b>):
+It opens up a list of recently used files which can be opened in the current
+code editor. Navigating this list is easily done by repetitive use of the
+shortcut while keeping the <b><span style='color:#2E74B5'>Ctrl</span></b> key
+down. Additionally press the <b><span style='color:#2E74B5'>Shift</span></b>
+key to traverse the list in opposite direction. As an alternative, you can also
+use the arrow keys on your keyboard while the <b><span style='color:#2E74B5'>Ctrl</span></b>
+key remains down. </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25485">Tip 27 – Opening Files in
+Dedicated Editor Windows </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+.2pt;margin-left:.45pt'>VS Code supports opening files in an additional editor
+window side-by-side to the existing one (“to the side”). To do so, simply hold
+down the <b><span style='color:#2E74B5'>Ctrl</span></b> key while clicking on a
+file name in the explorer area. File lists come with an icon to the right that
+appears for selected items in the list, resulting in the same effect. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.4pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><img border=0 width=605
+height=176 id="Picture 2996"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image024.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>To open the definition of a selected term to the
+side, use the keyboard chord <b><span style='color:#2E74B5'>Ctrl+K, F12</span></b>.
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>You can directly navigate to any of the up to three
+editor windows using <b><span style='color:#2E74B5'>Ctrl+1</span></b>, <b><span
+style='color:#2E74B5'>Ctrl+2</span></b> and <b><span style='color:#2E74B5'>Ctrl+3</span></b>.
+You can close any of those windows using <b><span style='color:#2E74B5'>Ctrl+W</span></b>.
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+28.6pt;margin-left:.45pt'>To shift focus to the editor window and vice versa,
+e. g. from the explorer window or the search window and back, press <b><span
+style='color:#2E74B5'>Ctrl+B</span></b>. </p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25486">Tip 28 – Customizing Keyboard
+Shortcuts </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Using keyboard shortcuts makes you much more
+productive than frequently having to use your mouse, lifting your hand away
+from the keyboard. You’ll find the most important Visual Studio Code keyboard
+shortcuts for your operating system at <a
+href="https://code.visualstudio.com/docs/customization/keybindings"><span
+style='color:#0563C1'>https://code.visualstudio.com/docs/customization/keybindings</span></a><a
+href="https://code.visualstudio.com/docs/customization/keybindings"><span
+style='color:black;text-decoration:none'>.</span></a> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>Unless you’re using a US keyboard layout, do carefully
+read that page’s information about international keyboard layouts: While Visual
+Studio Code displays the right keyboard shortcuts for your keyboard layout, it
+is always using a US keyboard layout internally. This also applies to the file <b><span
+style='color:#C7254E'>keybindings.json</span></b> which defines the keyboard
+shortcuts. Where there’s a difference between the keyboard layouts, you’re
+going to see a blue circle with a white “i” in it. Hovering it with your mouse
+pointer will display a hint about the correct keys for your keyboard. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'><img border=0 width=604
+height=82 id="Picture 3142"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image025.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>The easiest way to create your own keyboard shortcut
+ist o make use of the keyboard chord <b><span style='color:#2E74B5'>Ctrl+K</span></b>,
+<b><span style='color:#2E74B5'>Ctrl+K</span></b>. After entering your desired
+keyboard shortcut and pressing the <b><span style='color:#2E74B5'>enter </span></b>key,
+you’ll be presented a new<b><span style='color:#C7254E'> keybindings.json</span></b>
+entry for that shortcut. You’ll still have to set values for <b><span
+style='color:#C7254E'>command</span></b> and <b><span style='color:#C7254E'>when</span></b>
+to define the behavior of your new keyboard shortcut. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+14.0pt;margin-left:.45pt'>Taking a look at the default keyboard shortcuts by
+clicking <b><span style='color:#C7254E'>File</span></b> | <b><span
+style='color:#C7254E'>Preferences</span></b> | <b><span style='color:#C7254E'>Keyboard
+Shortcuts</span></b> will provide helpful examples. Scroll down the file to
+discover loads of commands that have not yet been associated to keyboard
+shortcuts in the default VS Code setup. You may end up wanting to use some of
+those. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'>                <span
+style='font-size:16.0pt;line-height:107%;color:#2E74B5'> </span></p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25487">Tip 29 – Authors’ Favorite
+Keyboard Shortcuts </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>Out of the many keyboard shortcuts available, the
+authors have found that they are continuously using a good couple of them to be
+accelerate their tasks. Some of them are (for Windows): </p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=350
+ style='width:262.2pt;margin-left:18.7pt;border-collapse:collapse'>
+ <tr style='height:14.05pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:14.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:14.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Alt+Z</span></b><b><span style='color:#C7254E'> </span></b></p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:14.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Toggle
+  Word Wrap </p>
+  </td>
+ </tr>
+ <tr style='height:15.1pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.1pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.1pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Ctrl+P</span></b> </p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.1pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Quick
+  Open </p>
+  </td>
+ </tr>
+ <tr style='height:15.05pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Ctrl+Tab</span></b> </p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Navigate
+  Recent Files </p>
+  </td>
+ </tr>
+ <tr style='height:15.05pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Ctrl+1/2/3</span></b><b><span style='color:#C7254E'> </span></b></p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Focus
+  First/Second/Third Editor </p>
+  </td>
+ </tr>
+ <tr style='height:15.05pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Ctrl+W</span></b>  </p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Close
+  Active Editor </p>
+  </td>
+ </tr>
+ <tr style='height:15.05pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Ctrl+/</span></b> </p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Comment
+  in/out Line(s) </p>
+  </td>
+ </tr>
+ <tr style='height:15.1pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.1pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.1pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Ctrl+Shift+K </span></b></p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.1pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Delete
+  Line(s) </p>
+  </td>
+ </tr>
+ <tr style='height:15.05pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Ctrl+Click</span></b> </p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-align:justify;text-justify:inter-ideograph;
+  text-indent:0in;line-height:107%'>Open File from Explorer to the Side </p>
+  </td>
+ </tr>
+ <tr style='height:15.05pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Alt+C</span></b><b><span style='color:#C7254E'> </span></b></p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Find
+  Case Sensitive </p>
+  </td>
+ </tr>
+ <tr style='height:15.15pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.15pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.15pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Alt+W</span></b><b><span style='color:#C7254E'> </span></b></p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.15pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Find
+  Whole Word </p>
+  </td>
+ </tr>
+ <tr style='height:15.1pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.1pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.1pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Ctrl+K, F12</span></b> </p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.1pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Open
+  Declarations to the Side </p>
+  </td>
+ </tr>
+ <tr style='height:15.05pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Ctrl+D</span></b>  </p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Add
+  Selection to next Find Match </p>
+  </td>
+ </tr>
+ <tr style='height:15.05pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Ctrl+K, Ctrl+D</span></b>  </p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-align:justify;text-justify:inter-ideograph;
+  text-indent:0in;line-height:107%'>Move Selection to next Find Match </p>
+  </td>
+ </tr>
+ <tr style='height:15.05pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>Alt+Down</span></b> </p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:15.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Move
+  Line Down </p>
+  </td>
+ </tr>
+ <tr style='height:14.05pt'>
+  <td width=24 valign=top style='width:.25in;padding:1.45pt 0in 0in 0in;
+  height:14.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.5pt;padding:1.45pt 0in 0in 0in;
+  height:14.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:#2E74B5'>ALT+Up</span></b> </p>
+  </td>
+  <td width=213 valign=top style='width:159.7pt;padding:1.45pt 0in 0in 0in;
+  height:14.05pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>Move
+  Line Up </p>
+  </td>
+ </tr>
+</table>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25488">Tip 30 – Changing the UI
+Language </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Visual Studio Code’s UI language adheres to your
+desktop settings – provided those are locale settings supported by VS Code (if
+not so, the UI will be displayed using the US locale). </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Many developers outside the US are accustomed to
+using US-English UIs in their development environments while having their
+desktops configured to use their local language and settings. You may have
+additional or other reasons to switch the VS Code UI language. Fortunately, you
+do not need to switch your entire desktop to the desired regional settings, as
+VS Code comes with a setting that controls its UI language. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+14.1pt;margin-left:.45pt'>To launch Visual Studio Code in a (supported)
+language of your choice, edit <b><span style='color:#C7254E'>locale.json</span></b>
+which you can open by pressing F1 and executing <b><span style='color:#C7254E'>Configure
+Language</span></b>. Set the value for <b><span style='color:#C7254E'>&quot;locale&quot;</span></b>
+to the desired locale ID (<b><span style='color:#C7254E'>&quot;en-us&quot;</span></b>
+for the US, <b><span style='color:#C7254E'>&quot;de-de&quot;</span></b> for
+Germany, <b><span style='color:#C7254E'>&quot;fr-fr&quot;</span></b> for France
+etc.). VS Code needs to be restarted in order for the change to take effect. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'>                <span
+style='font-size:16.0pt;line-height:107%;color:#2E74B5'> </span></p>
+
+<h1 style='margin-left:.45pt'><a name="_Toc25489">Tip 31 – Enforcing Word Wrap
+in the Editor </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>Using  <b><span style='color:#2E74B5'>Alt+Z</span></b>
+in an editor toggles Word Wrap, making sure you’re not missing any text in long
+lines that extend beyond your editor’s visible area. But what if you want that
+setting to be permanent? </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.05pt;
+margin-left:.8pt;text-indent:0in;line-height:107%'><img border=0 width=605
+height=118 id="Picture 3447"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image026.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+7.75pt;margin-left:.45pt'>VS Code has a setting in <b><span style='color:#C7254E'>settings.json</span></b>
+that takes care of line length in the editor: The default value for <b><span
+style='color:#C7254E'>&quot;editor.wrappingColumn&quot;</span></b>is 300,
+meaning a long line will not wrap before exceeding 300 characters. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>What value is more suitable to prevent text from being
+hidden in long lines, given that your editor windows differ in width in
+different scenarios? The solution is using 0 as a value: It takes care of
+permanent word wrapping in your editor. Saving the file immediately activates
+the new setting. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.35pt;
+margin-left:0in;text-indent:0in;line-height:107%'><img border=0 width=604
+height=134 id="Picture 3445"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image027.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.6pt;
+margin-left:.7pt;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.7pt;text-indent:0in;line-height:107%'>                 </p>
+
+<h3 style='margin-left:.45pt'><b><span style='font-size:11.0pt;line-height:
+107%;color:black'>Visual Studio Code - Tips &amp; Tricks Vol. 1  </span></b></h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>1st Edition – March 2016, Revision 1 (April 2016) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>© Copyright 2016 - Microsoft Deutschland GmbH </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>All rights reserved. This document is for informational
+purposes only.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>This book expresses the authors’ views and opinions.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.15pt;margin-bottom:
+0in;margin-left:.45pt'>This document always up-to-date at: <a
+href="http://aka.ms/VSCodeTipsTricks"><span style='color:#0563C1'>http://aka.ms/VSCodeTipsTricks</span></a><a
+href="http://aka.ms/VSCodeTipsTricks"><span style='color:black;text-decoration:
+none'> </span></a> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:294.3pt;margin-bottom:
+7.75pt;margin-left:.45pt'>Authors: Tobias Kahlert and Kay Giza  </p>
+
+<h3 style='margin-left:0in;text-indent:0in'><b><span style='font-size:11.0pt;
+line-height:107%;color:black'>Kay Giza                                                                                      Tobias
+Kahlert </span></b></h3>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>               <img
+border=0 width=225 height=197 id="Picture 3596"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image028.jpg">                             <img
+border=0 width=199 height=199 id="Picture 3598"
+src="Visual%20Studio%20Code%20-%20Tips%20and%20Tricks_files/image029.jpg"> </p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=568
+ style='width:426.35pt;margin-left:24.1pt;border-collapse:collapse'>
+ <tr style='height:95.9pt'>
+  <td width=278 valign=top style='width:208.6pt;padding:1.7pt 0in 0in 0in;
+  height:95.9pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.25in;text-indent:-.25in;line-height:107%'><span
+  style='line-height:107%;font-family:"Arial",sans-serif'>•<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><a
+  href="http://tech-advisors.msdn.microsoft.com/de-de"><span style='color:#0563C1'>Audience
+  Evangelism Manager</span></a><a
+  href="http://tech-advisors.msdn.microsoft.com/de-de"><span style='color:black;
+  text-decoration:none'> </span></a></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.25in;text-indent:0in;line-height:107%'>Microsoft Germany </p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.2pt;
+  margin-left:.25in;text-indent:0in;line-height:107%'> </p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.25in;text-indent:-.25in;line-height:107%'><span
+  style='line-height:107%;font-family:"Arial",sans-serif'>•<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Blog:
+  <a href="http://www.giza-blog.de/"><span style='color:#0563C1'>http://www.giza</span></a><a
+  href="http://www.giza-blog.de/"><span style='color:#0563C1'>-</span></a><a
+  href="http://www.giza-blog.de/"><span style='color:#0563C1'>blog.de</span></a><a
+  href="http://www.giza-blog.de/"><span style='color:black;text-decoration:
+  none'> </span></a></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.25in;text-indent:-.25in;line-height:107%'><span
+  style='line-height:107%;font-family:"Arial",sans-serif'>•<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Twitter:
+  <a href="http://twitter.com/KayGiza"><span style='color:#0563C1'>http://twitter.com/KayGiza</span></a><a
+  href="http://twitter.com/KayGiza"><span style='color:black;text-decoration:
+  none'> </span></a></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.25in;text-indent:-.25in;line-height:107%'><span
+  style='line-height:107%;font-family:"Arial",sans-serif'>•<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>XING:
+  <a href="https://www.xing.com/profile/Kay_Giza"><span style='color:#0563C1'>Kay
+  Giza</span></a><a href="https://www.xing.com/profile/Kay_Giza"><span
+  style='color:black;text-decoration:none'> </span></a> </p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.25in;text-indent:-.25in;line-height:107%'><span
+  style='line-height:107%;font-family:"Arial",sans-serif'>•<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>LinkedIn:
+  <a href="https://linkedin.com/in/kaygiza"><span style='color:#0563C1'>Kay
+  Giza</span></a><a href="https://linkedin.com/in/kaygiza"><span
+  style='color:black;text-decoration:none'> </span></a> </p>
+  </td>
+  <td width=290 valign=top style='width:217.75pt;padding:1.7pt 0in 0in 0in;
+  height:95.9pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.35pt;
+  margin-left:.5in;text-indent:-.25in;line-height:99%'><span style='line-height:
+  99%;font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span>Internship at the Visual Studio Audience Marketing-Team
+  Microsoft Germany until March 2016 </p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.5in;text-indent:-.25in;line-height:107%'><span style='line-height:
+  107%;font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span>Twitter: <a href="https://twitter.com/CubeCode"><span
+  style='color:#0563C1'>https://twitter.com/CubeCode</span></a><a
+  href="https://twitter.com/CubeCode"><span style='color:black;text-decoration:
+  none'> </span></a> <span style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span><span
+  style='font-family:"Arial",sans-serif'> </span>Microsoft TechWiese.de
+  Profile:  </p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.2pt;
+  margin-left:.5in;text-indent:0in;line-height:107%'><a
+  href="https://www.microsoft.com/germany/techwiese/know-how/autoren/tobias-kahlert.aspx"><span
+  style='color:#0563C1'>Tobias Kahlert</span></a><a
+  href="https://www.microsoft.com/germany/techwiese/know-how/autoren/tobias-kahlert.aspx"><span
+  style='color:black;text-decoration:none'> </span></a> </p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.5in;text-indent:-.25in;line-height:107%'><span style='line-height:
+  107%;font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span>XING: <a href="https://www.xing.com/profile/Tobias_Kahlert"><span
+  style='color:#0563C1'>Tobias Kahlert</span></a><a
+  href="https://www.xing.com/profile/Tobias_Kahlert"><span style='color:black;
+  text-decoration:none'> </span></a> </p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:190.5pt;margin-bottom:
+0in;margin-left:.7pt;text-indent:0in;line-height:normal'>  </p>
+
+</div>
+
+</body>
+
+</html>

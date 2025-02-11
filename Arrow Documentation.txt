@@ -1,0 +1,1261 @@
+﻿
+Arrow Documentation
+Release 0.13.0
+Chris Smith
+February 13, 2019
+
+
+
+Contents
+
+1 What?	1
+2 Why?	3
+3 Features	5
+4 Quickstart	7
+5 User's Guide	9
+5.1 Creation	. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	9
+5.2 Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	10
+5.3 Replace & shift . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	10
+5.4 Format	. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	11
+5.5 Convert . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	11
+5.6 Humanize . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	11
+5.7 Ranges & spans	. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	12
+5.8 Factories . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	13
+5.9 Tokens	. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	13
+6 API Guide	15
+6.1 arrow.arrow . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	15
+6.2 arrow.factory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	24
+6.3 arrow.api . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	27
+6.4 arrow.locale . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	29
+Python Module Index	47
+i
+ii
+
+     1 What?
+
+Arrow is a Python library that offers a sensible, human-friendly approach to creating, manipulating, formatting and converting dates, times, and timestamps. It implements and updates the datetime type, plugging gaps in functionality, and provides an intelligent module API that supports many common creation scenarios. Simply put, it helps you work with dates and times with fewer imports and a lot less code.
+Arrow is heavily inspired by moment.js and requests.
+
+Chapter 1. What?
+     2 Why?
+
+Python's standard library and some other low-level modules have near-complete date, time and timezone functionality but don't work very well from a usability perspective:
+• Too many modules: datetime, time, calendar, dateutil, pytz and more
+• Too many types: date, time, datetime, tzinfo, timedelta, relativedelta, etc.
+• Timezones and timestamp conversions are verbose and unpleasant
+• Timezone naivety is the norm
+• Gaps in functionality: ISO-8601 parsing, time spans, humanization
+
+Chapter 2. Why?
+3
+Features
+
+• Fully implemented, drop-in replacement for datetime
+• Supports Python 2.7, 3.4, 3.5, 3.6 and 3.7
+• Timezone-aware & UTC by default
+• Provides super-simple creation options for many common input scenarios
+• Updated .replace method with support for relative offsets, including weeks
+• Formats and parses strings automatically
+• Partial ISO-8601 support
+• Timezone conversion
+• Timestamp available as a property
+• Generates time spans, ranges, floors and ceilings in time frames from year to microsecond precision
+• Humanizes and supports a growing list of contributed locales
+• Extensible for your own Arrow-derived types
+Chapter 3. Features
+4
+Quickstart
+
+$ pip install arrow
+>>> import arrow >>> utc = arrow.utcnow()
+>>> utc
+<Arrow [2013-05-11T21:23:58.970460+00:00]>
+>>> utc = utc.shift(hours=-1)
+>>> utc
+<Arrow [2013-05-11T20:23:58.970460+00:00]>
+>>> local = utc.to('US/Pacific')
+>>> local
+<Arrow [2013-05-11T13:23:58.970460-07:00]>
+>>> arrow.get('2013-05-11T21:23:58.970460+00:00')
+<Arrow [2013-05-11T21:23:58.970460+00:00]>
+>>> local.timestamp
+1368303838
+>>> local.format()
+'2013-05-11 13:23:58 -07:00'
+>>> local.format('YYYY-MM-DD HH:mm:ss ZZ')
+'2013-05-11 13:23:58 -07:00'
+>>> local.humanize() 'an hour ago'
+>>> local.humanize(locale='ko_kr')
+'1 'Chapter 4. Quickstart
+5 User's Guide
+
+5.1 Creation
+Get 'now' easily:
+>>> arrow.utcnow()
+<Arrow [2013-05-07T04:20:39.369271+00:00]>
+>>> arrow.now()
+<Arrow [2013-05-06T21:20:40.841085-07:00]>
+>>> arrow.now('US/Pacific')
+<Arrow [2013-05-06T21:20:44.761511-07:00]>
+Create from timestamps (ints or floats, or strings that convert to a float):
+>>> arrow.get(1367900664)
+<Arrow [2013-05-07T04:24:24+00:00]>
+>>> arrow.get('1367900664')
+<Arrow [2013-05-07T04:24:24+00:00]>
+>>> arrow.get(1367900664.152325)
+<Arrow [2013-05-07T04:24:24.152325+00:00]>
+>>> arrow.get('1367900664.152325')
+<Arrow [2013-05-07T04:24:24.152325+00:00]>
+Use a naive or timezone-aware datetime, or flexibly specify a timezone:
+>>> arrow.get(datetime.utcnow())
+<Arrow [2013-05-07T04:24:24.152325+00:00]>
+>>> arrow.get(datetime(2013, 5, 5), 'US/Pacific')
+<Arrow [2013-05-05T00:00:00-07:00]>
+>>> from dateutil import tz
+>>> arrow.get(datetime(2013, 5, 5), tz.gettz('US/Pacific'))
+<Arrow [2013-05-05T00:00:00-07:00]>
+>>> arrow.get(datetime.now(tz.gettz('US/Pacific')))
+<Arrow [2013-05-06T21:24:49.552236-07:00]>
+Parse from a string:
+
+>>> arrow.get('2013-05-05 12:30:45', 'YYYY-MM-DD HH:mm:ss')
+<Arrow [2013-05-05T12:30:45+00:00]>
+Search a date in a string:
+>>> arrow.get('June was born in May 1980', 'MMMM YYYY')
+<Arrow [1980-05-01T00:00:00+00:00]>
+Some ISO-8601 compliant strings are recognized and parsed without a format string:
+>>> arrow.get('2013-09-30T15:34:00.000-07:00')
+<Arrow [2013-09-30T15:34:00-07:00]>
+Arrow objects can be instantiated directly too, with the same arguments as a datetime:
+>>> arrow.get(2013, 5, 5)
+<Arrow [2013-05-05T00:00:00+00:00]>
+>>> arrow.Arrow(2013, 5, 5) <Arrow [2013-05-05T00:00:00+00:00]>
+5.2 Properties
+Get a datetime or timestamp representation:
+>>> a = arrow.utcnow() >>> a.datetime datetime.datetime(2013, 5, 7, 4, 38, 15, 447644, tzinfo=tzutc())
+>>> a.timestamp
+1367901495
+Get a naive datetime, and tzinfo:
+>>> a.naive datetime.datetime(2013, 5, 7, 4, 38, 15, 447644)
+>>> a.tzinfo tzutc()Get any datetime value:
+>>> a.year
+2013
+Call datetime functions that return properties:
+>>> a.date() datetime.date(2013, 5, 7)
+>>> a.time()
+datetime.time(4, 38, 15, 447644)
+5.3 Replace & shift
+Get a new Arrow object, with altered attributes, just as you would with a datetime:
+Arrow Documentation, Release 0.13.0
+>>> arw = arrow.utcnow()
+>>> arw
+<Arrow [2013-05-12T03:29:35.334214+00:00]>
+>>> arw.replace(hour=4, minute=40)
+<Arrow [2013-05-12T04:40:35.334214+00:00]>
+Or, get one with attributes shifted forward or backward:
+>>> arw.shift(weeks=+3)
+<Arrow [2013-06-02T03:29:35.334214+00:00]>
+Even replace the timezone without altering other attributes:
+>>> arw.replace(tzinfo='US/Pacific') <Arrow [2013-05-12T03:29:35.334214-07:00]>
+5.4 Format
+>>> arrow.utcnow().format('YYYY-MM-DD HH:mm:ss ZZ')
+'2013-05-07 05:23:16 -00:00'
+5.5 Convert
+Convert to timezones by name or tzinfo:
+>>> utc = arrow.utcnow()
+>>> utc
+<Arrow [2013-05-07T05:24:11.823627+00:00]>
+>>> utc.to('US/Pacific')
+<Arrow [2013-05-06T22:24:11.823627-07:00]>
+>>> utc.to(tz.gettz('US/Pacific')) <Arrow [2013-05-06T22:24:11.823627-07:00]>
+Or using shorthand:
+>>> utc.to('local')
+<Arrow [2013-05-06T22:24:11.823627-07:00]>
+>>> utc.to('local').to('utc') <Arrow [2013-05-07T05:24:11.823627+00:00]>
+5.6 Humanize
+Humanize relative to now:
+>>> past = arrow.utcnow().shift(hours=-1)
+>>> past.humanize()
+'an hour ago'
+5.4. Format
+Or another Arrow, or datetime:
+>>> present = arrow.utcnow()
+>>> future = present.shift(hours=2)
+>>> future.humanize(present)
+'in 2 hours'
+Support for a growing number of locales (see locales.py for supported languages):
+>>> future = arrow.utcnow().shift(hours=1)
+>>> future.humanize(a, locale='ru')
+' 2 (,)'
+5.7 Ranges & spans
+Get the time span of any unit:
+>>> arrow.utcnow().span('hour') (<Arrow [2013-05-07T05:00:00+00:00]>, <Arrow [2013-05-07T05:59:59.999999+00:00]>)
+Or just get the floor and ceiling:
+>>> arrow.utcnow().floor('hour')
+<Arrow [2013-05-07T05:00:00+00:00]>
+>>> arrow.utcnow().ceil('hour') <Arrow [2013-05-07T05:59:59.999999+00:00]>
+You can also get a range of time spans:
+>>> start = datetime(2013, 5, 5, 12, 30)
+>>> end = datetime(2013, 5, 5, 17, 15) >>> for r in arrow.Arrow.span_range('hour', start, end):
+...	print r
+...
+(<Arrow [2013-05-05T12:00:00+00:00]>, <Arrow [2013-05-05T12:59:59.999999+00:00]>)
+(<Arrow [2013-05-05T13:00:00+00:00]>, <Arrow [2013-05-05T13:59:59.999999+00:00]>)
+(<Arrow [2013-05-05T14:00:00+00:00]>, <Arrow [2013-05-05T14:59:59.999999+00:00]>)
+(<Arrow [2013-05-05T15:00:00+00:00]>, <Arrow [2013-05-05T15:59:59.999999+00:00]>)
+(<Arrow [2013-05-05T16:00:00+00:00]>, <Arrow [2013-05-05T16:59:59.999999+00:00]>)
+Or just iterate over a range of time:
+>>> start = datetime(2013, 5, 5, 12, 30)
+>>> end = datetime(2013, 5, 5, 17, 15) >>> for r in arrow.Arrow.range('hour', start, end):
+...	print repr(r) ...
+<Arrow [2013-05-05T12:30:00+00:00]>
+<Arrow [2013-05-05T13:30:00+00:00]>
+<Arrow [2013-05-05T14:30:00+00:00]>
+<Arrow [2013-05-05T15:30:00+00:00]> <Arrow [2013-05-05T16:30:00+00:00]>
+12
+Arrow Documentation, Release 0.13.0
+5.8 Factories
+Use factories to harness Arrow's module API for a custom Arrow-derived type. First, derive your type:
+>>> class CustomArrow(arrow.Arrow): ...
+...	def days_till_xmas(self):
+...
+...	xmas = arrow.Arrow(self.year, 12, 25)
+...
+...	if self > xmas:
+...	xmas = xmas.shift(years=1)
+...
+...	return (xmas - self).days
+Then get and use a factory for it:
+>>> factory = arrow.ArrowFactory(CustomArrow)
+>>> custom = factory.utcnow()
+>>> custom
+>>> <CustomArrow [2013-05-27T23:35:35.533160+00:00]>
+>>> custom.days_till_xmas()
+>>> 211
+5.9 Tokens
+Use the following tokens in parsing and formatting. Note that they're not the same as the tokens for strptime(3):
+5.8. Factories
+
+TokenOutputYearYYYY2000, 2001, 2002 ... 2012, 2013YY00, 01, 02 ... 12, 13MonthMMMMJanuary, February, March ... 1MMMJan, Feb, Mar ... 1MM01, 02, 03 ... 11, 12M1, 2, 3 ... 11, 12Day of YearDDDD001, 002, 003 ... 364, 365DDD1, 2, 3 ... 4, 5Day of MonthDD01, 02, 03 ... 30, 31D1, 2, 3 ... 30, 31Do1st, 2nd, 3rd ... 30th, 31stDay of WeekddddMonday, Tuesday, Wednesday ... 2dddMon, Tue, Wed ... 2d1, 2, 3 ... 6, 7HourHH00, 01, 02 ... 23, 24H0, 1, 2 ... 23, 24hh01, 02, 03 ... 11, 12h1, 2, 3 ... 11, 12AM / PMAAM, PM, am, pm 1aam, pm 1Minutemm00, 01, 02 ... 58, 59m0, 1, 2 ... 58, 59Secondss00, 01, 02 ... 58, 59s0, 1, 2 ... 58, 59Sub-secondS...0, 02, 003, 000006, 123123123123... 3TimezoneZZZAsia/Baku, Europe/Warsaw, GMT ... 4ZZ-07:00, -06:00 ... +06:00, +07:00Z-0700, -0600 ... +0600, +0700TimestampX1381685817Any token can be escaped when parsing by enclosing it within square brackets:
+>>> arrow.get("2018-03-09 8 h 40", "YYYY-MM-DD h [h] m")
+<Arrow [2018-03-09T08:40:00+00:00]>
+CHAPTER 6
+
+API Guide
+
+6.1 arrow.arrow
+Provides the Arrow class, an enhanced datetime replacement.
+class arrow.arrow.Arrow(year, month, day, hour=0, minute=0, second=0, microsecond=0, tzinfo=None) An Arrow object.
+Implements the datetime interface, behaving as an aware datetime while implementing additional functionality.
+Parameters
+• year - the calendar year.
+• month - the calendar month.
+• day - the calendar day.
+• hour - (optional) the hour. Defaults to 0.
+• minute - (optional) the minute, Defaults to 0. • second - (optional) the second, Defaults to 0.
+• microsecond - (optional) the microsecond. Defaults 0.
+• tzinfo - (optional) A timezone expression. Defaults to UTC.
+Recognized timezone expressions:
+•A tzinfo object.
+•A str describing a timezone, similar to 'US/Pacific', or 'Europe/Berlin'.
+•A str in ISO-8601 style, as in '+07:00'.
+•A str, one of the following: 'local', 'utc', 'UTC'.
+Usage:
+>>> import arrow
+>>> arrow.Arrow(2013, 5, 5, 12, 30, 45) <Arrow [2013-05-05T12:30:45+00:00]>
+classmethod now(tzinfo=None)
+Constructs an Arrow object, representing "now" in the given timezone.
+Parameters tzinfo - (optional) a tzinfo object. Defaults to local time.
+Usage:
+>>> arrow.now('Asia/Baku')
+<Arrow [2019-01-24T20:26:31.146412+04:00]>
+classmethod utcnow()
+Constructs an Arrow object, representing "now" in UTC time.
+Usage:
+>>> arrow.utcnow()
+<Arrow [2019-01-24T16:31:40.651108+00:00]>
+classmethod fromtimestamp(timestamp, tzinfo=None)
+Constructs an Arrow object from a timestamp, converted to the given timezone.
+Parameters
+• timestamp - an int or float timestamp, or a str that converts to either.
+• tzinfo - (optional) a tzinfo object. Defaults to local time.
+Timestamps should always be UTC. If you have a non-UTC timestamp:
+>>> arrow.Arrow.utcfromtimestamp(1367900664).replace(tzinfo='US/Pacific')
+<Arrow [2013-05-07T04:24:24-07:00]>
+classmethod utcfromtimestamp(timestamp)
+Constructs an Arrow object from a timestamp, in UTC time.
+Parameters timestamp - an int or float timestamp, or a str that converts to either.
+classmethod fromdatetime(dt, tzinfo=None)
+Constructs an Arrow object from a datetime and optional replacement timezone.
+Parameters
+• dt - the datetime
+• tzinfo - (optional) A timezone expression. Defaults to dt's timezone, or UTC if naive.
+If you only want to replace the timezone of naive datetimes:
+>>> dt
+datetime.datetime(2013, 5, 5, 0, 0, tzinfo=tzutc()) >>> arrow.Arrow.fromdatetime(dt, dt.tzinfo or 'US/Pacific')
+<Arrow [2013-05-05T00:00:00+00:00]>
+classmethod fromdate(date, tzinfo=None)
+Constructs an Arrow object from a date and optional replacement timezone. Time values are set to 0.
+Parameters
+• date - the date
+• tzinfo - (optional) A timezone expression. Defaults to UTC.
+classmethod strptime(date_str, fmt, tzinfo=None)
+Constructs an Arrow object from a date string and format, in the style of datetime.strptime. Optionally replaces the parsed timezone.
+Parameters
+• date_str - the date string.
+
+• fmt - the format string.
+• tzinfo - (optional) A timezone expression. Defaults to the parsed timezone if fmt contains a timezone directive, otherwise UTC.
+Usage:
+>>> arrow.Arrow.strptime('20-01-2019 15:49:10', '%d-%m-%Y %H:%M:%S')
+<Arrow [2019-01-20T15:49:10+00:00]>
+classmethod range(frame, start, end=None, tz=None, limit=None)
+Returns an iterator of Arrow objects, representing points in time between two inputs.
+Parameters
+• frame - The timeframe. Can be any datetime property (day, hour, minute...).
+• start - A datetime expression, the start of the range.
+• end - (optional) A datetime expression, the end of the range.
+• tz - (optional) A timezone expression. Defaults to start's timezone, or UTC if start is naive.
+• limit - (optional) A maximum number of tuples to return.
+NOTE: The end or limit must be provided. Call with end alone to return the entire range. Call with limit alone to return a maximum # of results from the start. Call with both to cap a range at a maximum # of results.
+NOTE: tz internally replaces the timezones of both start and end before iterating. As such, either call with naive objects and tz, or aware objects from the same timezone and no tz.
+Supported frame values: year, quarter, month, week, day, hour, minute, second.
+Recognized datetime expressions:
+•An Arrow object.
+•A datetime object.
+Usage:
+>>> start = datetime(2013, 5, 5, 12, 30)
+>>> end = datetime(2013, 5, 5, 17, 15) >>> for r in arrow.Arrow.range('hour', start, end):
+...	print(repr(r)) ...
+<Arrow [2013-05-05T12:30:00+00:00]>
+<Arrow [2013-05-05T13:30:00+00:00]>
+<Arrow [2013-05-05T14:30:00+00:00]>
+<Arrow [2013-05-05T15:30:00+00:00]>
+<Arrow [2013-05-05T16:30:00+00:00]>
+NOTE: Unlike Python's range, end may be included in the returned iterator:
+>>> start = datetime(2013, 5, 5, 12, 30)
+>>> end = datetime(2013, 5, 5, 13, 30) >>> for r in arrow.Arrow.range('hour', start, end):
+...	print(repr(r)) ...
+<Arrow [2013-05-05T12:30:00+00:00]>
+<Arrow [2013-05-05T13:30:00+00:00]>
+classmethod span_range(frame, start, end, tz=None, limit=None)
+Returns an iterator of tuples, each Arrow objects, representing a series of timespans between two inputs.
+Parameters
+• frame - The timeframe. Can be any datetime property (day, hour, minute...).
+• start - A datetime expression, the start of the range.
+• end - (optional) A datetime expression, the end of the range.
+• tz - (optional) A timezone expression. Defaults to start's timezone, or UTC if start is naive.
+• limit - (optional) A maximum number of tuples to return.
+NOTE: The end or limit must be provided. Call with end alone to return the entire range. Call with limit alone to return a maximum # of results from the start. Call with both to cap a range at a maximum # of results.
+NOTE: tz internally replaces the timezones of both start and end before iterating. As such, either call with naive objects and tz, or aware objects from the same timezone and no tz.
+Supported frame values: year, quarter, month, week, day, hour, minute, second.
+Recognized datetime expressions:
+•An Arrow object.
+•A datetime object.
+NOTE: Unlike Python's range, end will always be included in the returned iterator of timespans.
+Usage:
+>>> start = datetime(2013, 5, 5, 12, 30)
+>>> end = datetime(2013, 5, 5, 17, 15) >>> for r in arrow.Arrow.span_range('hour', start, end):
+...	print(r)
+...
+(<Arrow [2013-05-05T12:00:00+00:00]>, <Arrow [2013-05-05T12:59:59.999999+00:00]>)
+(<Arrow [2013-05-05T13:00:00+00:00]>, <Arrow [2013-05-05T13:59:59.999999+00:00]>)
+(<Arrow [2013-05-05T14:00:00+00:00]>, <Arrow [2013-05-05T14:59:59.999999+00:00]>)
+(<Arrow [2013-05-05T15:00:00+00:00]>, <Arrow [2013-05-05T15:59:59.999999+00:00]>)
+(<Arrow [2013-05-05T16:00:00+00:00]>, <Arrow [2013-05-05T16:59:59.999999+00:00]>)
+(<Arrow [2013-05-05T17:00:00+00:00]>, <Arrow [2013-05-05T17:59:59.999999+00:00]>)
+classmethod interval(frame, start, end, interval=1, tz=None)
+Returns an iterator of tuples, each Arrow objects, representing a series of intervals between two inputs.
+Parameters
+       • frame - The timeframe. Can be any datetime property (day, hour, minute...).
+       • start - A datetime expression, the start of the range.
+       • end - (optional) A datetime expression, the end of the range.
+       • interval - (optional) Time interval for the given time frame.
+       • tz - (optional) A timezone expression. Defaults to UTC. Supported frame values: year, quarter, month, week, day, hour, minute, second
+Recognized datetime expressions:
+•An Arrow object.
+•A datetime object.
+Recognized timezone expressions:
+•A tzinfo object.
+•A str describing a timezone, similar to 'US/Pacific', or 'Europe/Berlin'.
+•A str in ISO-8601 style, as in '+07:00'.
+•A str, one of the following: 'local', 'utc', 'UTC'.
+Usage:
+>>> start = datetime(2013, 5, 5, 12, 30)
+>>> end = datetime(2013, 5, 5, 17, 15) >>> for r in arrow.Arrow.interval('hour', start, end, 2):
+...	print r
+...
+(<Arrow [2013-05-05T12:00:00+00:00]>, <Arrow [2013-05-05T13:59:59.999999+00:00]>)
+(<Arrow [2013-05-05T14:00:00+00:00]>, <Arrow [2013-05-05T15:59:59.999999+00:00]>)
+     (<Arrow [2013-05-05T16:00:00+00:00]>, <Arrow [2013-05-05T17:59:59.999999+00:0]>) tzinfo
+Gets the tzinfo of the Arrow object.
+Usage:
+>>> arw=arrow.utcnow() >>> arw.tzinfo tzutc()
+datetime
+Returns a datetime representation of the Arrow object.
+Usage:
+>>> arw=arrow.utcnow() >>> arw.datetime
+datetime.datetime(2019, 1, 24, 16, 35, 27, 276649, tzinfo=tzutc())
+naive
+Returns a naive datetime representation of the Arrow object.
+Usage:
+>>> nairobi = arrow.now('Africa/Nairobi')
+>>> nairobi
+<Arrow [2019-01-23T19:27:12.297999+03:00]>
+>>> nairobi.naive
+datetime.datetime(2019, 1, 23, 19, 27, 12, 297999)
+timestamp
+Returns a timestamp representation of the Arrow object, in UTC time.
+Usage:
+>>> arrow.utcnow().timestamp
+1548260567
+float_timestamp
+Returns a floating-point representation of the Arrow object, in UTC time.
+Usage:
+>>> arrow.utcnow().float_timestamp
+1548260516.830896
+clone()
+Returns a new Arrow object, cloned from the current one.
+Usage:
+>>> arw = arrow.utcnow()
+>>> cloned = arw.clone()
+replace(**kwargs)
+Returns a new Arrow object with attributes updated according to inputs.
+Use property names to set their value absolutely:
+>>> import arrow
+>>> arw = arrow.utcnow()
+>>> arw
+<Arrow [2013-05-11T22:27:34.787885+00:00]> >>> arw.replace(year=2014, month=6)
+<Arrow [2014-06-11T22:27:34.787885+00:00]>
+You can also replace the timezone without conversion, using a timezone expression:
+>>> arw.replace(tzinfo=tz.tzlocal())
+<Arrow [2013-05-11T22:27:34.787885-07:00]>
+shift(**kwargs)
+Returns a new Arrow object with attributes updated according to inputs.
+Use pluralized property names to shift their current value relatively:
+>>> import arrow
+>>> arw = arrow.utcnow()
+>>> arw
+<Arrow [2013-05-11T22:27:34.787885+00:00]> >>> arw.shift(years=1, months=-1)
+<Arrow [2014-04-11T22:27:34.787885+00:00]>
+Day-of-the-week relative shifting can use either Python's weekday numbers (Monday = 0, Tuesday = 1 .. Sunday = 6) or using dateutil.relativedelta's day instances (MO, TU .. SU). When using weekday numbers, the returned date will always be greater than or equal to the starting date.
+Using the above code (which is a Saturday) and asking it to shift to Saturday:
+>>> arw.shift(weekday=5)
+<Arrow [2013-05-11T22:27:34.787885+00:00]>
+While asking for a Monday:
+>>> arw.shift(weekday=0)
+<Arrow [2013-05-13T22:27:34.787885+00:00]>
+to(tz)
+Returns a new Arrow object, converted to the target timezone.
+Parameters tz - A timezone expression.
+Usage:
+>>> utc = arrow.utcnow()
+>>> utc
+<Arrow [2013-05-09T03:49:12.311072+00:00]>
+>>> utc.to('US/Pacific')
+<Arrow [2013-05-08T20:49:12.311072-07:00]>
+>>> utc.to(tz.tzlocal())
+<Arrow [2013-05-08T20:49:12.311072-07:00]>
+>>> utc.to('-07:00')
+<Arrow [2013-05-08T20:49:12.311072-07:00]>
+>>> utc.to('local')
+<Arrow [2013-05-08T20:49:12.311072-07:00]>
+>>> utc.to('local').to('utc')
+<Arrow [2013-05-09T03:49:12.311072+00:00]>
+span(frame, count=1)
+Returns two new Arrow objects, representing the timespan of the Arrow object in a given timeframe.
+Parameters
+• frame - the timeframe. Can be any datetime property (day, hour, minute...).
+• count - (optional) the number of frames to span.
+Supported frame values: year, quarter, month, week, day, hour, minute, second.
+Usage:
+>>> arrow.utcnow()
+<Arrow [2013-05-09T03:32:36.186203+00:00]>
+>>> arrow.utcnow().span('hour')
+(<Arrow [2013-05-09T03:00:00+00:00]>, <Arrow [2013-05-09T03:59:59.999999+00:00]>)
+>>> arrow.utcnow().span('day')
+(<Arrow [2013-05-09T00:00:00+00:00]>, <Arrow [2013-05-09T23:59:59.999999+00:00]>)
+>>> arrow.utcnow().span('day', count=2)
+(<Arrow [2013-05-09T00:00:00+00:00]>, <Arrow [2013-05-10T23:59:59.999999+00:00]>)
+floor(frame)
+Returns a new Arrow object, representing the "floor" of the timespan of the Arrow object in a given timeframe. Equivalent to the first element in the 2-tuple returned by span.
+Parameters frame - the timeframe. Can be any datetime property (day, hour, minute...).
+Usage:
+>>> arrow.utcnow().floor('hour')
+<Arrow [2013-05-09T03:00:00+00:00]>
+ceil(frame)
+Returns a new Arrow object, representing the "ceiling" of the timespan of the Arrow object in a given timeframe. Equivalent to the second element in the 2-tuple returned by span.
+Parameters frame - the timeframe. Can be any datetime property (day, hour, minute...).
+Usage:
+>>> arrow.utcnow().ceil('hour')
+<Arrow [2013-05-09T03:59:59.999999+00:00]>
+format(fmt='YYYY-MM-DD HH:mm:ssZZ', locale='en_us')
+Returns a string representation of the Arrow object, formatted according to a format string.
+Parameters fmt - the format string.
+Usage:
+>>> arrow.utcnow().format('YYYY-MM-DD HH:mm:ss ZZ')
+'2013-05-09 03:56:47 -00:00'
+>>> arrow.utcnow().format('X')
+'1368071882'
+>>> arrow.utcnow().format('MMMM DD, YYYY')
+'May 09, 2013'
+>>> arrow.utcnow().format()
+'2013-05-09 03:56:47 -00:00'
+humanize(other=None, locale='en_us', only_distance=False, granularity='auto') Returns a localized, humanized representation of a relative difference in time.
+Parameters
+• other - (optional) an Arrow or datetime object. Defaults to now in the current Arrow object's timezone.
+• locale - (optional) a str specifying a locale. Defaults to 'en_us'.
+• only_distance - (optional) returns only time difference eg: "11 seconds" without "in" or "ago" part.
+• granularity - (optional) defines the precision of the output. Set it to strings 'second', 'minute', 'hour', 'day', 'month' or 'year'.
+Usage:
+>>> earlier = arrow.utcnow().shift(hours=-2)
+>>> earlier.humanize() '2 hours ago'
+>>> later = earlier.shift(hours=4)
+>>> later.humanize(earlier)
+'in 4 hours'date()
+Returns a date object with the same year, month and day.
+Usage:
+>>> arrow.utcnow().date() datetime.date(2019, 1, 23)
+time()
+Returns a time object with the same hour, minute, second, microsecond.
+Usage:
+>>> arrow.utcnow().time() datetime.time(12, 15, 34, 68352)
+timetz()
+Returns a time object with the same hour, minute, second, microsecond and tzinfo.
+Usage:
+>>> arrow.utcnow().timetz()
+datetime.time(12, 5, 18, 298893, tzinfo=tzutc())
+astimezone(tz)
+Returns a datetime object, converted to the specified timezone.
+Parameters tz - a tzinfo object.
+Usage:
+>>> pacific=arrow.now('US/Pacific')
+>>> nyc=arrow.now('America/New_York').tzinfo
+>>> pacific.astimezone(nyc) datetime.datetime(2019, 1, 20, 10, 24, 22, 328172, tzinfo=tzfile('/usr/share/zoneinfo/Americutcoffset()
+Returns a timedelta object representing the whole number of minutes difference from UTC time.
+Usage:
+>>> arrow.now('US/Pacific').utcoffset() datetime.timedelta(-1, 57600)
+dst()
+Returns the daylight savings time adjustment.
+Usage:
+>>> arrow.utcnow().dst() datetime.timedelta(0)
+timetuple()
+Returns a time.struct_time, in the current timezone.
+Usage:
+>>> arrow.utcnow().timetuple()
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=20, tm_hour=15, tm_min=17, tm_sec=8, tm_wda
+utctimetuple()
+Returns a time.struct_time, in UTC time.
+Usage:
+>>> arrow.utcnow().utctimetuple()
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=19, tm_hour=21, tm_min=41, tm_sec=7, tm_wda
+toordinal()
+Returns the proleptic Gregorian ordinal of the date.
+Usage:
+>>> arrow.utcnow().toordinal()
+737078
+weekday()
+Returns the day of the week as an integer (0-6).
+Usage:
+>>> arrow.utcnow().weekday()
+5
+isoweekday()
+Returns the ISO day of the week as an integer (1-7).
+Usage:
+>>> arrow.utcnow().isoweekday()
+6
+isocalendar()
+Returns a 3-tuple, (ISO year, ISO week number, ISO weekday).
+Usage:
+>>> arrow.utcnow().isocalendar()
+(2019, 3, 6)
+isoformat(sep='T')
+Returns an ISO 8601 formatted representation of the date and time.
+Usage:
+>>> arrow.utcnow().isoformat()
+'2019-01-19T18:30:52.442118+00:00'
+ctime()
+Returns a ctime formatted representation of the date and time.
+Usage:
+>>> arrow.utcnow().ctime()
+'Sat Jan 19 18:26:50 2019'
+strftime(format)
+Formats in the style of datetime.strftime.
+Parameters format - the format string.
+Usage:
+>>> arrow.utcnow().strftime('%d-%m-%Y %H:%M:%S')
+'23-01-2019 12:28:17'
+for_json()
+Serializes for the for_json protocol of simplejson.
+Usage:
+>>> arrow.utcnow().for_json()
+'2019-01-19T18:25:36.760079+00:00'
+6.2 arrow.factory
+Implements the ArrowFactory class, providing factory methods for common Arrow construction scenarios.
+
+class arrow.factory.ArrowFactory(type=<class 'arrow.arrow.Arrow'>) A factory for generating Arrow objects.
+Parameters type - (optional) the Arrow-based class to construct from. Defaults to Arrow.
+get(*args, **kwargs)
+Returns an Arrow object based on flexible inputs.
+Parameters
+• locale - (optional) a str specifying a locale for the parser. Defaults to 'en_us'.
+• tzinfo - (optional) a timezone expression or tzinfo object. Replaces the timezone unless using an input form that is explicitly UTC or specifies the timezone in a positional argument. Defaults to UTC.
+Usage:
+>>> import arrow
+No inputs to get current UTC time:
+>>> arrow.get()
+<Arrow [2013-05-08T05:51:43.316458+00:00]>
+None to also get current UTC time:
+>>> arrow.get(None)
+<Arrow [2013-05-08T05:51:49.016458+00:00]>
+One Arrow object, to get a copy.
+>>> arw = arrow.utcnow()
+>>> arrow.get(arw)
+<Arrow [2013-10-23T15:21:54.354846+00:00]>
+One str, float, or int, convertible to a floating-point timestamp, to get that timestamp in UTC:
+>>> arrow.get(1367992474.293378)
+<Arrow [2013-05-08T05:54:34.293378+00:00]>
+>>> arrow.get(1367992474)
+<Arrow [2013-05-08T05:54:34+00:00]>
+>>> arrow.get('1367992474.293378')
+<Arrow [2013-05-08T05:54:34.293378+00:00]>
+>>> arrow.get('1367992474') <Arrow [2013-05-08T05:54:34+00:00]>
+One ISO-8601-formatted str, to parse it:
+>>> arrow.get('2013-09-29T01:26:43.830580')
+<Arrow [2013-09-29T01:26:43.830580+00:00]>
+One tzinfo, to get the current time converted to that timezone:
+>>> arrow.get(tz.tzlocal())
+<Arrow [2013-05-07T22:57:28.484717-07:00]>
+One naive datetime, to get that datetime in UTC:
+6.2. arrow.factory
+>>> arrow.get(datetime(2013, 5, 5))
+<Arrow [2013-05-05T00:00:00+00:00]>
+One aware datetime, to get that datetime:
+>>> arrow.get(datetime(2013, 5, 5, tzinfo=tz.tzlocal()))
+<Arrow [2013-05-05T00:00:00-07:00]>
+One naive date, to get that date in UTC:
+>>> arrow.get(date(2013, 5, 5))
+<Arrow [2013-05-05T00:00:00+00:00]>
+Two arguments, a naive or aware datetime, and a replacement timezone expression:
+>>> arrow.get(datetime(2013, 5, 5), 'US/Pacific')
+<Arrow [2013-05-05T00:00:00-07:00]>
+Two arguments, a naive date, and a replacement timezone expression:
+>>> arrow.get(date(2013, 5, 5), 'US/Pacific')
+<Arrow [2013-05-05T00:00:00-07:00]>
+Two arguments, both str, to parse the first according to the format of the second:
+>>> arrow.get('2013-05-05 12:30:45 America/Chicago', 'YYYY-MM-DD HH:mm:ss ZZZ')
+<Arrow [2013-05-05T12:30:45-05:00]>
+Two arguments, first a str to parse and second a list of formats to try:
+>>> arrow.get('2013-05-05 12:30:45', ['MM/DD/YYYY', 'YYYY-MM-DD HH:mm:ss'])
+<Arrow [2013-05-05T12:30:45+00:00]>
+Three or more arguments, as for the constructor of a datetime:
+>>> arrow.get(2013, 5, 5, 12, 30, 45) <Arrow [2013-05-05T12:30:45+00:00]>
+One time.struct time:
+>>> arrow.get(gmtime(0))
+<Arrow [1970-01-01T00:00:00+00:00]>
+utcnow()
+Returns an Arrow object, representing "now" in UTC time.
+Usage:
+>>> import arrow
+>>> arrow.utcnow()
+<Arrow [2013-05-08T05:19:07.018993+00:00]>
+now(tz=None)
+Returns an Arrow object, representing "now" in the given timezone.
+Parameters tz - (optional) A timezone expression. Defaults to local time.
+Usage:
+>>> import arrow >>> arrow.now()
+<Arrow [2013-05-07T22:19:11.363410-07:00]>
+>>> arrow.now('US/Pacific')
+<Arrow [2013-05-07T22:19:15.251821-07:00]>
+>>> arrow.now('+02:00')
+<Arrow [2013-05-08T07:19:25.618646+02:00]>
+>>> arrow.now('local')
+<Arrow [2013-05-07T22:19:39.130059-07:00]>
+6.3 arrow.api
+Provides the default implementation of ArrowFactory methods for use as a module API.
+arrow.api.get(*args, **kwargs)
+Returns an Arrow object based on flexible inputs.
+Parameters
+• locale - (optional) a str specifying a locale for the parser. Defaults to 'en_us'.
+• tzinfo - (optional) a timezone expression or tzinfo object. Replaces the timezone unless using an input form that is explicitly UTC or specifies the timezone in a positional argument.
+Defaults to UTC.
+Usage:
+>>> import arrow
+No inputs to get current UTC time:
+>>> arrow.get()
+<Arrow [2013-05-08T05:51:43.316458+00:00]>
+None to also get current UTC time:
+>>> arrow.get(None)
+<Arrow [2013-05-08T05:51:49.016458+00:00]>
+One Arrow object, to get a copy.
+>>> arw = arrow.utcnow()
+>>> arrow.get(arw)
+<Arrow [2013-10-23T15:21:54.354846+00:00]>
+One str, float, or int, convertible to a floating-point timestamp, to get that timestamp in UTC:
+>>> arrow.get(1367992474.293378) <Arrow [2013-05-08T05:54:34.293378+00:00]>
+>>> arrow.get(1367992474)
+<Arrow [2013-05-08T05:54:34+00:00]>
+>>> arrow.get('1367992474.293378') <Arrow [2013-05-08T05:54:34.293378+00:00]>
+>>> arrow.get('1367992474')
+<Arrow [2013-05-08T05:54:34+00:00]>
+6.3. arrow.api
+One ISO-8601-formatted str, to parse it:
+>>> arrow.get('2013-09-29T01:26:43.830580')
+<Arrow [2013-09-29T01:26:43.830580+00:00]>
+One tzinfo, to get the current time converted to that timezone:
+>>> arrow.get(tz.tzlocal())
+<Arrow [2013-05-07T22:57:28.484717-07:00]>
+One naive datetime, to get that datetime in UTC:
+>>> arrow.get(datetime(2013, 5, 5))
+<Arrow [2013-05-05T00:00:00+00:00]>
+One aware datetime, to get that datetime:
+>>> arrow.get(datetime(2013, 5, 5, tzinfo=tz.tzlocal()))
+<Arrow [2013-05-05T00:00:00-07:00]>
+One naive date, to get that date in UTC:
+>>> arrow.get(date(2013, 5, 5))
+<Arrow [2013-05-05T00:00:00+00:00]>
+Two arguments, a naive or aware datetime, and a replacement timezone expression:
+>>> arrow.get(datetime(2013, 5, 5), 'US/Pacific')
+<Arrow [2013-05-05T00:00:00-07:00]>
+Two arguments, a naive date, and a replacement timezone expression:
+>>> arrow.get(date(2013, 5, 5), 'US/Pacific')
+<Arrow [2013-05-05T00:00:00-07:00]>
+Two arguments, both str, to parse the first according to the format of the second:
+>>> arrow.get('2013-05-05 12:30:45 America/Chicago', 'YYYY-MM-DD HH:mm:ss ZZZ')
+<Arrow [2013-05-05T12:30:45-05:00]>
+Two arguments, first a str to parse and second a list of formats to try:
+>>> arrow.get('2013-05-05 12:30:45', ['MM/DD/YYYY', 'YYYY-MM-DD HH:mm:ss'])
+<Arrow [2013-05-05T12:30:45+00:00]>
+Three or more arguments, as for the constructor of a datetime:
+>>> arrow.get(2013, 5, 5, 12, 30, 45) <Arrow [2013-05-05T12:30:45+00:00]>
+One time.struct time:
+>>> arrow.get(gmtime(0))
+<Arrow [1970-01-01T00:00:00+00:00]>
+arrow.api.utcnow()
+Returns an Arrow object, representing "now" in UTC time.
+Usage:
+>>> import arrow
+>>> arrow.utcnow()
+<Arrow [2013-05-08T05:19:07.018993+00:00]>
+
+arrow.api.now(tz=None)
+Returns an Arrow object, representing "now" in the given timezone.
+Parameters tz - (optional) A timezone expression. Defaults to local time.
+Usage:
+>>> import arrow
+>>> arrow.now()
+<Arrow [2013-05-07T22:19:11.363410-07:00]>
+>>> arrow.now('US/Pacific') <Arrow [2013-05-07T22:19:15.251821-07:00]>
+>>> arrow.now('+02:00') <Arrow [2013-05-08T07:19:25.618646+02:00]>
+>>> arrow.now('local')
+<Arrow [2013-05-07T22:19:39.130059-07:00]>
+arrow.api.factory(type)
+Returns an ArrowFactory for the specified Arrow or derived type.
+Parameters type - the type, Arrow or derived.
+6.4 arrow.locale
+arrow.locales.get_locale(name)
+Returns an appropriate Locale corresponding to an inpute locale name.
+Parameters name - the name of the locale.
+class arrow.locales.Locale
+Represents locale-specific data and functionality.
+names = []
+timeframes = {u'seconds': u'', u'month': u'', u'hours': u'', u'year': u'', u'years': u'', u'now': u'', u'day': u'', u'minut meridians = {u'AM': u'', u'PM': u'', u'am': u'', u'pm': u''} past = None future = None month_names = [] month_abbreviations = [] day_names = [] day_abbreviations = [] ordinal_day_re = u'(\\d+)'
+describe(timeframe, delta=0, only_distance=False)
+Describes a delta within a timeframe in plain language.
+Parameters
+• timeframe - a string representing a timeframe.
+• delta - a quantity representing a delta in a timeframe.
+• only_distance - return only distance eg: "11 seconds" without "in" or "ago" keywords
+day_name(day)
+Returns the day name for a specified day of the week.
+Parameters day - the int day of the week (1-7).
+day_abbreviation(day)
+Returns the day abbreviation for a specified day of the week.
+Parameters day - the int day of the week (1-7).
+month_name(month)
+Returns the month name for a specified month of the year.
+Parameters month - the int month of the year (1-12).
+month_abbreviation(month)
+Returns the month abbreviation for a specified month of the year.
+Parameters month - the int month of the year (1-12).
+month_number(name)
+Returns the month number for a month specified by name or abbreviation.
+Parameters name - the month name or abbreviation.
+year_full(year)
+Returns the year for specific locale if available
+Parameters name - the int year (4-digit)
+year_abbreviation(year)
+Returns the year for specific locale if available
+Parameters name - the int year (4-digit)
+meridian(hour, token)
+Returns the meridian indicator for a specified hour and format token. Parameters
+• hour - the int hour of the day.
+• token - the format token.
+ordinal_number(n)
+Returns the ordinal format of a given integer
+Parameters n - an integer
+class arrow.locales.EnglishLocale
+names = [u'en', u'en_us', u'en_gb', u'en_au', u'en_be', u'en_jp', u'en_za', u'en_ca', u'en_ph'] past = u'{0} ago' future = u'in {0}' timeframes = {u'seconds': u'seconds', u'month': u'a month', u'hours': u'{0} hours', u'year': u'a year', u'years': u'{0} meridians = {u'AM': u'AM', u'PM': u'PM', u'am': u'am', u'pm': u'pm'}
+month_names = [u'', u'January', u'February', u'March', u'April', u'May', u'June', u'July', u'August', u'September', u month_abbreviations = [u'', u'Jan', u'Feb', u'Mar', u'Apr', u'May', u'Jun', u'Jul', u'Aug', u'Sep', u'Oct', u'Nov', u day_names = [u'', u'Monday', u'Tuesday', u'Wednesday', u'Thursday', u'Friday', u'Saturday', u'Sunday'] day_abbreviations = [u'', u'Mon', u'Tue', u'Wed', u'Thu', u'Fri', u'Sat', u'Sun']
+ordinal_day_re = u'((?P<value>[2-3]?1(?=st)|[2-3]?2(?=nd)|[2-3]?3(?=rd)|[1-3]?[04-9](?=th)|1[1-3](?=th))(st|nd|rd|th))
+class arrow.locales.ItalianLocale
+     names = [u'it', u'it_it'] past = u'{0} fa' future = u'tra {0}' timeframes = {u'seconds': u'qualche secondo', u'month': u'un mese', u'hours': u'{0} ore', u'year': u'un anno', u'year month_names = [u'', u'gennaio', u'febbraio', u'marzo', u'aprile', u'maggio', u'giugno', u'luglio', u'agosto', u'settembre month_abbreviations = [u'', u'gen', u'feb', u'mar', u'apr', u'mag', u'giu', u'lug', u'ago', u'set', u'ott', u'nov', u'dic' day_names = [u'', u'luned\xec', u'marted\xec', u'mercoled\xec', u'gioved\xec', u'venerd\xec', u'sabato', u'domenica'] day_abbreviations = [u'', u'lun', u'mar', u'mer', u'gio', u'ven', u'sab', u'dom'] ordinal_day_re = u'((?P<value>[1-3]?[0-9](?=[\xba\xaa]))[\xba\xaa])' class arrow.locales.SpanishLocale
+names = [u'es', u'es_es'] past = u'hace {0}' future = u'en {0}'
+     timeframes = {u'seconds': u'segundos', u'month': u'un mes', u'hours': u'{0} horas', u'year': u'un a\xf1o', u'years': u' month_names = [u'', u'enero', u'febrero', u'marzo', u'abril', u'mayo', u'junio', u'julio', u'agosto', u'septiembre', u'octu month_abbreviations = [u'', u'ene', u'feb', u'mar', u'abr', u'may', u'jun', u'jul', u'ago', u'sep', u'oct', u'nov', u'dic day_names = [u'', u'lunes', u'martes', u'mi\xe9rcoles', u'jueves', u'viernes', u's\xe1bado', u'domingo'] day_abbreviations = [u'', u'lun', u'mar', u'mie', u'jue', u'vie', u'sab', u'dom'] ordinal_day_re = u'((?P<value>[1-3]?[0-9](?=[\xba\xaa]))[\xba\xaa])' class arrow.locales.FrenchLocale
+names = [u'fr', u'fr_fr'] past = u'il y a {0}' future = u'dans {0}' timeframes = {u'seconds': u'quelques secondes', u'month': u'un mois', u'hours': u'{0} heures', u'year': u'un an', u'ye month_names = [u'', u'janvier', u'f\xe9vrier', u'mars', u'avril', u'mai', u'juin', u'juillet', u'ao\xfbt', u'septembre', u'oct month_abbreviations = [u'', u'janv', u'f\xe9vr', u'mars', u'avr', u'mai', u'juin', u'juil', u'ao\xfbt', u'sept', u'oct', u' day_names = [u'', u'lundi', u'mardi', u'mercredi', u'jeudi', u'vendredi', u'samedi', u'dimanche'] day_abbreviations = [u'', u'lun', u'mar', u'mer', u'jeu', u'ven', u'sam', u'dim']
+ordinal_day_re = u'((?P<value>\\b1(?=er\\b)|[1-3]?[02-9](?=e\\b)|[1-3]1(?=e\\b))(er|e)\\b)'
+class arrow.locales.GreekLocale
+     names = [u'el', u'el_gr'] past = u'{0} \u03c0\u03c1\u03b9\u03bd' future = u'\u03c3\u03b5 {0}' timeframes = {u'seconds': u'\u03b4\u03b5\u03c5\u03c4\u03b5\u03c1\u03cc\u03bb\u03b5\u03c0\u03c4\u03b1', u'month month_names = [u'', u'\u0399\u03b1\u03bd\u03bf\u03c5\u03b1\u03c1\u03af\u03bf\u03c5', u'\u03a6\u03b5\u03b2\u03c1 month_abbreviations = [u'', u'\u0399\u03b1\u03bd', u'\u03a6\u03b5\u03b2', u'\u039c\u03b1\u03c1', u'\u0391\u03c0 day_names = [u'', u'\u0394\u03b5\u03c5\u03c4\u03ad\u03c1\u03b1', u'\u03a4\u03c1\u03af\u03c4\u03b7', u'\u03a4\u03b day_abbreviations = [u'', u'\u0394\u03b5\u03c5', u'\u03a4\u03c1\u03b9', u'\u03a4\u03b5\u03c4', u'\u03a0\u03b5\u0 class arrow.locales.JapaneseLocale
+     names = [u'ja', u'ja_jp'] past = u'{0}\u524d' future = u'{0}\u5f8c' timeframes = {u'seconds': u'\u6570\u79d2', u'month': u'1\u30f6\u6708', u'hours': u'{0}\u6642\u9593', u'year': u'1\u5 month_names = [u'', u'1\u6708', u'2\u6708', u'3\u6708', u'4\u6708', u'5\u6708', u'6\u6708', u'7\u6708', u'8\u6708', u'9\ month_abbreviations = [u'', u' 1', u' 2', u' 3', u' 4', u' 5', u' 6', u' 7', u' 8', u' 9', u'10', u'11', u'12'] day_names = [u'', u'\u6708\u66dc\u65e5', u'\u706b\u66dc\u65e5', u'\u6c34\u66dc\u65e5', u'\u6728\u66dc\u65e5', u'\u91 day_abbreviations = [u'', u'\u6708', u'\u706b', u'\u6c34', u'\u6728', u'\u91d1', u'\u571f', u'\u65e5'] class arrow.locales.SwedishLocale
+names = [u'sv', u'sv_se'] past = u'f\xf6r {0} sen' future = u'om {0}'
+     timeframes = {u'seconds': u'n\xe5gra sekunder', u'month': u'en m\xe5nad', u'hours': u'{0} timmar', u'year': u'ett \xe month_names = [u'', u'januari', u'februari', u'mars', u'april', u'maj', u'juni', u'juli', u'augusti', u'september', u'oktob month_abbreviations = [u'', u'jan', u'feb', u'mar', u'apr', u'maj', u'jun', u'jul', u'aug', u'sep', u'okt', u'nov', u'dec day_names = [u'', u'm\xe5ndag', u'tisdag', u'onsdag', u'torsdag', u'fredag', u'l\xf6rdag', u's\xf6ndag'] day_abbreviations = [u'', u'm\xe5n', u'tis', u'ons', u'tor', u'fre', u'l\xf6r', u's\xf6n'] class arrow.locales.FinnishLocale
+names = [u'fi', u'fi_fi'] past = u'{0} sitten' future = u'{0} kuluttua' timeframes = {u'seconds': [u'muutama sekunti', u'muutaman sekunnin'], u'month': [u'kuukausi', u'kuukauden'], u'h month_names = [u'', u'tammikuu', u'helmikuu', u'maaliskuu', u'huhtikuu', u'toukokuu', u'kes\xe4kuu', u'hein\xe4kuu month_abbreviations = [u'', u'tammi', u'helmi', u'maalis', u'huhti', u'touko', u'kes\xe4', u'hein\xe4', u'elo', u'syys' day_names = [u'', u'maanantai', u'tiistai', u'keskiviikko', u'torstai', u'perjantai', u'lauantai', u'sunnuntai'] day_abbreviations = [u'', u'ma', u'ti', u'ke', u'to', u'pe', u'la', u'su'] class arrow.locales.ChineseCNLocale
+     names = [u'zh', u'zh_cn'] past = u'{0}\u524d' future = u'{0}\u540e' timeframes = {u'seconds': u'\u51e0\u79d2', u'month': u'1\u4e2a\u6708', u'hours': u'{0}\u5c0f\u65f6', u'year': u'1\u5e month_names = [u'', u'\u4e00\u6708', u'\u4e8c\u6708', u'\u4e09\u6708', u'\u56db\u6708', u'\u4e94\u6708', u'\u516d\u67 month_abbreviations = [u'', u' 1', u' 2', u' 3', u' 4', u' 5', u' 6', u' 7', u' 8', u' 9', u'10', u'11', u'12'] day_names = [u'', u'\u661f\u671f\u4e00', u'\u661f\u671f\u4e8c', u'\u661f\u671f\u4e09', u'\u661f\u671f\u56db', u'\u661f\ day_abbreviations = [u'', u'\u4e00', u'\u4e8c', u'\u4e09', u'\u56db', u'\u4e94', u'\u516d', u'\u65e5'] class arrow.locales.ChineseTWLocale
+     names = [u'zh_tw'] past = u'{0}\u524d' future = u'{0}\u5f8c' timeframes = {u'seconds': u'\u5e7e\u79d2', u'month': u'1\u500b\u6708', u'hours': u'{0}\u5c0f\u6642', u'year': u'1\u5 month_names = [u'', u'1\u6708', u'2\u6708', u'3\u6708', u'4\u6708', u'5\u6708', u'6\u6708', u'7\u6708', u'8\u6708', u'9\ month_abbreviations = [u'', u' 1', u' 2', u' 3', u' 4', u' 5', u' 6', u' 7', u' 8', u' 9', u'10', u'11', u'12'] day_names = [u'', u'\u5468\u4e00', u'\u5468\u4e8c', u'\u5468\u4e09', u'\u5468\u56db', u'\u5468\u4e94', u'\u5468\u516d day_abbreviations = [u'', u'\u4e00', u'\u4e8c', u'\u4e09', u'\u56db', u'\u4e94', u'\u516d', u'\u65e5'] class arrow.locales.KoreanLocale
+     names = [u'ko', u'ko_kr'] past = u'{0} \uc804' future = u'{0} \ud6c4' timeframes = {u'seconds': u'\uba87 \ucd08', u'month': u'1\uac1c\uc6d4', u'hours': u'{0}\uc2dc\uac04', u'year': u'1\ub month_names = [u'', u'1\uc6d4', u'2\uc6d4', u'3\uc6d4', u'4\uc6d4', u'5\uc6d4', u'6\uc6d4', u'7\uc6d4', u'8\uc6d4', u'9\ month_abbreviations = [u'', u' 1', u' 2', u' 3', u' 4', u' 5', u' 6', u' 7', u' 8', u' 9', u'10', u'11', u'12'] day_names = [u'', u'\uc6d4\uc694\uc77c', u'\ud654\uc694\uc77c', u'\uc218\uc694\uc77c', u'\ubaa9\uc694\uc77c', u'\uae day_abbreviations = [u'', u'\uc6d4', u'\ud654', u'\uc218', u'\ubaa9', u'\uae08', u'\ud1a0', u'\uc77c'] class arrow.locales.DutchLocale
+names = [u'nl', u'nl_nl'] past = u'{0} geleden' future = u'over {0}' timeframes = {u'seconds': u'seconden', u'month': u'een maand', u'hours': u'{0} uur', u'year': u'een jaar', u'years': u month_names = [u'', u'januari', u'februari', u'maart', u'april', u'mei', u'juni', u'juli', u'augustus', u'september', u'okt month_abbreviations = [u'', u'jan', u'feb', u'mrt', u'apr', u'mei', u'jun', u'jul', u'aug', u'sep', u'okt', u'nov', u'dec' day_names = [u'', u'maandag', u'dinsdag', u'woensdag', u'donderdag', u'vrijdag', u'zaterdag', u'zondag'] day_abbreviations = [u'', u'ma', u'di', u'wo', u'do', u'vr', u'za', u'zo'] class arrow.locales.SlavicBaseLocale class arrow.locales.BelarusianLocale
+     names = [u'be', u'be_by'] past = u'{0} \u0442\u0430\u043c\u0443' future = u'\u043f\u0440\u0430\u0437 {0}' timeframes = {u'seconds': u'\u043d\u0435\u043a\u0430\u043b\u044c\u043a\u0456 \u0441\u0435\u043a\u0443\u043d\u month_names = [u'', u'\u0441\u0442\u0443\u0434\u0437\u0435\u043d\u044f', u'\u043b\u044e\u0442\u0430\u0433\u0430 month_abbreviations = [u'', u'\u0441\u0442\u0443\u0434', u'\u043b\u044e\u0442', u'\u0441\u0430\u043a', u'\u043a day_names = [u'', u'\u043f\u0430\u043d\u044f\u0434\u0437\u0435\u043b\u0430\u043a', u'\u0430\u045e\u0442\u043e\u0 day_abbreviations = [u'', u'\u043f\u043d', u'\u0430\u0442', u'\u0441\u0440', u'\u0447\u0446', u'\u043f\u0442', u'\u class arrow.locales.PolishLocale
+names = [u'pl', u'pl_pl'] past = u'{0} temu' future = u'za {0}'
+     timeframes = {u'seconds': u'kilka sekund', u'month': u'miesi\u0105c', u'hours': [u'{0} godzin', u'{0} godziny', u'{0} g month_names = [u'', u'stycze\u0144', u'luty', u'marzec', u'kwiecie\u0144', u'maj', u'czerwiec', u'lipiec', u'sierpie\u0144 month_abbreviations = [u'', u'sty', u'lut', u'mar', u'kwi', u'maj', u'cze', u'lip', u'sie', u'wrz', u'pa\u017a', u'lis', u'g day_names = [u'', u'poniedzia\u0142ek', u'wtorek', u'\u015broda', u'czwartek', u'pi\u0105tek', u'sobota', u'niedziela'] day_abbreviations = [u'', u'Pn', u'Wt', u'\u015ar', u'Czw', u'Pt', u'So', u'Nd'] class arrow.locales.RussianLocale
+names = [u'ru', u'ru_ru'] past = u'{0} \u043d\u0430\u0437\u0430\u0434' future = u'\u0447\u0435\u0440\u0435\u0437 {0}' timeframes = {u'seconds': u'\u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0441\u0435\u043a\u0443\u0 month_names = [u'', u'\u044f\u043d\u0432\u0430\u0440\u044f', u'\u0444\u0435\u0432\u0440\u0430\u043b\u044f', u'\u month_abbreviations = [u'', u'\u044f\u043d\u0432', u'\u0444\u0435\u0432', u'\u043c\u0430\u0440', u'\u0430\u043f\u day_names = [u'', u'\u043f\u043e\u043d\u0435\u0434\u0435\u043b\u044c\u043d\u0438\u043a', u'\u0432\u0442\u043e\u day_abbreviations = [u'', u'\u043f\u043d', u'\u0432\u0442', u'\u0441\u0440', u'\u0447\u0442', u'\u043f\u0442', u'\u class arrow.locales.BulgarianLocale
+     names = [u'bg', u'bg_BG'] past = u'{0} \u043d\u0430\u0437\u0430\u0434' future = u'\u043d\u0430\u043f\u0440\u0435\u0434 {0}' timeframes = {u'seconds': u'\u043d\u044f\u043a\u043e\u043b\u043a\u043e \u0441\u0435\u043a\u0443\u043d\u0434\u0 month_names = [u'', u'\u044f\u043d\u0443\u0430\u0440\u0438', u'\u0444\u0435\u0432\u0440\u0443\u0430\u0440\u0438 month_abbreviations = [u'', u'\u044f\u043d', u'\u0444\u0435\u0432\u0440', u'\u043c\u0430\u0440\u0442', u'\u0430\ day_names = [u'', u'\u043f\u043e\u043d\u0435\u0434\u0435\u043b\u043d\u0438\u043a', u'\u0432\u0442\u043e\u0440\u day_abbreviations = [u'', u'\u043f\u043e\u043d', u'\u0432\u0442', u'\u0441\u0440', u'\u0447\u0435\u0442\u0432', u class arrow.locales.UkrainianLocale
+     names = [u'ua', u'uk_ua'] past = u'{0} \u0442\u043e\u043c\u0443' future = u'\u0437\u0430 {0}' timeframes = {u'seconds': u'\u043a\u0456\u043b\u044c\u043a\u0430 \u0441\u0435\u043a\u0443\u043d\u0434', u'mont month_names = [u'', u'\u0441\u0456\u0447\u043d\u044f', u'\u043b\u044e\u0442\u043e\u0433\u043e', u'\u0431\u0435\u month_abbreviations = [u'', u'\u0441\u0456\u0447', u'\u043b\u044e\u0442', u'\u0431\u0435\u0440', u'\u043a\u0432 day_names = [u'', u'\u043f\u043e\u043d\u0435\u0434\u0456\u043b\u043e\u043a', u'\u0432\u0456\u0432\u0442\u043e\u0 day_abbreviations = [u'', u'\u043f\u043d', u'\u0432\u0442', u'\u0441\u0440', u'\u0447\u0442', u'\u043f\u0442', u'\u class arrow.locales.GermanLocale
+     names = [u'de', u'de_de'] class arrow.locales.AustrianLocale
+names = [u'de_at']
+     month_names = [u'', u'J\xe4nner', u'Februar', u'M\xe4rz', u'April', u'Mai', u'Juni', u'Juli', u'August', u'September', u class arrow.locales.NorwegianLocale
+names = [u'nb', u'nb_no'] past = u'for {0} siden' future = u'om {0}'
+timeframes = {u'seconds': u'noen sekunder', u'month': u'en m\xe5ned', u'hours': u'{0} timer', u'year': u'ett \xe5r', u month_names = [u'', u'januar', u'februar', u'mars', u'april', u'mai', u'juni', u'juli', u'august', u'september', u'oktober month_abbreviations = [u'', u'jan', u'feb', u'mar', u'apr', u'mai', u'jun', u'jul', u'aug', u'sep', u'okt', u'nov', u'des day_names = [u'', u'mandag', u'tirsdag', u'onsdag', u'torsdag', u'fredag', u'l\xf8rdag', u's\xf8ndag'] day_abbreviations = [u'', u'ma', u'ti', u'on', u'to', u'fr', u'l\xf8', u's\xf8']
+class arrow.locales.NewNorwegianLocale
+names = [u'nn', u'nn_no'] past = u'for {0} sidan' future = u'om {0}'
+     timeframes = {u'seconds': u'nokre sekund', u'month': u'en m\xe5nad', u'hours': u'{0} timar', u'year': u'eit \xe5r', u'y month_names = [u'', u'januar', u'februar', u'mars', u'april', u'mai', u'juni', u'juli', u'august', u'september', u'oktober month_abbreviations = [u'', u'jan', u'feb', u'mar', u'apr', u'mai', u'jun', u'jul', u'aug', u'sep', u'okt', u'nov', u'des day_names = [u'', u'm\xe5ndag', u'tysdag', u'onsdag', u'torsdag', u'fredag', u'laurdag', u'sundag'] day_abbreviations = [u'', u'm\xe5', u'ty', u'on', u'to', u'fr', u'la', u'su'] class arrow.locales.PortugueseLocale
+names = [u'pt', u'pt_pt'] past = u'h\xe1 {0}' future = u'em {0}'
+     timeframes = {u'seconds': u'segundos', u'month': u'um m\xeas', u'hours': u'{0} horas', u'year': u'um ano', u'years': month_names = [u'', u'janeiro', u'fevereiro', u'mar\xe7o', u'abril', u'maio', u'junho', u'julho', u'agosto', u'setembro', u month_abbreviations = [u'', u'jan', u'fev', u'mar', u'abr', u'maio', u'jun', u'jul', u'ago', u'set', u'out', u'nov', u'dez day_names = [u'', u'segunda-feira', u'ter\xe7a-feira', u'quarta-feira', u'quinta-feira', u'sexta-feira', u's\xe1bado', u'dom day_abbreviations = [u'', u'seg', u'ter', u'qua', u'qui', u'sex', u'sab', u'dom'] class arrow.locales.BrazilianPortugueseLocale
+     names = [u'pt_br'] past = u'faz {0}' class arrow.locales.TagalogLocale
+names = [u'tl', u'tl_ph'] past = u'nakaraang {0}' future = u'{0} mula ngayon'
+     timeframes = {u'seconds': u'segundo', u'month': u'isang buwan', u'hours': u'{0} oras', u'year': u'isang taon', u'years month_names = [u'', u'Enero', u'Pebrero', u'Marso', u'Abril', u'Mayo', u'Hunyo', u'Hulyo', u'Agosto', u'Setyembre', u month_abbreviations = [u'', u'Ene', u'Peb', u'Mar', u'Abr', u'May', u'Hun', u'Hul', u'Ago', u'Set', u'Okt', u'Nob' day_names = [u'', u'Lunes', u'Martes', u'Miyerkules', u'Huwebes', u'Biyernes', u'Sabado', u'Linggo'] day_abbreviations = [u'', u'Lun', u'Mar', u'Miy', u'Huw', u'Biy', u'Sab', u'Lin'] class arrow.locales.VietnameseLocale
+names = [u'vi', u'vi_vn'] past = u'{0} tr\u01b0\u1edbc' future = u'{0} n\u1eefa' timeframes = {u'seconds': u'gi\xe2y', u'month': u'm\u1ed9t th\xe1ng', u'hours': u'{0} gi\u1edd', u'year': u'm\u1ed9t n month_names = [u'', u'Th\xe1ng M\u1ed9t', u'Th\xe1ng Hai', u'Th\xe1ng Ba', u'Th\xe1ng T\u01b0', u'Th\xe1ng N\u01 month_abbreviations = [u'', u'Th\xe1ng 1', u'Th\xe1ng 2', u'Th\xe1ng 3', u'Th\xe1ng 4', u'Th\xe1ng 5', u'Th\xe1ng day_names = [u'', u'Th\u1ee9 Hai', u'Th\u1ee9 Ba', u'Th\u1ee9 T\u01b0', u'Th\u1ee9 N\u0103m', u'Th\u1ee9 S\xe1u', u day_abbreviations = [u'', u'Th\u1ee9 2', u'Th\u1ee9 3', u'Th\u1ee9 4', u'Th\u1ee9 5', u'Th\u1ee9 6', u'Th\u1ee9 7', class arrow.locales.TurkishLocale
+names = [u'tr', u'tr_tr'] past = u'{0} \xf6nce' future = u'{0} sonra'
+     timeframes = {u'seconds': u'saniye', u'month': u'bir ay', u'hours': u'{0} saat', u'year': u'y\u0131l', u'years': u'{0} y\u month_names = [u'', u'Ocak', u'\u015eubat', u'Mart', u'Nisan', u'May\u0131s', u'Haziran', u'Temmuz', u'A\u011fusto month_abbreviations = [u'', u'Oca', u'\u015eub', u'Mar', u'Nis', u'May', u'Haz', u'Tem', u'A\u011fu', u'Eyl', u'Ek day_names = [u'', u'Pazartesi', u'Sal\u0131', u'\xc7ar\u015famba', u'Per\u015fembe', u'Cuma', u'Cumartesi', u'Pazar' day_abbreviations = [u'', u'Pzt', u'Sal', u'\xc7ar', u'Per', u'Cum', u'Cmt', u'Paz'] class arrow.locales.AzerbaijaniLocale
+names = [u'az', u'az_az'] past = u'{0} \u0259vv\u0259l' future = u'{0} sonra'
+     timeframes = {u'seconds': u'saniy\u0259', u'month': u'bir ay', u'hours': u'{0} saat', u'year': u'il', u'years': u'{0} il', u month_names = [u'', u'Yanvar', u'Fevral', u'Mart', u'Aprel', u'May', u'\u0130yun', u'\u0130yul', u'Avqust', u'Sentyab month_abbreviations = [u'', u'Yan', u'Fev', u'Mar', u'Apr', u'May', u'\u0130yn', u'\u0130yl', u'Avq', u'Sen', u'Ok day_names = [u'', u'Bazar ert\u0259si', u'\xc7\u0259r\u015f\u0259nb\u0259 ax\u015fam\u0131', u'\xc7\u0259r\u015f\u0 day_abbreviations = [u'', u'Ber', u'\xc7ax', u'\xc7\u0259r', u'Cax', u'C\xfcm', u'\u015enb', u'Bzr'] class arrow.locales.ArabicLocale
+names = [u'ar', u'ar_ae', u'ar_bh', u'ar_dj', u'ar_eg', u'ar_eh', u'ar_er', u'ar_km', u'ar_kw', u'ar_ly', u'ar_om', u'ar_q past = u'\u0645\u0646\u0630 {0}' future = u'\u062e\u0644\u0627\u0644 {0}' timeframes = {u'seconds': {u'double': u'\u062b\u0627\u0646\u064a\u062a\u064a\u0646', u'ten': u'{0} \u062b\u0648\u month_names = [u'', u'\u064a\u0646\u0627\u064a\u0631', u'\u0641\u0628\u0631\u0627\u064a\u0631', u'\u0645\u0627\u month_abbreviations = [u'', u'\u064a\u0646\u0627\u064a\u0631', u'\u0641\u0628\u0631\u0627\u064a\u0631', u'\u06 day_names = [u'', u'\u0627\u0644\u0625\u062b\u0646\u064a\u0646', u'\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u day_abbreviations = [u'', u'\u0625\u062b\u0646\u064a\u0646', u'\u062b\u0644\u0627\u062b\u0627\u0621', u'\u0623 class arrow.locales.LevantArabicLocale
+     names = [u'ar_iq', u'ar_jo', u'ar_lb', u'ar_ps', u'ar_sy'] month_names = [u'', u'\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u062b\u0627\u0646\u064a', u'\u0634\u0628\u062 month_abbreviations = [u'', u'\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u062b\u0627\u0646\u064a', u'\u0634\ class arrow.locales.AlgeriaTunisiaArabicLocale
+     names = [u'ar_tn', u'ar_dz'] month_names = [u'', u'\u062c\u0627\u0646\u0641\u064a', u'\u0641\u064a\u0641\u0631\u064a', u'\u0645\u0627\u0631\u month_abbreviations = [u'', u'\u062c\u0627\u0646\u0641\u064a', u'\u0641\u064a\u0641\u0631\u064a', u'\u0645\u06 class arrow.locales.MauritaniaArabicLocale
+names = [u'ar_mr']
+     month_names = [u'', u'\u064a\u0646\u0627\u064a\u0631', u'\u0641\u0628\u0631\u0627\u064a\u0631', u'\u0645\u0627\u month_abbreviations = [u'', u'\u064a\u0646\u0627\u064a\u0631', u'\u0641\u0628\u0631\u0627\u064a\u0631', u'\u06 class arrow.locales.MoroccoArabicLocale
+names = [u'ar_ma']
+     month_names = [u'', u'\u064a\u0646\u0627\u064a\u0631', u'\u0641\u0628\u0631\u0627\u064a\u0631', u'\u0645\u0627\u month_abbreviations = [u'', u'\u064a\u0646\u0627\u064a\u0631', u'\u0641\u0628\u0631\u0627\u064a\u0631', u'\u06 class arrow.locales.IcelandicLocale
+     names = [u'is', u'is_is'] past = u'fyrir {0} s\xed\xf0an' future = u'eftir {0}' timeframes = {u'seconds': (u'nokkrum sek\xfandum', u'nokkrar sek\xfandur'), u'month': (u'einum m\xe1nu\xf0i', u'e meridians = {u'AM': u'f.h.', u'PM': u'e.h.', u'am': u'f.h.', u'pm': u'e.h.'} month_names = [u'', u'jan\xfaar', u'febr\xfaar', u'mars', u'apr\xedl', u'ma\xed', u'j\xfan\xed', u'j\xfal\xed', u'\xe1g\xfa month_abbreviations = [u'', u'jan', u'feb', u'mar', u'apr', u'ma\xed', u'j\xfan', u'j\xfal', u'\xe1g\xfa', u'sep', u'okt', day_names = [u'', u'm\xe1nudagur', u'\xferi\xf0judagur', u'mi\xf0vikudagur', u'fimmtudagur', u'f\xf6studagur', u'laug day_abbreviations = [u'', u'm\xe1n', u'\xferi', u'mi\xf0', u'fim', u'f\xf6s', u'lau', u'sun'] class arrow.locales.DanishLocale
+names = [u'da', u'da_dk'] past = u'for {0} siden' future = u'efter {0}' timeframes = {u'seconds': u'et par sekunder', u'month': u'en m\xe5ned', u'hours': u'{0} timer', u'year': u'et \xe5r', u month_names = [u'', u'januar', u'februar', u'marts', u'april', u'maj', u'juni', u'juli', u'august', u'september', u'oktobe month_abbreviations = [u'', u'jan', u'feb', u'mar', u'apr', u'maj', u'jun', u'jul', u'aug', u'sep', u'okt', u'nov', u'dec day_names = [u'', u'mandag', u'tirsdag', u'onsdag', u'torsdag', u'fredag', u'l\xf8rdag', u's\xf8ndag'] day_abbreviations = [u'', u'man', u'tir', u'ons', u'tor', u'fre', u'l\xf8r', u's\xf8n'] class arrow.locales.MalayalamLocale
+     names = [u'ml'] past = u'{0} \u0d2e\u0d41\u0d2e\u0d4d\u0d2a\u0d4d' future = u'{0} \u0d36\u0d47\u0d37\u0d02' timeframes = {u'seconds': u'\u0d38\u0d46\u0d15\u0d4d\u0d15\u0d28\u0d4d\u0d31\u0d4d\u200c', u'month': u'\u0d12\ meridians = {u'AM': u'\u0d30\u0d3e\u0d35\u0d3f\u0d32\u0d46', u'PM': u'\u0d09\u0d1a\u0d4d\u0d1a\u0d15\u0d4d\u month_names = [u'', u'\u0d1c\u0d28\u0d41\u0d35\u0d30\u0d3f', u'\u0d2b\u0d46\u0d2c\u0d4d\u0d30\u0d41\u0d35\u0d month_abbreviations = [u'', u'\u0d1c\u0d28\u0d41', u'\u0d2b\u0d46\u0d2c\u0d4d ', u'\u0d2e\u0d3e\u0d7c', u'\u0d0 day_names = [u'', u'\u0d24\u0d3f\u0d19\u0d4d\u0d15\u0d33\u0d4d\u200d', u'\u0d1a\u0d4a\u0d35\u0d4d\u0d35', u'\u0 day_abbreviations = [u'', u'\u0d24\u0d3f\u0d19\u0d4d\u0d15\u0d33\u0d4d\u200d', u'\u0d1a\u0d4a\u0d35\u0d4d\u0 class arrow.locales.HindiLocale
+     names = [u'hi'] past = u'{0} \u092a\u0939\u0932\u0947' future = u'{0} \u092c\u093e\u0926' timeframes = {u'seconds': u'\u0938\u0947\u0915\u0902\u0921\u094d', u'month': u'\u090f\u0915 \u092e\u093e\u0939 ', meridians = {u'AM': u'\u0938\u0941\u092c\u0939', u'PM': u'\u0936\u093e\u092e', u'am': u'\u0938\u0941\u092c\u0939 month_names = [u'', u'\u091c\u0928\u0935\u0930\u0940', u'\u092b\u0930\u0935\u0930\u0940', u'\u092e\u093e\u0930\u month_abbreviations = [u'', u'\u091c\u0928', u'\u095e\u0930', u'\u092e\u093e\u0930\u094d\u091a', u'\u0905\u092a\ day_names = [u'', u'\u0938\u094b\u092e\u0935\u093e\u0930', u'\u092e\u0902\u0917\u0932\u0935\u093e\u0930', u'\u092 day_abbreviations = [u'', u'\u0938\u094b\u092e', u'\u092e\u0902\u0917\u0932', u'\u092c\u0941\u0927', u'\u0917\u0 class arrow.locales.CzechLocale
+names = [u'cs', u'cs_cz'] timeframes = {u'seconds': {u'past': u'{0} sekundami', u'future': [u'{0} sekundy', u'{0} sekund']}, u'month': {u'past':
+past = u'P\u0159ed {0}' future = u'Za {0}'
+     month_names = [u'', u'leden', u'\xfanor', u'b\u0159ezen', u'duben', u'kv\u011bten', u'\u010derven', u'\u010dervenec', month_abbreviations = [u'', u'led', u'\xfano', u'b\u0159e', u'dub', u'kv\u011b', u'\u010dvn', u'\u010dvc', u'srp', u'z day_names = [u'', u'pond\u011bl\xed', u'\xfater\xfd', u'st\u0159eda', u'\u010dtvrtek', u'p\xe1tek', u'sobota', u'ned\u011 day_abbreviations = [u'', u'po', u'\xfat', u'st', u'\u010dt', u'p\xe1', u'so', u'ne'] class arrow.locales.SlovakLocale
+names = [u'sk', u'sk_sk'] timeframes = {u'seconds': {u'past': u'p\xe1r sekundami', u'future': [u'{0} sekundy', u'{0} sek\xfand']}, u'month': {u'p past = u'Pred {0}' future = u'O {0}'
+     month_names = [u'', u'janu\xe1r', u'febru\xe1r', u'marec', u'apr\xedl', u'm\xe1j', u'j\xfan', u'j\xfal', u'august', u'septe month_abbreviations = [u'', u'jan', u'feb', u'mar', u'apr', u'm\xe1j', u'j\xfan', u'j\xfal', u'aug', u'sep', u'okt', u'nov day_names = [u'', u'pondelok', u'utorok', u'streda', u'\u0161tvrtok', u'piatok', u'sobota', u'nede\u013ea'] day_abbreviations = [u'', u'po', u'ut', u'st', u'\u0161t', u'pi', u'so', u'ne'] class arrow.locales.FarsiLocale
+     names = [u'fa', u'fa_ir'] past = u'{0} \u0642\u0628\u0644' future = u'\u062f\u0631 {0}' timeframes = {u'seconds': u'\u062b\u0627\u0646\u06cc\u0647', u'month': u'\u06cc\u06a9 \u0645\u0627\u0647', u'hour meridians = {u'AM': u'\u0642\u0628\u0644 \u0627\u0632 \u0638\u0647\u0631', u'PM': u'\u0628\u0639\u062f \u0627\u month_names = [u'', u'January', u'February', u'March', u'April', u'May', u'June', u'July', u'August', u'September', u month_abbreviations = [u'', u'Jan', u'Feb', u'Mar', u'Apr', u'May', u'Jun', u'Jul', u'Aug', u'Sep', u'Oct', u'Nov', u day_names = [u'', u'\u062f\u0648 \u0634\u0646\u0628\u0647', u'\u0633\u0647 \u0634\u0646\u0628\u0647', u'\u0686\u06 day_abbreviations = [u'', u'Mon', u'Tue', u'Wed', u'Thu', u'Fri', u'Sat', u'Sun'] class arrow.locales.MacedonianLocale
+names = [u'mk', u'mk_mk']
+     past = u'\u043f\u0440\u0435\u0434 {0}' future = u'\u0437\u0430 {0}' timeframes = {u'seconds': u'\u0441\u0435\u043a\u0443\u043d\u0434\u0438', u'month': u'\u0435\u0434\u0435\u043d \u meridians = {u'AM': u'\u043f\u0440\u0435\u0442\u043f\u043b\u0430\u0434\u043d\u0435', u'PM': u'\u043f\u043e\u04 month_names = [u'', u'\u0408\u0430\u043d\u0443\u0430\u0440\u0438', u'\u0424\u0435\u0432\u0440\u0443\u0430\u0440 month_abbreviations = [u'', u'\u0408\u0430\u043d.', u' \u0424\u0435\u0432.', u' \u041c\u0430\u0440.', u' \u0410\u04 day_names = [u'', u'\u041f\u043e\u043d\u0435\u0434\u0435\u043b\u043d\u0438\u043a', u' \u0412\u0442\u043e\u0440\u day_abbreviations = [u'', u'\u041f\u043e\u043d.', u' \u0412\u0442.', u' \u0421\u0440\u0435.', u' \u0427\u0435\u0442 class arrow.locales.HebrewLocale
+names = [u'he', u'he_IL'] past = u'\u05dc\u05e4\u05e0\u05d9 {0}' future = u'\u05d1\u05e2\u05d5\u05d3 {0}' timeframes = {u'2-months': u'\u05d7\u05d5\u05d3\u05e9\u05d9\u05d9\u05dd', u'2-years': u'\u05e9\u05e0\u05ea\u05d meridians = {u'AM': u'\u05dc\u05e4\u05e0\u05d9 \u05d4\u05e6\u05d4\u05e8\u05d9\u05d9\u05dd', u'PM': u'\u05d0\u month_names = [u'', u'\u05d9\u05e0\u05d5\u05d0\u05e8', u'\u05e4\u05d1\u05e8\u05d5\u05d0\u05e8', u'\u05de\u05e8\u month_abbreviations = [u'', u'\u05d9\u05e0\u05d5\u05f3', u'\u05e4\u05d1\u05e8\u05f3', u'\u05de\u05e8\u05e5', u'\u day_names = [u'', u'\u05e9\u05e0\u05d9', u'\u05e9\u05dc\u05d9\u05e9\u05d9', u'\u05e8\u05d1\u05d9\u05e2\u05d9', u'\u day_abbreviations = [u'', u'\u05d1\u05f3', u'\u05d2\u05f3', u'\u05d3\u05f3', u'\u05d4\u05f3', u'\u05d5\u05f3', u'\u0 class arrow.locales.MarathiLocale
+     names = [u'mr'] past = u'{0} \u0906\u0927\u0940' future = u'{0} \u0928\u0902\u0924\u0930' timeframes = {u'seconds': u'\u0938\u0947\u0915\u0902\u0926', u'month': u'\u090f\u0915 \u092e\u0939\u093f\u0928\u meridians = {u'AM': u'\u0938\u0915\u093e\u0933', u'PM': u'\u0938\u0902\u0927\u094d\u092f\u093e\u0915\u093e\u09 month_names = [u'', u'\u091c\u093e\u0928\u0947\u0935\u093e\u0930\u0940', u'\u092b\u0947\u092c\u094d\u0930\u0941 month_abbreviations = [u'', u'\u091c\u093e\u0928', u'\u092b\u0947\u092c\u094d\u0930\u0941', u'\u092e\u093e\u093 day_names = [u'', u'\u0938\u094b\u092e\u0935\u093e\u0930', u'\u092e\u0902\u0917\u0933\u0935\u093e\u0930', u'\u092 day_abbreviations = [u'', u'\u0938\u094b\u092e', u'\u092e\u0902\u0917\u0933', u'\u092c\u0941\u0927', u'\u0917\u0 class arrow.locales.CatalanLocale
+names = [u'ca', u'ca_es', u'ca_ad', u'ca_fr', u'ca_it'] past = u'Fa {0}' future = u'En {0}'
+     timeframes = {u'seconds': u'segons', u'month': u'un mes', u'hours': u'{0} hores', u'year': u'un any', u'years': u'{0} a month_names = [u'', u'Gener', u'Febrer', u'Mar\xe7', u'Abril', u'Maig', u'Juny', u'Juliol', u'Agost', u'Setembre', u'Oc month_abbreviations = [u'', u'Gener', u'Febrer', u'Mar\xe7', u'Abril', u'Maig', u'Juny', u'Juliol', u'Agost', u'Setem day_names = [u'', u'Dilluns', u'Dimarts', u'Dimecres', u'Dijous', u'Divendres', u'Dissabte', u'Diumenge'] day_abbreviations = [u'', u'Dilluns', u'Dimarts', u'Dimecres', u'Dijous', u'Divendres', u'Dissabte', u'Diumenge'] class arrow.locales.BasqueLocale
+names = [u'eu', u'eu_eu'] past = u'duela {0}' future = u'{0}'
+     timeframes = {u'seconds': u'segundu', u'month': u'hilabete bat', u'hours': u'{0} ordu', u'year': u'urte bat', u'years': month_names = [u'', u'urtarrilak', u'otsailak', u'martxoak', u'apirilak', u'maiatzak', u'ekainak', u'uztailak', u'abuztua month_abbreviations = [u'', u'urt', u'ots', u'mar', u'api', u'mai', u'eka', u'uzt', u'abu', u'ira', u'urr', u'aza', u'abe' day_names = [u'', u'astelehena', u'asteartea', u'asteazkena', u'osteguna', u'ostirala', u'larunbata', u'igandea'] day_abbreviations = [u'', u'al', u'ar', u'az', u'og', u'ol', u'lr', u'ig'] class arrow.locales.HungarianLocale
+names = [u'hu', u'hu_hu'] past = u'{0} ezel\u0151tt' future = u'{0} m\xfalva' timeframes = {u'seconds': {u'past': u'm\xe1sodpercekkel', u'future': u'p\xe1r m\xe1sodperc'}, u'month': {u'past': u'e month_names = [u'', u'janu\xe1r', u'febru\xe1r', u'm\xe1rcius', u'\xe1prilis', u'm\xe1jus', u'j\xfanius', u'j\xfalius', u'au month_abbreviations = [u'', u'jan', u'febr', u'm\xe1rc', u'\xe1pr', u'm\xe1j', u'j\xfan', u'j\xfal', u'aug', u'szept', u'o day_names = [u'', u'h\xe9tf\u0151', u'kedd', u'szerda', u'cs\xfct\xf6rt\xf6k', u'p\xe9ntek', u'szombat', u'vas\xe1rnap'] day_abbreviations = [u'', u'h\xe9t', u'kedd', u'szer', u'cs\xfct', u'p\xe9nt', u'szom', u'vas']
+     meridians = {u'AM': u'DE', u'PM': u'DU', u'am': u'de', u'pm': u'du'} class arrow.locales.EsperantoLocale
+     names = [u'eo', u'eo_xx'] past = u'anta\u016d {0}' future = u'post {0}' timeframes = {u'seconds': u'kelkaj sekundoj', u'month': u'unu monato', u'hours': u'{0} horoj', u'year': u'unu jaro', u month_names = [u'', u'januaro', u'februaro', u'marto', u'aprilo', u'majo', u'junio', u'julio', u'a\u016dgusto', u'septemb month_abbreviations = [u'', u'jan', u'feb', u'mar', u'apr', u'maj', u'jun', u'jul', u'a\u016dg', u'sep', u'okt', u'nov', day_names = [u'', u'lundo', u'mardo', u'merkredo', u'\u0135a\u016ddo', u'vendredo', u'sabato', u'diman\u0109o'] day_abbreviations = [u'', u'lun', u'mar', u'mer', u'\u0135a\u016d', u'ven', u'sab', u'dim'] meridians = {u'AM': u'ATM', u'PM': u'PTM', u'am': u'atm', u'pm': u'ptm'} ordinal_day_re = u'((?P<value>[1-3]?[0-9](?=a))a)' class arrow.locales.ThaiLocale
+names = [u'th', u'th_th'] past = u'{0}{1}\u0e17\u0e35\u0e48\u0e1c\u0e48\u0e32\u0e19\u0e21\u0e32' future = u'\u0e43\u0e19\u0e2d\u0e35\u0e01{1}{0}' timeframes = {u'seconds': u'\u0e44\u0e21\u0e48\u0e01\u0e35\u0e48\u0e27\u0e34\u0e19\u0e32\u0e17\u0e35', u'month' month_names = [u'', u'\u0e21\u0e01\u0e23\u0e32\u0e04\u0e21', u'\u0e01\u0e38\u0e21\u0e20\u0e32\u0e1e\u0e31\u0e19\u month_abbreviations = [u'', u'\u0e21.\u0e04.', u'\u0e01.\u0e1e.', u'\u0e21\u0e35.\u0e04.', u'\u0e40\u0e21.\u0e22.', u' day_names = [u'', u'\u0e08\u0e31\u0e19\u0e17\u0e23\u0e4c', u'\u0e2d\u0e31\u0e07\u0e04\u0e32\u0e23', u'\u0e1e\u0e38\ day_abbreviations = [u'', u'\u0e08', u'\u0e2d', u'\u0e1e', u'\u0e1e\u0e24', u'\u0e28', u'\u0e2a', u'\u0e2d\u0e32']
+meridians = {u'AM': u'AM', u'PM': u'PM', u'am': u'am', u'pm': u'pm'} BE_OFFSET = 543
+year_full(year)
+Thai always use Buddhist Era (BE) which is CE + 543
+year_abbreviation(year)
+Thai always use Buddhist Era (BE) which is CE + 543
+class arrow.locales.BengaliLocale
+     names = [u'bn', u'bn_bd', u'bn_in'] past = u'{0} \u0986\u0997\u09c7' future = u'{0} \u09aa\u09b0\u09c7' timeframes = {u'seconds': u'\u09b8\u09c7\u0995\u09c7\u09a8\u09cd\u09a1', u'month': u'\u098f\u0995 \u09ae\u09be\u meridians = {u'AM': u'\u09b8\u0995\u09be\u09b2', u'PM': u'\u09ac\u09bf\u0995\u09be\u09b2', u'am': u'\u09b8\u099 month_names = [u'', u'\u099c\u09be\u09a8\u09c1\u09af\u09bc\u09be\u09b0\u09bf', u'\u09ab\u09c7\u09ac\u09cd\u09b0 month_abbreviations = [u'', u'\u099c\u09be\u09a8\u09c1', u'\u09ab\u09c7\u09ac', u'\u09ae\u09be\u09b0\u09cd\u099 day_names = [u'', u'\u09b8\u09cb\u09ae\u09ac\u09be\u09b0', u'\u09ae\u0999\u09cd\u0997\u09b2\u09ac\u09be\u09b0', u day_abbreviations = [u'', u'\u09b8\u09cb\u09ae', u'\u09ae\u0999\u09cd\u0997\u09b2', u'\u09ac\u09c1\u09a7', u'\u0 class arrow.locales.RomanshLocale
+names = [u'rm', u'rm_ch'] past = u'avant {0}' future = u'en {0}'
+     timeframes = {u'seconds': u'secundas', u'month': u'in mais', u'hours': u'{0} ura', u'year': u'in onn', u'years': u'{0} o month_names = [u'', u'schaner', u'favrer', u'mars', u'avrigl', u'matg', u'zercladur', u'fanadur', u'avust', u'settember', month_abbreviations = [u'', u'schan', u'fav', u'mars', u'avr', u'matg', u'zer', u'fan', u'avu', u'set', u'oct', u'nov', u' day_names = [u'', u'glindesdi', u'mardi', u'mesemna', u'gievgia', u'venderdi', u'sonda', u'dumengia'] day_abbreviations = [u'', u'gli', u'ma', u'me', u'gie', u've', u'so', u'du'] class arrow.locales.SwissLocale
+     names = [u'de', u'de_ch'] past = u'vor {0}' future = u'in {0}' timeframes = {u'seconds': u'Sekunden', u'month': u'einem Monat', u'hours': u'{0} Stunden', u'year': u'einem Jahr', month_names = [u'', u'Januar', u'Februar', u'M\xe4rz', u'April', u'Mai', u'Juni', u'Juli', u'August', u'September', u'O month_abbreviations = [u'', u'Jan', u'Feb', u'M\xe4r', u'Apr', u'Mai', u'Jun', u'Jul', u'Aug', u'Sep', u'Okt', u'Nov day_names = [u'', u'Montag', u'Dienstag', u'Mittwoch', u'Donnerstag', u'Freitag', u'Samstag', u'Sonntag'] day_abbreviations = [u'', u'Mo', u'Di', u'Mi', u'Do', u'Fr', u'Sa', u'So'] class arrow.locales.RomanianLocale
+names = [u'ro', u'ro_ro'] past = u'{0} \xeen urm\u0103' future = u'peste {0}' timeframes = {u'seconds': u'c\xe2teva secunde', u'month': u'o lun\u0103', u'hours': u'{0} ore', u'year': u'un an', u'ye month_names = [u'', u'ianuarie', u'februarie', u'martie', u'aprilie', u'mai', u'iunie', u'iulie', u'august', u'septembrie', u month_abbreviations = [u'', u'ian', u'febr', u'mart', u'apr', u'mai', u'iun', u'iul', u'aug', u'sept', u'oct', u'nov', u'd day_names = [u'', u'luni', u'mar\u021bi', u'miercuri', u'joi', u'vineri', u's\xe2mb\u0103t\u0103', u'duminic\u0103'] day_abbreviations = [u'', u'Lun', u'Mar', u'Mie', u'Joi', u'Vin', u'S\xe2m', u'Dum'] class arrow.locales.SlovenianLocale
+     names = [u'sl', u'sl_si'] past = u'pred {0}' future = u'\u010dez {0}' timeframes = {u'seconds': u'sekund', u'month': u'mesec', u'hours': u'{0} ur', u'year': u'leto', u'years': u'{0} let', u'n meridians = {u'AM': u'', u'PM': u'', u'am': u'', u'pm': u''} month_names = [u'', u'Januar', u'Februar', u'Marec', u'April', u'Maj', u'Junij', u'Julij', u'Avgust', u'September', u'O month_abbreviations = [u'', u'Jan', u'Feb', u'Mar', u'Apr', u'Maj', u'Jun', u'Jul', u'Avg', u'Sep', u'Okt', u'Nov', u day_names = [u'', u'Ponedeljek', u'Torek', u'Sreda', u'\u010cetrtek', u'Petek', u'Sobota', u'Nedelja'] day_abbreviations = [u'', u'Pon', u'Tor', u'Sre', u'\u010cet', u'Pet', u'Sob', u'Ned'] class arrow.locales.IndonesianLocale
+names = [u'id', u'id_id'] past = u'{0} yang lalu' future = u'dalam {0}'
+     timeframes = {u'seconds': u'detik', u'month': u'1 bulan', u'hours': u'{0} jam', u'year': u'1 tahun', u'years': u'{0} tah meridians = {u'AM': u'', u'PM': u'', u'am': u'', u'pm': u''} month_names = [u'', u'Januari', u'Februari', u'Maret', u'April', u'Mei', u'Juni', u'Juli', u'Agustus', u'September', u'O month_abbreviations = [u'', u'Jan', u'Feb', u'Mar', u'Apr', u'Mei', u'Jun', u'Jul', u'Ags', u'Sept', u'Okt', u'Nov', u day_names = [u'', u'Senin', u'Selasa', u'Rabu', u'Kamis', u'Jumat', u'Sabtu', u'Minggu'] day_abbreviations = [u'', u'Senin', u'Selasa', u'Rabu', u'Kamis', u'Jumat', u'Sabtu', u'Minggu'] class arrow.locales.NepaliLocale
+names = [u'ne', u'ne_np'] past = u'{0} \u092a\u0939\u093f\u0932\u0947' future = u'{0} \u092a\u091b\u0940' timeframes = {u'seconds': u'\u0938\u0947\u0915\u0923\u094d\u0921', u'month': u'\u090f\u0915 \u092e\u0939\u093f\u meridians = {u'AM': u'\u092a\u0942\u0930\u094d\u0935\u093e\u0939\u094d\u0928', u'PM': u'\u0905\u092a\u0930\u0 month_names = [u'', u'\u091c\u0928\u0935\u0930\u0940', u'\u092b\u0947\u092c\u094d\u0930\u0941\u0905\u0930\u0940 month_abbreviations = [u'', u'\u091c\u0928', u'\u092b\u0947\u092c', u'\u092e\u093e\u0930\u094d\u091a', u'\u090f\ day_names = [u'', u'\u0938\u094b\u092e\u0935\u093e\u0930', u'\u092e\u0902\u0917\u0932\u0935\u093e\u0930', u'\u092 day_abbreviations = [u'', u'\u0938\u094b\u092e', u'\u092e\u0902\u0917\u0932', u'\u092c\u0941\u0927', u'\u092c\u0 class arrow.locales.EstonianLocale
+names = [u'ee', u'et'] past = u'{0} tagasi' future = u'{0} p\xe4rast' timeframes = {u'seconds': {u'past': u'{0} sekundit', u'future': u'{0} sekundi'}, u'month': {u'past': u'\xfcks kuu', u'fut month_names = [u'', u'Jaanuar', u'Veebruar', u'M\xe4rts', u'Aprill', u'Mai', u'Juuni', u'Juuli', u'August', u'Septembe month_abbreviations = [u'', u'Jan', u'Veb', u'M\xe4r', u'Apr', u'Mai', u'Jun', u'Jul', u'Aug', u'Sep', u'Okt', u'Nov day_names = [u'', u'Esmasp\xe4ev', u'Teisip\xe4ev', u'Kolmap\xe4ev', u'Neljap\xe4ev', u'Reede', u'Laup\xe4ev', u'P\xf day_abbreviations = [u'', u'Esm', u'Teis', u'Kolm', u'Nelj', u'Re', u'Lau', u'P\xfch']
+
+
+
+Python Module Index
+
+a
+arrow.api, 27 arrow.arrow, 15 arrow.factory, 24 arrow.locales, 29
+
+Python Module Index
+Index
+
+A
+AlgeriaTunisiaArabicLocale (class in arrow.locales), 38
+ArabicLocale (class in arrow.locales), 37 Arrow (class in arrow.arrow), 15 arrow.api (module), 27 arrow.arrow (module), 15 arrow.factory (module), 24 arrow.locales (module), 29
+ArrowFactory (class in arrow.factory), 24 astimezone() (arrow.arrow.Arrow method), 23 AustrianLocale (class in arrow.locales), 35
+AzerbaijaniLocale (class in arrow.locales), 37
+B
+BasqueLocale (class in arrow.locales), 41
+BE_OFFSET (arrow.locales.ThaiLocale attribute), 42
+BelarusianLocale (class in arrow.locales), 34
+BengaliLocale (class in arrow.locales), 42
+BrazilianPortugueseLocale (class in arrow.locales), 36
+BulgarianLocale (class in arrow.locales), 34
+C
+CatalanLocale (class in arrow.locales), 41 ceil() (arrow.arrow.Arrow method), 21 ChineseCNLocale (class in arrow.locales), 33 ChineseTWLocale (class in arrow.locales), 33 clone() (arrow.arrow.Arrow method), 20 ctime() (arrow.arrow.Arrow method), 24 CzechLocale (class in arrow.locales), 39
+D
+DanishLocale (class in arrow.locales), 38 date() (arrow.arrow.Arrow method), 22 datetime (arrow.arrow.Arrow attribute), 19 day_abbreviation() (arrow.locales.Locale method), 30 day_abbreviations (arrow.locales.ArabicLocale attribute),
+37
+day_abbreviations (arrow.locales.AzerbaijaniLocale at-
+tribute), 37day_abbreviations	(arrow.locales.BasqueLocale	attribute), 41
+day_abbreviations	(arrow.locales.BelarusianLocale	attribute), 34
+day_abbreviations	(arrow.locales.BengaliLocale	attribute), 43
+day_abbreviations	(arrow.locales.BulgarianLocale attribute), 35
+day_abbreviations	(arrow.locales.CatalanLocale	attribute), 41
+day_abbreviations (arrow.locales.ChineseCNLocale attribute), 33
+day_abbreviations (arrow.locales.ChineseTWLocale attribute), 33
+day_abbreviations (arrow.locales.CzechLocale attribute),
+39
+day_abbreviations	(arrow.locales.DanishLocale	attribute), 39
+day_abbreviations (arrow.locales.DutchLocale attribute),
+34
+day_abbreviations	(arrow.locales.EnglishLocale	attribute), 31
+day_abbreviations	(arrow.locales.EsperantoLocale attribute), 42
+day_abbreviations	(arrow.locales.EstonianLocale	attribute), 45
+day_abbreviations (arrow.locales.FarsiLocale attribute),
+40
+day_abbreviations	(arrow.locales.FinnishLocale	attribute), 33
+day_abbreviations (arrow.locales.FrenchLocale attribute),
+31
+day_abbreviations (arrow.locales.GreekLocale attribute),
+32
+day_abbreviations	(arrow.locales.HebrewLocale	attribute), 41
+day_abbreviations (arrow.locales.HindiLocale attribute),
+39
+day_abbreviations	(arrow.locales.HungarianLocale attribute), 42
+day_abbreviations	(arrow.locales.IcelandicLocale	at-
+tribute), 38
+day_abbreviations	(arrow.locales.IndonesianLocale	attribute), 44
+day_abbreviations (arrow.locales.ItalianLocale attribute),
+        31 day_abbreviations	(arrow.locales.JapaneseLocale	attribute), 32
+day_abbreviations	(arrow.locales.KoreanLocale	attribute), 33
+day_abbreviations (arrow.locales.Locale attribute), 29 day_abbreviations (arrow.locales.MacedonianLocale attribute), 40
+day_abbreviations	(arrow.locales.MalayalamLocale	attribute), 39
+day_abbreviations	(arrow.locales.MarathiLocale	attribute), 41
+day_abbreviations (arrow.locales.NepaliLocale attribute),
+        44 day_abbreviations	(arrow.locales.NewNorwegianLocale attribute), 36
+day_abbreviations	(arrow.locales.NorwegianLocale	attribute), 35
+day_abbreviations (arrow.locales.PolishLocale attribute),
+        34 day_abbreviations	(arrow.locales.PortugueseLocale	attribute), 36
+day_abbreviations	(arrow.locales.RomanianLocale attribute), 44
+day_abbreviations	(arrow.locales.RomanshLocale	attribute), 43
+day_abbreviations	(arrow.locales.RussianLocale	attribute), 34
+day_abbreviations (arrow.locales.SlovakLocale attribute),
+        40 day_abbreviations	(arrow.locales.SlovenianLocale attribute), 44
+day_abbreviations	(arrow.locales.SpanishLocale	attribute), 31
+day_abbreviations	(arrow.locales.SwedishLocale	attribute), 32
+day_abbreviations (arrow.locales.SwissLocale attribute),
+        43 day_abbreviations	(arrow.locales.TagalogLocale	attribute), 36
+day_abbreviations (arrow.locales.ThaiLocale attribute),
+        42 day_abbreviations	(arrow.locales.TurkishLocale	attribute), 37
+day_abbreviations	(arrow.locales.UkrainianLocale attribute), 35
+day_abbreviations (arrow.locales.VietnameseLocale attribute), 37
+day_name() (arrow.locales.Locale method), 30 day_names (arrow.locales.ArabicLocale attribute), 37 day_names (arrow.locales.AzerbaijaniLocale attribute),
+        37 day_names (arrow.locales.BasqueLocale attribute), 41 day_names (arrow.locales.BelarusianLocale attribute), 34 day_names (arrow.locales.BengaliLocale attribute), 43 day_names (arrow.locales.BulgarianLocale attribute), 35 day_names (arrow.locales.CatalanLocale attribute), 41 day_names (arrow.locales.ChineseCNLocale attribute),
+        33 day_names (arrow.locales.ChineseTWLocale attribute),
+        33 day_names (arrow.locales.CzechLocale attribute), 39 day_names (arrow.locales.DanishLocale attribute), 39 day_names (arrow.locales.DutchLocale attribute), 34 day_names (arrow.locales.EnglishLocale attribute), 30 day_names (arrow.locales.EsperantoLocale attribute), 42 day_names (arrow.locales.EstonianLocale attribute), 45 day_names (arrow.locales.FarsiLocale attribute), 40 day_names (arrow.locales.FinnishLocale attribute), 33 day_names (arrow.locales.FrenchLocale attribute), 31 day_names (arrow.locales.GreekLocale attribute), 32 day_names (arrow.locales.HebrewLocale attribute), 41 day_names (arrow.locales.HindiLocale attribute), 39 day_names (arrow.locales.HungarianLocale attribute), 42 day_names (arrow.locales.IcelandicLocale attribute), 38 day_names (arrow.locales.IndonesianLocale attribute), 44 day_names (arrow.locales.ItalianLocale attribute), 31 day_names (arrow.locales.JapaneseLocale attribute), 32 day_names (arrow.locales.KoreanLocale attribute), 33 day_names (arrow.locales.Locale attribute), 29 day_names (arrow.locales.MacedonianLocale attribute),
+        40 day_names	(arrow.locales.MalayalamLocale	attribute),
+        39 day_names (arrow.locales.MarathiLocale attribute), 41 day_names (arrow.locales.NepaliLocale attribute), 44 day_names	(arrow.locales.NewNorwegianLocale	attribute), 36
+day_names (arrow.locales.NorwegianLocale attribute), 35 day_names (arrow.locales.PolishLocale attribute), 34 day_names	(arrow.locales.PortugueseLocale	attribute),
+        36 day_names (arrow.locales.RomanianLocale attribute), 44 day_names (arrow.locales.RomanshLocale attribute), 43 day_names (arrow.locales.RussianLocale attribute), 34 day_names (arrow.locales.SlovakLocale attribute), 40 day_names (arrow.locales.SlovenianLocale attribute), 44 day_names (arrow.locales.SpanishLocale attribute), 31 day_names (arrow.locales.SwedishLocale attribute), 32 day_names (arrow.locales.SwissLocale attribute), 43 day_names (arrow.locales.TagalogLocale attribute), 36 day_names (arrow.locales.ThaiLocale attribute), 42 day_names (arrow.locales.TurkishLocale attribute), 37 day_names (arrow.locales.UkrainianLocale attribute), 35 day_names (arrow.locales.VietnameseLocale attribute),
+        37 describe() (arrow.locales.Locale method), 29 dst() (arrow.arrow.Arrow method), 23 DutchLocale (class in arrow.locales), 33
+E
+EnglishLocale (class in arrow.locales), 30
+EsperantoLocale (class in arrow.locales), 42
+EstonianLocale (class in arrow.locales), 44
+F
+factory() (in module arrow.api), 29 FarsiLocale (class in arrow.locales), 40 FinnishLocale (class in arrow.locales), 32 float_timestamp (arrow.arrow.Arrow attribute), 19 floor() (arrow.arrow.Arrow method), 21 for_json() (arrow.arrow.Arrow method), 24 format() (arrow.arrow.Arrow method), 22 FrenchLocale (class in arrow.locales), 31 fromdate() (arrow.arrow.Arrow class method), 16 fromdatetime() (arrow.arrow.Arrow class method), 16 fromtimestamp() (arrow.arrow.Arrow class method), 16 future (arrow.locales.ArabicLocale attribute), 37 future (arrow.locales.AzerbaijaniLocale attribute), 37 future (arrow.locales.BasqueLocale attribute), 41 future (arrow.locales.BelarusianLocale attribute), 34 future (arrow.locales.BengaliLocale attribute), 43 future (arrow.locales.BulgarianLocale attribute), 35 future (arrow.locales.CatalanLocale attribute), 41 future (arrow.locales.ChineseCNLocale attribute), 33 future (arrow.locales.ChineseTWLocale attribute), 33 future (arrow.locales.CzechLocale attribute), 39 future (arrow.locales.DanishLocale attribute), 38 future (arrow.locales.DutchLocale attribute), 33 future (arrow.locales.EnglishLocale attribute), 30 future (arrow.locales.EsperantoLocale attribute), 42 future (arrow.locales.EstonianLocale attribute), 45 future (arrow.locales.FarsiLocale attribute), 40 future (arrow.locales.FinnishLocale attribute), 32 future (arrow.locales.FrenchLocale attribute), 31 future (arrow.locales.GreekLocale attribute), 32 future (arrow.locales.HebrewLocale attribute), 40 future (arrow.locales.HindiLocale attribute), 39 future (arrow.locales.HungarianLocale attribute), 42 future (arrow.locales.IcelandicLocale attribute), 38 future (arrow.locales.IndonesianLocale attribute), 44 future (arrow.locales.ItalianLocale attribute), 31 future (arrow.locales.JapaneseLocale attribute), 32 future (arrow.locales.KoreanLocale attribute), 33 future (arrow.locales.Locale attribute), 29 future (arrow.locales.MacedonianLocale attribute), 40 future (arrow.locales.MalayalamLocale attribute), 39 future (arrow.locales.MarathiLocale attribute), 41
+future (arrow.locales.NepaliLocale attribute), 44 future (arrow.locales.NewNorwegianLocale attribute), 36 future (arrow.locales.NorwegianLocale attribute), 35 future (arrow.locales.PolishLocale attribute), 34 future (arrow.locales.PortugueseLocale attribute), 36 future (arrow.locales.RomanianLocale attribute), 43 future (arrow.locales.RomanshLocale attribute), 43 future (arrow.locales.RussianLocale attribute), 34 future (arrow.locales.SlovakLocale attribute), 40 future (arrow.locales.SlovenianLocale attribute), 44 future (arrow.locales.SpanishLocale attribute), 31 future (arrow.locales.SwedishLocale attribute), 32 future (arrow.locales.SwissLocale attribute), 43 future (arrow.locales.TagalogLocale attribute), 36 future (arrow.locales.ThaiLocale attribute), 42 future (arrow.locales.TurkishLocale attribute), 37 future (arrow.locales.UkrainianLocale attribute), 35 future (arrow.locales.VietnameseLocale attribute), 36
+G
+GermanLocale (class in arrow.locales), 35 get() (arrow.factory.ArrowFactory method), 25 get() (in module arrow.api), 27 get_locale() (in module arrow.locales), 29 GreekLocale (class in arrow.locales), 31
+H
+HebrewLocale (class in arrow.locales), 40 HindiLocale (class in arrow.locales), 39 humanize() (arrow.arrow.Arrow method), 22 HungarianLocale (class in arrow.locales), 41
+I
+IcelandicLocale (class in arrow.locales), 38 IndonesianLocale (class in arrow.locales), 44 interval() (arrow.arrow.Arrow class method), 18 isocalendar() (arrow.arrow.Arrow method), 24 isoformat() (arrow.arrow.Arrow method), 24 isoweekday() (arrow.arrow.Arrow method), 24 ItalianLocale (class in arrow.locales), 31
+J
+JapaneseLocale (class in arrow.locales), 32
+K
+KoreanLocale (class in arrow.locales), 33
+L
+LevantArabicLocale (class in arrow.locales), 37
+Locale (class in arrow.locales), 29
+M
+MacedonianLocale (class in arrow.locales), 40 MalayalamLocale (class in arrow.locales), 39
+MarathiLocale (class in arrow.locales), 41 MauritaniaArabicLocale (class in arrow.locales), 38 meridian() (arrow.locales.Locale method), 30 meridians (arrow.locales.BengaliLocale attribute), 43 meridians (arrow.locales.EnglishLocale attribute), 30 meridians (arrow.locales.EsperantoLocale attribute), 42 meridians (arrow.locales.FarsiLocale attribute), 40 meridians (arrow.locales.HebrewLocale attribute), 40 meridians (arrow.locales.HindiLocale attribute), 39 meridians (arrow.locales.HungarianLocale attribute), 42 meridians (arrow.locales.IcelandicLocale attribute), 38 meridians (arrow.locales.IndonesianLocale attribute), 44 meridians (arrow.locales.Locale attribute), 29 meridians (arrow.locales.MacedonianLocale attribute), 40 meridians (arrow.locales.MalayalamLocale attribute), 39 meridians (arrow.locales.MarathiLocale attribute), 41 meridians (arrow.locales.NepaliLocale attribute), 44 meridians (arrow.locales.SlovenianLocale attribute), 44 meridians (arrow.locales.ThaiLocale attribute), 42 month_abbreviation() (arrow.locales.Locale method), 30 month_abbreviations	(arrow.locales.AlgeriaTunisiaArabicLocale attribute), 38
+month_abbreviations	(arrow.locales.ArabicLocale	attribute), 37
+month_abbreviations	(arrow.locales.AzerbaijaniLocale attribute), 37
+month_abbreviations	(arrow.locales.BasqueLocale attribute), 41
+month_abbreviations (arrow.locales.BelarusianLocale attribute), 34
+month_abbreviations	(arrow.locales.BengaliLocale attribute), 43
+month_abbreviations (arrow.locales.BulgarianLocale attribute), 35
+month_abbreviations	(arrow.locales.CatalanLocale attribute), 41
+month_abbreviations	(arrow.locales.ChineseCNLocale attribute), 33
+month_abbreviations	(arrow.locales.ChineseTWLocale attribute), 33
+month_abbreviations	(arrow.locales.CzechLocale	attribute), 39
+month_abbreviations	(arrow.locales.DanishLocale attribute), 38
+month_abbreviations	(arrow.locales.DutchLocale	attribute), 34
+month_abbreviations	(arrow.locales.EnglishLocale attribute), 30
+month_abbreviations (arrow.locales.EsperantoLocale attribute), 42
+month_abbreviations (arrow.locales.EstonianLocale attribute), 45
+month_abbreviations	(arrow.locales.FarsiLocale	attribute), 40
+month_abbreviations	(arrow.locales.FinnishLocale attribute), 32
+month_abbreviations tribute), 31(arrow.locales.FrenchLocaleat-month_abbreviations tribute), 32(arrow.locales.GreekLocaleat-month_abbreviations tribute), 41(arrow.locales.HebrewLocaleat-month_abbreviations(arrow.locales.HindiLocaleat-tribute), 39
+month_abbreviations (arrow.locales.HungarianLocale attribute), 42
+month_abbreviations (arrow.locales.IcelandicLocale attribute), 38
+month_abbreviations (arrow.locales.IndonesianLocale attribute), 44
+month_abbreviations	(arrow.locales.ItalianLocale	attribute), 31
+month_abbreviations (arrow.locales.JapaneseLocale attribute), 32
+month_abbreviations	(arrow.locales.KoreanLocale attribute), 33
+month_abbreviations (arrow.locales.LevantArabicLocale attribute), 38
+month_abbreviations (arrow.locales.Locale attribute), 29 month_abbreviations	(arrow.locales.MacedonianLocale attribute), 40
+month_abbreviations (arrow.locales.MalayalamLocale attribute), 39
+month_abbreviations	(arrow.locales.MarathiLocale	attribute), 41
+month_abbreviations	(arrow.locales.MauritaniaArabicLocale attribute),
+38
+month_abbreviations	(arrow.locales.MoroccoArabicLocale	attribute),
+        38 month_abbreviations	(arrow.locales.NepaliLocale	attribute), 44
+month_abbreviations	(arrow.locales.NewNorwegianLocale	attribute),
+        36 month_abbreviations (arrow.locales.NorwegianLocale attribute), 35
+month_abbreviations	(arrow.locales.PolishLocale	attribute), 34
+month_abbreviations (arrow.locales.PortugueseLocale attribute), 36
+month_abbreviations (arrow.locales.RomanianLocale attribute), 44
+month_abbreviations (arrow.locales.RomanshLocale attribute), 43
+month_abbreviations	(arrow.locales.RussianLocale	attribute), 34
+month_abbreviations	(arrow.locales.SlovakLocale	attribute), 40
+month_abbreviations (arrow.locales.SlovenianLocale attribute), 44
+month_abbreviations tribute), 31(arrow.locales.SpanishLocaleat-month_abbreviations tribute), 32(arrow.locales.SwedishLocaleat-month_abbreviations tribute), 43(arrow.locales.SwissLocaleat-month_abbreviations tribute), 36(arrow.locales.TagalogLocaleat-month_abbreviations tribute), 42(arrow.locales.ThaiLocaleat-month_abbreviations(arrow.locales.TurkishLocaleattribute), 37
+month_abbreviations (arrow.locales.UkrainianLocale attribute), 35
+month_abbreviations	(arrow.locales.VietnameseLocale attribute), 37
+month_name() (arrow.locales.Locale method), 30 month_names (arrow.locales.AlgeriaTunisiaArabicLocale attribute), 38
+month_names (arrow.locales.ArabicLocale attribute), 37 month_names (arrow.locales.AustrianLocale attribute),
+        35 month_names	(arrow.locales.AzerbaijaniLocale	attribute), 37
+month_names (arrow.locales.BasqueLocale attribute), 41 month_names (arrow.locales.BelarusianLocale attribute),
+        34 month_names (arrow.locales.BengaliLocale attribute), 43 month_names (arrow.locales.BulgarianLocale attribute),
+        35 month_names (arrow.locales.CatalanLocale attribute), 41 month_names	(arrow.locales.ChineseCNLocale	attribute), 33
+month_names	(arrow.locales.ChineseTWLocale	attribute), 33
+month_names (arrow.locales.CzechLocale attribute), 39 month_names (arrow.locales.DanishLocale attribute), 38 month_names (arrow.locales.DutchLocale attribute), 34 month_names (arrow.locales.EnglishLocale attribute), 30 month_names (arrow.locales.EsperantoLocale attribute),
+        42 month_names (arrow.locales.EstonianLocale attribute),
+        45 month_names (arrow.locales.FarsiLocale attribute), 40 month_names (arrow.locales.FinnishLocale attribute), 32 month_names (arrow.locales.FrenchLocale attribute), 31 month_names (arrow.locales.GreekLocale attribute), 32 month_names (arrow.locales.HebrewLocale attribute), 40 month_names (arrow.locales.HindiLocale attribute), 39 month_names (arrow.locales.HungarianLocale attribute),
+        42 month_names (arrow.locales.IcelandicLocale attribute),
+        38 month_names (arrow.locales.IndonesianLocale attribute),
+        44 month_names (arrow.locales.ItalianLocale attribute), 31 month_names (arrow.locales.JapaneseLocale attribute),
+        32 month_names (arrow.locales.KoreanLocale attribute), 33 month_names	(arrow.locales.LevantArabicLocale	attribute), 38
+month_names (arrow.locales.Locale attribute), 29 month_names	(arrow.locales.MacedonianLocale	attribute), 40
+month_names (arrow.locales.MalayalamLocale attribute),
+        39 month_names (arrow.locales.MarathiLocale attribute), 41 month_names (arrow.locales.MauritaniaArabicLocale attribute), 38
+month_names (arrow.locales.MoroccoArabicLocale attribute), 38
+month_names (arrow.locales.NepaliLocale attribute), 44 month_names (arrow.locales.NewNorwegianLocale attribute), 36
+month_names (arrow.locales.NorwegianLocale attribute),
+        35 month_names (arrow.locales.PolishLocale attribute), 34 month_names (arrow.locales.PortugueseLocale attribute),
+        36 month_names (arrow.locales.RomanianLocale attribute),
+        43 month_names (arrow.locales.RomanshLocale attribute),
+        43 month_names (arrow.locales.RussianLocale attribute), 34 month_names (arrow.locales.SlovakLocale attribute), 40 month_names (arrow.locales.SlovenianLocale attribute),
+        44 month_names (arrow.locales.SpanishLocale attribute), 31 month_names (arrow.locales.SwedishLocale attribute),
+        32 month_names (arrow.locales.SwissLocale attribute), 43 month_names (arrow.locales.TagalogLocale attribute), 36 month_names (arrow.locales.ThaiLocale attribute), 42 month_names (arrow.locales.TurkishLocale attribute), 37 month_names (arrow.locales.UkrainianLocale attribute),
+        35 month_names	(arrow.locales.VietnameseLocale	attribute), 37
+month_number() (arrow.locales.Locale method), 30 MoroccoArabicLocale (class in arrow.locales), 38
+N
+naive (arrow.arrow.Arrow attribute), 19 names	(arrow.locales.AlgeriaTunisiaArabicLocale	attribute), 38
+names (arrow.locales.ArabicLocale attribute), 37 names (arrow.locales.AustrianLocale attribute), 35 names (arrow.locales.AzerbaijaniLocale attribute), 37 names (arrow.locales.BasqueLocale attribute), 41 names (arrow.locales.BelarusianLocale attribute), 34 names (arrow.locales.BengaliLocale attribute), 43 names	(arrow.locales.BrazilianPortugueseLocale	attribute), 36
+names (arrow.locales.BulgarianLocale attribute), 35 names (arrow.locales.CatalanLocale attribute), 41 names (arrow.locales.ChineseCNLocale attribute), 33 names (arrow.locales.ChineseTWLocale attribute), 33 names (arrow.locales.CzechLocale attribute), 39 names (arrow.locales.DanishLocale attribute), 38 names (arrow.locales.DutchLocale attribute), 33 names (arrow.locales.EnglishLocale attribute), 30 names (arrow.locales.EsperantoLocale attribute), 42 names (arrow.locales.EstonianLocale attribute), 45 names (arrow.locales.FarsiLocale attribute), 40 names (arrow.locales.FinnishLocale attribute), 32 names (arrow.locales.FrenchLocale attribute), 31 names (arrow.locales.GermanLocale attribute), 35 names (arrow.locales.GreekLocale attribute), 32 names (arrow.locales.HebrewLocale attribute), 40 names (arrow.locales.HindiLocale attribute), 39 names (arrow.locales.HungarianLocale attribute), 41 names (arrow.locales.IcelandicLocale attribute), 38 names (arrow.locales.IndonesianLocale attribute), 44 names (arrow.locales.ItalianLocale attribute), 31 names (arrow.locales.JapaneseLocale attribute), 32 names (arrow.locales.KoreanLocale attribute), 33 names (arrow.locales.LevantArabicLocale attribute), 38 names (arrow.locales.Locale attribute), 29 names (arrow.locales.MacedonianLocale attribute), 40 names (arrow.locales.MalayalamLocale attribute), 39 names (arrow.locales.MarathiLocale attribute), 41 names (arrow.locales.MauritaniaArabicLocale attribute),
+        38 names (arrow.locales.MoroccoArabicLocale attribute), 38 names (arrow.locales.NepaliLocale attribute), 44 names (arrow.locales.NewNorwegianLocale attribute), 36 names (arrow.locales.NorwegianLocale attribute), 35 names (arrow.locales.PolishLocale attribute), 34 names (arrow.locales.PortugueseLocale attribute), 36 names (arrow.locales.RomanianLocale attribute), 43 names (arrow.locales.RomanshLocale attribute), 43 names (arrow.locales.RussianLocale attribute), 34 names (arrow.locales.SlovakLocale attribute), 39 names (arrow.locales.SlovenianLocale attribute), 44 names (arrow.locales.SpanishLocale attribute), 31
+names (arrow.locales.SwedishLocale attribute), 32 names (arrow.locales.SwissLocale attribute), 43 names (arrow.locales.TagalogLocale attribute), 36 names (arrow.locales.ThaiLocale attribute), 42 names (arrow.locales.TurkishLocale attribute), 37 names (arrow.locales.UkrainianLocale attribute), 35 names (arrow.locales.VietnameseLocale attribute), 36 NepaliLocale (class in arrow.locales), 44
+NewNorwegianLocale (class in arrow.locales), 35 NorwegianLocale (class in arrow.locales), 35 now() (arrow.arrow.Arrow class method), 15 now() (arrow.factory.ArrowFactory method), 26 now() (in module arrow.api), 28
+O
+ordinal_day_re (arrow.locales.EnglishLocale attribute),
+        31 ordinal_day_re (arrow.locales.EsperantoLocale attribute),
+        42 ordinal_day_re (arrow.locales.FrenchLocale attribute), 31 ordinal_day_re (arrow.locales.ItalianLocale attribute), 31 ordinal_day_re (arrow.locales.Locale attribute), 29 ordinal_day_re (arrow.locales.SpanishLocale attribute),
+        31 ordinal_number() (arrow.locales.Locale method), 30
+P
+past (arrow.locales.ArabicLocale attribute), 37 past (arrow.locales.AzerbaijaniLocale attribute), 37 past (arrow.locales.BasqueLocale attribute), 41 past (arrow.locales.BelarusianLocale attribute), 34 past (arrow.locales.BengaliLocale attribute), 43 past (arrow.locales.BrazilianPortugueseLocale attribute),
+        36 past (arrow.locales.BulgarianLocale attribute), 35 past (arrow.locales.CatalanLocale attribute), 41 past (arrow.locales.ChineseCNLocale attribute), 33 past (arrow.locales.ChineseTWLocale attribute), 33 past (arrow.locales.CzechLocale attribute), 39 past (arrow.locales.DanishLocale attribute), 38 past (arrow.locales.DutchLocale attribute), 33 past (arrow.locales.EnglishLocale attribute), 30 past (arrow.locales.EsperantoLocale attribute), 42 past (arrow.locales.EstonianLocale attribute), 45 past (arrow.locales.FarsiLocale attribute), 40 past (arrow.locales.FinnishLocale attribute), 32 past (arrow.locales.FrenchLocale attribute), 31 past (arrow.locales.GreekLocale attribute), 32 past (arrow.locales.HebrewLocale attribute), 40 past (arrow.locales.HindiLocale attribute), 39 past (arrow.locales.HungarianLocale attribute), 42 past (arrow.locales.IcelandicLocale attribute), 38 past (arrow.locales.IndonesianLocale attribute), 44 past (arrow.locales.ItalianLocale attribute), 31
+past (arrow.locales.JapaneseLocale attribute), 32 past (arrow.locales.KoreanLocale attribute), 33 past (arrow.locales.Locale attribute), 29 past (arrow.locales.MacedonianLocale attribute), 40 past (arrow.locales.MalayalamLocale attribute), 39 past (arrow.locales.MarathiLocale attribute), 41 past (arrow.locales.NepaliLocale attribute), 44 past (arrow.locales.NewNorwegianLocale attribute), 36 past (arrow.locales.NorwegianLocale attribute), 35 past (arrow.locales.PolishLocale attribute), 34 past (arrow.locales.PortugueseLocale attribute), 36 past (arrow.locales.RomanianLocale attribute), 43 past (arrow.locales.RomanshLocale attribute), 43 past (arrow.locales.RussianLocale attribute), 34 past (arrow.locales.SlovakLocale attribute), 40 past (arrow.locales.SlovenianLocale attribute), 44 past (arrow.locales.SpanishLocale attribute), 31 past (arrow.locales.SwedishLocale attribute), 32 past (arrow.locales.SwissLocale attribute), 43 past (arrow.locales.TagalogLocale attribute), 36 past (arrow.locales.ThaiLocale attribute), 42 past (arrow.locales.TurkishLocale attribute), 37 past (arrow.locales.UkrainianLocale attribute), 35 past (arrow.locales.VietnameseLocale attribute), 36 PolishLocale (class in arrow.locales), 34
+PortugueseLocale (class in arrow.locales), 36
+R
+range() (arrow.arrow.Arrow class method), 17 replace() (arrow.arrow.Arrow method), 20 RomanianLocale (class in arrow.locales), 43
+RomanshLocale (class in arrow.locales), 43
+RussianLocale (class in arrow.locales), 34
+S
+shift() (arrow.arrow.Arrow method), 20 SlavicBaseLocale (class in arrow.locales), 34
+SlovakLocale (class in arrow.locales), 39 SlovenianLocale (class in arrow.locales), 44 span() (arrow.arrow.Arrow method), 21 span_range() (arrow.arrow.Arrow class method), 17 SpanishLocale (class in arrow.locales), 31 strftime() (arrow.arrow.Arrow method), 24 strptime() (arrow.arrow.Arrow class method), 16 SwedishLocale (class in arrow.locales), 32
+SwissLocale (class in arrow.locales), 43
+T
+TagalogLocale (class in arrow.locales), 36 ThaiLocale (class in arrow.locales), 42 time() (arrow.arrow.Arrow method), 22 timeframes (arrow.locales.ArabicLocale attribute), 37 timeframes (arrow.locales.AzerbaijaniLocale attribute),
+37
+timeframes (arrow.locales.BasqueLocale attribute), 41 timeframes (arrow.locales.BelarusianLocale attribute), 34 timeframes (arrow.locales.BengaliLocale attribute), 43 timeframes (arrow.locales.BulgarianLocale attribute), 35 timeframes (arrow.locales.CatalanLocale attribute), 41 timeframes (arrow.locales.ChineseCNLocale attribute),
+        33 timeframes (arrow.locales.ChineseTWLocale attribute),
+        33 timeframes (arrow.locales.CzechLocale attribute), 39 timeframes (arrow.locales.DanishLocale attribute), 38 timeframes (arrow.locales.DutchLocale attribute), 34 timeframes (arrow.locales.EnglishLocale attribute), 30 timeframes (arrow.locales.EsperantoLocale attribute), 42 timeframes (arrow.locales.EstonianLocale attribute), 45 timeframes (arrow.locales.FarsiLocale attribute), 40 timeframes (arrow.locales.FinnishLocale attribute), 32 timeframes (arrow.locales.FrenchLocale attribute), 31 timeframes (arrow.locales.GreekLocale attribute), 32 timeframes (arrow.locales.HebrewLocale attribute), 40 timeframes (arrow.locales.HindiLocale attribute), 39 timeframes (arrow.locales.HungarianLocale attribute), 42 timeframes (arrow.locales.IcelandicLocale attribute), 38 timeframes (arrow.locales.IndonesianLocale attribute), 44 timeframes (arrow.locales.ItalianLocale attribute), 31 timeframes (arrow.locales.JapaneseLocale attribute), 32 timeframes (arrow.locales.KoreanLocale attribute), 33 timeframes (arrow.locales.Locale attribute), 29 timeframes (arrow.locales.MacedonianLocale attribute),
+        40 timeframes	(arrow.locales.MalayalamLocale	attribute),
+        39 timeframes (arrow.locales.MarathiLocale attribute), 41 timeframes (arrow.locales.NepaliLocale attribute), 44 timeframes	(arrow.locales.NewNorwegianLocale	attribute), 36
+timeframes (arrow.locales.NorwegianLocale attribute), 35 timeframes (arrow.locales.PolishLocale attribute), 34 timeframes	(arrow.locales.PortugueseLocale	attribute),
+        36 timeframes (arrow.locales.RomanianLocale attribute), 43 timeframes (arrow.locales.RomanshLocale attribute), 43 timeframes (arrow.locales.RussianLocale attribute), 34 timeframes (arrow.locales.SlovakLocale attribute), 40 timeframes (arrow.locales.SlovenianLocale attribute), 44 timeframes (arrow.locales.SpanishLocale attribute), 31 timeframes (arrow.locales.SwedishLocale attribute), 32 timeframes (arrow.locales.SwissLocale attribute), 43 timeframes (arrow.locales.TagalogLocale attribute), 36 timeframes (arrow.locales.ThaiLocale attribute), 42 timeframes (arrow.locales.TurkishLocale attribute), 37 timeframes (arrow.locales.UkrainianLocale attribute), 35 timeframes (arrow.locales.VietnameseLocale attribute),
+37
+timestamp (arrow.arrow.Arrow attribute), 19 timetuple() (arrow.arrow.Arrow method), 23 timetz() (arrow.arrow.Arrow method), 23 to() (arrow.arrow.Arrow method), 20 toordinal() (arrow.arrow.Arrow method), 23 TurkishLocale (class in arrow.locales), 37 tzinfo (arrow.arrow.Arrow attribute), 19
+U
+UkrainianLocale (class in arrow.locales), 35 utcfromtimestamp() (arrow.arrow.Arrow class method),
+        16 utcnow() (arrow.arrow.Arrow class method), 16 utcnow() (arrow.factory.ArrowFactory method), 26 utcnow() (in module arrow.api), 28 utcoffset() (arrow.arrow.Arrow method), 23 utctimetuple() (arrow.arrow.Arrow method), 23
+V
+VietnameseLocale (class in arrow.locales), 36
+W
+weekday() (arrow.arrow.Arrow method), 23
+Y
+year_abbreviation() (arrow.locales.Locale method), 30 year_abbreviation() (arrow.locales.ThaiLocale method),
+        42 year_full() (arrow.locales.Locale method), 30 year_full() (arrow.locales.ThaiLocale method), 42
+1 localization support for parsing and formatting
+2 localization support only for formatting
+3 the result is truncated to microseconds, with half-to-even rounding. 4timezone names from tz database provided via dateutil package
+---------------
+
+------------------------------------------------------------
+
+---------------
+
+------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Arrow Documentation, Release 0.13.0
+
+CHAPTER
+
+2
+
+1
+
+CHAPTER
+
+1
+
+Arrow Documentation, Release 0.13.0
+
+
+
+Chapter 5. User's Guide
+
+1
+
+Arrow Documentation, Release 0.13.0
+
+10	Chapter 5. User's Guide
+
+Arrow Documentation, Release 0.13.0
+
+
+
+16	Chapter 6. API Guide
+
+1
+
+Arrow Documentation, Release 0.13.0
+
+10	Chapter 5. User's Guide
+
+Arrow Documentation, Release 0.13.0
+
+Arrow Documentation, Release 0.13.0
+
+16	Chapter 6. API Guide
+
+6.1. arrow.arrow	17
+
+Arrow Documentation, Release 0.13.0
+
+6.1. arrow.arrow	17
+
+Arrow Documentation, Release 0.13.0
+
+Arrow Documentation, Release 0.13.0
+
+16	Chapter 6. API Guide
+
+1
+
+Arrow Documentation, Release 0.13.0
+
+1
+
+Arrow Documentation, Release 0.13.0
+
+Arrow Documentation, Release 0.13.0
+
+16	Chapter 6. API Guide
+
+6.4. arrow.locale	29
+
+Arrow Documentation, Release 0.13.0
+
+6.4. arrow.locale	29
+
+Arrow Documentation, Release 0.13.0
+
+
+
+2
+
+1
+
+
+
+1
+
+Arrow Documentation, Release 0.13.0
+
+Arrow Documentation, Release 0.13.0
+
+50	Index
+
+Index	51
+
+Arrow Documentation, Release 0.13.0
+
+50	Index
+

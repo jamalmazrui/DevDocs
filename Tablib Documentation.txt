@@ -1,0 +1,745 @@
+﻿
+Tablib Documentation
+Release 3.0.1.dev3+g7035d79
+Jazzband
+Dec 11, 2020
+
+
+
+Contents
+
+1 Testimonials	3
+2 User's Guide	5
+2.1 Introduction	. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	5
+2.2 Installation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	6
+2.3 Quickstart	. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	7
+2.4 Advanced Usage . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	11
+2.5 Formats . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	15
+2.6 Development . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	19
+3 API Reference	23
+3.1 API . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .	23
+Python Module Index	29
+Index	31
+i
+ii
+
+Tablib Documentation, Release 3.0.1.dev3+g7035d79
+
+Release v3.0. (Installation)
+Tablib is an MIT Licensed format-agnostic tabular dataset library, written in Python. It allows you to import, export, and manipulate tabular data sets. Advanced features include segregation, dynamic columns, tags & filtering, and seamless format import & export.
+>>> data = tablib.Dataset(headers=['First Name', 'Last Name', 'Age
+,→'])
+>>> for i in [('Kenneth', 'Reitz', 22), ('Bessie', 'Monke', 21)]:
+...	data.append(i)
+>>> print(data.export('json'))
+[{"Last Name": "Reitz", "First Name": "Kenneth", "Age": 22}, {"Last
+,→Name": "Monke", "First Name": "Bessie", "Age": 21}]
+>>> print(data.export('yaml'))
+- {Age: 22, First Name: Kenneth, Last Name: Reitz}
+- {Age: 21, First Name: Bessie, Last Name: Monke}
+>>> data.export('xlsx')
+<redacted binary data>
+>>> data.export('df')
+First Name Last Name Age
+0 Kenneth	Reitz	22
+1 Bessie	Monke	21Contents
+Contents
+CHAPTER 1
+
+Testimonials
+
+National Geographic, Digg, Inc, Northrop Grumman, Discovery Channel, and The Sunlight Foundation use Tablib internally.
+Greg Thorton Tablib by @kennethreitz saved my life. I had to consolidate like 5 huge poorly maintained lists of domains and data. It was a breeze!
+Dave Coutts It's turning into one of my most used modules of 2010. You really hit a sweet spot for managing tabular data with a minimal amount of code and effort.
+Joshua Ourisman Tablib has made it so much easier to deal with the inevitable 'I want an Excel file!' requests from clients...
+Brad Montgomery I think you nailed the "Python Zen" with tablib. Thanks again for an awesome lib!
+Chapter 1. Testimonials
+CHAPTER 2
+
+User's Guide
+
+This part of the documentation, which is mostly prose, begins with some background information about Tablib, then focuses on step-by-step instructions for getting the most out of your datasets.
+2.1 Introduction
+This part of the documentation covers all the interfaces of Tablib. Tablib is a format-agnostic tabular dataset library, written in Python. It allows you to Pythonically import, export, and manipulate tabular data sets. Advanced features include segregation, dynamic columns, tags/filtering, and seamless format import/export.
+2.1.1 Philosophy
+Tablib was developed with a few PEP 20 idioms in mind.
+1. Beautiful is better than ugly.
+2. Explicit is better than implicit. 3. Simple is better than complex.
+4. Complex is better than complicated.
+5. Readability counts.
+All contributions to Tablib should keep these important rules in mind.
+
+2.1.2 Tablib License
+Tablib is released under terms of The MIT License.
+Copyright 2017 Kenneth Reitz
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+2.1.3 Pythons Supported
+Python 3.6+ is officially supported.
+Now, go install Tablib.
+2.2 Installation
+This part of the documentation covers the installation of Tablib. The first step to using any software package is getting it properly installed.
+2.2.1 Installing Tablib
+Distribute & Pip
+Of course, the recommended way to install Tablib is with pip:
+$ pip install tablib
+You can also choose to install more dependencies to have more import/export formats available:
+$ pip install "tablib[xlsx]"
+Or all possible formats:
+$ pip install "tablib[all]"
+which is equivalent to:
+$ pip install "tablib[html, pandas, ods, xls, xlsx, yaml]"
+2.2.2 Download the Source
+You can also install Tablib from source. The latest release (3.0) is available from GitHub.
+• tarball
+• zipball
+Once you have a copy of the source, you can embed it in your Python package, or install it into your site-packages easily.
+$ python setup.py install
+To download the full source history from Git, see Source Control.
+Staying Updated
+The latest version of Tablib will always be available here:
+• PyPI: https://pypi.org/project/tablib/
+• GitHub: https://github.com/jazzband/tablib/
+When a new version is available, upgrading is simple:
+$ pip install tablib --upgrade
+Now, go get a Quick Start.
+2.3 Quickstart
+Eager to get started? This page gives a good introduction in how to get started with Tablib. This assumes you already have Tablib installed. If you do not, head over to the Installation section.
+First, make sure that:
+• Tablib is installed
+• Tablib is up-to-date
+Let's get started with some simple use cases and examples.
+2.3. Quickstart
+2.3.1 Creating a Dataset
+A Dataset is nothing more than what its name implies-a set of data. Creating your own instance of the tablib.Dataset object is simple.
+data = tablib.Dataset()
+You can now start filling this Dataset object with data.
+
+Example Context
+From here on out, if you see data, assume that it's a fresh Dataset object.
+
+2.3.2 Adding Rows
+Let's say you want to collect a simple list of names.
+# collection of names names = ['Kenneth Reitz', 'Bessie Monke']
+for name in names:
+# split name appropriately fname, lname = name.split()
+# add names to Dataset data.append([fname, lname])You can get a nice, Pythonic view of the dataset at any time with Dataset.dict:
+>>> data.dict [('Kenneth', 'Reitz'), ('Bessie', 'Monke')]
+2.3.3 Adding Headers
+It's time to enhance our Dataset by giving our columns some titles. To do so, set Dataset. headers.
+data.headers = ['First Name', 'Last Name']
+Now our data looks a little different.
+>>> data.dict
+[{'Last Name': 'Reitz', 'First Name': 'Kenneth'},
+{'Last Name': 'Monke', 'First Name': 'Bessie'}]
+2.3.4 Adding Columns
+Now that we have a basic Dataset in place, let's add a column of ages to it.
+data.append_col([22, 20], header='Age')
+Let's view the data now.
+>>> data.dict
+[{'Last Name': 'Reitz', 'First Name': 'Kenneth', 'Age': 22},
+{'Last Name': 'Monke', 'First Name': 'Bessie', 'Age': 20}]
+It's that easy.
+2.3.5 Importing Data
+Creating a tablib.Dataset object by importing a pre-existing file is simple.
+with open('data.csv', 'r') as fh:
+imported_data = Dataset().load(fh)This detects what sort of data is being passed in, and uses an appropriate formatter to do the import. So you can import from a variety of different file types.
+
+Source without headers
+When the format is csv, tsv, dbf, xls or xlsx, and the data source does not have headers, the import should be done as follows with open('data.csv', 'r') as fh: imported_data = Dataset().load(fh, headers=False)
+
+2.3.6 Exporting Data
+Tablib's killer feature is the ability to export your Dataset objects into a number of formats.
+Comma-Separated Values
+>>> data.export('csv')
+Last Name,First Name,Age
+Reitz,Kenneth,22
+Monke,Bessie,20
+JavaScript Object Notation
+>>> data.export('json')
+[{"Last Name": "Reitz", "First Name": "Kenneth", "Age": 22}, {"Last
+,→Name": "Monke", "First Name": "Bessie", "Age": 20}]2.3. Quickstart
+YAML Ain't Markup Language
+>>> data.export('yaml')
+- {Age: 22, First Name: Kenneth, Last Name: Reitz}
+- {Age: 20, First Name: Bessie, Last Name: Monke}
+Microsoft Excel
+>>> data.export('xls')
+<redacted binary data>
+Pandas DataFrame
+>>> data.export('df')
+First Name Last Name Age
+0 Kenneth	Reitz	22
+1 Bessie	Monke	212.3.7 Selecting Rows & Columns
+You can slice and dice your data, just like a standard Python list.
+>>> data[0]
+('Kenneth', 'Reitz', 22)
+If we had a set of data consisting of thousands of rows, it could be useful to get a list of values in a column. To do so, we access the Dataset as if it were a standard Python dictionary.
+>>> data['First Name']
+['Kenneth', 'Bessie']
+You can also access the column using its index.
+>>> data.headers ['Last Name', 'First Name', 'Age']
+>>> data.get_col(1)
+['Kenneth', 'Bessie']
+Let's find the average age.
+>>> ages = data['Age']
+>>> float(sum(ages)) / len(ages)
+21.0
+2.3.8 Removing Rows & Columns
+It's easier than you could imagine. Delete a column:
+>>> del data['Col Name']
+Delete a range of rows:
+>>> del data[0:12]
+2.4 Advanced Usage
+This part of the documentation services to give you an idea that are otherwise hard to extract from the API Documentation.
+And now for something completely different.
+2.4.1 Dynamic Columns
+New in version 0.8.3.
+Thanks to Josh Ourisman, Tablib now supports adding dynamic columns. A dynamic column is a single callable object (e.g. a function).
+Let's add a dynamic column to our Dataset object. In this example, we have a function that generates a random grade for our students.
+import random
+def random_grade(row):
+"""Returns a random integer for entry.""" return (random.randint(60,100)/100.0)
+data.append_col(random_grade, header='Grade')Let's have a look at our data.
+>>> data.export('yaml')
+- {Age: 22, First Name: Kenneth, Grade: 0.6, Last Name: Reitz}
+- {Age: 20, First Name: Bessie, Grade: 0.75, Last Name: Monke}
+Let's remove that column.
+>>> del data['Grade']
+When you add a dynamic column, the first argument that is passed in to the given callable is the current data row. You can use this to perform calculations against your data row.
+For example, we can use the data available in the row to guess the gender of a student.
+2.4. Advanced Usage
+def guess_gender(row):
+"""Calculates gender of given student data row.""" m_names = ('Kenneth', 'Mike', 'Yuri') f_names = ('Bessie', 'Samantha', 'Heather')
+name = row[0]
+if name in m_names: return 'Male'
+elif name in f_names:
+return 'Female'
+else:
+return 'Unknown'Adding this function to our dataset as a dynamic column would result in:
+>>> data.export('yaml')
+- {Age: 22, First Name: Kenneth, Gender: Male, Last Name: Reitz}
+- {Age: 20, First Name: Bessie, Gender: Female, Last Name: Monke}
+2.4.2 Filtering Datasets with Tags
+New in version 0.9.0.
+When constructing a Dataset object, you can add tags to rows by specifying the tags parameter. This allows you to filter your Dataset later. This can be useful to separate rows of data based on arbitrary criteria (e.g. origin) that you don't want to include in your Dataset.
+Let's tag some students.
+students = tablib.Dataset()
+students.headers = ['first', 'last']
+students.rpush(['Kenneth', 'Reitz'], tags=['male', 'technical']) students.rpush(['Daniel', 'Dupont'], tags=['male', 'creative' ]) students.rpush(['Bessie', 'Monke'], tags=['female', 'creative'])
+Now that we have extra meta-data on our rows, we can easily filter our Dataset. Let's just see Female students.
+>>> students.filter(['female']).yaml
+- {first: Bessie, Last: Monke}
+By default, when you pass a list of tags you get filter type or.
+>>> students.filter(['female', 'creative']).yaml
+- {first: Daniel, Last: Dupont}
+- {first: Bessie, Last: Monke}
+Using chaining you can get a filter type and.
+>>> students.filter(['female']).filter(['creative']).yaml
+- {first: Bessie, Last: Monke}
+It's that simple. The original Dataset is untouched.
+Open an Excel Workbook and read first sheet
+Open an Excel 2007 and later workbook with a single sheet (or a workbook with multiple sheets but you just want the first sheet).
+data = tablib.Dataset() with open('my_excel_file.xlsx', 'rb') as fh:
+data.load(fh, 'xlsx')
+print(data)Excel Workbook With Multiple Sheets
+When dealing with a large number of Datasets in spreadsheet format, it's quite common to group multiple spreadsheets into a single Excel file, known as a Workbook. Tablib makes it extremely easy to build workbooks with the handy Databook class.
+Let's say we have 3 different Datasets. All we have to do is add them to a Databook object...
+book = tablib.Databook((data1, data2, data3))
+... and export to Excel just like Datasets.
+with open('students.xls', 'wb') as f:
+f.write(book.export('xls'))The resulting students.xls file will contain a separate spreadsheet for each Dataset object in the Databook.
+
+Binary Warning
+Make sure to open the output file in binary mode.
+
+2.4.3 Separators
+New in version 0.8.2.
+When constructing a spreadsheet, it's often useful to create a blank row containing information on the upcoming data. So,
+2.4. Advanced Usage
+daniel_tests = [
+('11/24/09', 'Math 101 Mid-term Exam', 56.),
+('05/24/10', 'Math 101 Final Exam', 62.)
+]
+suzie_tests = [
+('11/24/09', 'Math 101 Mid-term Exam', 56.),
+('05/24/10', 'Math 101 Final Exam', 62.)
+]
+# Create new dataset tests = tablib.Dataset() tests.headers = ['Date', 'Test Name', 'Grade']
+# Daniel's Tests tests.append_separator('Daniel\'s Scores')
+for test_row in daniel_tests:
+tests.append(test_row)
+# Susie's Tests tests.append_separator('Susie\'s Scores')
+for test_row in suzie_tests: tests.append(test_row)
+# Write spreadsheet to disk with open('grades.xls', 'wb') as f:
+f.write(tests.export('xls'))The resulting tests.xls will have the following layout:
+Daniel's Scores:
+• '11/24/09', 'Math 101 Mid-term Exam', 56.
+• '05/24/10', 'Math 101 Final Exam', 62.
+Suzie's Scores:
+• '11/24/09', 'Math 101 Mid-term Exam', 56.
+• '05/24/10', 'Math 101 Final Exam', 62.
+
+Format Support
+At this time, only Excel output supports separators.
+
+
+Now, go check out the API Documentation or begin Tablib Development.
+2.5 Formats
+Tablib supports a wide variety of different tabular formats, both for input and output. Moreover, you can register your own formats.
+2.5.1 cli
+The cli format is currently export-only. The exports produce a representation table suited to a terminal.
+When exporting to a CLI you can pass the table format with the tablefmt parameter, the supported formats are:
+>>> import tabulate
+>>> list(tabulate._table_formats)
+['simple', 'plain', 'grid', 'fancy_grid', 'github', 'pipe', 'orgtbl
+,→',
+'jira', 'presto', 'psql', 'rst', 'mediawiki', 'moinmoin', 'youtrack
+,→',
+'html', 'latex', 'latex_raw', 'latex_booktabs', 'tsv', 'textile']
+For example:
+dataset.export("cli", tablefmt="github") dataset.export("cli", tablefmt="grid")
+This format is optional, install Tablib with pip install "tablib[cli]" to make the format available.
+2.5.2 csv
+When you import CSV data, you can specify if the first line of your data source is headers with the headers boolean parameter (defaults to True):
+import tablib
+tablib.import_set(your_data_stream, format='csv', headers=False)
+When exporting with the csv format, the top row will contain headers, if they have been set. Otherwise, the top row will contain the first row of the dataset.
+When importing a CSV data source or exporting a dataset as CSV, you can pass any parameter supported by the csv.reader() and csv.writer() functions. For example:
+tablib.import_set(your_data_stream, format='csv', dialect='unix')
+dataset.export('csv', delimiter=' ', quotechar='|')
+2.5. Formats
+
+Line endings
+Exporting uses \r\n line endings by default so, make sure to include newline='' otherwise you will get a blank line between each row when you open the file in Excel:
+with open('output.csv', 'w', newline='') as f:
+f.write(dataset.export('csv'))If you do not do this, and you export the file on Windows, your CSV file will open in Excel with a blank line between each row.
+
+2.5.3 dbf
+Import/export using the dBASE format.
+
+Binary Warning
+The dbf format contains binary data, so make sure to write in binary mode:
+with open('output.dbf', 'wb') as f:
+f.write(dataset.export('dbf')
+2.5.4 df (DataFrame)
+Import/export using the pandas DataFrame format. This format is optional, install Tablib with pip install "tablib[pandas]" to make the format available.
+2.5.5 html
+The html format is currently export-only. The exports produce an HTML page with the data in a <table>. If headers have been set, they will be used as table headers.
+This format is optional, install Tablib with pip install "tablib[html]" to make the format available.
+2.5.6 jira
+The jira format is currently export-only. Exports format the dataset according to the Jira table syntax:
+||heading 1||heading 2||heading 3||
+|col A1|col A2|col A3|
+|col B1|col B2|col B3|
+2.5.7 json
+Import/export using the JSON format. If headers have been set, a JSON list of objects will be returned. If no headers have been set, a JSON list of lists (rows) will be returned instead.
+Import assumes (for now) that headers exist.
+2.5.8 latex
+Import/export using the LaTeX format. This format is export-only. If a title has been set, it will be exported as the table caption.
+2.5.9 ods
+Export data in OpenDocument Spreadsheet format. The ods format is currently export-only.
+This format is optional, install Tablib with pip install "tablib[ods]" to make the format available.
+
+Binary Warning
+Dataset.ods contains binary data, so make sure to write in binary mode:
+with open('output.ods', 'wb') as f:
+f.write(data.ods)
+2.5.10 rst
+Export data as a reStructuredText table representation of a dataset. The rst format is exportonly.
+Exporting returns a simple table if the text in the first column is never wrapped, otherwise returns a grid table:
+>>> from tablib import Dataset
+>>> bits = ((0, 0), (1, 0), (0, 1), (1, 1))
+>>> data = Dataset()
+>>> data.headers = ['A', 'B', 'A and B'] >>> for a, b in bits:
+...	data.append([bool(a), bool(b), bool(a * b)])
+>>> table = data.export('rst')
+>>> table.split('\\n') == [
+...	'===== ===== =====',
+...	' A	B	A and',
+...	'	B ',
+...	'===== ===== =====',(continues on next page)
+2.5. Formats
+(continued from previous page)
+...'False False False',...'True	False False',...'False True	False',...'True	True	True ',...
+... ]
+True'===== ===== =====',2.5.11 tsv
+A variant of the csv format with tabulators as fields separators.
+2.5.12 xls
+Import/export data in Legacy Excel Spreadsheet representation.
+This format is optional, install Tablib with pip install "tablib[xls]" to make the format available.
+
+Note: XLS files are limited to a maximum of 65,000 rows. Use xlsx to avoid this limitation.
+
+
+Binary Warning
+The xls file format is binary, so make sure to write in binary mode:
+with open('output.xls', 'wb') as f:
+f.write(data.export('xls'))
+2.5.13 xlsx
+Import/export data in Excel 07+ Spreadsheet representation.
+This format is optional, install Tablib with pip install "tablib[xlsx]" to make the format available.
+The import_set() and import_book() methods accept keyword argument read_only. If its value is True (the default), the XLSX data source is read lazily. Lazy reading generally reduces time and memory consumption, especially for large spreadsheets. However, it relies on the XLSX data source declaring correct dimensions. Some programs generate XLSX files with incorrect dimensions. Such files may need to be loaded with this optimization turned off by passing read_only=False.
+
+Note: When reading an xlsx file containing formulas in its cells, Tablib will read the cell values, not the cell formulas.
+
+Changed in version 2.0.0: Reads cell values instead of formulas.
+
+Binary Warning
+The xlsx file format is binary, so make sure to write in binary mode:
+with open('output.xlsx', 'wb') as f:
+f.write(data.export('xlsx'))
+2.5.14 yaml
+Import/export data in the YAML format. When exporting, if headers have been set, a YAML list of objects will be returned. If no headers have been set, a YAML list of lists (rows) will be returned instead.
+Import assumes (for now) that headers exist.
+This format is optional, install Tablib with pip install "tablib[yaml]" to make the format available.
+2.6 Development
+Tablib is under active development, and contributors are welcome.
+If you have a feature request, suggestion, or bug report, please open a new issue on GitHub. To submit patches, please send a pull request on GitHub.
+2.6.1 Design Considerations
+Tablib was developed with a few PEP 20 idioms in mind.
+1. Beautiful is better than ugly.
+2. Explicit is better than implicit. 3. Simple is better than complex.
+4. Complex is better than complicated.
+5. Readability counts.
+A few other things to keep in mind:
+1. Keep your code DRY.
+2.6. Development
+2. Strive to be as simple (to use) as possible.
+2.6.2 Source Control
+Tablib source is controlled with Git, the lean, mean, distributed source control machine.
+The repository is publicly accessible.
+git clone git://github.com/jazzband/tablib.git
+The project is hosted on GitHub.
+GitHub: https://github.com/jazzband/tablib
+Git Branch Structure
+Feature / Hotfix / Release branches follow a Successful Git Branching Model . Git-flow is a great tool for managing the repository. I highly recommend it. master Current production release (3.0) on PyPi.
+Each release is tagged.
+When submitting patches, please place your feature/change in its own branch prior to opening a pull request on GitHub.
+2.6.3 Adding New Formats
+Tablib welcomes new format additions! Format suggestions include:
+• MySQL Dump
+Coding by Convention
+Tablib features a micro-framework for adding format support. The easiest way to understand it is to use it. So, let's define our own format, named xxx.
+From version 1.0, Tablib formats are class-based and can be dynamically registered.
+1. Write your custom format class:
+class MyXXXFormatClass:
+title = 'xxx'
+@classmethod def export_set(cls, dset):
+....
+# returns string representation of given dataset(continues on next page)
+(continued from previous page)
+@classmethod def export_book(cls, dbook):
+....
+# returns string representation of given databook
+@classmethod def import_set(cls, dset, in_stream):
+...
+# populates given Dataset with given datastream
+@classmethod def import_book(cls, dbook, in_stream):
+...
+# returns Databook instance
+@classmethod def detect(cls, stream):
+...
+# returns True if given stream is parsable as xxx
+Excluding Support
+If the format excludes support for an import/export mechanism (e.g. csv excludes Databook support), simply don't define the respective class methods. Appropriate errors will be raised.
+
+2. Register your class:
+from tablib.formats import registry
+registry.register('xxx', MyXXXFormatClass())
+3. From then on, you should be able to use your new custom format as if it were a built-in
+Tablib format, e.g. using dataset.export('xxx') will use the MyXXXFormatClass.
+export_set method.
+2.6.4 Testing Tablib
+Testing is crucial to Tablib's stability. This stable project is used in production by many companies and developers, so it is important to be certain that every version released is fully operational. When developing a new feature for Tablib, be sure to write proper tests for it as well.
+When developing a feature for Tablib, the easiest way to test your changes for potential issues is to simply run the test suite directly.
+2.6. Development
+$ tox
+2.6.5 Continuous Integration
+Every pull request is automatically tested and inspected upon receipt with GitHub Actions. If you broke the build, you will receive an email accordingly.
+Anyone may view the build status and history at any time.
+https://github.com/jazzband/tablib/actions
+Additional reports will also be included here in the future, including PEP 8 checks and stress reports for extremely large datasets.
+2.6.6 Building the Docs
+Documentation is written in the powerful, flexible, and standard Python documentation format, reStructured Text. Documentation builds are powered by the powerful Pocoo project, Sphinx. The API Documentation is mostly documented inline throughout the module.
+The Docs live in tablib/docs. In order to build them, you will first need to install Sphinx.
+$ pip install sphinx
+Then, to build an HTML version of the docs, simply run the following from the docs directory:
+$ make html
+Your docs/_build/html directory will then contain an HTML representation of the documentation, ready for publication on most web servers.
+You can also generate the documentation in epub, latex, json, &c similarly.
+
+Make sure to check out the API Documentation.
+
+CHAPTER 3
+
+API Reference
+
+If you are looking for information on a specific function, class or method, this part of the documentation is for you.
+3.1 API
+This part of the documentation covers all the interfaces of Tablib. For parts where Tablib depends on external libraries, we document the most important right here and provide links to the canonical documentation.
+3.1.1 Dataset Object
+class tablib.Dataset(*args, **kwargs)
+The Dataset object is the heart of Tablib. It provides all core functionality.
+Usually you create a Dataset instance in your main module, and append rows as you collect data.
+data = tablib.Dataset() data.headers = ('name', 'age')
+for (name, age) in some_collector():
+data.append((name, age))Setting columns is similar. The column data length must equal the current height of the data and headers must be set.
+data = tablib.Dataset() data.headers = ('first_name', 'last_name')
+data.append(('John', 'Adams')) data.append(('George', 'Washington'))
+data.append_col((90, 67), header='age')
+You can also set rows and headers upon instantiation. This is useful if dealing with dozens or hundreds of Dataset objects.
+headers = ('first_name', 'last_name') data = [('John', 'Adams'), ('George', 'Washington')]
+data = tablib.Dataset(*data, headers=headers)
+Parameters
+• *args - (optional) list of rows to populate Dataset
+• headers - (optional) list strings for Dataset header row
+• title - (optional) string to use as title of the Dataset
+If you look at the code, the various output/import formats are not defined within the Dataset object. To add support for a new format, see Adding New Formats.
+add_formatter(col, handler) Adds a formatter to the Dataset.
+New in version 0.9.5.
+Parameters
+• col - column to. Accepts index int or header str.
+• handler - reference to callback function to execute against each cell value.
+append(row, tags=[])
+Adds a row to the Dataset. See :method:'Dataset.insert' for additional documentation.
+append_col(col, header=None)
+Adds a column to the Dataset. See :method:'Dataset.insert_col' for additional documentation.
+append_separator(text='-')
+    Adds a separator to the Dataset. dict
+A native Python representation of the Dataset object. If headers have been set, a list of Python dictionaries will be returned. If no headers have been set, a list of tuples (rows) will be returned instead.
+Tablib Documentation, Release 3.0.1.dev3+g7035d79
+
+A dataset object can also be imported by setting the Dataset.dict attribute:
+data = tablib.Dataset() data.dict = [{'age': 90, 'first_name': 'Kenneth', 'last_name
+,→': 'Reitz'}]
+export(format, **kwargs)
+Export Dataset object to format.
+Parameters **kwargs - (optional) custom configuration to the format export_set.
+extend(rows, tags=[])
+Adds a list of rows to the Dataset using :method:'Dataset.append'
+filter(tag)
+Returns a new instance of the Dataset, excluding any rows that do not contain the given tags.
+get_col(index)
+    Returns the column from the Dataset at the given index. headers
+An optional list of strings to be used for header rows and attribute names.
+    This must be set manually. The given list length must equal Dataset.width. height
+The number of rows currently in the Dataset. Cannot be directly modified.
+insert(index, row, tags=[])
+Inserts a row to the Dataset at the given index.
+Rows inserted must be the correct size (height or width).
+The default behaviour is to insert the given row to the Dataset object at the given index.
+insert_col(index, col=None, header=None) Inserts a column to the Dataset at the given index.
+Columns inserted must be the correct height.
+You can also insert a column of a single callable object, which will add a new column with the return values of the callable each as an item in the column.
+data.append_col(col=random.randint)
+If inserting a column, and Dataset.headers is set, the header attribute must be set, and will be considered the header for that row.
+See Dynamic Columns for an in-depth example.
+Changed in version 0.9.0: If inserting a column, and Dataset.headers is set, the header attribute must be set, and will be considered the header for that row.
+3.1. API
+New in version 0.9.0: If inserting a row, you can add tags to the row you are inserting. This gives you the ability to :method:'filter <Dataset.filter>' your Dataset later.
+insert_separator(index, text='-')
+Adds a separator to Dataset at given index.
+load(in_stream, format=None, **kwargs)
+Import in_stream to the Dataset object using the format. in_stream can be a file-like object, a string, or a bytestring.
+Parameters **kwargs - (optional) custom configuration to the format import_set.
+lpop()
+Removes and returns the first row of the Dataset.
+lpush(row, tags=[])
+Adds a row to the top of the Dataset. See :method:'Dataset.insert' for additional documentation.
+lpush_col(col, header=None)
+Adds a column to the top of the Dataset. See :method:'Dataset.insert' for additional documentation.
+pop()
+Removes and returns the last row of the Dataset.
+remove_duplicates()
+Removes all duplicate rows from the Dataset object while maintaining the original order.
+rpop()
+Removes and returns the last row of the Dataset.
+rpush(row, tags=[])
+Adds a row to the end of the Dataset. See :method:'Dataset.insert' for additional documentation.
+rpush_col(col, header=None)
+Adds a column to the end of the Dataset. See :method:'Dataset.insert' for additional documentation.
+sort(col, reverse=False)
+Sort a Dataset by a specific column, given string (for header) or integer (for column index). The order can be reversed by setting reverse to True.
+Returns a new Dataset instance where columns have been sorted.
+stack(other)
+Stack two Dataset instances together by joining at the row level, and return new combined Dataset instance.
+stack_cols(other)
+Stack two Dataset instances together by joining at the column level, and return Tablib Documentation, Release 3.0.1.dev3+g7035d79
+
+a new combined Dataset instance. If either Dataset has headers set, than the other must as well.
+subset(rows=None, cols=None)
+Returns a new instance of the Dataset, including only specified rows and columns.
+transpose()
+Transpose a Dataset, turning rows into columns and vice versa, returning a new Dataset instance. The first row of the original instance becomes the new header row.
+width
+The number of columns currently in the Dataset. Cannot be directly modified.
+wipe()
+Removes all content and headers from the Dataset object.
+3.1.2 Databook Object
+class tablib.Databook(sets=None) A book of Dataset objects.
+add_sheet(dataset)
+Adds given Dataset to the Databook.
+export(format, **kwargs)
+Export Databook object to format.
+Parameters **kwargs - (optional) custom configuration to the format export_book.
+load(in_stream, format, **kwargs)
+Import in_stream to the Databook object using the format. in_stream can be a file-like object, a string, or a bytestring.
+Parameters **kwargs - (optional) custom configuration to the format import_book.
+size
+The number of the Dataset objects within Databook.
+wipe()
+Removes all Dataset objects from the Databook.
+3.1.3 Functions
+tablib.detect_format(stream)
+Return format name of given stream (file-like object, string, or bytestring).
+tablib.import_set(stream, format=None, **kwargs)
+Return dataset of given stream (file-like object, string, or bytestring).
+3.1. API
+3.1.4 Exceptions exception tablib.exceptions.HeadersNeeded
+     Header parameter must be given when appending a column to this Dataset. exception tablib.exceptions.InvalidDatasetIndex
+Outside of Dataset size.
+exception tablib.exceptions.InvalidDatasetType Only Datasets can be added to a Databook. exception tablib.exceptions.InvalidDimensions
+The size of the column or row doesn't fit the table dimensions.
+exception tablib.exceptions.TablibException
+Tablib common exception.
+exception tablib.exceptions.UnsupportedFormat
+Format not supported.
+Now, go start some Tablib Development.
+
+
+Python Module Index
+
+t
+tablib, 23 tablib.exceptions, 28
+
+Python Module Index
+
+A
+add_formatter()	(tablib.Dataset method), 24
+add_sheet() (tablib.Databook method),
+       27 append() (tablib.Dataset method), 24 append_col() (tablib.Dataset method), 24 append_separator() (tablib.Dataset method), 24
+D
+Databook (class in tablib), 27 Dataset (class in tablib), 23 detect_format() (in module tablib), 27 dict (tablib.Dataset attribute), 24
+E
+export() (tablib.Databook method), 27 export() (tablib.Dataset method), 25 extend() (tablib.Dataset method), 25
+F
+filter() (tablib.Dataset method), 25
+G
+get_col() (tablib.Dataset method), 25
+H
+headers (tablib.Dataset attribute), 25
+HeadersNeeded, 28
+height (tablib.Dataset attribute), 25 I
+import_set() (in module tablib), 27 insert() (tablib.Dataset method), 25 insert_col() (tablib.Dataset method), 25
+Index
+insert_separator() (tablib.Dataset method), 26
+InvalidDatasetIndex, 28
+InvalidDatasetType, 28
+InvalidDimensions, 28
+L
+load() (tablib.Databook method), 27 load() (tablib.Dataset method), 26 lpop() (tablib.Dataset method), 26 lpush() (tablib.Dataset method), 26 lpush_col() (tablib.Dataset method), 26
+P
+pop() (tablib.Dataset method), 26
+Python Enhancement Proposals PEP 20, 5, 19 PEP 8, 22
+R
+remove_duplicates() (tablib.Dataset method), 26
+rpop() (tablib.Dataset method), 26 rpush() (tablib.Dataset method), 26 rpush_col() (tablib.Dataset method), 26
+S
+size (tablib.Databook attribute), 27 sort() (tablib.Dataset method), 26 stack() (tablib.Dataset method), 26 stack_cols() (tablib.Dataset method), 26 subset() (tablib.Dataset method), 27
+T
+tablib (module), 23 tablib.exceptions (module), 28
+
+TablibException, 28
+transpose() (tablib.Dataset method), 27
+U
+UnsupportedFormat, 28
+W
+width (tablib.Dataset attribute), 27 wipe() (tablib.Databook method), 27 wipe() (tablib.Dataset method), 27
+Index
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tablib Documentation, Release 3.0.1.dev3+g7035d79
+
+
+
+2
+
+1
+
+
+
+1
+
+Tablib Documentation, Release 3.0.1.dev3+g7035d79
+
+Tablib Documentation, Release 3.0.1.dev3+g7035d79
+
+6	Chapter 2. User's Guide
+
+1
+
+Tablib Documentation, Release 3.0.1.dev3+g7035d79
+
+6	Chapter 2. User's Guide
+
+Tablib Documentation, Release 3.0.1.dev3+g7035d79
+
+
+
+24	Chapter 3. API Reference
+
+1
+
+
+
+1
+
+Tablib Documentation, Release 3.0.1.dev3+g7035d79
+
+
+
+2
+
+1
+
+Tablib Documentation, Release 3.0.1.dev3+g7035d79
+
+2
+

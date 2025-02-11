@@ -1,0 +1,3646 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI Symbol";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.4pt;
+	margin-left:18.5pt;
+	text-indent:-.5pt;
+	line-height:112%;
+	font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:11.1pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	color:black;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Arial",sans-serif;
+	color:black;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:72.25pt 72.3pt 74.6pt 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+@page WordSection2
+	{size:8.5in 11.0in;
+	margin:72.25pt 72.3pt 83.0pt 1.0in;}
+div.WordSection2
+	{page:WordSection2;}
+@page WordSection3
+	{size:8.5in 11.0in;
+	margin:72.25pt 72.1pt 74.6pt 1.0in;}
+div.WordSection3
+	{page:WordSection3;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.1pt;
+margin-left:0in;text-indent:0in;line-height:114%'>The Command Line Crash
+Course: <a href="http://cli.learncodethehardway.org/book/"><span
+style='color:purple'>http://cli.learncodethehardway.org/book/</span></a><a
+href="http://cli.learncodethehardway.org/book/"><span style='color:black;
+text-decoration:none'> </span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Table Of Contents </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Preface </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Introduction: Shut Up And Shell </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The Setup </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Paths, Folders, Directories (pwd) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>What's Your Computer's Name? (hostname) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>7.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Make A Directory (mkdir) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>8.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Change Directory (cd) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>9.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>List Directory (ls) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>10.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Remove Directory (rmdir) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>11.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Moving Around (pushd, popd) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>12.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Making Empty Files (Touch, New-Item) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>13.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Copy A File (cp) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>14.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Moving A File (mv) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>15.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>View A File (less, MORE) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>16.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Stream A File (cat) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>17.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Removing A File (rm) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>18.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Pipes And Redirection </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>19.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Wildcard Matching </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>20.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Finding Files (find, DIR -R) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>21.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Looking Inside Files (grep, select-string) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>22.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Getting Command Help (man, HELP) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>23.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Finding Help (apropos, HELP) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>24.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>What's In Your Environment (env, echo, Env:) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:1.0in;text-indent:-.75in'><span style='line-height:112%'>25.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Changing Environment Variables (export, Env:) </p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.75in'><span
+style='line-height:112%'>26.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Exiting Your Terminal (exit) </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;margin-left:
+-.25pt'>Preface </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>I wrote this book really quickly as a way to bootstrap
+students for my other books. Many students don't know how to use the basics of
+the command line interface, and it was getting in the way of their learning.
+This book is designed to be something they can complete in about a day to a
+week and then get enough skill at the command line to graduate to other books. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:.5in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:-.25pt'>This book isn't a book about master wizardry system
+administration. It's just a quick introduction to get newbies going </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;margin-left:
+-.25pt'>Introduction: Shut Up And Shell </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>This book is a crash course in using the command line to
+make your computer perform tasks. As a crash course, it's not as detailed or
+extensive as my other books. It is simply designed to get you barely capable
+enough to start using your computer like a real programmer does. When you're
+done with this book, you will be able to give most of the basic commands that
+every shell user touches every day. You'll understand the basics of directories
+and a few other concepts. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>The only piece of advice I am going to give you is this: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Shut up and type all of this in. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.4pt;
+margin-left:-.25pt'>Sorry to be mean, but that's what you have to do. If you
+have an irrational fear of the command line, the only way to conquer an
+irrational fear is to just shut up and fight through it. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>You are not going to destroy your computer. You are not
+going to be thrown into some jail at the bottom of Microsoft's Redmond campus.
+Your friends won't laugh at you for being a nerd. Simply ignore any stupid
+weird reasons you have for fearing the command line. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.15pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Why? Because if you want to learn to code, then you must
+learn this. Programming languages are advanced ways to control your computer
+with language. The command line is the baby little brother of programming
+languages. Learning the command line teaches you to control the computer using
+language. Once you get past that, you can then move on to writing code and
+feeling like you actually own the hunk of metal you just bought. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;margin-left:
+-.25pt'>How To Use This Book </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>The best way to use this book is to do the following: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.15pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Get yourself a small paper notebook and a pen. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:-.25pt'>Start at the beginning of the book and do each exercise
+exactly as you're told. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>When you read something that doesn't make sense or that you
+don't understand, write it down in your notebook. Leave a little space so you
+can write an answer. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>After you finish an exercise, go back through your notebook
+and review the questions you have. Try to answer them by searching online and
+asking friends who might know the answer. Email me at
+help@learncodethehardway.org and I'll help you too. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Just keep going through this process of doing an exercise,
+writing down questions you have, then going back through and answering the
+questions you can. By the time you're done, you'll actually know a lot more
+than you think about using the command line. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;margin-left:
+-.25pt'>You Will Be Memorizing Things </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:-.25pt'>I'm warning you ahead of time that I'm going to make you
+memorize things right away. This is the quickest way to get you capable at
+something, but for some people memorization is painful. Just fight through it
+and do it anyway. Memorization is an important skill in learning things, so you
+should get over your fear of it. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:-.25pt;line-height:107%'><b>Here's how you memorize things: </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Tell yourself you will do it. Don't try to find tricks or
+easy ways out of it, just sit down and do it. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>Write what you want to memorize on some index cards. Put
+one half of what you need to learn on one side, then another half on the other
+side. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>Every day for about 15-30 minutes, drill yourself on the
+index cards, trying to recall each one. Put any cards you don't get right into
+a different pile, just drill those cards until you get bored, then try the
+whole deck and see if you improve. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Before you go to bed, drill just the cards you got wrong
+for about 5 minutes, then go to sleep. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>There's other techniques, like you can write what you need
+to learn on a sheet of paper, laminate it, then stick it to the wall of your
+shower. While you're bathing drill the knowledge without looking, and when you
+get stuck glance at it to refresh your memory. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>If you do this every day, you should be able to memorize
+most things I tell you to memorize in about a week to a month. Once you do,
+nearly everything else becomes easier and intuitive, which is the purpose of
+memorization. It's not to teach you abstract concepts, but rather to ingrain
+the basics so that they are intuitive and you don't have to think about them.
+Once you've memorized these basics they stop being speed bumps preventing you
+from learning more advanced abstract concepts. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.15pt;margin-left:
+-.25pt'>License </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>I (Zed A. Shaw) own the copyright on this book. You are
+free to give it to anyone you want, as long as you don't modify it and you
+don't make any money from the distribution of the book. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.15pt;
+margin-left:.5in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Thanks </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Thanks to Lauren Buchsbaum for
+editing this book and providing me with feedback. Also thanks to the many
+students who read the book and provided feedback. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;margin-left:
+-.25pt'>The Setup </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>In this book you will be instructed to do three things: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do some things in your shell
+(command line, Terminal, PowerShell). </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Learn about what you just did. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do more on your own. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>For this first exercise you'll be
+expected to get your Terminal open and working so that you can do the rest of
+the book. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Get your terminal, shell, PowerShell working so you can
+access it quickly and know that it works. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.15pt;margin-left:
+-.25pt'>Mac OSX </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>For Mac OSX you'll need to do this: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.15pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Hold down COMMAND and hit the spacebar. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>In the top right the blue &quot;search bar&quot; will pop
+up. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Type: terminal </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>Click on the Terminal application that looks kind of like a
+black box. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>This will open Terminal. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>You can now go to your Dock and CTRL-click to pull up the
+menu, then select Options-&gt;Keep In Dock. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:14.55pt;margin-bottom:
+10.4pt;margin-left:-.25pt'>Now you have your Terminal open and it's in your
+Dock so you can get to it.  </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;margin-left:
+-.25pt'>Linux </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>I'm assuming that if you have Linux then you already know
+how to get at your terminal. Look through the menu for your window manager for
+anything named &quot;Shell&quot; or &quot;Terminal&quot;. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;margin-left:
+-.25pt'>Windows </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.4pt;
+margin-left:-.25pt'>On Windows we're going to use PowerShell. People used to
+work with a program called cmd.exe, but it's not nearly as usable as
+PowerShell. If you have Windows 7 or later, do this: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Click Start. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:152.6pt;margin-bottom:
+.45pt;margin-left:-.25pt'>In &quot;Search programs and files&quot; type:
+powershell Hit Enter. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>If you don't have Windows 7, you should seriously consider
+upgrading. If you still insist on not upgrading then you can try installing it </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>http://www.microsoft.com/en-us/download/details.aspx?id=7217
+. You are on your own, though, since I don't have Windows XP, but hopefully the
+PowerShell experience is the same. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>You Learned This </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>You learned how to get your terminal open so you can do the
+rest of this book. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.15pt;margin-left:
+-.25pt'>Note </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>If you have that really smart friend who already knows
+Linux, ignore them when they tell you to use something other than bash. I'm
+teaching you bash. That's it. They will claim that zsh will give you 30 more IQ
+points and win you millions in the stock market. Ignore them. Your goal is to
+get capable enough and at this level it doesn't matter which shell you use. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>The next warning is stay off IRC
+or other places where &quot;hackers&quot; hang out. They think it's funny to
+hand you commands that can destroy your computer. The command rm -rf / is a
+classic that you must never type. Just avoid them. If you need help, make sure
+you get it from someone you trust and not from random idiots on the internet. </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.15pt;margin-left:
+-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>This exercise has a large &quot;do more&quot; part. The
+other exercises are not as involved as this one, but I'm having you prime your
+brain for the rest of the book by doing some memorization. Just trust me, this
+will make things silky smooth later on. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;margin-left:
+-.25pt'>Linux/Mac OSX </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.4pt;
+margin-left:-.25pt'>Take this list of commands and create index cards with the
+names on the left on one side, and the definitions on the other side. Drill
+them every day while you do this book for just 15 minutes or so. </p>
+
+</div>
+
+<span style='font-size:14.0pt;line-height:112%;font-family:"Arial",sans-serif;
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div class=WordSection2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:-.25pt'>pwd </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.0pt;margin-bottom:.45pt;
+margin-left:-.25pt'>print working directory hostname my computer's network name
+mkdir make directory cd </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>change directory </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:49.55pt;margin-bottom:
+.35pt;margin-left:-.25pt'>ls list directory rmdir remove directory pushd push
+directory popd pop directory cp copy a file or directory mv </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:44.8pt;margin-bottom:
+.35pt;margin-left:-.25pt'>move a file or directory less page through a file cat
+print the whole file </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>xargs </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:-.25pt'>execute arguments </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>find </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:82.5pt;margin-bottom:
+.4pt;margin-left:-.25pt'>find files grep find things inside files </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.75pt;margin-bottom:
+.45pt;margin-left:-.25pt'>man read a manual page apropos find what man page is
+appropriate env look at your environment echo print some arguments export
+export/set a new environment </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:137.65pt;margin-bottom:
+.35pt;margin-left:-.25pt'>variable exit exit the shell sudo </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>DANGER! become super user root DANGER! chmod change
+permission modifiers chown change ownership </p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 align=left
+ width=629 style='width:471.5pt;border-collapse:collapse;margin-left:-2.25pt;
+ margin-right:-2.25pt'>
+ <tr style='height:34.15pt'>
+  <td width=491 valign=top style='width:368.05pt;padding:0in 103.45pt 0in 0in;
+  height:34.15pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><b>Windows </b></p>
+  <p class=MsoNormal style='margin:0in;text-align:justify;text-justify:inter-ideograph;
+  text-indent:0in;line-height:107%'>If you're using Windows then here's your
+  list of commands: </p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>pwd </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.0pt;margin-bottom:.5pt;
+margin-left:-.25pt'>print working directory hostname my computer's network name
+mkdir make directory cd </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>change directory </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:49.55pt;margin-bottom:
+.35pt;margin-left:-.25pt'>ls list directory rmdir remove directory pushd push
+directory popd pop directory cp copy a file or directory robocopy robust copy
+mv </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:44.8pt;margin-bottom:
+.5pt;margin-left:-.25pt'>move a file or directory more page through a file type
+</p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>print the whole file </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:28.95pt;margin-bottom:
+.35pt;margin-left:-.25pt'>forfiles run a command on lots of files </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.75pt;margin-bottom:
+.45pt;margin-left:-.25pt'>dir -r find files select-string find things inside
+files help read a manual page helpctr find what man page is appropriate echo
+print some arguments set export/set a new environment </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:137.65pt;margin-bottom:
+.35pt;margin-left:-.25pt'>variable exit exit the shell runas </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>DANGER! become super user root DANGER! attrib </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:37.4pt;margin-bottom:
+.35pt;margin-left:-.25pt'>change permission modifiers iCACLS change ownership </p>
+
+</div>
+
+<span style='font-size:14.0pt;line-height:112%;font-family:"Arial",sans-serif;
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div class=WordSection3>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Drill, drill, drill! Drill until
+you can say these phrases right away when you see that word. Then drill the
+inverse, so that you read the phrase and know what command will do that. You're
+building your vocabulary by doing this, but don't spend so much time you go
+nuts and get bored. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-left:-.25pt'>What's Your Computer's Name? (hostname) </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>$ hostname </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Zeds-MacBook-Pro.local </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>&gt; hostname </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>zed-PC </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>&gt; </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;margin-left:
+-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>This is the name of your computer, or at least one of its
+names. Your name will probably be different than mine, and it could be just
+about anything. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.15pt;
+margin-left:-.25pt;line-height:107%'><b>Do More </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Just like the last exercise, type this command 20 times and
+say it out loud. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;margin-left:
+-.25pt'>Make A Directory (mkdir) </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>$ mkdir temp </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>$ mkdir temp/stuff </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>$ mkdir temp/stuff/things </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>$ mkdir -p temp/stuff/things/frank/joe/alex/john </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>&gt; mkdir temp </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>    Directory: C:\Users\zed </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>Mode                LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>----                -------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>d----        12/17/2011   9:02 AM            temp </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>&gt; mkdir temp/stuff </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.15pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Mode                LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:203.3pt;margin-bottom:
+.35pt;margin-left:-.25pt'>----                -------------     ------ ----
+d----        12/17/2011   9:02 AM            stuff </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.15pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>&gt; mkdir temp/stuff/things </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>    Directory: C:\Users\zed\temp\stuff </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Mode                LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:192.3pt;margin-bottom:
+.45pt;margin-left:-.25pt'>----                -------------     ------ ----
+d----        12/17/2011   9:03 AM            things </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>&gt; mkdir temp/stuff/things/frank/joe/alex/john </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\stuff\things\frank\joe\alex Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:203.2pt;margin-bottom:
+.35pt;margin-left:-.25pt'>----                -------------     ------ ----
+d----        12/17/2011   9:03 AM            john </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.15pt;margin-left:
+-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>Now we get into typing more than one command. These are all
+the different ways you can run mkdir. What's mkdir do? It make directories. Why
+are you asking that? You should be doing your index cards and getting your
+commands memorized. If you don't know that &quot;mkdir makes directories&quot;
+then keep working the index cards. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>What does it mean to make a directory? You might call
+directories &quot;folders.&quot; They're the same thing. All you did above is
+create directories inside directories inside of more directories. This is
+called a &quot;path&quot; and it's a way of saying &quot;first temp, then
+stuff, then things and that's where I want it.&quot; It's a set of directions
+to the computer of where you want to put something in the tree of folders
+(directories) that make up your computer's hard disk. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.25pt'>Note </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>In this book I'm using the / (slash) character for all
+paths since they work the same on all computers now. However, Windows users
+will need to know that you can also use the \ (backslash) characters and other
+Windows users will typically expect those at times. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:1.05pt;margin-left:
+-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>The concept of a &quot;path&quot; might confuse you at this
+point. Don't worry. We'll do a lot more with them and then you'll get it. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>Make 20 other directories inside the temp directory in
+various levels. Go look at them with a graphical file browser. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt'>Make a directory with a space in the name by putting quotes
+around it: mkdir &quot;I Have Fun&quot; </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt'>If the temp directory already exists then you'll get an
+error. Use cd to change to a work directory that you can control and try it
+there. On windows Desktop is a good place. </p>
+
+<h1 style='margin-left:-.25pt'>Paths, Folders, Directories (pwd) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>I'm going to teach you how to
+read these &quot;sessions&quot; that I show you. You don't have to type
+everything I list here, just some of the parts: </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You do not type in the $ (unix)
+or &gt; (Windows). That's just me showing you my session so you can see what I
+got. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You type in the stuff after $ or
+&gt;, then hit enter. So if I have $ pwd you type just pwd and hit enter. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You can then see what I have for
+output followed by another $ or &gt; prompt. That content is the output and you
+should see the same output. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Let's do a simple first command
+so you can get the hang of this: </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>/Users/zedshaw </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>PS C:\Users\zed&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>PS C:\Users\zed&gt; </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Note </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>In this book I need to save space
+so that you can focus on the important details of the commands. To do this, I'm
+going to strip out the first part of the prompt (the PS C:\Users\zed above) and
+leave just the little &gt; part. This means your prompt won't look exactly the
+same, but don't worry about that. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Remember that from now on I'll
+only have the &gt; to tell you that's the prompt. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>I'm doing the same thing for the
+Unix prompts, but Unix prompts are so varied that most people get used to $
+meaning &quot;just the prompt&quot;. </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Your prompt will look different
+from mine. You may have your user name before the $ and the name of your
+computer. On Windows it will probably look different too. The key is that you
+see the pattern of: </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>There's a prompt. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You type a command there. In this
+case, it's pwd. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>It printed something. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Repeat. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You just learned what pwd does,
+which means &quot;print working directory.&quot; What's a directory? It's a
+folder. Folder and directory are the same thing, and they're used
+interchangeably. When you open your file browser on your computer to
+graphically find files, you are walking through folders. Those folders are the
+exact same things as these &quot;directories&quot; we're going to work with. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Type pwd 20 times and each time
+say &quot;print working directory.&quot; </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Type pwd 20 times and each time
+say &quot;print working directory.&quot; </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Write down the path that this
+command gives you. Find it with your graphical file browser of choice. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>No, seriously, type it 20 times
+and say it out loud. Sssh. Just do it. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>What's Your Computer's Name? (hostname) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ hostname </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Zeds-MacBook-Pro.local </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:343.4pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>&gt; hostname zed-PC </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You Learned This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>This is the name of your
+computer, or at least one of its names. Your name will probably be different
+than mine, and it could be just about anything. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:-.25pt;line-height:107%'><b>Do More </b></p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Just like the last exercise, type
+this command 20 times and say it out loud. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>Make A Directory (mkdir) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ mkdir temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ mkdir temp/stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ mkdir temp/stuff/things </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ mkdir -p
+temp/stuff/things/frank/joe/alex/john </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; mkdir temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>d----        12/17/2011   9:02
+AM            temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; mkdir temp/stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:203.3pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>----                -------------    
+------ ---- d----        12/17/2011   9:02 AM            stuff &gt; mkdir
+temp/stuff/things </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:192.3pt;margin-bottom:
+10.4pt;margin-left:-.25pt;line-height:177%'>----               
+-------------     ------ ---- d----        12/17/2011   9:03 AM           
+things &gt; mkdir temp/stuff/things/frank/joe/alex/john </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\stuff\things\frank\joe\alex </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:203.2pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>----                -------------    
+------ ---- d----        12/17/2011   9:03 AM            john </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Now we get into typing more than
+one command. These are all the different ways you can run mkdir. What's mkdir
+do? It make directories. Why are you asking that? You should be doing your
+index cards and getting your commands memorized. If you don't know that
+&quot;mkdir makes directories&quot; then keep working the index cards. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>What does it mean to make a
+directory? You might call directories &quot;folders.&quot; They're the same
+thing. All you did above is create directories inside directories inside of
+more directories. This is called a &quot;path&quot; and it's a way of saying
+&quot;first temp, then stuff, then things and that's where I want it.&quot;
+It's a set of directions to the computer of where you want to put something in
+the tree of folders (directories) that make up your computer's hard disk. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Note </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>In this book I'm using the /
+(slash) character for all paths since they work the same on all computers now.
+However, Windows users will need to know that you can also use the \
+(backslash) characters and other Windows users will typically expect those at
+times. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:30.85pt;text-indent:-.25in;line-height:107%'><span
+style='line-height:107%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The concept of a &quot;path&quot; might confuse you at this
+point. Don't worry. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.45pt;
+margin-left:36.5pt'>We'll do a lot more with them and then you'll get it. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:30.85pt;text-indent:-.25in;line-height:107%'><span
+style='line-height:107%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Make 20 other directories inside the temp directory in various
+levels. </p>
+
+<p class=MsoNormal style='margin-left:36.5pt'>Go look at them with a graphical
+file browser. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:30.85pt;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Make
+a directory with a space in the name by putting quotes around it: mkdir &quot;I
+Have Fun&quot; </p>
+
+<p class=MsoNormal style='margin-left:30.85pt;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>If the temp directory already exists then you'll get an error.
+Use cd to change to a work directory that you can control and try it there. On
+windows Desktop is a good place. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           <br
+clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>Change Directory (cd) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.55pt;
+margin-left:-.25pt'>I'm going to give you the instructions for these sessions
+one more time: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>You
+do not type in the $ (unix) or &gt; (Windows). </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>You
+type in the stuff after this, then hit enter. If I have $ cd temp you just type
+cd temp and hit enter. </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The output comes after you hit enter, followed by another $ or
+&gt; prompt. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd things </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/stuff/things </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd frank/ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/stuff/things/frank </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd joe/ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/stuff/things/frank/joe </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd alex/ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/stuff/things/frank/joe/alex
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd john/ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:223.8pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:177%'>~/temp/stuff/things/frank/joe/alex/john
+$ cd .. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:418.0pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>$ cd .. $ pwd </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:283.8pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>~/temp/stuff/things/frank/joe $ cd .. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:353.0pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>$ cd .. $ pwd ~/temp/stuff/things </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd ../../.. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd
+temp/stuff/things/frank/joe/alex/john </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/stuff/things/frank/joe/alex/john
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd ../../../../../../../ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\temp\stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd things </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\temp\stuff\things </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd frank </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\temp\stuff\things\frank
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd joe </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\temp\stuff\things\frank\joe
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd alex </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\temp\stuff\things\frank\joe\alex
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd john </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:150.65pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>C:\Users\zed\temp\stuff\things\frank\joe\alex\john
+&gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\temp\stuff\things\frank
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd ../.. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:309.45pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>C:\Users\zed\temp\stuff &gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd
+temp/stuff/things/frank/joe/alex/john </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd ../../../../../../../ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You made all these directories in
+the last exercise, and now you're just moving around inside them with the cd
+command. In my session above I also use pwd to check where I am, so remember
+not to type the output that pwd prints. For example, on line 3 you see ~/temp
+but that's the output of pwd from the prompt above it. Do not type this in. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You should also see how I use the
+.. to move &quot;up&quot; in the tree and path. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>A very important part of learning
+to the use command line interface (CLI) on a computer with a graphical user
+interface (GUI) is figuring out how they work together. When I started using
+computers there was no &quot;GUI&quot; and you did everything with the DOS
+prompt (the CLI). Later, when computers became powerful enough that everyone
+could have graphics, it was simple for me to match CLI directories with GUI
+windows and folders. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Most people today, however, have
+no comprehension of the CLI, paths, and directories. In fact, it's very
+difficult to teach it to them and the only way to learn about the connection is
+for you to constantly work with the CLI until one day it clicks that things you
+do in the GUI will show up in the CLI. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>The way you do this is by
+spending some time finding directories with your GUI file browser, and then
+going to them with your CLI. This is what you'll do next. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>cd
+to the joe directory with one command. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>cd
+back to temp with one command, but not further above that. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Find
+out how to cd to your &quot;home directory&quot; with one command. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>cd
+to your Documents directory, then find it with your GUI file browser (Finder,
+Windows Explorer, etc.). </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>cd
+to your Downloads directory, then find it with your file browser. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Find
+another directory with your file browser, then cd to it. </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Remember when you put quotes around a directory with spaces in
+it? You can do that with any command. For example, if you have a directory I
+Have Fun, then you can do: cd &quot;I Have Fun&quot; </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>List Directory (ls) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Before you start, make sure you
+cd back to the directory above temp. If you have no idea where you are, use pwd
+to figure it out and then move there. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd temp </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:415.7pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:176%'>$ ls stuff </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:404.75pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>$ cd stuff $ ls things </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:400.15pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>$ cd things $ ls frank </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:406.4pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:176%'>$ cd frank $ ls joe </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:416.4pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>$ cd joe $ ls alex </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd alex </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd john </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:418.0pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>$ cd .. $ ls john </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:402.45pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>$ cd ../../../ $ ls frank </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:414.2pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:176%'>$ cd ../../ $ ls stuff $ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:203.3pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>----                -------------    
+------ ---- d----        12/17/2011   9:03 AM            stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:192.3pt;margin-bottom:
+10.4pt;margin-left:-.25pt;line-height:177%'>----               
+-------------     ------ ---- d----        12/17/2011   9:03 AM           
+things &gt; cd things </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\stuff\things </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:198.55pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>----                -------------    
+------ ---- d----        12/17/2011   9:03 AM            frank </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd frank </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp\stuff\things\frank
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:211.0pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>----                -------------    
+------ ---- d----        12/17/2011   9:03 AM            joe </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd joe </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\stuff\things\frank\joe </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:203.9pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>----                -------------    
+------ ---- d----        12/17/2011   9:03 AM            alex </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd alex </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:463.95pt;margin-bottom:
+0in;margin-left:0in;text-indent:0in;line-height:176%'>  </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\stuff\things\frank\joe\alex </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:203.2pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>----                -------------    
+------ ---- d----        12/17/2011   9:03 AM            john </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd john </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\stuff\things\frank\joe\alex </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:203.2pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>----               
+-------------     ------ ---- d----        12/17/2011   9:03 AM            john
+&gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\stuff\things\frank\joe </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:203.95pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>----               
+-------------     ------ ---- d----        12/17/2011   9:03 AM            alex
+&gt; cd ../../.. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:180.2pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>d----        12/17/2011   9:03
+AM            things &gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:203.3pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>----                -------------    
+------ ---- d----        12/17/2011   9:03 AM            stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>The ls command lists out the
+contents of the directory you are currently in. You can see me use cd to change
+into different directories and then list what's in them so I know which
+directory to go to next. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>There are a lot of options for
+the ls command, but you'll learn how to get help on those later when we cover
+the help command. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.35pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><i>Type
+every one of these commands in!</i> You have to actually type these to learn
+them. Just reading them is not good enough. I'll stop yelling now. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>On
+Unix, try the ls -lR command while you're in temp. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>On
+Windows do the same thing with dir -R. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.45pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Use
+cd to get to other directories on your computer then use ls to see what's in
+them. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Update
+your notebook with new questions. I know you probably have some, because I'm
+not covering everything about this command. </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Remember that if you get lost, then use ls and pwd to figure out
+where you are, then go to where you need to be with cd. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>Remove Directory (rmdir) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd temp </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:415.7pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>$ ls stuff </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:248.45pt;margin-bottom:
+10.4pt;margin-left:-.25pt;line-height:176%'>$ cd
+stuff/things/frank/joe/alex/john/ $ cd .. $ rmdir john $ cd .. $ rmdir alex $
+cd .. $ ls joe $ rmdir joe $ cd .. $ ls frank $ rmdir frank $ cd .. $ ls things
+$ rmdir things $ cd .. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:415.7pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>$ ls stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ rmdir stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:203.3pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>----                -------------    
+------ ---- d----        12/17/2011   9:03 AM            stuff </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:247.95pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:176%'>&gt; cd
+stuff/things/frank/joe/alex/john/ &gt; cd .. &gt; rmdir john &gt; cd .. &gt;
+rmdir alex &gt; cd .. &gt; rmdir joe &gt; cd .. &gt; rmdir frank &gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:192.3pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>----                -------------    
+------ ---- d----        12/17/2011   9:14 AM            things </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:370.45pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:177%'>&gt; rmdir things &gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:203.3pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>----                -------------    
+------ ---- d----        12/17/2011   9:14 AM            stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; rmdir stuff </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>I'm now mixing up the commands so
+make sure you type them exactly and pay attention. Every time you make a
+mistake, it's because you aren't paying attention. If you find yourself making
+many mistakes, then take a break or just quit for the day. You've always got
+tomorrow to try again. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>In this example you'll learn how
+to remove a directory. It's easy. You just go to the directory right above it,
+then type rmdir DIR, replacing &quot;DIR&quot; with the name of the directory
+to remove. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Make
+20 more directories and remove them all. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Make
+a single path of directories that is 10 deep and remove them one at a time just
+like I did above. </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>If you try to remove a directory with contents you will get an
+error. I'll show you how to remove these in later exercises. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           <br
+clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>Moving Around (pushd, popd) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ mkdir -p i/like/icecream </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pushd i/like/icecream </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/i/like/icecream ~/temp </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:377.7pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>$ popd ~/temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pushd i/like </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/i/like ~/temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/i/like </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pushd icecream </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/i/like/icecream
+~/temp/i/like ~/temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/i/like/icecream </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ popd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/i/like ~/temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/i/like </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ popd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pushd i/like/icecream </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:273.35pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>~/temp/i/like/icecream ~/temp $ pushd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp ~/temp/i/like/icecream </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pushd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/i/like/icecream ~/temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>~/temp/i/like/icecream </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; mkdir -p i/like/icecream </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\i\like </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>d----        12/20/2011  11:05
+AM            icecream </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pushd i/like/icecream </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; popd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pushd i/like </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\temp\i\like </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pushd icecream </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\temp\i\like\icecream
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; popd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; pwd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Path </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\temp\i\like </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; popd </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You're getting into programmer
+territory with these commands, but they're so handy I have to teach them to
+you. These commands let you temporarily go to a different directory and then
+come back, easily switching between the two. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>The pushd command takes your
+current directory and &quot;pushes&quot; it into a list for later, then it
+changes to another directory. It's like saying, &quot;Save where I am, then go
+here.&quot; </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>The popd command takes the last
+directory you pushed and &quot;pops&quot; it off, taking you back there. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Finally, on Unix pushd, if you
+run it by itself with no arguments, will switch between your current directory
+and the last one you pushed. It's an easy way to switch between two
+directories. This does not work in PowerShell. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Use
+these commands to move around directories all over your computer. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.45pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Remove
+the i/like/icecream directories and make your own, then move around in them. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Explain
+to yourself the output that pushd and popd print out to you. Notice how it
+works like a stack? </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>You already know this, but remember that mkdir -p will make an
+entire path even if all the directories don't exist. That's what I did very
+first for this exercise. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>Making Empty Files (Touch, New-Item) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ touch iamcool.txt </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:389.2pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>$ ls iamcool.txt $ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; New-Item iamcool.txt -type
+file </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/17/2011   9:03
+AM            iamcool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You learned how to make an empty
+file. On Unix touch does this, and it also changes the times on the file. I
+rarely use it for anything other than making empty files. On Windows you don't
+have this command, so you learned how to use the New-Item command, which does
+the same thing but can also make new directories. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Unix: Make a directory, change to it, and then make a file in it.
+Then change one level up and run the rmdir command in this directory. You
+should get an error. Try to understand why you got this error. </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Windows: Do the same thing, but you won't get an error. You'll
+get a prompt asking if you really want to remove the directory </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           <br
+clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>Copy A File (cp) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cp iamcool.txt neat.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>iamcool.txt neat.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cp neat.txt awesome.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>awesome.txt iamcool.txt    
+neat.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cp awesome.txt
+thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>awesome.txt               
+iamcool.txt             neat.txt                thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ mkdir something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cp awesome.txt something/ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:36.85pt;margin-bottom:
+3.25pt;margin-left:-.25pt;line-height:156%'>awesome.txt               
+iamcool.txt             neat.txt                something              
+thefourthfile.txt $ ls something/ awesome.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cp -r something newplace </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:296.65pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>$ ls newplace/ awesome.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cp iamcool.txt neat.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 iamcool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 neat.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cp neat.txt awesome.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 awesome.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 iamcool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 neat.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cp awesome.txt
+thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 awesome.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 iamcool.txt -a---        12/22/2011   4:49 PM          0 neat.txt
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; mkdir something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>d----        12/22/2011   4:52
+PM            something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cp awesome.txt something/ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>d----        12/22/2011   4:52
+PM            something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 awesome.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 iamcool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 neat.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 awesome.txt </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cp -recurse something
+newplace </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls newplace </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\newplace </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 awesome.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Now you can copy files. It's
+simple to just take a file and copy it to a new one. In this exercise I also
+make a new directory and copy a file into that directory. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>I'm going to tell you a secret
+about programmers and system administrators now. They are lazy. I'm lazy. My
+friends are lazy. That's why we use computers. We like to make computers do
+boring things for us. In the exercises so far you have been typing repetitive
+boring commands so that you can learn them, but usually it's not like this.
+Usually if you find yourself doing something boring and repetitive there's
+probably a programmer who has figured out how to make it easier. You just don't
+know about it. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>The other thing about programmers
+is they aren't nearly as clever as you think. If you overthink what to type,
+then you'll probably get it wrong. Instead, try to imagine what the name of a
+command is to you and try it. Chances are that it's a name or some abbreviation
+similar to what you thought it was. If you still can't figure it out
+intuitively, then ask around and search online. Hopefully it's not something
+really stupid like ROBOCOPY. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in;line-height:107%'><span style='line-height:
+107%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Use the cp -r command to copy more directories with files in
+them. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Copy
+a file to your home directory or desktop. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Find
+these files in your graphical user interface and open them in a text editor. </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Notice how sometimes I put a / (slash) at the end of a directory?
+That makes sure the file is really a directory, so if the directory doesn't
+exist I'll get an error. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           <br
+clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>Moving A File (mv) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ mv awesome.txt uncool.txt </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:333.3pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:177%'>$ ls newplace    uncool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ mv newplace oldplace </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:340.35pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>$ ls oldplace    uncool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ mv oldplace newplace </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:337.25pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>$ ls newplace   uncool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; mv awesome.txt uncool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:140.05pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>d----        12/22/2011   4:52
+PM            newplace d----        12/22/2011   4:52 PM            something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 iamcool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 neat.txt -a---        12/22/2011   4:49 PM          0
+thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 uncool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; mv newplace oldplace </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:147.0pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>d----        12/22/2011   4:52
+PM            oldplace d----        12/22/2011   4:52 PM            something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 iamcool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 neat.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 uncool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; mv oldplace newplace </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls newplace </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory:
+C:\Users\zed\temp\newplace </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 awesome.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:140.05pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>d----        12/22/2011   4:52
+PM            newplace d----        12/22/2011   4:52 PM            something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 iamcool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 neat.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 uncool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Moving files or, rather, renaming
+them. It's easy: give the old name and the new name. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span> Move a file in
+the newplace directory to another directory then move it back. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>View A File (less, MORE) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>To do this exercise you're going
+to do some work using the commands you know so far. You'll also need a text
+editor that can make plain text (.txt) files. Here's what you do: </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Open your text editor and type
+some stuff into a new file. On OSX this could be TextWrangler. On Windows this
+might be Notepad++. On Linux this could be GEdit. Any editor will work. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Save that file to your Desktop
+and name it ex12.txt. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>In your shell use the commands
+you know to copy this file to your temp directory that you've been working
+with. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Once you've done that, complete
+this exercise. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ less ex12.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>[displays file here] </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>That's it. To get out of less
+just type q (as in quit). </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; more ex12.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>[displays file here] </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Note </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>In the above output I'm showing
+[displays file here] to &quot;abbreviate&quot; what that program shows. I'll do
+this when I mean to say, &quot;Showing you the output of this program is too
+complex, so just insert what you see on your computer here and pretend I did
+show it to you.&quot; Your screen will not actually show this. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>This is one way to look at the
+contents of a file. It's useful because, if the file has many lines, it will
+&quot;page&quot; so that only one screenful at a time is visible. In the
+&quot;Do More&quot; section you'll play with this some more. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Open
+your text file again and repeatedly copy-paste the text so that it's about
+50-100 lines long. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Copy
+it to your temp directory again so you can look at it. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.45pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Now
+do the exercise again, but this time page through it. On Unix you use the
+spacebar and w (the letter w) to go down and up. Arrow keys also work. On
+Windows just hit spacebar to page through. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Look
+at some of the empty files you created too. </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The cp command will overwrite files that already exist so be
+careful copying files around. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           <br
+clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>Stream A File (cat) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You're going to do some more
+setup for this one so you get used to making files in one program and then
+accessing them from the command line. With the same text editor from Exercise
+12, create another file named ex13.txt but this time save it directly to your
+temp directory. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ less ex13.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>[displays file here] </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cat ex13.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>I am a fun guy. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:290.25pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>Don't you know why? Because I make
+poems, that make babies cry. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cat ex12.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Hi there this is cool. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; more ex13.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>[displays file here] </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cat ex13.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>I am a fun guy. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:290.25pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>Don't you know why? Because I make
+poems, that make babies cry. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cat ex12.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Hi there this is cool. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Remember that when I say
+[displays file here] I'm abbreviating the output of that command so I don't
+have to show you exactly everything. </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do you like my poem? Totally
+going to win a Nobel. Anyway, you already know the first command, and I'm just
+having you check that your file is there. Then you cat the file to the screen.
+This command just spews the whole file to the screen with no paging or
+stopping. To demonstrate that, I have you do this to the ex12.txt which should
+just spew a bunch of lines from that exercise. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Make
+a few more text files and work with cat. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Unix:
+Try cat ex12.txt ex13.txt and see what it does. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.85pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Windows:
+Try cat ex12.txt,ex13.txt and see what it does. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>Removing A File (rm) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:78.7pt;margin-bottom:
+5.05pt;margin-left:-.25pt;line-height:145%'>uncool.txt         
+iamcool.txt             neat.txt                something              
+thefourthfile.txt $ rm uncool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>iamcool.txt        
+neat.txt                something               thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ rm iamcool.txt neat.txt
+thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cp -r something newplace </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ rm something/awesome.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ rmdir something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ rm -rf newplace </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:463.95pt;margin-bottom:
+0in;margin-left:0in;text-indent:0in;line-height:176%'>  </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:140.05pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>d----        12/22/2011   4:52
+PM            newplace d----        12/22/2011   4:52 PM            something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 iamcool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 neat.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 uncool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; rm uncool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:140.05pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>d----        12/22/2011   4:52
+PM            newplace d----        12/22/2011   4:52 PM            something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 iamcool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 neat.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   4:49
+PM          0 thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; rm iamcool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; rm neat.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; rm thefourthfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:140.05pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>d----        12/22/2011   4:52
+PM            newplace d----        12/22/2011   4:52 PM            something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cp -r something newplace </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; rm something/awesome.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; rmdir something </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; rm -r newplace </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Here we clean up the files from
+the last exercise. Remember when I had you try to rmdir on a directory with
+something in it? Well that failed because you can't remove a directory with
+files in it. To do that you have to remove the file, or recursively delete all
+of its contents. That's what you did at the end of this. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Clean
+up everything in temp from all the exercises so far. </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Write in your notebook to be careful when running recursive
+remove on files. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>Pipes And Redirection </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cat ex12.txt ex13.txt | less </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:364.65pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>$ cat &lt; ex13.txt I am a fun guy. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:317.65pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>Don't you know why? Because I make
+poems, that make babies cry. $ less &lt; ex12.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ less &lt; ex12.txt | cat | less
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cat ex13.txt &gt; ex15.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cat ex15.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>I am a fun guy. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:290.25pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>Don't you know why? Because I make
+poems, that make babies cry. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cat ex12.txt,ex13.txt | more
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; echo &quot;I am a new
+file.&quot; &gt; ex15.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cat ex15.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>I am a new file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cat ex15.txt &gt;
+another.txt </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:359.25pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>&gt; cat another.txt I am a new file.
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cat ex15.txt | more </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Now we get to the cool part of
+the command line: redirection. The concept is that you can take a command and
+you can change where its input and output goes. You use the &lt; (less-than),
+&gt; (greater-than), and | (pipe) symbols to do this. Here's a breakdown: </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$|$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>The | takes the output from the
+command on the left, and &quot;pipes&quot; it to the command on the right. In
+line 1 you see me do that. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$&lt;$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>The &lt; will take and send the
+input from the file on the right to the program on the left. You see me do that
+in line 2. This does not work in PowerShell. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$&gt;$ </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:56.5pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>The &gt; takes the output of the
+command on the left, then writes it to the file on the right. You see me do
+that on line 9. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$&gt;&gt;$ </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:31.05pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>The &gt;&gt; takes the output of the
+command on the left, then appends it to the file on the right. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>There are a few more symbols, but
+we'll start with just these for now. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:10.75pt;
+margin-bottom:0in;margin-left:0in;text-align:right;text-indent:0in;line-height:
+107%'><span style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span>
+Create some more index cards for memorizing these three symbols. </p>
+
+<p class=MsoNormal style='margin-left:36.5pt'>Write the symbol on one side,
+then what it does on the other side. Drill these just like the other commands. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           <br
+clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>Wildcard Matching </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls *.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>ex12.txt    ex13.txt       
+ex14.txt        uncool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls ex*.* </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>ex12.txt    ex13.txt       
+ex14.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls e* </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>ex12.txt    ex13.txt       
+ex14.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls *t </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>ex12.txt    ex13.txt       
+ex14.txt        uncool.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cat *.txt &gt; bigfile.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ rm *.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cd temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls *.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   5:23
+PM         38 another.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   5:23
+PM         38 ex15.txt </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls ex*.* </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode                LastWriteTime    
+Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   5:23
+PM         38 ex15.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls e* </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   5:23
+PM         38 ex15.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls *t </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>    Directory: C:\Users\zed\temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Mode               
+LastWriteTime     Length Name </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----               
+-------------     ------ ---- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   5:23
+PM         38 another.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>-a---        12/22/2011   5:23
+PM         38 ex15.txt </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; cat *.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>I am a new file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>I am a new file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; rm *.txt </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; ls </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Sometimes you want to do a
+command to a set of files all at once. The way you do this is to use the *
+(asterisk) symbol to say &quot;anything.&quot; Wherever you put the asterisk,
+the shell will build a list of all the files that match the non-asterisk part. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>In this exercise you list out
+various files that you've made so far. I have a few extra that were hanging out
+in my directory, and you might have others. The key is that, by writing *.txt,
+you are saying &quot;anything ending in .txt&quot;. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>At the end we use rm *.txt to
+remove all of the .txt files in the temp directory. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span> Add the * to
+your deck of flash cards. On the back write: &quot;matches anything in a
+wildcard like *.txt&quot;. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           <br
+clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>Finding Files (find, DIR -R) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>This exercise is going to combine
+three concepts into one single command. I'm going to show you how to find all
+your text files and page through them. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ cd temp </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:296.75pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:176%'>$ find . -name &quot;*.txt&quot;
+-print $ cd .. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:260.5pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>$ find . -name &quot;*.txt&quot;
+-print | less $ cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ find . -name &quot;*.txt&quot;
+-print | less </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:426.95pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>$ &gt; dir -r &gt; cd .. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:341.85pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>&gt; dir -r -filter &quot;*.txt&quot;
+&gt; cd .. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; dir -r | more </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You just learned how to run the
+find (dir -r on Windows) command to search for all files ending in .txt and
+then look at the results with less (more on Windows). </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Here's a breakdown of exactly
+what this does for Unix: </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>First I go to the temp directory. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.35pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Then
+I just do a plain find from there since there's not many .txt files. How
+&quot;find&quot; works is you write in a kind of sentence: &quot;Hey find,
+start here (.) then find files named *.txt and print them&quot;. Thinking about
+commands as if you're telling the computer to do something is a good way to
+remember it. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Next
+I go up one directory and then I do the same command, but this time I pipe the
+output to less. This command could run for a while, so be patient. </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>I then do this again, but this one could take a really long time,
+so feel free to just hit CTRL-c to abort it. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>On Windows it's nearly the same: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.15pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.45pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>I
+just do a plain dir from wherever you are since there's not many .txt files.
+This command says &quot;do a directory listing of this directory and all the
+others under it&quot;, and is called a &quot;recursive&quot; command. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Next
+I go up one directory and then I do the same command, but this time I pipe the
+output to more. This command could run for a while, so be patient. </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>I then do this again, but this one could take a really long time,
+so feel free to just hit CTRL-c to abort it. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.35pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Unix:
+Get your find index card and add this to the description side: &quot;find
+STARTDIR -name WILDCARD -print&quot;. Next time you drill make sure you can say
+that phrase so you remember how find is formatted. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Windows:
+Do the same as above, but write &quot;dir -r -filter&quot; </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>You
+can put any directory where the . (dot) is. Try another directory to start your
+search there. </p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Look for all the video files on your computer starting at the
+home drive and use the &gt; to save the list to a file. Remember how you can do
+SOMECOMMAND &gt; SOMEFILE.txt and it will write the output of SOMECOMMAND to
+the file SOMEFILE.txt? </p>
+
+<h1 style='margin-left:-.25pt'>Looking Inside Files (grep, select-string) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>I'm showing you a little trick
+for typing text into a file very quickly. If you do cat &gt; somefile.txt then
+cat will read whatever you type and then write it to that file. On Windows it's
+done with echo &gt; somefile.txt. The important thing, though, is that you have
+to &quot;close&quot; the file by typing CTRL-d. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>If you can't figure this out just
+use a text editor to make the newfile.txt and oldfile.txt. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:359.35pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:176%'>$ cd temp $ cat &gt; newfile.txt This
+is a new file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>This is a new file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>This is a new file. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:335.85pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>$ cat &gt; oldfile.txt This is a old
+file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>This is a old file. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:294.25pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:176%'>This is a old file. $ grep new *.txt
+newfile.txt:This is a new file. newfile.txt:This is a new file.
+newfile.txt:This is a new file. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:288.05pt;margin-bottom:
+10.4pt;margin-left:-.25pt;line-height:176%'>$ grep old *.txt oldfile.txt:This
+is a old file. oldfile.txt:This is a old file. oldfile.txt:This is a old file. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:281.8pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>$ grep file *.txt newfile.txt:This
+is a new file. newfile.txt:This is a new file. newfile.txt:This is a new file.
+oldfile.txt:This is a old file. oldfile.txt:This is a old file.
+oldfile.txt:This is a old file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>In Windows a similar trick is to
+do echo &gt; somefile.txt and then you'll be prompted for each line. Give an
+empty line to stop entering text. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:347.25pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>&gt; cd temp &gt; echo &gt;
+newfile.txt </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:99.5pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>cmdlet Write-Output at command
+pipeline position 1 Supply values for the following parameters: </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>InputObject[0]: This is a new
+file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>InputObject[1]: This is a new
+file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>InputObject[2]: This is a new
+file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>InputObject[3]: </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; echo &gt; oldfile.txt </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:99.5pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>cmdlet Write-Output at command
+pipeline position 1 Supply values for the following parameters: </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>InputObject[0]: This is a old
+file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>InputObject[1]: This is a old
+file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>InputObject[2]: This is a old
+file. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:282.75pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>InputObject[3]: &gt; select-string
+new *.txt newfile.txt:1:This is a new file. newfile.txt:2:This is a new file.
+newfile.txt:3:This is a new file. &gt; select-string old *.txt
+oldfile.txt:1:This is a old file. oldfile.txt:2:This is a old file. oldfile.txt:3:This
+is a old file. &gt; select-string file *.txt newfile.txt:1:This is a new file.
+newfile.txt:2:This is a new file. newfile.txt:3:This is a new file.
+oldfile.txt:1:This is a old file. oldfile.txt:2:This is a old file.
+oldfile.txt:3:This is a old file. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You made two files that were
+almost the same, except one had &quot;new&quot; and the other had
+&quot;old&quot; in it. Then you searched for different words in those files.
+You can look for words, but you can also find whole sentences in files if you
+put them in quotes. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Use
+quotes to find &quot;new file&quot; and &quot;old file&quot; and &quot;This
+is&quot;. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Take
+the list of videos you created (or any other list) and use it to find some
+videos you want to find. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.4pt;
+margin-left:.5in;text-indent:-.25in;line-height:107%'><span style='line-height:
+107%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Unix: You can use -i to ignore case with grep. Try grep -i new
+*.txt </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           <br
+clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>Getting Command Help (man, HELP) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ man find </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ man less </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ man man </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ man grep </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; help dir </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; help select-string </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; help help </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; help cp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You can use the man command on
+Unix, and the help command in Windows to find information about commands. I've
+been playing a very dirty trick on you this whole time. I could have just told
+you to do this and read about each command rather than memorize what they do.
+But, if I did this, you'd be lost because you wouldn't know the basic commands
+you have to know, or how directories work, or what a wildcard is, etc etc. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Hopefully you forgive me for not
+telling you about this awesome tool until now, but now when you forget what a
+command does, just use the help. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span> Use man or
+help to look at every one of the commands you have in your list to memorize. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>Finding Help (apropos, HELP) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ apropos search </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ apropos find </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ apropos remove </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ apropos directory </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; help *Al* </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; help *Dir* </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; help *Find* </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; help *remove* </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Sometimes you forget the name of
+a command but you know what it does. This command looks through all the help
+files and finds potentially relevant help for you. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Honestly, I only use this out of
+desperation. I first go search online and can usually find a better page
+describing what I want to do. If I still can't figure out what the name of that
+command was then I go through this help list until I see it. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:-.25pt;line-height:107%'><b>Do More </b></p>
+
+<p class=MsoNormal style='margin-bottom:7.85pt'><span style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span>
+Use this to find all the commands in your list as well. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>What's In Your Environment (env, echo, Env:) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ env </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>TERM_PROGRAM=Apple_Terminal </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>TERM=xterm </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>SHELL=/bin/bash </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>OLDPWD=/Users/zed/temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>USER=zed </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>COMMAND_MODE=unix2003 </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>PATH=/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:
+/usr/X11/bin </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>PWD=/Users/zed/ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>LANG=en_US.UTF-8 </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>PS1=$  </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>SHLVL=1 </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>HOME=/Users/zed </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>LOGNAME=zed </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>_=/usr/bin/env </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ env | grep zed </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>OLDPWD=/Users/zed//temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>USER=zed </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>PWD=/Users/zed/ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>HOME=/Users/zed </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:355.35pt;margin-bottom:
+.05pt;margin-left:-.25pt;line-height:176%'>LOGNAME=zed $ echo $USER zed </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ echo $PWD </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>/Users/zed/ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ export TESTING=&quot;1 2
+3&quot; </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ echo $TESTING </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>1 2 3 </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ env | grep TESTING </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>TESTING=1 2 3 </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; get-childitem Env: </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Name                          
+Value </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----                          
+----- </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:102.1pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>ALLUSERSPROFILE               
+C:\ProgramData APPDATA                        C:\Users\zed\AppData\Roaming </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>... </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; $env:PROMPT </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$P$G </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; $env:TEMP </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>C:\Users\zed\AppData\Local\Temp </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; $env:OS </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Windows_NT </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Your shell has these &quot;hidden
+variables&quot; that can change how other programs work. In this exercise I
+first print out my environment, just dumping it to the screen. Then I do it
+again but pipe it through grep to find only the variables with my username in
+them. Finally, I set an environment variable TESTING to &quot;1 2 3&quot;. </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You may not run into this too
+often, but sometimes to get something configured you have to change these. A
+good example is the PATH variable, which determines the search order for other
+commands. Changing your PATH is going to be one of your exercises. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:"Segoe UI Symbol",sans-serif'>&#61623;</span> I want you to
+go online and research how you change your PATH for your computer. Try to do it
+entirely from the CLI. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>Changing Environment Variables (export, Env:) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ export TESTING=&quot;bada bada
+bing&quot; </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:318.2pt;margin-bottom:
+.1pt;margin-left:-.25pt;line-height:176%'>$ echo $TESTING bada bada bing </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ unset TESTING </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ echo $TESTING </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ env | grep TESTING </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; get-childitem Env: </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Name                          
+Value </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>----                          
+----- </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>APPDATA                       
+C:\Users\zed\AppData\Roaming </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>COMPUTERNAME                  
+ZED-PC </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>... </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; $env:TESTING = &quot;bada
+bada bing&quot; </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:325.65pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:176%'>&gt; $env:TESTING bada bada bing </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; remove-item Env:\TESTING </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; get-childitem Env: |
+select-string TESTING </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You can also change an
+environment variable to something else, as well as unset it so it isn't in your
+environment at all. You can't set an environment variable to nothing
+(&quot;&quot;) to remove it. You have to use a command. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.3pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Take
+and list out all the environment variables you've found and then go look up
+what they are online. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.85pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Read
+the man page for env again. What else can it do? </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           <br
+clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>Exiting Your Terminal (exit) </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Do This </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>$ exit </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>&gt; exit </p>
+
+<h1 style='margin-left:-.25pt'>You Learned This </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Your final exercise is how to
+exit a terminal. Again this is very easy, but I'm going to have you do more. </p>
+
+<h1 style='margin-left:-.25pt'>Do More </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>For your last set of exercises
+I'm going to have you use the help system to look up a set of commands you
+should research and learn how to use on your own. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt'>Here's the list for Unix: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Xargs
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Sudo
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Chmod
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.8pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>chown
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.85pt;
+margin-left:-.25pt'>For Windows look up these things: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>forfiles
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>runas
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>attrib
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.95pt;
+margin-left:.5in;text-indent:-.25in'><span style='line-height:112%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>icacls
+</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Find out what these are, play
+with them, and then add them to your index cards. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>Next Steps </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>You have completed the crash
+course. At this point you should be a barely capable shell user. There's a
+whole huge list of tricks and key sequences you don't know yet, and I'm going
+to give you a few final places to go research more. </p>
+
+<h1 style='margin-left:-.25pt'>Unix Bash References </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.6pt;
+margin-left:-.25pt;line-height:135%'>The shell you've been using is called
+Bash. It's not the greatest shell but it's everywhere and has a lot of features
+so it's a good start. Here's a short list of links about Bash you should go
+read: <b>Bash Cheat Sheet </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:46.9pt;margin-bottom:
+5.05pt;margin-left:-.25pt;line-height:145%'>http://cli.learncodethehardway.org/bash_cheat_sheet.pdf
+created by Raphael and CC licensed. <b>Reference Manual </b></p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>http://www.gnu.org/software/bash/manual/bashref.html
+</p>
+
+<h1 style='margin-left:-.25pt'>PowerShell References </h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.1pt;margin-bottom:
+5.05pt;margin-left:-.25pt;line-height:145%'>On Windows there's really only
+PowerShell. Here's a list of useful links for you related to PowerShell: <b>Owner's
+Manual </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:72.45pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:176%'>http://technet.microsoft.com/en-us/library/ee221100.aspx
+<b>Cheat Sheet </b></p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=70
+97 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:-.25pt;line-height:107%'><b>Master Powershell </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:0in;text-indent:0in;line-height:107%'><a
+href="http://powershell.com/cs/blogs/ebook/default.aspx"><span
+style='color:blue'>http://powershell.com/cs/blogs/ebook/default.aspx</span></a><a
+href="http://powershell.com/cs/blogs/ebook/default.aspx"><span
+style='color:black;text-decoration:none'> </span></a></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>           </p>
+
+<h1 style='margin-left:-.25pt'>Go Forth </h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>From now on you shouldn't be
+afraid of using the command line. If you are aspiring to be a programmer, it is
+the best first step to understand how a computer is a &quot;language
+machine.&quot; The shell is much like a tiny little programming language that
+most people can understand easily. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>My advice for getting good at the
+CLI is to force yourself to use it every day, no matter how painful it seems.
+Part of the &quot;pain&quot; is having to remember the commands without a
+visual cue. The advantage of a GUI is that you get a cue from the graphics to
+remind you of how to use the tool. With the CLI you have to dredge every
+command from nothing, which is irritating at first. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.1pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>However, I have a trick for you
+to get over this pain. Create your own cheat sheet of CLI tricks you use all
+the time. Make yourself use the CLI to do things, and when you run into
+something you just have to use again, write it on your cheat sheet. The next
+time you need to do that, look at your cheat sheet and you'll remember. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Eventually you won't need the
+cheat sheet. In fact, I'd say most of my daily shell usage consists of 10
+commands, most of which are in this little book. Memorizing 10 commands is
+really easy, so there's nothing stopping you. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>If you run into trouble with this
+book, feel free to email me at help@learncodethehardway.org and I'll help out. </p>
+
+</div>
+
+</body>
+
+</html>

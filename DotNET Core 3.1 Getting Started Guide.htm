@@ -1,0 +1,2690 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>.NET Core 3.1 Getting Started Guide</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:4.2pt;
+	margin-left:.5pt;
+	text-align:center;
+	text-indent:-.5pt;
+	line-height:109%;
+	page-break-after:avoid;
+	font-size:16.5pt;
+	font-family:"Calibri",sans-serif;
+	color:#252525;
+	font-weight:normal;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:3.4pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:14.5pt;
+	font-family:"Calibri",sans-serif;
+	color:#252525;
+	font-weight:normal;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:7.4pt;
+	margin-left:3.4pt;
+	text-indent:-.5pt;
+	line-height:109%;
+	page-break-after:avoid;
+	font-size:12.5pt;
+	font-family:"Calibri",sans-serif;
+	color:#252525;
+	font-weight:normal;}
+h4
+	{mso-style-link:"Heading 4 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:7.4pt;
+	margin-left:3.4pt;
+	text-indent:-.5pt;
+	line-height:109%;
+	page-break-after:avoid;
+	font-size:12.5pt;
+	font-family:"Calibri",sans-serif;
+	color:#252525;
+	font-weight:normal;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{margin-top:0in;
+	margin-right:7.8pt;
+	margin-bottom:0in;
+	margin-left:1.25pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	font-size:9.5pt;
+	font-family:"Calibri",sans-serif;
+	color:#333333;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{margin-top:0in;
+	margin-right:.75pt;
+	margin-bottom:8.0pt;
+	margin-left:.75pt;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{margin-top:0in;
+	margin-right:.75pt;
+	margin-bottom:8.0pt;
+	margin-left:.75pt;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-link:"Heading 4";
+	font-family:"Calibri",sans-serif;
+	color:#252525;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Calibri",sans-serif;
+	color:#252525;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Calibri",sans-serif;
+	color:#252525;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Calibri",sans-serif;
+	color:#252525;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.0pt 842.0pt;
+	margin:1.0in 48.9pt 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+@page WordSection2
+	{size:595.0pt 842.0pt;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection2
+	{page:WordSection2;}
+@page WordSection3
+	{size:595.0pt 842.0pt;
+	margin:47.9pt 48.1pt 68.2pt 42.55pt;}
+div.WordSection3
+	{page:WordSection3;}
+@page WordSection4
+	{size:595.0pt 842.0pt;
+	margin:12.4pt 42.4pt 44.9pt 50.2pt;}
+div.WordSection4
+	{page:WordSection4;}
+@page WordSection5
+	{size:595.0pt 842.0pt;
+	margin:40.0pt 50.2pt 48.25pt 53.1pt;}
+div.WordSection5
+	{page:WordSection5;}
+@page WordSection6
+	{size:595.0pt 842.0pt;
+	margin:12.4pt 41.05pt 49.15pt 53.1pt;}
+div.WordSection6
+	{page:WordSection6;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:73.85pt;
+margin-left:103.85pt'><img width=324 height=76 id="Group 14224"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image001.gif"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:25.05pt;
+margin-left:142.4pt'><span style='font-size:27.0pt;line-height:107%;color:#333333'>.NET
+Core 3.1</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:420.85pt;
+margin-left:104.95pt'><span style='font-size:23.0pt;line-height:107%;
+color:#333333'>Getting Started Guide</span></p>
+
+<p class=MsoNormal align=right style='margin-bottom:0in;text-align:right'><span
+style='font-size:11.5pt;line-height:107%;color:#333333'>Last Updated:
+2019-12-12</span></p>
+
+</div>
+
+<span style='font-size:11.0pt;line-height:107%;font-family:"Calibri",sans-serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection2>
+
+<p class=MsoNormal style='margin-bottom:0in'>&nbsp;</p>
+
+</div>
+
+<span style='font-size:11.0pt;line-height:107%;font-family:"Calibri",sans-serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection3>
+
+<p class=MsoNormal style='margin-bottom:0in'><span style='font-size:15.5pt;
+line-height:107%;color:#333333'>.NET Core 3.1 Getting Started Guide</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-5.4pt;margin-bottom:
+0in;margin-left:0in'><img width=680 height=1 id="Group 14187"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image002.gif"><br
+clear=all style='page-break-before:always'>
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.2pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:13.5pt;line-height:
+107%;color:#252527'>Legal Notice</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.1pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>Copyright © 2019 Red Hat, Inc.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:9.6pt;margin-bottom:.45pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>The text of and illustrations in this
+document are licensed by Red Hat under a Creative Commons Attribution–Share
+Alike 3.0 Unported license (&quot;CC-BY-SA&quot;). An explanation of CC-BY-SA
+is available at http://creativecommons.org/licenses/by-sa/3.0/</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.1pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>. In accordance with CC-BY-SA, if you
+distribute this document or an adaptation of it, you must provide the URL for
+the original version.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.1pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>Red Hat, as the licensor of this
+document, waives the right to enforce, and agrees not to assert, Section 4d of
+CC-BY-SA to the fullest extent permitted by applicable law.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.1pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>Red Hat, Red Hat Enterprise Linux, the
+Shadowman logo, the Red Hat logo, JBoss, OpenShift, Fedora, the Infinity logo,
+and RHCE are trademarks of Red Hat, Inc., registered in the United States and
+other countries.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.1pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>Linux ® is the registered trademark of
+Linus Torvalds in the United States and other countries.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.1pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>Java ® is a registered trademark of
+Oracle and/or its affiliates.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.1pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>XFS ® is a trademark of Silicon Graphics
+International Corp. or its subsidiaries in the United States and/or other
+countries.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.1pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>MySQL ® is a registered trademark of
+MySQL AB in the United States, the European Union and other countries.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.1pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>Node.js ® is an official trademark of
+Joyent. Red Hat is not formally related to or endorsed by the official Joyent
+Node.js open source or commercial project.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.1pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>The OpenStack ® Word Mark and OpenStack
+logo are either registered trademarks/service marks or trademarks/service marks
+of the OpenStack Foundation, in the United States and other countries and are
+used with the OpenStack Foundation's permission. We are not affiliated with,
+endorsed or sponsored by the OpenStack Foundation, or the OpenStack community.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:29.45pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>All other trademarks are the property of
+their respective owners.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.2pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:13.5pt;line-height:
+107%;color:#252527'>Abstract</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.45pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>.NET Core is a general purpose
+development platform featuring automatic memory management and modern
+programming languages. It allows users to build high-quality applications
+efficiently. .NET Core is available in Red Hat Enterprise Linux and OpenShift Container
+Platform via certified containers. .NET Core offers the following features: The
+ability to follow a microservices-based approach, where some components are
+built with .NET and others with Java, but all can run on a common, supported
+platform in Red Hat Enterprise Linux and OpenShift Container Platform. The
+capacity to more easily develop new .NET Core workloads on Microsoft Windows.
+Customers can deploy and run on either Red Hat Enterprise Linux or Windows
+Server. A heterogeneous data center, where the underlying infrastructure is
+capable of running .NET applications without having to rely solely on Windows
+Server. .NET Core 3.1 is supported on Red Hat Enterprise Linux 7 and</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.25pt;text-indent:-.5pt;line-height:112%'><span style='font-size:
+11.5pt;line-height:112%;color:#333333'>OpenShift Container Platform versions
+3.3 and later.</span></p>
+
+</div>
+
+<span style='font-size:11.0pt;line-height:107%;font-family:"Calibri",sans-serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection4>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:16.95pt;margin-left:.5pt;text-align:right;text-indent:-.5pt;
+line-height:167%'><span style='font-size:9.5pt;line-height:167%;color:#888888'>Table
+of Contents</span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:7.95pt;
+margin-bottom:6.3pt;margin-left:0in;text-align:center'><span style='font-size:
+13.5pt;line-height:107%;color:#333333'>Table of Contents</span></p>
+
+<p class=MsoToc1><a href="#_Toc19992"><span style='color:#333333;text-decoration:
+none'>CHAPTER 1. USING .NET CORE 3.1 ON RED HAT ENTERPRISE LINUX                                                                                                            </span><span style='color:#333333;text-decoration:none'>3</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc19993"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>1.1. INSTALL AND REGISTER RED HAT
+ENTERPRISE LINUX</span><span style='color:black;text-decoration:none'>                                                                                                                             </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>3</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc19994"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>1.2. INSTALL .NET CORE</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                                     </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>4</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc19995"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>1.3. CREATE AN APPLICATION</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                           </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>5</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc19996"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>1.4. PUBLISH APPLICATIONS</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                             </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>5</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc19997"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>1.5. RUN APPLICATIONS ON LINUX
+CONTAINERS</span><span style='color:black;text-decoration:none'>                                                                                                                                           </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>6</span></a></p>
+
+<p class=MsoToc1><a href="#_Toc19998"><span style='color:#333333;text-decoration:
+none'>CHAPTER 2. USING .NET CORE 3.1 ON RED HAT OPENSHIFT CONTAINER PLATFORM                                                                                </span><span style='color:#333333;text-decoration:none'>8</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc19999"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>2.1. INSTALLING IMAGE STREAMS</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                   </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>8</span></a></p>
+
+<p class=MsoToc3><a href="#_Toc20000"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>2.1.1. Install using oc</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                                         </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>8</span></a></p>
+
+<p class=MsoToc3><a href="#_Toc20001"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>2.1.2. Install using script</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                                   </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>8</span></a></p>
+
+<p class=MsoToc3><a href="#_Toc20002"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>2.1.3. Linux/macOS</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                                            </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>8</span></a></p>
+
+<p class=MsoToc3><a href="#_Toc20003"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>2.1.4. Windows</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                                                  </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>9</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc20004"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>2.2. DEPLOYING APPLICATIONS FROM
+SOURCE</span><span style='color:black;text-decoration:none'>                                                                                                                                              </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>9</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc20005"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>2.3. DEPLOYING APPLICATIONS FROM
+BINARY ARTIFACTS</span><span style='color:black;text-decoration:none'>                                                                                                                            </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>9</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc20006"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>2.4. USING A JENKINS SLAVE</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                          </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>10</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc20007"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>2.5. ENVIRONMENT VARIABLES</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                     </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>12</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc20008"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>2.6. SAMPLE APPLICATIONS</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                           </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>15</span></a></p>
+
+<p class=MsoToc3><a href="#_Toc20009"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>2.6.1. s2i-dotnetcore-ex</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                                  </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>15</span></a></p>
+
+<p class=MsoToc3><a href="#_Toc20010"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>2.6.2. s2i-dotnetcore-persistent-ex</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                               </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>15</span></a></p>
+
+<p class=MsoToc1><a href="#_Toc20011"><span style='color:#333333;text-decoration:
+none'>CHAPTER 3. MIGRATING TO .NET CORE 3.1                                                                                                                                                  </span><span style='color:#333333;text-decoration:none'>17</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc20012"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>3.1. MIGRATING FROM PREVIOUS VERSIONS
+OF .NET CORE</span><span style='color:black;text-decoration:none'>                                                                                                                      </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>17</span></a></p>
+
+<p class=MsoToc2><a href="#_Toc20013"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>3.2. MIGRATING FROM .NET FRAMEWORK TO
+.NET CORE 3.1</span><span style='color:black;text-decoration:none'>                                                                                                                   </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>17</span></a></p>
+
+<p class=MsoToc3><a href="#_Toc20014"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>3.2.1. Migration Considerations</span><span
+style='color:black;text-decoration:none'>                                                                                                                                                                     </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>17</span></a></p>
+
+<p class=MsoToc3><a href="#_Toc20015"><span style='font-size:9.5pt;line-height:
+107%;color:#333333;text-decoration:none'>3.2.2. .NET Framework Migration
+Articles</span><span style='color:black;text-decoration:none'>                                                                                                                                                    </span><span style='font-size:9.5pt;line-height:107%;color:#333333;text-decoration:none'>18</span></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<span style='font-size:11.0pt;line-height:107%;font-family:"Calibri",sans-serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal style='margin-bottom:0in'>&nbsp;</p>
+
+<h1><a name="_Toc19992">CHAPTER 1. USING .NET CORE 3.1 ON RED HAT ENTERPRISE
+LINUX</a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+0in;margin-left:3.4pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>This Getting Started
+Guide describes how to install .NET Core 3.1 on Red Hat Enterprise Linux
+(RHEL).</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+22.5pt;margin-left:3.4pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>See </span><a
+href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Red
+Hat Enterprise Linux documentation</span></a><a
+href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'> </span></a><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>for more information
+about RHEL 7.</span></p>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc19993">1.1. INSTALL AND REGISTER
+RED HAT ENTERPRISE LINUX</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+10.0pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Install RHEL 7 using
+one of the following images:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:46.6pt;text-indent:-.5pt;line-height:108%'><img width=6 height=75
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image003.gif"
+align=left hspace=12><a
+href="https://access.redhat.com/downloads/content/69/ver=/rhel---7/7.5/x86_64/product-software"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Red
+Hat Enterprise Linux 7 Server</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:46.6pt;text-indent:-.5pt;line-height:108%'><a
+href="https://access.redhat.com/downloads/content/71/ver=/rhel---7/7.5/x86_64/product-software"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Red
+Hat Enterprise Linux 7 Workstation</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.4pt;
+margin-left:46.6pt;text-indent:-.5pt;line-height:108%'><a
+href="https://access.redhat.com/downloads/content/76/ver=/rhel---7/7.5/x86_64/product-software"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Red
+Hat Enterprise Linux for Scientific Computing</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:61.0pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>See the </span><a
+href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/index"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Red
+Hat Enterprise Linux Installation Guide</span></a><a
+href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/index"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'> </span></a><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>for details on how to
+install RHEL.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:61.0pt;text-indent:-.5pt;line-height:108%'><span style='font-size:
+10.5pt;line-height:108%;color:#252525'>See </span><a
+href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Red
+Hat Enterprise Linux Product Documentation page</span></a><a
+href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'> </span></a><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>for available RHEL
+versions.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.05pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Use the following
+command to register the system.</span></p>
+
+<p class=MsoNormal style='margin-bottom:9.7pt;line-height:108%'>                    <img
+border=0 width=6 height=31 id="Group 14748"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>       $ sudo
+subscription-manager register</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><a
+href="https://access.redhat.com/documentation/en-us/red_hat_subscription_management/1/html/quick_registration_for_rhel/registering-machine-ui"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'>You
+can also register the system by following the appropriate steps in </span></a><a
+href="https://access.redhat.com/documentation/en-us/red_hat_subscription_management/1/html/quick_registration_for_rhel/registering-machine-ui"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Registering
+and Unregistering a System</span></a><a
+href="https://access.redhat.com/documentation/en-us/red_hat_subscription_management/1/html/quick_registration_for_rhel/registering-machine-ui"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'>
+in the Red Hat Subscription Management document.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.15pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Display a list of all
+subscriptions that are available for your system and identify the pool ID for
+the subscription.</span></p>
+
+<p class=MsoNormal style='margin-bottom:9.7pt;line-height:108%'>                    <img
+border=0 width=6 height=31 id="Group 14755"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>        $ sudo
+subscription-manager list --available</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>This command displays
+the subscription name, unique identifier, expiration date, and other details
+related to it. The pool ID is listed on a line beginning with Pool ID.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+0in;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Attach the subscription
+that provides access to the <b>dotNET on RHEL</b> repository. Use the pool</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.05pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>ID you identified in
+the previous step.</span></p>
+
+<p class=MsoNormal style='margin-bottom:11.6pt;line-height:108%'>                    <img
+border=0 width=6 height=31 id="Group 14758"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>           $ sudo
+subscription-manager attach --pool=&lt;appropriate pool ID from the
+subscription&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+0in;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Enable the .NET Core
+channel for Red Hat Enterprise 7 Server, Red Hat Enterprise 7</span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:36.15pt;
+margin-bottom:13.25pt;margin-left:24.5pt;text-align:center;text-indent:-.5pt;
+line-height:123%'><span style='font-size:10.5pt;line-height:123%;color:#252525'>Workstation,
+or HPC Compute Node with one of the following commands, respectively.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=67
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image005.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+sudo subscription-manager repos --enable=rhel-7-server-dotnet-rpms</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ sudo
+subscription-manager repos --enable=rhel-7-workstation-dotnet-rpms</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+16.75pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ sudo
+subscription-manager repos --enable=rhel-7-hpc-node-dotnet-rpms</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.05pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Verify the list of
+subscriptions attached to your system.</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.6pt;line-height:108%'>                    <img
+border=0 width=6 height=31 id="Group 14764"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>        $ sudo
+subscription-manager list --consumed</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.1pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>7.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Install the <b>scl</b>
+tool.</span></p>
+
+<p class=MsoNormal style='margin-bottom:.15pt;line-height:108%'>                    <img
+border=0 width=6 height=31 id="Group 14767"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>      $ sudo yum
+install scl-utils</span></p>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc19994">1.2. INSTALL .NET CORE</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.05pt;margin-left:40.55pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Install .NET Core 3.1
+and all of its dependencies.</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.55pt;line-height:108%'>                   <img
+border=0 width=6 height=31 id="Group 15408"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>      $ sudo yum
+install rh-dotnet31 -y</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+.5pt;margin-left:40.55pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Enable the <b>rh-dotnet31</b>
+Software Collection environment so you can run <b>dotnet</b> commands in the
+bash shell.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+10.1pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>This procedure installs
+the .NET Core 3.1 runtime with the latest 3.1 SDK. When a newer SDK becomes
+available, it automatically installs as a package update.</span></p>
+
+<p class=MsoNormal style='margin-bottom:.15in;line-height:108%'>                   <img
+border=0 width=6 height=31 id="Group 15409"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>       $ scl enable
+rh-dotnet31 bash</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+6.55pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>This command does not
+persist; it creates a new shell, and the <b>dotnet</b> command is only
+available within that shell. If you log out, use another shell, or open up a
+new terminal, the <b>dotnet </b>command is no longer enabled.</span></p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=600
+ style='width:450.25pt;margin-left:41.3pt;border-collapse:collapse'>
+ <tr style='height:179.5pt'>
+  <td width=600 valign=top style='width:450.25pt;background:#FCF8E3;padding:
+  31.3pt 5.75pt 0in .95pt;height:179.5pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+  margin-left:70.1pt'><span style='font-size:11.5pt;line-height:107%;
+  color:#8A6D3B'>WARNING</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:19.05pt;margin-bottom:
+  .1pt;margin-left:0in;line-height:112%'><img width=89 height=22
+  src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image006.gif"
+  align=left hspace=12><span style='font-size:10.5pt;line-height:112%;
+  color:#8A6D3B'>Red Hat does not recommend permanently enabling <b>rh-dotnet31</b>
+  because it may affect other programs. For example, <b>rh-dotnet31</b>
+  includes a version</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:3.4pt;margin-bottom:
+  11.5pt;margin-left:70.1pt;line-height:112%'><span style='font-size:10.5pt;
+  line-height:112%;color:#8A6D3B'>of <b>libcurl</b> that differs from the base
+  RHEL version. This may lead to issues in programs that do not expect a
+  different version of <b>libcurl</b>. If you want to enable <b>rh-dotnet</b>
+  permanently, add the following line to your <b>~/.bashrc</b> file.</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:70.1pt'><b><span style='font-size:10.5pt;line-height:107%;
+  color:#8A6D3B'>source scl_source enable rh-dotnet31</span></b></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.8pt;margin-left:40.55pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Run the following
+command to verify the installation succeeded.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=371
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image007.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+dotnet --info</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>.NET Core SDK
+(reflecting any global.json):</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:321.0pt;margin-bottom:
+13.0pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'> Version:   3.1.100 
+Commit:    xxxxxxxxxx</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Runtime Environment:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'> OS Name:     rhel</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'> OS Version:  7</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'> OS Platform: Linux</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'> RID:        
+rhel.7-x64</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+12.9pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'> Base Path:  
+/opt/rh/rh-dotnet31/root/usr/lib64/dotnet/sdk/3.1.100/</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Host (useful for
+support):</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>  Version: 3.1.0</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+12.9pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>  Commit:  xxxxxxxxxx</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>.NET Core SDKs
+installed:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+12.9pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>  3.1.100
+[/opt/rh/rh-dotnet31/root/usr/lib64/dotnet/sdk]</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>.... omitted</span></p>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc19995">1.3. CREATE AN APPLICATION</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.85pt;margin-left:42.35pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Create a new Console
+application in a directory called <b>hello-world</b>.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=156
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image008.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+dotnet new console -o hello-world</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+12.9pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>  The template
+&quot;Console Application&quot; was created successfully.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>  Processing
+post-creation actions...</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>  Running 'dotnet
+restore' on hello-world/hello-world.csproj...</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+12.9pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>  Restore completed in
+87.21 ms for /home/&lt;USER&gt;/hello-world/hello-world.csproj.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+16.75pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>  Restore succeeded.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.8pt;margin-left:42.35pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Run the project.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=67
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image005.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+cd hello-world</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ dotnet run</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+27.3pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Hello World!</span></p>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc19996">1.4. PUBLISH APPLICATIONS</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:3.4pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>The .NET Core 3.1
+applications can be published to use a shared system-wide version of .NET Core
+or to include .NET Core. These two deployment types are called
+framework-dependent deployment (FDD) and self-contained deployment (SCD),
+respectively.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:3.4pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>For RHEL, we recommend
+publishing by FDD. This method ensures the application is using an up-todate
+version of .NET Core, built by Red Hat, that includes a specific set of native
+dependencies. These native libraries are part of the <b>rh-dotnet31</b>
+Software Collection. On the other hand, SCD uses a runtime built by Microsoft.
+Running applications outside the <b>rh-dotnet31</b> Software Collection may
+cause issues due to the unavailability of native libraries.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.05pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Use the following
+command to publish a framework-dependent application.</span></p>
+
+<p class=MsoNormal style='margin-bottom:11.6pt;line-height:108%'>                   <img
+border=0 width=6 height=31 id="Group 14463"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>        $ dotnet
+publish -f netcoreapp3.1 -c Release</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.9pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Optional: If the
+application is only for RHEL, trim out the dependencies needed for other
+platforms with these commands.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=49
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image009.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+dotnet restore -r rhel.7-x64</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+16.75pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ dotnet publish -f
+netcoreapp3.1 -c Release -r rhel.7-x64 --self-contained false</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.15pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Enable the Software
+Collection and pass the application name to run the application on a RHEL
+system.</span></p>
+
+<p class=MsoNormal style='margin-bottom:11.6pt;line-height:108%'>                   <img
+border=0 width=6 height=31 id="Group 14465"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>        $ scl enable
+rh-dotnet31 -- dotnet &lt;app&gt;.dll</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.75pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>This command can be
+added to a script that is published with the application. Add the following
+script to your project and update the <b>APP</b> variable.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+12.9pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=91
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image010.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>#!/bin/bash</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>APP=&lt;app&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>SCL=rh-dotnet31</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+12.9pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=60
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image011.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>DIR=&quot;$(dirname
+&quot;$(readlink -f &quot;$0&quot;)&quot;)&quot;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+17.8pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>scl enable $SCL --
+&quot;$DIR/$APP&quot; &quot;$@&quot;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.85pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>To include the script
+when publishing, add this ItemGroup to the <b>csproj</b> file.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=84
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image012.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>&lt;ItemGroup&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>    &lt;None
+Update=&quot;&lt;scriptname&gt;&quot; Condition=&quot;'$(RuntimeIdentifier)' ==
+'rhel.7-x64' and </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>'$(SelfContained)' ==
+'false'&quot; CopyToPublishDirectory=&quot;PreserveNewest&quot; /&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+27.3pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>&lt;/ItemGroup&gt;</span></p>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc19997">1.5. RUN APPLICATIONS ON
+LINUX CONTAINERS</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:3.4pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>This section shows how
+to use the <b>dotnet/dotnet-31-runtime-rhel7</b> image to run a precompiled
+application inside a Linux container.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.85pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Create a new mvc
+project in a directory named <b>mvc_runtime_example</b>.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=49
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image009.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+dotnet new mvc -o mvc_runtime_example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+16.75pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ cd
+mvc_runtime_example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.05pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Publish the project.</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.3pt;line-height:108%'>                    <img
+border=0 width=6 height=31 id="Group 14471"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>        $ dotnet
+publish -f netcoreapp3.1 -c Release</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.85pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Create the <b>Dockerfile</b>.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=138
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image013.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+cat &gt; Dockerfile &lt;&lt;EOF</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:165.75pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:208%'><span
+style='font-size:10.5pt;line-height:208%;color:#252525'>FROM
+registry.redhat.io/dotnet/dotnet-31-runtime-rhel7 ADD
+bin/Release/netcoreapp3.1/publish/ .</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>CMD
+[&quot;dotnet&quot;, &quot;mvc_runtime_example.dll&quot;]</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+16.75pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>EOF</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.8pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Build your image.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+24.4pt;margin-left:57.15pt;text-indent:-.5pt;line-height:108%'><img width=53
+height=180
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image014.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+podman build -t dotnet-31-runtime-example .</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:9.35pt;
+margin-left:41.8pt;text-indent:-.5pt;line-height:111%'><span style='font-size:
+11.5pt;line-height:111%;color:#252525'>NOTE</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>If you get an error
+containing the message <b>unable to retrieve auth token: </b></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:11.15pt;margin-bottom:
+18.85pt;margin-left:41.3pt;text-align:justify;text-justify:inter-ideograph;
+line-height:107%'><b><span style='font-size:10.5pt;line-height:107%;color:#252525'>invalid
+username/password</span></b><span style='font-size:10.5pt;line-height:107%;
+color:#252525'>, you need to provide credentials for the <b>registry.redhat.io</b>
+server. Use the command <b>$ podman login registry.redhat.io </b>to log in.
+Your credentials are typically the same as those used for the Red Hat Customer
+Portal.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.05pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Run your image.</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.3pt;line-height:108%'>                    <img
+border=0 width=6 height=31 id="Group 14477"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         $ podman run
+-d -p8080:8080 dotnet-31-runtime-example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>View the result in a
+browser: </span><a href="http://127.0.0.1:8080/"><b><span style='font-size:
+10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>http://127.0.0.1:8080</span></b></a><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:3.4pt;text-indent:-.5pt;line-height:108%'><a
+href="https://bugzilla.redhat.com/enter_bug.cgi?product=dotNET&amp;component=Documentation-Getting_Started_Guide"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Report
+a bug</span></a><br clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-top:0in;margin-right:7.75pt;margin-bottom:16.65pt;margin-left:
+.5pt'><a name="_Toc19998">CHAPTER 2. USING .NET CORE 3.1 ON RED HAT OPENSHIFT
+CONTAINER PLATFORM</a></h1>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc19999">2.1. INSTALLING IMAGE
+STREAMS</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+.6pt;margin-left:3.4pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>.NET Core image streams
+are installed using image stream definitions from </span><a
+href="https://github.com/redhat-developer/s2i-dotnetcore/"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>s2i-dotnetcore</span></a><a
+href="https://github.com/redhat-developer/s2i-dotnetcore/"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'> </span></a><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>with the</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:3.4pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>OpenShift client <b>oc</b>.
+A script is available to facilitate removing/installing/updating the image
+streams.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:3.4pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>.NET Core image streams
+can be defined in the global <b>openshift</b> namespace, or locally in a
+project namespace. To update the <b>openshift</b> namespace definitions, you
+need sufficient permissions.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+21.1pt;margin-left:3.4pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Obtaining the RHEL 7
+image streams requires authentication against the <b>registry.redhat.io</b>
+server using subscription credentials. These credentials are configured by
+adding a pull secret to the OpenShift namespace.</span></p>
+
+<h3 style='margin-top:0in;margin-right:0in;margin-bottom:9.35pt;margin-left:
+-.25pt'><a name="_Toc20000">2.1.1. Install using </a><b><span style='font-size:
+10.5pt;line-height:109%'>oc</span></b></h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.8pt;margin-left:40.55pt;text-indent:-.2in;line-height:141%'><span
+style='font-size:10.5pt;line-height:141%;color:#252525'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:141%;color:#252525'>If no pull secret is
+present in the namespace, you must add one by following the instructions in </span><a
+href="https://access.redhat.com/RegistryAuthentication"><span style='font-size:
+10.5pt;line-height:141%;color:#3366CC;text-decoration:none'>Red Hat Container
+Registry Authentication</span></a><span style='font-size:10.5pt;line-height:
+141%;color:#3366CC'> </span><a
+href="https://access.redhat.com/RegistryAuthentication"><span style='font-size:
+10.5pt;line-height:141%;color:#252525;text-decoration:none'>.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.05pt;margin-left:40.55pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Run the following
+commands to list the available .NET Core image streams.</span></p>
+
+<p class=MsoNormal style='margin-bottom:10.5pt;line-height:108%'>                    <img
+border=0 width=6 height=31 id="Group 16592"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>        $ oc describe
+is dotnet [-n &lt;namespace&gt;]</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>The output shows
+installed images or the message <b>Error from server (NotFound)</b> if no
+images are installed.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.9pt;margin-left:40.55pt;text-indent:-.2in'><span style='font-size:10.5pt;
+line-height:107%;color:#252525'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.5pt;line-height:107%;color:#252525'>When
+.NET Core image streams are already installed, you can include newer versions
+by running:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+14.9pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=49
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image009.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+oc replace -f
+https://raw.githubusercontent.com/redhat-developer/s2idotnetcore/master/dotnet_imagestreams.json</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+16.75pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>If no image streams for
+.NET Core are present, you can install them using:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+25.45pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=49
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image009.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+oc create -f
+https://raw.githubusercontent.com/redhat-developer/s2idotnetcore/master/dotnet_imagestreams.json</span></p>
+
+<h3 style='margin-left:-.25pt'><a name="_Toc20001">2.1.2. Install using script</a></h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+20.55pt;margin-left:3.4pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>The script can be used
+to install/remove/update .NET Core image streams.</span></p>
+
+<h3 style='margin-left:-.25pt'><a name="_Toc20002">2.1.3. Linux/macOS</a></h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+12.0pt;margin-left:40.55pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><a
+href="https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/install-imagestreams.sh"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'>Download
+the script from </span></a><a
+href="https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/install-imagestreams.sh"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>https://raw.githubusercontent.com/redhat-developer/s2idotnetcore/master/install-imagestreams.sh</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:40.55pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Login to the OpenShift
+cluster using the <b>oc login</b> command.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.8pt;margin-left:40.55pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Install/update the
+imagestreams.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=49
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image009.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>./install-imagestreams.sh
+--os rhel7 [--namespace &lt;namespace&gt;]  [--user </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>&lt;subscription_user&gt;
+--password &lt;subscription_password&gt;]</span></p>
+
+</div>
+
+<span style='font-size:11.0pt;line-height:107%;font-family:"Calibri",sans-serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection5>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>The pull secret can be
+added by providing the <b>--user</b> and <b>--password</b> arguments. If a pull
+secret is already present, these arguments are ignored.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+20.6pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>You can run <b>./install-imagestreams.sh
+--help</b> for more information on using this script.</span></p>
+
+<h3 style='margin-left:-.25pt'><a name="_Toc20003">2.1.4. Windows</a></h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+12.0pt;margin-left:40.55pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><a
+href="https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/install-imagestreams.ps1"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'>Download
+the script from </span></a><a
+href="https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/install-imagestreams.ps1"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>https://raw.githubusercontent.com/redhat-developer/s2idotnetcore/master/install-imagestreams.ps1</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:40.55pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Login to the OpenShift
+cluster using the <b>oc login</b> command.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.8pt;margin-left:40.55pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Install/update the
+imagestreams.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=49
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image009.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>./install-imagestreams.sh
+--OS rhel7 [--Namespace &lt;namespace&gt;]  [-User </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+17.7pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>&lt;subscription_user&gt;
+-Password &lt;subscription_password&gt;]</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>The PowerShell <b>ExecutionPolicy</b>
+may prohibit executing this script. To relax the policy, you can run <b>Set-ExecutionPolicy
+-Scope Process -ExecutionPolicy Bypass -Force</b>.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.95pt;
+margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span style='font-size:
+10.5pt;line-height:108%;color:#252525'>The pull secret can be added by
+providing the <b>-User</b> and <b>-Password</b> arguments. If a pull secret is
+already present, these arguments are ignored.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+22.55pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>You can run <b>Get-Help
+.\install-imagestreams.ps1</b> for more information on using this script.</span></p>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc20004">2.2. DEPLOYING APPLICATIONS
+FROM SOURCE</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:5.45pt;margin-bottom:
+14.8pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Run the following
+commands to deploy the ASP.NET Core application, which is in the <b>app</b>
+folder on the <b>dotnetcore-3.1</b> branch of the <b>redhat-developer/s2i-dotnetcore-ex</b>
+GitHub repository.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+17.85pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=49
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image009.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+oc new-app --name=exampleapp
+'dotnet:3.1~https://github.com/redhat-developer/s2idotnetcore-ex#dotnetcore-3.1'
+--build-env DOTNET_STARTUP_PROJECT=app</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:5.45pt;margin-bottom:
+8.1pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Use the <b>oc logs</b>
+command to track progress of the build.</span></p>
+
+<p class=MsoNormal style='margin-bottom:11.6pt;line-height:108%'>                  <img
+border=0 width=6 height=31 id="Group 16151"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>       $ oc logs -f
+bc/exampleapp</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:5.45pt;margin-bottom:
+8.05pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>View the deployed
+application once the build is finished.</span></p>
+
+<p class=MsoNormal style='margin-bottom:11.6pt;line-height:108%'>                  <img
+border=0 width=6 height=31 id="Group 16152"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>       $ oc logs -f
+dc/exampleapp</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:5.45pt;margin-bottom:
+14.8pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>At this point, the
+application is accessible within the project. To make it accessible externally,
+use the <b>oc expose</b> command. You can then use <b>oc get routes</b> to find
+the URL.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=49
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image009.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+oc expose svc/exampleapp</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+27.3pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ oc get routes</span></p>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc20005">2.3. DEPLOYING APPLICATIONS
+FROM BINARY ARTIFACTS</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>The .NET Core S2I
+builder image can be used to build an application using binary artifacts that
+you provide.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.9pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Publish your
+application as described in </span><a
+href="https://access.redhat.com/documentation/en-us/net_core/2.2/html/getting_started_guide/gs_install_dotnet#publish_applications"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Publish
+Applications</span></a><a
+href="https://access.redhat.com/documentation/en-us/net_core/2.2/html/getting_started_guide/gs_install_dotnet#publish_applications"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'>.</span></a><span
+style='font-size:10.5pt;line-height:108%;color:#252525'> For example, the
+following commands create a new web application and publish it.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=67
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image005.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+dotnet new web -o webapp</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ cd webapp</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+17.65pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ dotnet publish -c
+Release</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.1pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Create a new binary
+build using the <b>oc new-build</b> command.</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.6pt;line-height:108%'>                  <img
+border=0 width=6 height=31 id="Group 16269"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         $ oc new-build
+--name=mywebapp dotnet:3.1 --binary=true</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.15pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Start a build using the
+<b>oc start-build</b> command, specifying the path to the binary artifacts on
+your local machine.</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.55pt;line-height:108%'>                  <img
+border=0 width=6 height=31 id="Group 16270"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>          $ oc
+start-build mywebapp --from-dir=bin/Release/netcoreapp3.1/publish</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.1pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Create a new
+application using the <b>oc new-app</b> command.</span></p>
+
+<p class=MsoNormal style='margin-bottom:22.2pt;line-height:108%'>                  <img
+border=0 width=6 height=31 id="Group 16271"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>      $ oc new-app
+mywebapp</span></p>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc20006">2.4. USING A JENKINS SLAVE</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.95pt;
+margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span style='font-size:
+10.5pt;line-height:108%;color:#252525'>The OpenShift Container Platform Jenkins
+image provides auto-discovery of the .NET Core 3.1 slave image (<b>dotnet-31</b>).
+For auto-discovery to work, you need to add a Jenkins slave <b>ConfigMap</b>
+yaml file to the project.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:11.0pt;margin-bottom:
+8.05pt;margin-left:39.1pt;text-indent:-.2in;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Change to the project
+where Jenkins is (or will be) deployed.</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.45pt;line-height:108%'>                  <img
+border=0 width=6 height=31 id="Group 16272"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>      $ oc project
+&lt;projectname&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:11.0pt;margin-bottom:
+14.95pt;margin-left:39.1pt;text-indent:-.2in;line-height:107%'><span
+style='font-size:10.5pt;line-height:107%;color:#252525'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:107%;color:#252525'>Create a <b>dotnet-jenkins-slave.yaml</b>
+file. The value used for the &lt;serviceAccount&gt; element is the account used
+by the Jenkins slave. If no value is specified, the <b>default</b> service
+account is used.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:324.3pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=365
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image015.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>kind:
+ConfigMap apiVersion: v1 metadata:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:260.5pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>  name:
+dotnet-jenkins-slave-31   labels:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:318.5pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>    role: jenkins-slave
+data:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>  dotnet31: |-</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>   
+&lt;org.csanchez.jenkins.plugins.kubernetes.PodTemplate&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>     
+&lt;inheritFrom&gt;&lt;/inheritFrom&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>     
+&lt;name&gt;dotnet-31&lt;/name&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>     
+&lt;instanceCap&gt;2247483647&lt;/instanceCap&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>     
+&lt;idleMinutes&gt;0&lt;/idleMinutes&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>     
+&lt;label&gt;dotnet-31&lt;/label&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>     
+&lt;serviceAccount&gt;jenkins&lt;/serviceAccount&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>     
+&lt;nodeSelector&gt;&lt;/nodeSelector&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>      &lt;volumes/&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>     
+&lt;containers&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>       
+&lt;org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=383
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image016.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;name&gt;jnlp&lt;/name&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;image&gt;registry.access.redhat.com/dotnet/dotnet-31-jenkins-slaverhel7:latest&lt;/image&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;privileged&gt;false&lt;/privileged&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;alwaysPullImage&gt;true&lt;/alwaysPullImage&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;workingDir&gt;/tmp&lt;/workingDir&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;command&gt;&lt;/command&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;args&gt;${computer.jnlpmac} ${computer.name}&lt;/args&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;ttyEnabled&gt;false&lt;/ttyEnabled&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;resourceRequestCpu&gt;&lt;/resourceRequestCpu&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;resourceRequestMemory&gt;&lt;/resourceRequestMemory&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;resourceLimitCpu&gt;&lt;/resourceLimitCpu&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;resourceLimitMemory&gt;&lt;/resourceLimitMemory&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+&lt;envVars/&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>       
+&lt;/org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>     
+&lt;/containers&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>      &lt;envVars/&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>     
+&lt;annotations/&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>     
+&lt;imagePullSecrets/&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>     
+&lt;nodeProperties/&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+16.75pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>   
+&lt;/org.csanchez.jenkins.plugins.kubernetes.PodTemplate&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+8.05pt;margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>3. Import the
+configuration into the project.</span></p>
+
+<p class=MsoNormal style='margin-bottom:9.7pt;line-height:108%'>                  <img
+border=0 width=6 height=31 id="Group 16399"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>        $ oc create -f
+dotnet-jenkins-slave.yaml</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:38.9pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>The slave image can now
+be used.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.95pt;
+margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span style='font-size:
+10.5pt;line-height:108%;color:#252525'>Example: The following example shows a
+Jenkins pipeline added to OpenShift Container Platform. Note that when a
+Jenkins pipeline is added and no Jenkins master is running, OpenShift
+automatically deploys a master. See </span><a
+href="https://docs.openshift.com/container-platform/3.11/using_images/other_images/jenkins.html"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>OpenShift
+Container Platform and Jenkins</span></a><span style='font-size:10.5pt;
+line-height:108%;color:#252525'> for additional information about deploying and
+configuring a Jenkins server instance.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>In the example steps,
+the <b>BuildConfig</b> yaml file includes a simple Jenkins pipeline configured
+using the <b>dotnet-31</b> Jenkins slave. There are three stages in the example
+<b>BuildConfig</b> yaml file:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=75
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image017.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>First,
+the sources are checked out.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Second, the application
+is published.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Third, the image is
+assembled using a binary build. See </span><span style='font-size:10.5pt;
+line-height:108%;color:#3366CC'>Deploying Applications from Binary Artifacts</span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'> for additional
+information about binary builds.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Complete the steps
+below to configure the example Jenkins master-slave pipeline.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.85pt;margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>1. Create the <b>buildconfig.yaml</b>
+file.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:324.3pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=177
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image018.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>kind:
+BuildConfig apiVersion: v1 metadata:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:327.2pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>  name: dotnetapp-build
+spec:   strategy:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:214.8pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>    type:
+JenkinsPipeline     jenkinsPipelineStrategy:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>      jenkinsfile: |-</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:50.55pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=311
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image019.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>       
+node(&quot;dotnet-31&quot;) {           stage('clone sources') {             sh
+&quot;git clone https://github.com/redhat-developer/s2i-dotnetcore-ex --branch
+dotnetcore-3.1 .&quot;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>          }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:256.55pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>         
+stage('publish') {             dir('app') {               sh &quot;dotnet
+publish -c Release&quot;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>            }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>          }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:264.2pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>          stage('create
+image') {             dir('app') {</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>              sh 'oc
+new-build --name=dotnetapp dotnet:3.1 --binary=true || true'               sh
+'oc start-build dotnetapp --from-dir=bin/Release/netcoreapp3.1/publish
+--follow'</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>            }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>          }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+17.55pt;margin-left:41.8pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>        }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:5.45pt;margin-bottom:
+8.1pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Import the <b>BuildConfig</b>
+file to OpenShift.</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.6pt;line-height:108%'>                  <img
+border=0 width=6 height=31 id="Group 17475"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image004.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>       $ oc create -f
+buildconfig.yaml</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:5.45pt;margin-bottom:
+11.95pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Launch the OpenShift
+console. Go to Builds &gt; Pipelines. The <b>dotnetapp-build</b> pipeline is
+available.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:5.45pt;margin-bottom:
+.5pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Click Start Pipeline.
+It may take a while for the build to start because the Jenkins image(s) need to
+be downloaded first.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.95pt;
+margin-left:38.9pt;text-indent:-.5pt;line-height:108%'><span style='font-size:
+10.5pt;line-height:108%;color:#252525'>During the build you can watch the
+different pipeline stages complete in the OpenShift console. You can also click
+View Log to see the pipeline stages complete in Jenkins.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:5.45pt;margin-bottom:
+22.55pt;margin-left:41.5pt;text-indent:-15.35pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>When the Jenkins
+pipeline build completes, go to Builds &gt; Images. The <b>dotnetapp</b> image
+is built and available.</span></p>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc20007">2.5. ENVIRONMENT VARIABLES</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+.2pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>The .NET Core images
+support a number of environment variables to control the build behavior of your
+.NET Core application. These variables can be set as part of the build
+configuration, or they can be added to an <b>.s2i/environment</b> file in the
+application source code repository.</span></p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=650
+ style='width:487.7pt;margin-left:.35pt;border-collapse:collapse'>
+ <tr style='height:31.7pt'>
+  <td width=650 colspan=3 valign=bottom style='width:487.7pt;border:solid #4C4C4C 1.0pt;
+  border-bottom:solid #ECECEC 1.0pt;background:#4C4C4C;padding:14.75pt 5.75pt 10.5pt 8.15pt;
+  height:31.7pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:white'>Variable Name                                                         Description                                                        Default</span></p>
+  </td>
+ </tr>
+ <tr style='height:72.1pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.75pt 5.75pt 10.5pt 8.15pt;height:72.1pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_STARTUP_PROJECT</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.75pt 5.75pt 10.5pt 8.15pt;height:72.1pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:2.15pt;margin-bottom:
+  0in;margin-left:0in'><span style='font-size:9.5pt;line-height:107%;
+  color:#252525'>Selects project to run. This must be a project file (for
+  example, </span><b><span style='font-size:10.5pt;line-height:107%;color:#252525'>csproj
+  </span></b><span style='font-size:9.5pt;line-height:107%;color:#252525'>or </span><b><span
+  style='font-size:10.5pt;line-height:107%;color:#252525'>fsproj</span></b><span
+  style='font-size:9.5pt;line-height:107%;color:#252525'>) or a folder
+  containing a single project file.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.75pt 5.75pt 10.5pt 8.15pt;height:72.1pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>.</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:85.45pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.75pt 5.75pt 10.5pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_ASSEMBLY_NAME</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.75pt 5.75pt 10.5pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:114%'><span
+  style='font-size:9.5pt;line-height:114%;color:#252525'>Selects the assembly
+  to run. This must not include the .dll extension. Set this to the output
+  assembly name specified in </span><b><span style='font-size:10.5pt;
+  line-height:114%;color:#252525'>csproj</span></b></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>(PropertyGroup/AssemblyName).</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.75pt 5.75pt 10.5pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>The name of the </span><b><span
+  style='font-size:10.5pt;line-height:107%;color:#252525'>csproj</span></b><span
+  style='font-size:9.5pt;line-height:107%;color:#252525'> file</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:3.7pt;margin-bottom:0in;
+margin-left:-53.1pt'>&nbsp;</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=650
+ style='width:487.7pt;margin-left:.35pt;border-collapse:collapse'>
+ <tr style='height:31.7pt'>
+  <td width=650 colspan=3 valign=bottom style='width:487.7pt;border:solid #4C4C4C 1.0pt;
+  border-bottom:solid #ECECEC 1.0pt;background:#4C4C4C;padding:14.65pt 6.7pt 10.45pt 8.15pt;
+  height:31.7pt'>
+  <p class=MsoNormal style='margin-bottom:0in'>  <span style='font-size:9.5pt;
+  line-height:107%;color:white'>Variable Name                                                      Description                                                        Default</span></p>
+  </td>
+ </tr>
+ <tr style='height:129.7pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 6.7pt 10.45pt 8.15pt;height:129.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_PUBLISH_READRYTORUN</span></p>
+  </td>
+  <td width=228 valign=top style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:129.7pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:2.9pt;margin-bottom:
+  0in;margin-left:0in'><span style='font-size:9.5pt;line-height:107%;
+  color:#252525'>When set to </span><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>true</span></b><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>, the application will be compiled
+  ahead-of-time. This reduces startup time by reducing the amount of work the
+  JIT needs to do when the application is loading.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:129.7pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>false</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:139.2pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 6.7pt 10.45pt 8.15pt;height:139.2pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_RESTORE_SOURCES</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:139.2pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:2.65pt;margin-bottom:
+  0in;margin-left:0in;line-height:113%'><span style='font-size:9.5pt;
+  line-height:113%;color:#252525'>Specifies the space-separated list of NuGet
+  package sources used during the restore operation. This overrides all of the
+  sources specified in the </span><b><span style='font-size:10.5pt;line-height:
+  113%;color:#252525'>NuGet.config</span></b><span style='font-size:9.5pt;
+  line-height:113%;color:#252525'> file.</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:114%'><span
+  style='font-size:9.5pt;line-height:114%;color:#252525'>This variable cannot
+  be combined with </span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>DOTNET_RESTORE_CONFIGF</span></b></p>
+  <p class=MsoNormal style='margin-bottom:0in'><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>ILE</span></b><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:139.2pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'> </span></p>
+  </td>
+ </tr>
+ <tr style='height:85.45pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 6.7pt 10.45pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_RESTORE_CONFIGFILE</span></p>
+  </td>
+  <td width=228 style='width:170.9pt;border-top:none;border-left:none;
+  border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>Specifies a </span><b><span style='font-size:
+  10.5pt;line-height:107%;color:#252525'>NuGet.Config</span></b><span
+  style='font-size:9.5pt;line-height:107%;color:#252525'> file to</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:114%'><span
+  style='font-size:9.5pt;line-height:114%;color:#252525'>be used for restore
+  operations. This variable cannot be combined with </span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>DOTNET_RESTORE_SOURCE</span></b></p>
+  <p class=MsoNormal style='margin-bottom:0in'><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>S</span></b><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'> </span></p>
+  </td>
+ </tr>
+ <tr style='height:85.45pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 6.7pt 10.45pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_TOOLS</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:.95pt;margin-bottom:
+  0in;margin-left:0in'><span style='font-size:9.5pt;line-height:107%;
+  color:#252525'>Specifies a list of .NET tools to install before building the
+  app. It is possible to install a specific version by post pending the package
+  name with </span><b><span style='font-size:10.5pt;line-height:107%;
+  color:#252525'>@&lt;version&gt;</span></b><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'> </span></p>
+  </td>
+ </tr>
+ <tr style='height:58.55pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 6.7pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_NPM_TOOLS</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>Specifies a list of NPM packages to install
+  before building the application.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'> </span></p>
+  </td>
+ </tr>
+ <tr style='height:85.45pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 6.7pt 10.45pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_TEST_PROJECTS</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>Specifies the list of test projects to test.
+  This must be project files or folders containing a single project file. </span><b><span
+  style='font-size:10.5pt;line-height:107%;color:#252525'>dotnet test</span></b><span
+  style='font-size:9.5pt;line-height:107%;color:#252525'> is invoked for each
+  item.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'> </span></p>
+  </td>
+ </tr>
+ <tr style='height:58.55pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 6.7pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_CONFIGURATION</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-bottom:.8pt'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>Runs the application in Debug or</span></p>
+  <p class=MsoNormal style='margin-bottom:0in;text-align:justify;text-justify:
+  inter-ideograph'><span style='font-size:9.5pt;line-height:107%;color:#252525'>Release
+  mode. This value should be either </span><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>Release</span></b><span style='font-size:
+  9.5pt;line-height:107%;color:#252525'> or </span><b><span style='font-size:
+  10.5pt;line-height:107%;color:#252525'>Debug</span></b><span
+  style='font-size:9.5pt;line-height:107%;color:#252525'>.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 6.7pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>Release</span></b></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:3.7pt;margin-bottom:0in;
+margin-left:-53.1pt'>&nbsp;</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=650
+ style='width:487.7pt;margin-left:.35pt;border-collapse:collapse'>
+ <tr style='height:31.7pt'>
+  <td width=650 colspan=3 valign=bottom style='width:487.7pt;border:solid #4C4C4C 1.0pt;
+  border-bottom:solid #ECECEC 1.0pt;background:#4C4C4C;padding:14.65pt 5.75pt 10.45pt 8.15pt;
+  height:31.7pt'>
+  <p class=MsoNormal style='margin-bottom:0in'>  <span style='font-size:9.5pt;
+  line-height:107%;color:white'>Variable Name                                                      Description                                                        Default</span></p>
+  </td>
+ </tr>
+ <tr style='height:125.9pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 5.75pt 10.45pt 8.15pt;height:125.9pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_VERBOSITY</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:125.9pt'>
+  <p class=MsoNormal style='margin-bottom:0in;text-align:justify;text-justify:
+  inter-ideograph;line-height:110%'><span style='font-size:9.5pt;line-height:
+  110%;color:#252525'>Specifies the verbosity of the </span><b><span
+  style='font-size:10.5pt;line-height:110%;color:#252525'>dotnet build</span></b><span
+  style='font-size:9.5pt;line-height:110%;color:#252525'> commands. When</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:1.1pt;margin-bottom:
+  0in;margin-left:0in;text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.5pt;line-height:107%;color:#252525'>set, the environment
+  variables are printed at the start of the build. This variable can be set to
+  one of the msbuild verbosity values (</span><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>q[uiet]</span></b><span style='font-size:
+  9.5pt;line-height:107%;color:#252525'>, </span><b><span style='font-size:
+  10.5pt;line-height:107%;color:#252525'>m[inimal]</span></b><span
+  style='font-size:9.5pt;line-height:107%;color:#252525'>, </span><b><span
+  style='font-size:10.5pt;line-height:107%;color:#252525'>n[ormal]</span></b><span
+  style='font-size:9.5pt;line-height:107%;color:#252525'>, </span><b><span
+  style='font-size:10.5pt;line-height:107%;color:#252525'>d[etailed]</span></b><span
+  style='font-size:9.5pt;line-height:107%;color:#252525'>, and </span><b><span
+  style='font-size:10.5pt;line-height:107%;color:#252525'>diag[nostic]</span></b><span
+  style='font-size:9.5pt;line-height:107%;color:#252525'>).</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:125.9pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'> </span></p>
+  </td>
+ </tr>
+ <tr style='height:58.55pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 5.75pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>HTTP_PROXY,
+  HTTPS_PROXY</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>Configures the HTTP/HTTPS proxy used when
+  building and running the application.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'> </span></p>
+  </td>
+ </tr>
+ <tr style='height:45.1pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 5.75pt 10.45pt 8.15pt;height:45.1pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_RM_SRC</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:45.1pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>When set to </span><b><span style='font-size:
+  10.5pt;line-height:107%;color:#252525'>true</span></b><span style='font-size:
+  9.5pt;line-height:107%;color:#252525'>, the source code will not be included
+  in the image.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:45.1pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'> </span></p>
+  </td>
+ </tr>
+ <tr style='height:166.1pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 5.75pt 10.45pt 8.15pt;height:166.1pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_SSL_DIRS</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:166.1pt'>
+  <p class=MsoNormal style='margin-bottom:1.5pt;line-height:114%'><span
+  style='font-size:9.5pt;line-height:114%;color:#252525'>Used to specify a list
+  of folders/files with additional SSL certificates to trust. The certificates
+  are trusted by each process that runs during the build and all processes that
+  run in the image after the build (including the application that was built).
+  The items can be absolute paths</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>(starting with </span><b><span
+  style='font-size:10.5pt;line-height:107%;color:#252525'>/</span></b><span
+  style='font-size:9.5pt;line-height:107%;color:#252525'>) or paths in the
+  source repository (for example, certificates).</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:166.1pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'> </span></p>
+  </td>
+ </tr>
+ <tr style='height:58.55pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 5.75pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>NPM_MIRROR</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>Uses a custom NPM registry mirror to download
+  packages during the build process.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'> </span></p>
+  </td>
+ </tr>
+ <tr style='height:1.0in'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 5.75pt 10.45pt 8.15pt;height:1.0in'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>ASPNETCORE_URLS</span></p>
+  </td>
+  <td width=228 style='width:170.9pt;border-top:none;border-left:none;
+  border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:1.0in'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:115%'><span
+  style='font-size:9.5pt;line-height:115%;color:#252525'>This variable is set
+  to </span><b><span style='font-size:10.5pt;line-height:115%;color:#3366CC'>http://*:8080
+  </span></b><span style='font-size:9.5pt;line-height:115%;color:#252525'>to
+  configure ASP.NET Core to use the port exposed by the image.</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>Changing this is not recommended.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:1.0in'>
+  <p class=MsoNormal style='margin-bottom:0in'><b><span style='font-size:10.5pt;
+  line-height:107%;color:#3366CC'>http://*:8080</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:85.45pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 5.75pt 10.45pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.8pt;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_RESTORE_DISABLE_PAR</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>ALLEL</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:1.05pt;margin-bottom:
+  0in;margin-left:0in'><span style='font-size:9.5pt;line-height:107%;
+  color:#252525'>When set to true, disables restoring multiple projects in
+  parallel. This reduces restore timeout errors when the build container is
+  running with low CPU limits.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:85.45pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>false</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:58.55pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 5.75pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_INCREMENTAL</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>When set to true, the NuGet packages will be
+  kept so they can be re-used for an incremental build.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:58.55pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>false</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:31.7pt'>
+  <td width=650 colspan=3 valign=bottom style='width:487.7pt;border-top:none;
+  border-left:solid #4C4C4C 1.0pt;border-bottom:solid #ECECEC 1.0pt;border-right:
+  solid #4C4C4C 1.0pt;background:#4C4C4C;padding:14.65pt 5.75pt 10.45pt 8.15pt;
+  height:31.7pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:white'>Variable Name                                                         Description                                                        Default</span></p>
+  </td>
+ </tr>
+ <tr style='height:72.1pt'>
+  <td width=241 valign=top style='width:180.6pt;border:solid #ECECEC 1.0pt;
+  border-top:none;padding:14.65pt 5.75pt 10.45pt 8.15pt;height:72.1pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:.1pt'><span style='font-size:9.5pt;line-height:107%;color:#252525'>DOTNET_PACK</span></p>
+  </td>
+  <td width=228 valign=bottom style='width:170.9pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:72.1pt'>
+  <p class=MsoNormal style='margin-bottom:0in;line-height:107%'><span
+  style='font-size:9.5pt;line-height:107%;color:#252525'>When set to true,
+  creates a </span><b><span style='font-size:10.5pt;line-height:107%;
+  color:#252525'>tar.gz </span></b><span style='font-size:9.5pt;line-height:
+  107%;color:#252525'>file at </span><b><span style='font-size:10.5pt;
+  line-height:107%;color:#252525'>/opt/app-root/app.tar.gz</span></b></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'>that contains the published application.</span></p>
+  </td>
+  <td width=182 valign=top style='width:136.2pt;border-top:none;border-left:
+  none;border-bottom:solid #ECECEC 1.0pt;border-right:solid #ECECEC 1.0pt;
+  padding:14.65pt 5.75pt 10.45pt 8.15pt;height:72.1pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:9.5pt;
+  line-height:107%;color:#252525'> </span></p>
+  </td>
+ </tr>
+</table>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc20008">2.6. SAMPLE APPLICATIONS</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+20.55pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Two sample applications
+are available for use with the .NET Core s2i builder.</span></p>
+
+<h3 style='margin-left:-.25pt'><a name="_Toc20009">2.6.1. s2i-dotnetcore-ex</a></h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>s2i-dotnetcore-ex is
+the default .NET Core MVC template application.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+13.15pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>This application is
+used as the example application by the .NET Core s2i image and can be created
+directly from the OpenShift UI using the <i>Try Example</i> link.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+16.8pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>The application can
+also be created with the OpenShift client <b>oc</b> as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=138
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image013.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>#
+Add the .NET Core application</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+13.0pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ oc new-app
+dotnet:3.1~https://github.com/redhat-developer/s2i-dotnetcore-ex#dotnetcore-3.1
+-context-dir=app</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'># Make the .NET Core
+application accessible externally and show the url</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ oc expose service
+s2i-dotnetcore-ex</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+14.8pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ oc get route
+s2i-dotnetcore-ex</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:20.65pt;
+margin-left:.5pt;text-indent:-.5pt;line-height:108%'><a
+href="https://github.com/redhat-developer/s2i-dotnetcore-ex/tree/dotnetcore-3.1"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'>For
+more information about this application, see </span></a><a
+href="https://github.com/redhat-developer/s2i-dotnetcore-ex/tree/dotnetcore-3.1"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>https://github.com/redhat-developer/s2i-dotnetcoreex/tree/dotnetcore-3.1</span></a><a
+href="https://github.com/redhat-developer/s2i-dotnetcore-ex/tree/dotnetcore-3.1"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'>.</span></a></p>
+
+<h3 style='margin-left:-.25pt'><a name="_Toc20010">2.6.2.
+s2i-dotnetcore-persistent-ex</a></h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+13.15pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>s2i-dotnetcore-persistent-ex
+is the a simple CRUD .NET Core web application that stores data in a PostgreSQL
+database.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+16.8pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>The application can be
+created using the OpenShift client <b>oc</b> as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=264
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image020.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>#
+Add the database</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+12.9pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ oc new-app
+postgresql-ephemeral</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'># Add the .NET Core
+application</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+13.0pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ oc new-app
+dotnet:3.1~https://github.com/redhat-developer/s2i-dotnetcore-persistentex#dotnetcore-3.1
+--context-dir app</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:87.95pt;margin-bottom:
+13.0pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'># Add envvars from the
+the postgresql secret, and database service name envvar. $ oc set env
+dc/s2i-dotnetcore-persistent-ex --from=secret/postgresql -e
+databaseservice=postgresql</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'># Make the .NET Core
+application accessible externally and show the url</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ oc expose service
+s2i-dotnetcore-persistent-ex</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+.15pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>$ oc get route
+s2i-dotnetcore-persistent-ex</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:.5pt;text-indent:-.5pt;line-height:108%'><a
+href="https://github.com/redhat-developer/s2i-dotnetcore-persistent-ex/tree/dotnetcore-3.1"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'>For
+more information about this application, see </span></a><a
+href="https://github.com/redhat-developer/s2i-dotnetcore-persistent-ex/tree/dotnetcore-3.1"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>https://github.com/redhat-developer/s2i-dotnetcorepersistent-ex/tree/dotnetcore-3.1</span></a><a
+href="https://github.com/redhat-developer/s2i-dotnetcore-persistent-ex/tree/dotnetcore-3.1"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'>.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:.5pt;text-indent:-.5pt;line-height:108%'><a
+href="https://bugzilla.redhat.com/enter_bug.cgi?product=dotNET&amp;component=Documentation-Getting_Started_Guide"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Report
+a bug</span></a></p>
+
+</div>
+
+<span style='font-size:11.0pt;line-height:107%;font-family:"Calibri",sans-serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection6>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:22.7pt;margin-left:.5pt;text-align:right;text-indent:-.5pt;
+line-height:167%'><span style='font-size:9.5pt;line-height:167%;color:#888888'>CHAPTER
+3. MIGRATING TO .NET CORE 3.1</span></p>
+
+<h1 style='margin-right:12.45pt'><a name="_Toc20011">CHAPTER 3. MIGRATING TO
+.NET CORE 3.1</a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+22.5pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>This chapter provides
+migration information for .NET Core 3.1.</span></p>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc20012">3.1. MIGRATING FROM PREVIOUS
+VERSIONS OF .NET CORE</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>See the following
+Microsoft articles to migrate from previous versions of .NET Core to newer
+versions of .NET Core.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=110
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image021.gif"
+align=left hspace=12><a
+href="https://docs.microsoft.com/en-us/dotnet/core/migration/20-21"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Migrate
+from .NET Core 2.0 to 2.1</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><a
+href="https://docs.microsoft.com/en-us/aspnet/core/migration/22-to-30"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Migrate
+from ASP.NET Core 2.2 to 3.0</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><a
+href="https://docs.microsoft.com/en-us/aspnet/core/migration/21-to-22"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Migrate
+from ASP.NET Core 2.1 to 2.2</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:22.5pt;
+margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><a
+href="https://docs.microsoft.com/en-us/aspnet/core/migration/?view=aspnetcore-2.1"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Migrate
+to ASP.NET Core</span></a></p>
+
+<h2 style='margin-left:-.25pt'><a name="_Toc20013">3.2. MIGRATING FROM .NET
+FRAMEWORK TO .NET CORE 3.1</a></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+20.55pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Review the following
+information to migrate from the .NET Framework.</span></p>
+
+<h3 style='margin-left:-.25pt'><a name="_Toc20014">3.2.1. Migration
+Considerations</a></h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+14.9pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Several technologies
+and APIs present in the .NET Framework are not available in .NET Core. If your
+application or library requires these APIs, consider finding alternatives or
+continue using the .NET Framework. .NET Core does not support the following technologies
+and APIs:</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;line-height:108%'>            <img
+border=0 width=6 height=41 id="Group 17602"
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image022.gif"><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>             Windows
+Communication Foundation (WCF) servers (WCF clients are supported)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>.NET remoting</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Additionally, a number
+of .NET APIs can only be used in Microsoft Windows environments. The following
+list shows a few examples of these Windows-specific APIs:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><img width=6
+height=75
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image017.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>Microsoft.Win32.Registry</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>System.AppDomains</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>System.Security.Principal.Windows</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+0in;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Consider using the </span><a
+href="https://docs.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>.NET
+Portability Analyzer</span></a><a
+href="https://docs.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer"><span
+style='font-size:10.5pt;line-height:108%;color:#252525;text-decoration:none'> </span></a><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>to identify API gaps
+and potential replacements. For example, enter the following command to find
+out how much of the API used by your .NET Framework</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+16.75pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>4.6 application is
+supported by .NET Core 2.1.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.35pt;margin-bottom:
+24.5pt;margin-left:15.85pt;text-indent:-.5pt;line-height:108%'><img width=52
+height=198
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image023.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:108%;color:#252525'>$
+dotnet /path/to/ApiPort.dll analyze -f . -r html --target '.NET
+Framework,Version=4.6' --target '.NET Core,Version=2.1'</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:9.35pt;
+margin-left:41.8pt;text-indent:-.5pt;line-height:111%'><span style='font-size:
+11.5pt;line-height:111%;color:#252525'>IMPORTANT</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+11.95pt;margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Several APIs that are
+not supported in the out-of-the-box version of .NET Core may be available from
+the </span><a
+href="https://blogs.msdn.microsoft.com/dotnet/2017/11/16/announcing-the-windows-compatibility-pack-for-net-core/#using-the-windows-compatibility-pack"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Microsoft.Windows.Compatibility</span></a><span
+style='font-size:10.5pt;line-height:108%;color:#252525'> nuget package. Be
+careful when using this nuget package. Some of the APIs provided (such as
+Microsoft.Win32.Registry) only work on Windows, making your application
+incompatible with Red Hat Enterprise Linux.</span></p>
+
+<h3 style='margin-left:-.25pt'><a name="_Toc20015">3.2.2. .NET Framework
+Migration Articles</a></h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.85pt;margin-bottom:
+16.7pt;margin-left:.5pt;text-indent:-.5pt;line-height:108%'><span
+style='font-size:10.5pt;line-height:108%;color:#252525'>Refer to the following
+Microsoft articles when migrating from .NET Framework.</span></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:125.1pt;
+margin-bottom:17.8pt;margin-left:24.0pt;text-align:right'><img width=6
+height=75
+src="DotNET%20Core%203.1%20Getting%20Started%20Guide_files/image017.gif"
+align=left hspace=12><span style='font-size:10.5pt;line-height:107%;color:#252525'>For
+general guidelines, see </span><a
+href="https://docs.microsoft.com/en-us/dotnet/core/porting/"><span
+style='font-size:10.5pt;line-height:107%;color:#3366CC;text-decoration:none'>Porting
+to .NET Core from .NET Framework</span></a><span style='font-size:10.5pt;
+line-height:107%;color:#3366CC'> </span><a
+href="https://docs.microsoft.com/en-us/dotnet/core/porting/"><span
+style='font-size:10.5pt;line-height:107%;color:#252525;text-decoration:none'>.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:26.65pt;text-indent:-.5pt;line-height:108%'><span style='font-size:
+10.5pt;line-height:108%;color:#252525'>For porting libraries, see </span><a
+href="https://docs.microsoft.com/en-us/dotnet/core/porting/libraries"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Porting
+to .NET Core - Libraries</span></a><span style='font-size:10.5pt;line-height:
+108%;color:#3366CC'> </span><span style='font-size:10.5pt;line-height:108%;
+color:#252525'>.</span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:119.35pt;
+margin-bottom:10.4pt;margin-left:24.5pt;text-align:center;text-indent:-.5pt;
+line-height:123%'><span style='font-size:10.5pt;line-height:123%;color:#252525'>For
+migrating to ASP.NET Core, see </span><a
+href="https://docs.microsoft.com/en-us/aspnet/core/migration/?view=aspnetcore-2.2"><span
+style='font-size:10.5pt;line-height:123%;color:#3366CC;text-decoration:none'>Migrating
+to ASP.NET Core</span></a><span style='font-size:10.5pt;line-height:123%;
+color:#252525'>.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:.5pt;text-indent:-.5pt;line-height:108%'><a
+href="https://bugzilla.redhat.com/enter_bug.cgi?product=dotNET&amp;component=Documentation-Getting_Started_Guide"><span
+style='font-size:10.5pt;line-height:108%;color:#3366CC;text-decoration:none'>Report
+a bug</span></a></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,892 @@
+﻿PostgreSQL 7.3.2 Tutorial
+The PostgreSQL Global Development Group
+
+PostgreSQL 7.3.2 Tutorial by The PostgreSQL Global Development Group
+Copyright (c) 1996-2002 by The PostgreSQL Global Development Group
+Legal Notice
+PostgreSQL is Copyright (c) 1996-2002 by the PostgreSQL Global Development Group and is distributed under the terms of the license of the University of California below.
+Postgres95 is Copyright (c) 1994-5 by the Regents of the University of California.
+Permission to use, copy, modify, and distribute this software and its documentation for any purpose, without fee, and without a written agreement is hereby granted, provided that the above copyright notice and this paragraph and the following two paragraphs appear in all copies.
+IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT, SPECIAL, INCI-
+DENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IM-
+PLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE PROVIDED HERE-
+UNDER IS ON AN "AS-IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATIONS TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+
+Table of Contents
+Preface	i
+1. What is PostgreSQL?	i
+2. A Short History of PostgreSQL	i
+2.1. The Berkeley POSTGRES Project	ii
+2.2. Postgres95	ii
+2.3. PostgreSQL	iii
+3. What's In This Book	iv
+4. Overview of Documentation Resources	iv
+5. Terminology and Notation	v
+6. Bug Reporting Guidelines	vi
+6.1. Identifying Bugs	vi
+6.2. What to report	vi
+6.3. Where to report bugs	viii
+1. Getting Started	1
+1.1. Installation	1
+1.2. Architectural Fundamentals	1
+1.3. Creating a Database	2
+1.4. Accessing a Database	3
+2. The SQL Language	6
+2.1. Introduction	6
+2.2. Concepts	6
+2.3. Creating a New Table	6
+2.4. Populating a Table With Rows	7
+2.5. Querying a Table	8
+2.6. Joins Between Tables	9
+2.7. Aggregate Functions	11
+2.8. Updates	13
+2.9. Deletions	14
+3. Advanced Features	15
+3.1. Introduction	15
+3.2. Views	15
+3.3. Foreign Keys	15
+3.4. Transactions	16
+3.5. Inheritance	17
+3.6. Conclusion	19
+Bibliography	20
+Index	22
+
+iii
+
+Preface
+1. What is PostgreSQL?
+PostgreSQL is an object-relational database management system (ORDBMS) based on POSTGRES, Version 4.21, developed at the University of California at Berkeley Computer Science Department. The POSTGRES project, led by Professor Michael Stonebraker, was sponsored by the Defense Advanced
+Research Projects Agency (DARPA), the Army Research Office (ARO), the National Science Foundation (NSF), and ESL, Inc.
+PostgreSQL is an open-source descendant of this original Berkeley code. It provides SQL92/SQL99 language support and other modern features.
+POSTGRES pioneered many of the object-relational concepts now becoming available in some commercial databases. Traditional relational database management systems (RDBMS) support a data model consisting of a collection of named relations, containing attributes of a specific type. In current commercial systems, possible types include floating point numbers, integers, character strings, money, and dates. It is commonly recognized that this model is inadequate for future data-processing applications. The relational model successfully replaced previous models in part because of its "Spartan simplicity". However, this simplicity makes the implementation of certain applications very difficult. PostgreSQL offers substantial additional power by incorporating the following additional concepts in such a way that users can easily extend the system:
+• inheritance
+• data types
+• functions
+Other features provide additional power and flexibility:
+• constraints
+• triggers
+• rules
+• transactional integrity
+These features put PostgreSQL into the category of databases referred to as object-relational. Note that this is distinct from those referred to as object-oriented, which in general are not as well suited to supporting traditional relational database languages. So, although PostgreSQL has some object-oriented features, it is firmly in the relational database world. In fact, some commercial databases have recently incorporated features pioneered by PostgreSQL.
+2. A Short History of PostgreSQL
+The object-relational database management system now known as PostgreSQL (and briefly called Postgres95) is derived from the POSTGRES package written at the University of California at Berkeley. With over a decade of development behind it, PostgreSQL is the most advanced open-source database available anywhere, offering multiversion concurrency control, supporting almost all SQL constructs (including subselects, transactions, and user-defined types and functions), and having a wide range of language bindings available (including C, C++, Java, Perl, Tcl, and Python).
+2.1. The Berkeley POSTGRES Project
+Implementation of the POSTGRES DBMS began in 1986. The initial concepts for the system were presented in The design of POSTGRES and the definition of the initial data model appeared in The POSTGRES data model. The design of the rule system at that time was described in The design of the POSTGRES rules system. The rationale and architecture of the storage manager were detailed in The design of the POSTGRES storage system.
+Postgres has undergone several major releases since then. The first "demoware" system became operational in 1987 and was shown at the 1988 ACM-SIGMOD Conference. Version 1, described in The implementation of POSTGRES, was released to a few external users in June 1989. In response to a critique of the first rule system (A commentary on the POSTGRES rules system), the rule system was redesigned (On Rules, Procedures, Caching and Views in Database Systems) and Version 2 was released in June 1990 with the new rule system. Version 3 appeared in 1991 and added support for multiple storage managers, an improved query executor, and a rewritten rewrite rule system. For the most part, subsequent releases until Postgres95 (see below) focused on portability and reliability.
+POSTGRES has been used to implement many different research and production applications. These include: a financial data analysis system, a jet engine performance monitoring package, an asteroid tracking database, a medical information database, and several geographic information systems. POSTGRES has also been used as an educational tool at several universities. Finally, Illustra Information Technologies (later merged into Informix2, which is now owned by IBM3.) picked up the code and commercialized it.
+POSTGRES became the primary data manager for the Sequoia 20004 scientific computing project in late 1992.
+The size of the external user community nearly doubled during 1993. It became increasingly obvious that maintenance of the prototype code and support was taking up large amounts of time that should have been devoted to database research. In an effort to reduce this support burden, the Berkeley POSTGRES project officially ended with Version 4.2.
+2.2. Postgres95
+In 1994, Andrew Yu and Jolly Chen added a SQL language interpreter to POSTGRES. Postgres95 was subsequently released to the Web to find its own way in the world as an open-source descendant of the original POSTGRES Berkeley code.
+Postgres95 code was completely ANSI C and trimmed in size by 25%. Many internal changes improved performance and maintainability. Postgres95 release 1.0.x ran about 30-50% faster on the Wisconsin Benchmark compared to POSTGRES, Version 4.2. Apart from bug fixes, the following were the major enhancements:
+• The query language PostQUEL was replaced with SQL (implemented in the server). Subqueries were not supported until PostgreSQL (see below), but they could be imitated in Postgres95 with user-defined SQL functions. Aggregates were re-implemented. Support for the GROUP BY query clause was also added. The libpq interface remained available for C programs.
+• In addition to the monitor program, a new program (psql) was provided for interactive SQL queries using GNU Readline.
+• A new front-end library, libpgtcl, supported Tcl-based clients. A sample shell, pgtclsh, provided new Tcl commands to interface Tcl programs with the Postgres95 backend.
+• The large-object interface was overhauled. The Inversion large objects were the only mechanism for storing large objects. (The Inversion file system was removed.)
+• The instance-level rule system was removed. Rules were still available as rewrite rules.
+• A short tutorial introducing regular SQL features as well as those of Postgres95 was distributed with the source code
+• GNU make (instead of BSD make) was used for the build. Also, Postgres95 could be compiled with an unpatched GCC (data alignment of doubles was fixed).
+2.3. PostgreSQL
+By 1996, it became clear that the name "Postgres95" would not stand the test of time. We chose a new name, PostgreSQL, to reflect the relationship between the original POSTGRES and the more recent versions with SQL capability. At the same time, we set the version numbering to start at 6.0, putting the numbers back into the sequence originally begun by the Berkeley POSTGRES project.
+The emphasis during development of Postgres95 was on identifying and understanding existing problems in the backend code. With PostgreSQL, the emphasis has shifted to augmenting features and capabilities, although work continues in all areas.
+Major enhancements in PostgreSQL include:
+• Table-level locking has been replaced by multiversion concurrency control, which allows readers to continue reading consistent data during writer activity and enables hot backups from pg_dump while the database stays available for queries.
+• Important backend features, including subselects, defaults, constraints, and triggers, have been implemented.
+• Additional SQL92-compliant language features have been added, including primary keys, quoted identifiers, literal string type coercion, type casting, and binary and hexadecimal integer input.
+• Built-in types have been improved, including new wide-range date/time types and additional geometric type support.
+• Overall backend code speed has been increased by approximately 20-40%, and backend start-up time has decreased by 80% since version 6.0 was released.
+3. What's In This Book
+Welcome to PostgreSQL and the PostgreSQL Tutorial. The following few chapters are intended to give a simple introduction to PostgreSQL, relational database concepts, and the SQL language to those who are new to any one of these aspects. We only assume some general knowledge about how to use computers. No particular Unix or programming experience is required. This book is mainly intended to give you a hands-on experience with important aspects of the PostgreSQL system. It makes no attempt to be a complete or thorough treatment of the topics it covers.
+After you have worked through this tutorial you might want to move on to reading the PostgreSQL User's Guide to gain a more formal knowledge of the SQL language, or the PostgreSQL Programmer's Guide for information about developing applications for PostgreSQL. Those who set up and manage their own server should also read the PostgreSQL Administrator's Guide.
+4. Overview of Documentation Resources
+The PostgreSQL documentation is organized into several books:
+PostgreSQL Tutorial
+An informal introduction for new users.
+PostgreSQL User's Guide
+Documents the SQL query language environment, including data types and functions, as well as user-level performance tuning. Every PostgreSQL user should read this.
+PostgreSQL Administrator's Guide
+Installation and server management information. Everyone who runs a PostgreSQL server, either for personal use or for other users, needs to read this.
+PostgreSQL Programmer's Guide
+Advanced information for application programmers. Topics include type and function extensibility, library interfaces, and application design issues.
+PostgreSQL Reference Manual
+Reference pages for SQL command syntax, and client and server programs. This book is auxiliary to the User's, Administrator's, and Programmer's Guides.
+PostgreSQL Developer's Guide
+Information for PostgreSQL developers. This is intended for those who are contributing to the PostgreSQL project; application development information appears in the Programmer's Guide.
+In addition to this manual set, there are other resources to help you with PostgreSQL installation and use:
+man pages
+The Reference Manual's pages in the traditional Unix man format. There is no difference in content.
+FAQs
+Frequently Asked Questions (FAQ) lists document both general issues and some platform-specific issues.
+READMEs
+README files are available for some contributed packages.
+Web Site
+The PostgreSQL web site5 carries details on the latest release, upcoming features, and other information to make your work or play with PostgreSQL more productive.
+Mailing Lists
+The mailing lists are a good place to have your questions answered, to share experiences with other users, and to contact the developers. Consult the User's Lounge6 section of the PostgreSQL web site for details.
+Yourself!
+PostgreSQL is an open-source effort. As such, it depends on the user community for ongoing support. As you begin to use PostgreSQL, you will rely on others for help, either through the documentation or through the mailing lists. Consider contributing your knowledge back. If you learn something which is not in the documentation, write it up and contribute it. If you add features to the code, contribute them.
+Even those without a lot of experience can provide corrections and minor changes in the documentation, and that is a good way to start. The <pgsql-docs@postgresql.org> mailing list is the place to get going.
+5. Terminology and Notation
+An administrator is generally a person who is in charge of installing and running the server. A user could be anyone who is using, or wants to use, any part of the PostgreSQL system. These terms should not be interpreted too narrowly; this documentation set does not have fixed presumptions about system administration procedures.
+We use /usr/local/pgsql/ as the root directory of the installation and /usr/local/pgsql/data as the directory with the database files. These directories may vary on your site, details can be derived in the Administrator's Guide.
+In a command synopsis, brackets ([ and ]) indicate an optional phrase or keyword. Anything in braces ({ and }) and containing vertical bars (|) indicates that you must choose one alternative.
+Examples will show commands executed from various accounts and programs. Commands executed from a Unix shell may be preceded with a dollar sign ("$"). Commands executed from particular user accounts such as root or postgres are specially flagged and explained. SQL commands may be preceded with "=>" or will have no leading prompt, depending on the context.
+Note: The notation for flagging commands is not universally consistent throughout the documentation set. Please report problems to the documentation mailing list <pgsql-docs@postgresql.org>.
+6. Bug Reporting Guidelines
+When you find a bug in PostgreSQL we want to hear about it. Your bug reports play an important part in making PostgreSQL more reliable because even the utmost care cannot guarantee that every part of PostgreSQL will work on every platform under every circumstance.
+The following suggestions are intended to assist you in forming bug reports that can be handled in an effective fashion. No one is required to follow them but it tends to be to everyone's advantage.
+We cannot promise to fix every bug right away. If the bug is obvious, critical, or affects a lot of users, chances are good that someone will look into it. It could also happen that we tell you to update to a newer version to see if the bug happens there. Or we might decide that the bug cannot be fixed before some major rewrite we might be planning is done. Or perhaps it is simply too hard and there are more important things on the agenda. If you need help immediately, consider obtaining a commercial support contract.
+6.1. Identifying Bugs
+Before you report a bug, please read and re-read the documentation to verify that you can really do whatever it is you are trying. If it is not clear from the documentation whether you can do something or not, please report that too; it is a bug in the documentation. If it turns out that the program does something different from what the documentation says, that is a bug. That might include, but is not limited to, the following circumstances:
+• A program terminates with a fatal signal or an operating system error message that would point to a problem in the program. (A counterexample might be a "disk full" message, since you have to fix that yourself.)
+• A program produces the wrong output for any given input.
+• A program refuses to accept valid input (as defined in the documentation).
+• A program accepts invalid input without a notice or error message. But keep in mind that your idea of invalid input might be our idea of an extension or compatibility with traditional practice.
+• PostgreSQL fails to compile, build, or install according to the instructions on supported platforms.
+Here "program" refers to any executable, not only the backend server.
+Being slow or resource-hogging is not necessarily a bug. Read the documentation or ask on one of the mailing lists for help in tuning your applications. Failing to comply to the SQL standard is not necessarily a bug either, unless compliance for the specific feature is explicitly claimed.
+Before you continue, check on the TODO list and in the FAQ to see if your bug is already known. If you cannot decode the information on the TODO list, report your problem. The least we can do is make the TODO list clearer.
+6.2. What to report
+The most important thing to remember about bug reporting is to state all the facts and only facts. Do not speculate what you think went wrong, what "it seemed to do", or which part of the program has a fault. If you are not familiar with the implementation you would probably guess wrong and not help us a bit. And even if you are, educated explanations are a great supplement to but no substitute for facts. If we are going to fix the bug we still have to see it happen for ourselves first. Reporting the bare facts is relatively straightforward (you can probably copy and paste them from the screen) but all too often important details are left out because someone thought it does not matter or the report would be understood anyway.
+The following items should be contained in every bug report:
+• The exact sequence of steps from program start-up necessary to reproduce the problem. This should be self-contained; it is not enough to send in a bare select statement without the preceding create table and insert statements, if the output should depend on the data in the tables. We do not have the time to reverse-engineer your database schema, and if we are supposed to make up our own data we would probably miss the problem. The best format for a test case for query-language related problems is a file that can be run through the psql frontend that shows the problem. (Be sure to not have anything in your ~/.psqlrc start-up file.) An easy start at this file is to use pg_dump to dump out the table declarations and data needed to set the scene, then add the problem query. You are encouraged to minimize the size of your example, but this is not absolutely necessary. If the bug is reproducible, we will find it either way.
+If your application uses some other client interface, such as PHP, then please try to isolate the offending queries. We will probably not set up a web server to reproduce your problem. In any case remember to provide the exact input files, do not guess that the problem happens for "large files" or "mid-size databases", etc. since this information is too inexact to be of use.
+• The output you got. Please do not say that it "didn't work" or "crashed". If there is an error message, show it, even if you do not understand it. If the program terminates with an operating system error, say which. If nothing at all happens, say so. Even if the result of your test case is a program crash or otherwise obvious it might not happen on our platform. The easiest thing is to copy the output from the terminal, if possible.
+Note: In case of fatal errors, the error message reported by the client might not contain all the information available. Please also look at the log output of the database server. If you do not keep your server's log output, this would be a good time to start doing so.
+• The output you expected is very important to state. If you just write "This command gives me that output." or "This is not what I expected.", we might run it ourselves, scan the output, and think it looks OK and is exactly what we expected. We should not have to spend the time to decode the exact semantics behind your commands. Especially refrain from merely saying that "This is not what SQL says/Oracle does." Digging out the correct behavior from SQL is not a fun undertaking, nor do we all know how all the other relational databases out there behave. (If your problem is a program crash, you can obviously omit this item.)
+• Any command line options and other start-up options, including concerned environment variables or configuration files that you changed from the default. Again, be exact. If you are using a prepackaged distribution that starts the database server at boot time, you should try to find out how that is done.
+• Anything you did at all differently from the installation instructions.
+• The PostgreSQL version. You can run the command SELECT version(); to find out the version of the server you are connected to. Most executable programs also support a --version option; at least postmaster --version and psql --version should work. If the function or the options do not exist then your version is more than old enough to warrant an upgrade. You can also look into the README file in the source directory or at the name of your distribution file or package name. If you run a prepackaged version, such as RPMs, say so, including any subversion the package may have. If you are talking about a CVS snapshot, mention that, including its date and time.
+If your version is older than 7.3.2 we will almost certainly tell you to upgrade. There are tons of bug fixes in each new release, that is why we make new releases.
+• Platform information. This includes the kernel name and version, C library, processor, memory information. In most cases it is sufficient to report the vendor and version, but do not assume everyone knows what exactly "Debian" contains or that everyone runs on Pentiums. If you have installation problems then information about compilers, make, etc. is also necessary.
+Do not be afraid if your bug report becomes rather lengthy. That is a fact of life. It is better to report everything the first time than us having to squeeze the facts out of you. On the other hand, if your input files are huge, it is fair to ask first whether somebody is interested in looking into it.
+Do not spend all your time to figure out which changes in the input make the problem go away. This will probably not help solving it. If it turns out that the bug cannot be fixed right away, you will still have time to find and share your work-around. Also, once again, do not waste your time guessing why the bug exists. We will find that out soon enough.
+When writing a bug report, please choose non-confusing terminology. The software package in total is called "PostgreSQL", sometimes "Postgres" for short. If you are specifically talking about the backend server, mention that, do not just say "PostgreSQL crashes". A crash of a single backend server process is quite different from crash of the parent "postmaster" process; please don't say "the postmaster crashed" when you mean a single backend went down, nor vice versa. Also, client programs such as the interactive frontend "psql" are completely separate from the backend. Please try to be specific about whether the problem is on the client or server side.
+6.3. Where to report bugs
+In general, send bug reports to the bug report mailing list at <pgsql-bugs@postgresql.org>. You are requested to use a descriptive subject for your email message, perhaps parts of the error message.
+Another method is to fill in the bug report web-form available at the project's web site http://www.postgresql.org/. Entering a bug report this way causes it to be mailed to the <pgsql-bugs@postgresql.org> mailing list.
+Do not send bug reports to any of the user mailing lists, such as <pgsql-sql@postgresql.org> or <pgsql-general@postgresql.org>. These mailing lists are for answering user questions and their subscribers normally do not wish to receive bug reports. More importantly, they are unlikely to fix them.
+Also, please do not send reports to the developers' mailing list <pgsql-hackers@postgresql.org>. This list is for discussing the development of PostgreSQL and it would be nice if we could keep the bug reports separate. We might choose to take up a discussion about your bug report on pgsql-hackers, if the problem needs more review.
+If you have a problem with the documentation, the best place to report it is the documentation mailing list <pgsql-docs@postgresql.org>. Please be specific about what part of the documentation you are unhappy with.
+	If	your	bug	is	a	portability	problem	on	a	non-supported	platform,	send	mail	to
+<pgsql-ports@postgresql.org>, so we (and you) can work on porting PostgreSQL to your platform.
+Note: Due to the unfortunate amount of spam going around, all of the above email addresses are closed mailing lists. That is, you need to be subscribed to a list to be allowed to post on it. (You need not be subscribed to use the bug report web-form, however.) If you would like to send mail but do not want to receive list traffic, you can subscribe and set your subscription option to nomail. For more information send mail to <majordomo@postgresql.org> with the single word help in the body of the message.
+
+Chapter 1. Getting Started
+1.1. Installation
+Before you can use PostgreSQL you need to install it, of course. It is possible that PostgreSQL is already installed at your site, either because it was included in your operating system distribution or because the system administrator already installed it. If that is the case, you should obtain information from the operating system documentation or your system administrator about how to access PostgreSQL.
+If you are not sure whether PostgreSQL is already available or whether you can use it for your experimentation then you can install it yourself. Doing so is not hard and it can be a good exercise. PostgreSQL can be installed by any unprivileged user, no superuser (root) access is required.
+If you are installing PostgreSQL yourself, then refer to the PostgreSQL Administrator's Guide for instructions on installation, and return to this guide when the installation is complete. Be sure to follow closely the section about setting up the appropriate environment variables.
+If your site administrator has not set things up in the default way, you may have some more work to do. For example, if the database server machine is a remote machine, you will need to set the PGHOST environment variable to the name of the database server machine. The environment variable PGPORT may also have to be set. The bottom line is this: if you try to start an application program and it complains that it cannot connect to the database, you should consult your site administrator or, if that is you, the documentation to make sure that your environment is properly set up. If you did not understand the preceding paragraph then read the next section.
+1.2. Architectural Fundamentals
+Before we proceed, you should understand the basic PostgreSQL system architecture. Understanding how the parts of PostgreSQL interact will make this chapter somewhat clearer.
+In database jargon, PostgreSQL uses a client/server model. A PostgreSQL session consists of the following cooperating processes (programs):
+• A server process, which manages the database files, accepts connections to the database from client applications, and performs actions on the database on behalf of the clients. The database server program is called postmaster.
+• The user's client (frontend) application that wants to perform database operations. Client applications can be very diverse in nature: a client could be a text-oriented tool, a graphical application, a web server that accesses the database to display web pages, or a specialized database maintenance tool. Some client applications are supplied with the PostgreSQL distribution, most are developed by users.
+As is typical of client/server applications, the client and the server can be on different hosts. In that case they communicate over a TCP/IP network connection. You should keep this in mind, because the files that can be accessed on a client machine might not be accessible (or might only be accessible using a different file name) on the database server machine.
+The PostgreSQL server can handle multiple concurrent connections from clients. For that purpose it starts ("forks") a new process for each connection. From that point on, the client and the new server process communicate without intervention by the original postmaster process. Thus, the postmaster is always running, waiting for client connections, whereas client and associated server processes come and go. (All of this is of course invisible to the user. We only mention it here for completeness.)
+1.3. Creating a Database
+The first test to see whether you can access the database server is to try to create a database. A running PostgreSQL server can manage many databases. Typically, a separate database is used for each project or for each user.
+Possibly, your site administrator has already created a database for your use. He should have told you what the name of your database is. In this case you can omit this step and skip ahead to the next section.
+To create a new database, in this example named mydb, you use the following command:
+$ createdb mydb
+This should produce as response:
+CREATE DATABASE
+If so, this step was successful and you can skip over the remainder of this section.
+If you see a message similar to
+createdb: command not found
+then PostgreSQL was not installed properly. Either it was not installed at all or the search path was not set correctly. Try calling the command with an absolute path instead:
+$ /usr/local/pgsql/bin/createdb mydb
+The path at your site might be different. Contact your site administrator or check back in the installation instructions to correct the situation.
+Another response could be this:
+psql: could not connect to server: Connection refused Is the server running locally and accepting connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
+createdb: database creation failed
+This means that the server was not started, or it was not started where createdb expected it. Again, check the installation instructions or consult the administrator.
+If you do not have the privileges required to create a database, you will see the following:
+ERROR: CREATE DATABASE: permission denied createdb: database creation failed
+Not every user has authorization to create new databases. If PostgreSQL refuses to create databases for you then the site administrator needs to grant you permission to create databases. Consult your site administrator if this occurs. If you installed PostgreSQL yourself then you should log in for the purposes of this tutorial under the user account that you started the server as. 7
+You can also create databases with other names. PostgreSQL allows you to create any number of databases at a given site. Database names must have an alphabetic first character and are limited to 63 characters in length. A convenient choice is to create a database with the same name as your current user name. Many tools assume that database name as the default, so it can save you some typing. To create that database, simply type
+$ createdb
+If you don't want to use your database anymore you can remove it. For example, if you are the owner (creator) of the database mydb, you can destroy it using the following command:
+$ dropdb mydb
+(For this command, the database name does not default to the user account name. You always need to specify it.) This action physically removes all files associated with the database and cannot be undone, so this should only be done with a great deal of forethought.
+1.4. Accessing a Database
+Once you have created a database, you can access it by:
+• Running the PostgreSQL interactive terminal program, called psql, which allows you to interactively enter, edit, and execute SQL commands.
+• Using an existing graphical frontend tool like PgAccess or an office suite with ODBC support to create and manipulate a database. These possibilities are not covered in this tutorial.
+• Writing a custom application, using one of the several available language bindings. These possibilities are discussed further in the PostgreSQL Programmer's Guide.
+You probably want to start up psql, to try out the examples in this tutorial. It can be activated for the mydb database by typing the command:
+$ psql mydb
+If you leave off the database name then it will default to your user account name. You already discovered this scheme in the previous section.
+In psql, you will be greeted with the following message:
+Welcome to psql 7.3.2, the PostgreSQL interactive terminal.
+Type: \copyright for distribution terms
+\h for help with SQL commands
+\? for help on internal slash commands
+\g or terminate with semicolon to execute query
+        \q to quit mydb=>
+The last line could also be
+mydb=#
+That would mean you are a database superuser, which is most likely the case if you installed PostgreSQL yourself. Being a superuser means that you are not subject to access controls. For the purpose of this tutorial this is not of importance.
+If you have encountered problems starting psql then go back to the previous section. The diagnostics of psql and createdb are similar, and if the latter worked the former should work as well.
+The last line printed out by psql is the prompt, and it indicates that psql is listening to you and that you can type SQL queries into a work space maintained by psql. Try out these commands:
+mydb=> SELECT version();
+version
+---------------------------------------------------------------PostgreSQL 7.3devel on i586-pc-linux-gnu, compiled by GCC 2.96
+(1 row)
+mydb=> SELECT current_date; date
+------------
+ 2002-08-31 (1 row)
+mydb=> SELECT 2 + 2; ?column?
+----------
+          4 (1 row)
+The psql program has a number of internal commands that are not SQL commands. They begin with the backslash character, "\". Some of these commands were listed in the welcome message. For example, you can get help on the syntax of various PostgreSQL SQL commands by typing:
+     mydb=> \h To get out of psql, type
+mydb=> \q
+and psql will quit and return you to your command shell. (For more internal commands, type \? at the psql prompt.) The full capabilities of psql are documented in the PostgreSQL Reference Manual. If PostgreSQL is installed correctly you can also type man psql at the operating system shell prompt to see the documentation. In this tutorial we will not use these features explicitly, but you can use them yourself when you see fit.
+
+Chapter 2. The SQL Language
+2.1. Introduction
+This chapter provides an overview of how to use SQL to perform simple operations. This tutorial is only intended to give you an introduction and is in no way a complete tutorial on SQL. Numerous books have been written on SQL, including Understanding the New SQL and A Guide to the SQL Standard. You should be aware that some PostgreSQL language features are extensions to the standard.
+In the examples that follow, we assume that you have created a database named mydb, as described in the previous chapter, and have started psql.
+Examples in this manual can also be found in the PostgreSQL source distribution in the directory src/tutorial/. Refer to the README file in that directory for how to use them. To start the tutorial, do the following:
+$ cd ..../src/tutorial
+$ psql -s mydb
+...
+mydb=> \i basics.sql
+The \i command reads in commands from the specified file. The -s option puts you in single step mode which pauses before sending each statement to the server. The commands used in this section are in the file basics.sql.
+2.2. Concepts
+PostgreSQL is a relational database management system (RDBMS). That means it is a system for managing data stored in relations. Relation is essentially a mathematical term for table. The notion of storing data in tables is so commonplace today that it might seem inherently obvious, but there are a number of other ways of organizing databases. Files and directories on Unix-like operating systems form an example of a hierarchical database. A more modern development is the object-oriented database.
+Each table is a named collection of rows. Each row of a given table has the same set of named columns, and each column is of a specific data type. Whereas columns have a fixed order in each row, it is important to remember that SQL does not guarantee the order of the rows within the table in any way (although they can be explicitly sorted for display).
+Tables are grouped into databases, and a collection of databases managed by a single PostgreSQL server instance constitutes a database cluster.
+2.3. Creating a New Table
+You can create a new table by specifying the table name, along with all column names and their types:
+CREATE TABLE weather (
+	city	varchar(80),
+temp_loint,-- low temperaturetemp_hiint,-- high temperatureprcpreal,-- precipitationdatedate);
+You can enter this into psql with the line breaks. psql will recognize that the command is not terminated until the semicolon.
+White space (i.e., spaces, tabs, and newlines) may be used freely in SQL commands. That means you can type the command aligned differently than above, or even all on one line. Two dashes ("--") introduce comments. Whatever follows them is ignored up to the end of the line. SQL is case insensitive about key words and identifiers, except when identifiers are double-quoted to preserve the case (not done above). varchar(80) specifies a data type that can store arbitrary character strings up to 80 characters in length. int is the normal integer type. real is a type for storing single precision floating-point numbers. date should be self-explanatory. (Yes, the column of type date is also named date. This may be convenient or confusing -- you choose.)
+PostgreSQL supports the usual SQL types int, smallint, real, double precision, char(N), varchar(N), date, time, timestamp, and interval, as well as other types of general utility and a rich set of geometric types. PostgreSQL can be customized with an arbitrary number of user-defined data types. Consequently, type names are not syntactical keywords, except where required to support special cases in the SQL standard.
+The second example will store cities and their associated geographical location:
+CREATE TABLE cities (
+namevarchar(80),locationpoint);
+The point type is an example of a PostgreSQL-specific data type.
+Finally, it should be mentioned that if you don't need a table any longer or want to recreate it differently you can remove it using the following command:
+DROP TABLE tablename;
+2.4. Populating a Table With Rows
+The INSERT statement is used to populate a table with rows:
+INSERT INTO weather VALUES ('San Francisco', 46, 50, 0.25, '1994-11-27');
+Note that all data types use rather obvious input formats. Constants that are not simple numeric values usually must be surrounded by single quotes ('), as in the example. The date type is actually quite flexible in what it accepts, but for this tutorial we will stick to the unambiguous format shown here.
+The point type requires a coordinate pair as input, as shown here:
+INSERT INTO cities VALUES ('San Francisco', '(-194.0, 53.0)');
+The syntax used so far requires you to remember the order of the columns. An alternative syntax allows you to list the columns explicitly:
+INSERT INTO weather (city, temp_lo, temp_hi, prcp, date)
+VALUES ('San Francisco', 43, 57, 0.0, '1994-11-29');
+You can list the columns in a different order if you wish or even omit some columns, e.g., if the precipitation is unknown:
+INSERT INTO weather (date, city, temp_hi, temp_lo)
+VALUES ('1994-11-29', 'Hayward', 54, 37);
+Many developers consider explicitly listing the columns better style than relying on the order implicitly.
+Please enter all the commands shown above so you have some data to work with in the following sections.
+You could also have used COPY to load large amounts of data from flat-text files. This is usually faster because the COPY command is optimized for this application while allowing less flexibility than INSERT. An example would be:
+COPY weather FROM '/home/user/weather.txt';
+where the file name for the source file must be available to the backend server machine, not the client, since the backend server reads the file directly. You can read more about the COPY command in the PostgreSQL Reference Manual.
+2.5. Querying a Table
+To retrieve data from a table, the table is queried. An SQL SELECT statement is used to do this. The statement is divided into a select list (the part that lists the columns to be returned), a table list (the part that lists the tables from which to retrieve the data), and an optional qualification (the part that specifies any restrictions). For example, to retrieve all the rows of table weather, type:
+SELECT * FROM weather;
+(here * means "all columns") and the output should be:
+	city	| temp_lo | temp_hi | prcp |	date
+---------------+---------+---------+------+------------
+San Francisco |46 |50 | 0.25 | 1994-11-27San Francisco |43 |57 |	0 | 1994-11-29Hayward	|
+(3 rows)37 |54 |	| 1994-11-29You may specify any arbitrary expressions in the target list. For example, you can do:
+SELECT city, (temp_hi+temp_lo)/2 AS temp_avg, date FROM weather;
+This should give:
+	city	| temp_avg |	date
+---------------+----------+------------
+San Francisco |48 | 1994-11-27San Francisco |50 | 1994-11-29Hayward	|
+(3 rows)45 | 1994-11-29Notice how the AS clause is used to relabel the output column. (It is optional.)
+Arbitrary Boolean operators (AND, OR, and NOT) are allowed in the qualification of a query. For example, the following retrieves the weather of San Francisco on rainy days:
+SELECT * FROM weather WHERE city = 'San Francisco' AND prcp > 0.0;
+Result:
+	city	| temp_lo | temp_hi | prcp |	date
+---------------+---------+---------+------+------------
+	San Francisco |	46 |	50 | 0.25 | 1994-11-27
+(1 row)
+As a final note, you can request that the results of a select can be returned in sorted order or with duplicate rows removed:
+SELECT DISTINCT city
+FROM weather
+ORDER BY city;
+city
+---------------
+Hayward
+San Francisco
+(2 rows)
+DISTINCT and ORDER BY can be used separately, of course.
+2.6. Joins Between Tables
+Thus far, our queries have only accessed one table at a time. Queries can access multiple tables at once, or access the same table in such a way that multiple rows of the table are being processed at the same time. A query that accesses multiple rows of the same or different tables at one time is called a join query. As an example, say you wish to list all the weather records together with the location of the associated city. To do that, we need to compare the city column of each row of the weather table with the name column of all rows in the cities table, and select the pairs of rows where these values match.
+Note: This is only a conceptual model. The actual join may be performed in a more efficient manner, but this is invisible to the user.
+This would be accomplished by the following query:
+SELECT *
+FROM weather, cities
+WHERE city = name;
+	city	| temp_lo | temp_hi | prcp |	date	|	name	| lo-
+cation
+---------------+---------+---------+------+------------+---------------+--
+---------
+San Francisco |
+194,53)46 |50 | 0.25 | 1994-11-27 | San Francisco | (-      San Francisco | 194,53)
+(2 rows)43 |57 |	0 | 1994-11-29 | San Francisco | (-Observe two things about the result set:
+• There is no result row for the city of Hayward. This is because there is no matching entry in the cities table for Hayward, so the join ignores the unmatched rows in the weather table. We will see shortly how this can be fixed.
+• There are two columns containing the city name. This is correct because the lists of columns of the weather and the cities table are concatenated. In practice this is undesirable, though, so you will probably want to list the output columns explicitly rather than using *:
+SELECT city, temp_lo, temp_hi, prcp, date, location
+FROM weather, cities WHERE city = name;
+Exercise: Attempt to find out the semantics of this query when the WHERE clause is omitted.
+Since the columns all had different names, the parser automatically found out which table they belong to, but it is good style to fully qualify column names in join queries:
+SELECT weather.city, weather.temp_lo, weather.temp_hi, weather.prcp, weather.date, cities.location
+FROM weather, cities
+WHERE cities.name = weather.city;
+Join queries of the kind seen thus far can also be written in this alternative form:
+SELECT *
+FROM weather INNER JOIN cities ON (weather.city = cities.name);
+This syntax is not as commonly used as the one above, but we show it here to help you understand the following topics.
+Now we will figure out how we can get the Hayward records back in. What we want the query to do is to scan the weather table and for each row to find the matching cities row. If no matching row is found we want some "empty values" to be substituted for the cities table's columns. This kind of query is called an outer join. (The joins we have seen so far are inner joins.) The command looks like this:
+SELECT *
+FROM weather LEFT OUTER JOIN cities ON (weather.city = cities.name);
+	city	| temp_lo | temp_hi | prcp |	date	|	name	| location
+---------------+---------+---------+------+------------+---------------+--
+---------
+	Hayward	|37 |54 |	| 1994-11-29 |	|San Francisco |
+194,53)46 |50 | 0.25 | 1994-11-27 | San Francisco | (-      San Francisco | 194,53)
+(3 rows)43 |57 |	0 | 1994-11-29 | San Francisco | (-This query is called a left outer join because the table mentioned on the left of the join operator will have each of its rows in the output at least once, whereas the table on the right will only have those rows output that match some row of the left table. When outputting a left-table row for which there is no right-table match, empty (null) values are substituted for the right-table columns.
+Exercise: There are also right outer joins and full outer joins. Try to find out what those do.
+We can also join a table against itself. This is called a self join. As an example, suppose we wish to find all the weather records that are in the temperature range of other weather records. So we need to compare the temp_lo and temp_hi columns of each weather row to the temp_lo and temp_hi columns of all other weather rows. We can do this with the following query:
+SELECT W1.city, W1.temp_lo AS low, W1.temp_hi AS high,
+W2.city, W2.temp_lo AS low, W2.temp_hi AS high
+FROM weather W1, weather W2
+WHERE W1.temp_lo < W2.temp_lo
+AND W1.temp_hi > W2.temp_hi;
+	city	| low | high |	city	| low | high
+---------------+-----+------+---------------+-----+------
+San Francisco | 43 |57 | San Francisco | 46 |50Hayward	| 37 |
+(2 rows)54 | San Francisco | 46 |50Here we have relabeled the weather table as W1 and W2 to be able to distinguish the left and right side of the join. You can also use these kinds of aliases in other queries to save some typing, e.g.:
+SELECT *
+FROM weather w, cities c WHERE w.city = c.name;
+You will encounter this style of abbreviating quite frequently.
+2.7. Aggregate Functions
+Like most other relational database products, PostgreSQL supports aggregate functions. An aggregate function computes a single result from multiple input rows. For example, there are aggregates to compute the count, sum, avg (average), max (maximum) and min (minimum) over a set of rows.
+As an example, we can find the highest low-temperature reading anywhere with
+SELECT max(temp_lo) FROM weather;
+max
+-----
+46
+(1 row)
+If we wanted to know what city (or cities) that reading occurred in, we might try
+	SELECT city FROM weather WHERE temp_lo = max(temp_lo);	WRONG
+but this will not work since the aggregate max cannot be used in the WHERE clause. (This restriction exists because the WHERE clause determines the rows that will go into the aggregation stage; so it has to be evaluated before aggregate functions are computed.) However, as is often the case the query can be restated to accomplish the intended result, here by using a subquery:
+SELECT city FROM weather
+WHERE temp_lo = (SELECT max(temp_lo) FROM weather);
+city
+--------------San Francisco
+(1 row)
+This is OK because the subquery is an independent computation that computes its own aggregate separately from what is happening in the outer query.
+Aggregates are also very useful in combination with GROUP BY clauses. For example, we can get the maximum low temperature observed in each city with
+SELECT city, max(temp_lo)
+FROM weather
+GROUP BY city;
+	city	| max
+---------------+-----
+	Hayward	| 37
+San Francisco | 46
+(2 rows)
+which gives us one output row per city. Each aggregate result is computed over the table rows matching that city. We can filter these grouped rows using HAVING:
+SELECT city, max(temp_lo) FROM weather
+GROUP BY city
+HAVING max(temp_lo) < 40;
+	city	| max
+---------+----Hayward | 37
+(1 row)
+which gives us the same results for only the cities that have all temp_lo values below 40. Finally, if we only care about cities whose names begin with "S", we might do
+SELECT city, max(temp_lo) FROM weather
+WHERE city LIKE 'S%'➊ GROUP BY city
+HAVING max(temp_lo) < 40;
+➊ The LIKE operator does pattern matching and is explained in the PostgreSQL User's Guide.
+It is important to understand the interaction between aggregates and SQL's WHERE and HAVING clauses. The fundamental difference between WHERE and HAVING is this: WHERE selects input rows before groups and aggregates are computed (thus, it controls which rows go into the aggregate computation), whereas HAVING selects group rows after groups and aggregates are computed. Thus, the WHERE clause must not contain aggregate functions; it makes no sense to try to use an aggregate to determine which rows will be inputs to the aggregates. On the other hand, HAVING clauses always contain aggregate functions. (Strictly speaking, you are allowed to write a HAVING clause that doesn't use aggregates, but it's wasteful: The same condition could be used more efficiently at the WHERE stage.)
+Observe that we can apply the city name restriction in WHERE, since it needs no aggregate. This is more efficient than adding the restriction to HAVING, because we avoid doing the grouping and aggregate calculations for all rows that fail the WHERE check.
+2.8. Updates
+You can update existing rows using the UPDATE command. Suppose you discover the temperature readings are all off by 2 degrees as of November 28. You may update the data as follows:
+UPDATE weather
+SET temp_hi = temp_hi - 2, temp_lo = temp_lo - 2 WHERE date > '1994-11-28';
+Look at the new state of the data:
+SELECT * FROM weather;
+	city	| temp_lo | temp_hi | prcp |	date
+---------------+---------+---------+------+------------
+	San Francisco |	46 |	50 | 0.25 | 1994-11-27
+San Francisco |41 |55 |0 | 1994-11-29Hayward	|
+(3 rows)35 |52 || 1994-11-292.9. Deletions
+Suppose you are no longer interested in the weather of Hayward. Then you can do the following to delete those rows from the table. Deletions are performed using the DELETE command:
+DELETE FROM weather WHERE city = 'Hayward';
+All weather records belonging to Hayward are removed.
+SELECT * FROM weather;
+	city	| temp_lo | temp_hi | prcp |	date
+---------------+---------+---------+------+------------
+San Francisco |46 |50 | 0.25 | 1994-11-27San Francisco |
+(2 rows)41 |55 |	0 | 1994-11-29One should be wary of statements of the form
+DELETE FROM tablename;
+Without a qualification, DELETE will remove all rows from the given table, leaving it empty. The system will not request confirmation before doing this!
+
+Chapter 3. Advanced Features
+3.1. Introduction
+In the previous chapter we have covered the basics of using SQL to store and access your data in PostgreSQL. We will now discuss some more advanced features of SQL that simplify management and prevent loss or corruption of your data. Finally, we will look at some PostgreSQL extensions.
+This chapter will on occasion refer to examples found in Chapter 2 to change or improve them, so it will be of advantage if you have read that chapter. Some examples from this chapter can also be found in advanced.sql in the tutorial directory. This file also contains some example data to load, which is not repeated here. (Refer to Section 2.1 for how to use the file.)
+3.2. Views
+Refer back to the queries in Section 2.6. Suppose the combined listing of weather records and city location is of particular interest to your application, but you don't want to type the query each time you need it. You can create a view over the query, which gives a name to the query that you can refer to like an ordinary table.
+CREATE VIEW myview AS
+SELECT city, temp_lo, temp_hi, prcp, date, location
+FROM weather, cities
+WHERE city = name;
+SELECT * FROM myview;
+Making liberal use of views is a key aspect of good SQL database design. Views allow you to encapsulate the details of the structure of your tables, which may change as your application evolves, behind consistent interfaces.
+Views can be used in almost any place a real table can be used. Building views upon other views is not uncommon.
+3.3. Foreign Keys
+Recall the weather and cities tables from Chapter 2. Consider the following problem: You want to make sure that no one can insert rows in the weather table that do not have a matching entry in the cities table. This is called maintaining the referential integrity of your data. In simplistic database systems this would be implemented (if at all) by first looking at the cities table to check if a matching record exists, and then inserting or rejecting the new weather records. This approach has a number of problems and is very inconvenient, so PostgreSQL can do this for you.
+The new declaration of the tables would look like this:
+CREATE TABLE cities (
+city	varchar(80) primary key, location point
+);
+CREATE TABLE weather (
+cityvarchar(80) references cities,temp_loint,temp_hiint,prcpreal,date
+);dateNow try inserting an invalid record:
+INSERT INTO weather VALUES ('Berkeley', 45, 53, 0.0, '1994-11-28');
+ERROR: <unnamed> referential integrity violation - key referenced from weather not fou
+The behavior of foreign keys can be finely tuned to your application. We will not go beyond this simple example in this tutorial, but just refer you to the PostgreSQL User's Guide for more information. Making correct use of foreign keys will definitely improve the quality of your database applications, so you are strongly encouraged to learn about them.
+3.4. Transactions
+Transactions are a fundamental concept of all database systems. The essential point of a transaction is that it bundles multiple steps into a single, all-or-nothing operation. The intermediate states between the steps are not visible to other concurrent transactions, and if some failure occurs that prevents the transaction from completing, then none of the steps affect the database at all.
+For example, consider a bank database that contains balances for various customer accounts, as well as total deposit balances for branches. Suppose that we want to record a payment of $100.00 from Alice's account to Bob's account. Simplifying outrageously, the SQL commands for this might look like
+UPDATE accounts SET balance = balance - 100.00
+WHERE name = 'Alice';
+UPDATE branches SET balance = balance - 100.00
+WHERE name = (SELECT branch_name FROM accounts WHERE name = 'Alice');
+UPDATE accounts SET balance = balance + 100.00
+WHERE name = 'Bob';
+UPDATE branches SET balance = balance + 100.00
+WHERE name = (SELECT branch_name FROM accounts WHERE name = 'Bob');
+The details of these commands are not important here; the important point is that there are several separate updates involved to accomplish this rather simple operation. Our bank's officers will want to be assured that either all these updates happen, or none of them happen. It would certainly not do for a system failure to result in Bob receiving $100.00 that was not debited from Alice. Nor would Alice long remain a happy customer if she was debited without Bob being credited. We need a guarantee that if something goes wrong partway through the operation, none of the steps executed so far will take effect. Grouping the updates into a transaction gives us this guarantee. A transaction is said to be atomic: from the point of view of other transactions, it either happens completely or not at all.
+We also want a guarantee that once a transaction is completed and acknowledged by the database system, it has indeed been permanently recorded and won't be lost even if a crash ensues shortly thereafter. For example, if we are recording a cash withdrawal by Bob, we do not want any chance that the debit to his account will disappear in a crash just as he walks out the bank door. A transactional database guarantees that all the updates made by a transaction are logged in permanent storage (i.e., on disk) before the transaction is reported complete.
+Another important property of transactional databases is closely related to the notion of atomic updates: when multiple transactions are running concurrently, each one should not be able to see the incomplete changes made by others. For example, if one transaction is busy totalling all the branch balances, it would not do for it to include the debit from Alice's branch but not the credit to Bob's branch, nor vice versa. So transactions must be all-or-nothing not only in terms of their permanent effect on the database, but also in terms of their visibility as they happen. The updates made so far by an open transaction are invisible to other transactions until the transaction completes, whereupon all the updates become visible simultaneously.
+In PostgreSQL, a transaction is set up by surrounding the SQL commands of the transaction with BEGIN and COMMIT commands. So our banking transaction would actually look like
+BEGIN;
+UPDATE accounts SET balance = balance - 100.00
+WHERE name = 'Alice';
+-- etc etc
+COMMIT;
+If, partway through the transaction, we decide we don't want to commit (perhaps we just noticed that Alice's balance went negative), we can issue the command ROLLBACK instead of COMMIT, and all our updates so far will be canceled.
+PostgreSQL actually treats every SQL statement as being executed within a transaction. If you don't issue a BEGIN command, then each individual statement has an implicit BEGIN and (if successful) COMMIT wrapped around it. A group of statements surrounded by BEGIN and COMMIT is sometimes called a transaction block.
+Note: Some client libraries issue BEGIN and COMMIT commands automatically, so that you may get the effect of transaction blocks without asking. Check the documentation for the interface you are using.
+3.5. Inheritance
+Inheritance is a concept from object-oriented databases. It opens up interesting new possibilities of database design.
+Let's create two tables: A table cities and a table capitals. Naturally, capitals are also cities, so you want some way to show the capitals implicitly when you list all cities. If you're really clever you might invent some scheme like this:
+CREATE TABLE capitals ( name	text, population real,
+altitude	int,	-- (in ft) state	char(2)
+);
+CREATE TABLE non_capitals ( name	text, population real,
+	altitude	int	-- (in ft)
+);
+CREATE VIEW cities AS
+SELECT name, population, altitude FROM capitals
+UNION
+SELECT name, population, altitude FROM non_capitals;
+This works OK as far as querying goes, but it gets ugly when you need to update several rows, to name one thing.
+A better solution is this:
+CREATE TABLE cities ( name	text, population real,
+	altitude	int	-- (in ft)
+);
+CREATE TABLE capitals ( state	char(2)
+) INHERITS (cities);
+In this case, a row of capitals inherits all columns (name, population, and altitude) from its parent, cities. The type of the column name is text, a native PostgreSQL type for variable length character strings. State capitals have an extra column, state, that shows their state. In PostgreSQL, a table can inherit from zero or more other tables.
+For example, the following query finds the names of all cities, including state capitals, that are located at an altitude over 500 ft.:
+SELECT name, altitude FROM cities
+WHERE altitude > 500;
+which returns:
+	name	| altitude
+-----------+----------
+Las Vegas |2174Mariposa |1953Madison	|
+(3 rows)845On the other hand, the following query finds all the cities that are not state capitals and are situated at an altitude of 500 ft. or higher:
+SELECT name, altitude FROM ONLY cities
+WHERE altitude > 500;
+	name	| altitude
+-----------+----------
+Las Vegas |2174Mariposa |
+(2 rows)1953Here the ONLY before cities indicates that the query should be run over only the cities table, and not tables below cities in the inheritance hierarchy. Many of the commands that we have already discussed -- SELECT, UPDATE, and DELETE -- support this ONLY notation.
+3.6. Conclusion
+PostgreSQL has many features not touched upon in this tutorial introduction, which has been oriented toward newer users of SQL. These features are discussed in more detail in both the PostgreSQL User's Guide and the PostgreSQL Programmer's Guide.
+If you feel you need more introductory material, please visit the PostgreSQL web site8 for links to more resources.
+
+Bibliography
+Selected references and readings for SQL and PostgreSQL.
+Some white papers and technical reports from the original POSTGRES development team are available at the University of California, Berkeley, Computer Science Department web site9
+SQL Reference Books
+Judith Bowman, Sandra Emerson, and Marcy Darnovsky, The Practical SQL Handbook: Using Structured Query Language, Third Edition, Addison-Wesley, ISBN 0-201-44787-8, 1996.
+C. J. Date and Hugh Darwen, A Guide to the SQL Standard: A user's guide to the standard database language SQL, Fourth Edition, Addison-Wesley, ISBN 0-201-96426-0, 1997.
+C. J. Date, An Introduction to Database Systems, Volume 1, Sixth Edition, Addison-Wesley, 1994.
+Ramez Elmasri and Shamkant Navathe, Fundamentals of Database Systems, 3rd Edition, Addison-Wesley, ISBN 0-805-31755-4, August 1999.
+Jim Melton and Alan R. Simon, Understanding the New SQL: A complete guide, Morgan Kaufmann, ISBN 1-55860-245-3, 1993.
+Jeffrey D. Ullman, Principles of Database and Knowledge: Base Systems, Volume 1, Computer Science Press, 1988.
+PostgreSQL-Specific Documentation
+Stefan Simkovics, Enhancement of the ANSI SQL Implementation of PostgreSQL, Department of Information Systems, Vienna University of Technology, November 29, 1998.
+Discusses SQL history and syntax, and describes the addition of INTERSECT and EXCEPT constructs into PostgreSQL. Prepared as a Master's Thesis with the support of O. Univ. Prof. Dr. Georg Gottlob and Univ. Ass. Mag. Katrin Seyr at Vienna University of Technology.
+A. Yu and J. Chen, The POSTGRES Group, The Postgres95 User Manual, University of California, Sept. 5, 1995.
+Zelaine Fong, The design and implementation of the POSTGRES query optimizer10, University of California, Berkeley, Computer Science Department.
+Bibliography
+Proceedings and Articles
+Nels Olson, Partial indexing in POSTGRES: research project, University of California, UCB Engin T7.49.1993 O676, 1993.
+L. Ong and J. Goh, "A Unified Framework for Version Modeling Using Production Rules in a Database System", ERL Technical Memorandum M90/33, University of California, April, 1990.
+L. Rowe and M. Stonebraker, "The POSTGRES data model11", Proc. VLDB Conference, Sept. 1987.
+P. Seshadri and A. Swami, "Generalized Partial Indexes12 ", Proc. Eleventh International Conference on Data Engineering, 6-10 March 1995, IEEE Computer Society Press, Cat. No.95CH35724, 1995, p. 420-7.
+M. Stonebraker and L. Rowe, "The design of POSTGRES13", Proc. ACM-SIGMOD Conference on Management of Data, May 1986.
+M. Stonebraker, E. Hanson, and C. H. Hong, "The design of the POSTGRES rules system", Proc. IEEE Conference on Data Engineering, Feb. 1987.
+M. Stonebraker, "The design of the POSTGRES storage system6", Proc. VLDB Conference, Sept. 1987.
+M. Stonebraker, M. Hearst, and S. Potamianos, "A commentary on the POSTGRES rules system7", SIGMOD Record 18(3), Sept. 1989.
+M. Stonebraker, "The case for partial indexes8", SIGMOD Record 18(4), Dec. 1989, p. 4-11.
+M. Stonebraker, L. A. Rowe, and M. Hirohama, "The implementation of POSTGRES9", Transactions on Knowledge and Data Engineering 2(1), IEEE, March 1990.
+M. Stonebraker, A. Jhingran, J. Goh, and S. Potamianos, "On Rules, Procedures, Caching and Views in Database Systems14", Proc. ACM-SIGMOD Conference on Management of Data, June 1990.
+
+Index
+Symbols
+$libdir, ?
+A
+aggregate, 11 aggregate functions, ?
+  extending, ? alias
+    (See label) for table name in query, ? all, ? and operator, ? any, ?, ? anyarray, ?
+arrays, ?, ?
+  constants, ? Australian time zones, ? auto-increment
+  (See serial) autocommit, ?
+average, ? function, ?
+B
+B-tree
+  (See indexes) backup, ? between, ? bigint, ? bigserial, ?
+binary strings concatenation, ?
+  length, ? bison, ?
+bit strings constants, ?
+data type, ?
+BLOB
+(See large object)
+Boolean data type, ?
+operators
+    (See operators, logical) box (data type), ?
+BSD/OS, ?, ?
+C
+case, ?
+case sensitivity
+  SQL commands, ? catalogs, ? character set encoding, ?
+character strings concatenation, ? constants, ? data types, ?
+  length, ? cid, ? cidr, ? circle, ?
+client authentication, ? cluster, ? column, ?
+columns system columns, ? col_description, ?
+comments in SQL, ?
+comparison operators, ? concurrency, ? conditionals, ? configuration server, ? configure, ? connection loss, ? constants, ?
+COPY, ? with libpq, ? count, ?
+CREATE TABLE, 6
+createdb, 2 crypt, ? cstring, ? currval, ?
+22
+
+D
+data area
+  (See database cluster) data types, ?, ? constants, ? extending, ? numeric, ?
+type casts, ?
+database, ?
+creating, 2
+database cluster, ?
+date constants, ? current, ? data type, ? output format, ?
+    (See Also Formatting) date style, ?
+deadlock timeout, ?
+decimal
+(See numeric)
+DELETE, 14
+Digital UNIX
+  (See Tru64 UNIX) dirty read, ? disk space, ? disk usage, ? DISTINCT, ?, ? double precision, ?
+DROP TABLE, ? duplicate, ? dynamic loading, ? dynamic_library_path, ?, ?
+E
+elog, ?
+PL/Perl, ?
+embedded SQL in C, ? environment variables, ? error message, ? escaping binary strings, ? escaping strings, ? except, ? exists, ?
+extending SQL, ? types, ?
+F
+false, ?
+FETCH embedded SQL, ? files, ? flex, ?
+float4
+  (See real) float8
+  (See double precision) floating point, ? foreign key, 15 formatting, ? FreeBSD, ?, ?, ? fsync, ?
+function, ?, ? internal, ?
+  SQL, ? functions, ?
+G
+genetic query optimization, ?
+GEQO
+  (See genetic query optimization) get_bit, ? get_byte, ? group, ?
+GROUP BY, ?
+H
+hash
+  (See indexes) has_database_privilege, ? has_function_privilege, ? has_language_privilege, ? has_schema_privilege, ? has_table_privilege, ?
+HAVING, ? hierarchical database, ?
+HP-UX, ?, ?
+I
+ident, ? identifiers, ? in, ? index scan, ? indexes, ? B-tree, ? hash, ? multicolumn, ? on functions, ? partial, ? R-tree, ? unique, ? inet (data type), ? inheritance, 17, ? initlocation, ? input function, ? INSERT, 7
+installation, ? on Windows, ?, ?
+int2
+  (See smallint) int4
+  (See integer) int8
+  (See bigint) integer, ? internal, ? intersection, ? interval, ?
+IRIX, ? IS NULL, ? isolation levels, ? read committed, ? read serializable, ?
+J
+join, 9 outer, ? self, ? joins, ? cross, ? left, ? natural, ? outer, ?
+K
+Kerberos, ? key words list of, ? syntax, ?
+L
+label column, ?
+  table, ? language_handler, ? large object, ?
+LC_COLLATE, ? ldconfig, ?
+length
+binary strings
+  (See binary strings, length) character strings
+    (See character strings, length) libperl, ? libpgtcl, ? libpq, ? libpq-fe.h, ? libpq-int.h, ?, ? libpython, ? like, ? limit, ? line, ? Linux, ?, ?, ? locale, ?, ? locking, ? log files, ?
+M
+MAC address
+  (See macaddr) macaddr (data type), ?
+MacOS X, ?, ? make, ?
+MANPATH, ?
+  (See Also man pages) max, ?
+MD5, ?
+min, ? multibyte, ?
+N
+names qualified, ?
+  unqualified, ? namespaces, ?, ?
+NetBSD, ?, ?, ? network addresses, ? nextval, ?
+nonblocking connection, ?, ? nonrepeatable read, ?
+not operator, ? not in, ? notice processor, ?
+NOTIFY, ?, ? nullif, ?
+numeric constants, ? numeric (data type), ?
+O
+object identifier data type, ? object-oriented database, ? obj_description, ?
+offset with query results, ?
+OID, ?, ? opaque, ?
+OpenBSD, ?, ?, ? OpenSSL, ?
+  (See Also SSL) operators, ? logical, ? precedence, ?
+syntax, ?
+or operator, ?
+Oracle, ?, ?
+ORDER BY, ?, ? output function, ? overlay, ? overloading, ?
+P
+password, ?
+.pgpass, ?
+PATH, ? path (data type), ?
+Perl, ?
+PGDATA, ?
+PGDATABASE, ?
+PGHOST, ?
+PGPASSWORD, ?
+PGPORT, ?
+pgtcl closing, ?
+connecting, ?, ?, ?, ?, ?, ? connection loss, ? creating, ? delete, ? export, ? import, ? notify, ? opening, ? positioning, ?, ? query, ? reading, ?
+writing, ?
+PGUSER, ? pg_config, ?, ? pg_conndefaults, ? pg_connect, ?, ?, ?, ?, ?
+pg_ctl, ? pg_dumpall, ? pg_execute, ? pg_function_is_visible, ? pg_get_constraintdef, ? pg_get_indexdef, ? pg_get_ruledef, ? pg_get_userbyid, ? pg_get_viewdef, ? pg_hba.conf, ? pg_ident.conf, ? pg_lo_close, ? pg_lo_creat, ? pg_lo_export, ? pg_lo_import, ? pg_lo_lseek, ? pg_lo_open, ? pg_lo_read, ? pg_lo_tell, ? pg_lo_unlink, ? pg_lo_write, ? pg_opclass_is_visible, ? pg_operator_is_visible, ? pg_table_is_visible, ? pg_type_is_visible, ? phantom read, ?
+PIC, ?
+PL/Perl, ?
+PL/pgSQL, ? PL/Python, ?
+PL/SQL, ?
+PL/Tcl, ? point, ? polygon, ? port, ? postgres user, ? postmaster, ?, ? ps to monitor activity, ?
+psql, 3 Python, ?
+Q
+qualified names, ? query, ?
+quotes and identifiers, ? escaping, ?
+R
+R-tree
+  (See indexes) range table, ? readline, ? real, ? record, ?
+referential integrity, 15 regclass, ? regoper, ?
+regoperator, ? regproc, ? regprocedure, ? regression test, ? regtype, ? regular expressions, ?, ?
+  (See Also pattern matching) reindex, ? relation, ? relational database, ? row, ?
+rules, ? and views, ?
+S
+schema current, ?
+schemas, ?
+current schema, ?
+SCO OpenServer, ? search path, ? changing at runtime, ?
+  current, ? search_path, ?
+SELECT, ? select list, ? semaphores, ?
+sequences, ?
+  and serial type, ? sequential scan, ? serial, ? serial4, ? serial8, ?
+SETOF, ?
+  (See Also function) setting current, ?
+  set, ? setval, ? set_bit, ? set_byte, ? shared libraries, ? shared memory, ?
+SHMMAX, ?
+SIGHUP, ?, ?, ? similar to, ? sliced bread
+  (See TOAST) smallint, ? Solaris, ?, ?, ? some, ?
+sorting query results, ?
+SPI allocating space, ?, ?, ?, ?, ?, ? connecting, ?, ?, ?, ? copying tuple descriptors, ? copying tuples, ?, ? cursors, ?, ?, ?, ?, ? decoding tuples, ?, ?, ?, ?, ?, ?, ? disconnecting, ? executing, ? modifying tuples, ?
+SPI_connect, ?
+SPI_copytuple, ?
+SPI_copytupledesc, ?
+SPI_copytupleintoslot, ?
+SPI_cursor_close, ? SPI_cursor_fetch, ?
+SPI_cursor_find, ?
+SPI_cursor_move, ?
+SPI_cursor_open, ?
+SPI_exec, ?
+SPI_execp, ?
+SPI_finish, ?
+SPI_fname, ?
+SPI_fnumber, ?
+SPI_freeplan, ?
+SPI_freetuple, ?
+SPI_freetuptable, ?
+SPI_getbinval, ?
+SPI_getrelname, ?
+SPI_gettype, ?
+SPI_gettypeid, ?
+SPI_getvalue, ? spi_lastoid, ?
+SPI_modifytuple, ?
+SPI_palloc, ?
+SPI_pfree, ?
+SPI_prepare, ?
+SPI_repalloc, ? SPI_saveplan, ? ssh, ?
+SSL, ?, ?, ?
+standard deviation, ? statistics, ?
+strings
+  (See character strings) subqueries, ?, ? subquery, ? substring, ?, ?, ? sum, ? superuser, ?
+syntax
+SQL, ?
+T
+table, ?
+Tcl, ?, ? TCP/IP, ?
+text
+  (See character strings) threads with libpq, ? tid, ?
+time constants, ? current, ? data type, ?
+output format, ?
+    (See Also Formatting) time with time zone data type, ? time without time zone time, ? time zone, ? time zones, ?, ? timeout authentication, ? deadlock, ? timestamp
+  data type, ? timestamp with time zone data type, ? timestamp without time zone
+data type, ?
+timezone conversion, ?
+TOAST, ? and user-defined types, ?
+
+transaction ID wraparound, ? transaction isolation level, ? transactions, 16 trigger, ?
+triggers in PL/Tcl, ? Tru64 UNIX, ? true, ?
+types
+(See data types)
+U
+union, ? UnixWare, ?, ? unqualified names, ? UPDATE, 13
+upgrading, ?, ?
+user
+current, ?
+V
+vacuum, ? variance, ? version, ?, ? view, 15 views updating, ? void, ?
+W
+where, ?
+X
+xid, ?
+Y
+yacc, ?
+1 .	http://s2k-ftp.CS.Berkeley.EDU:8000/postgres/postgres.html
+2 .	http://www.informix.com/
+3 .	http://www.ibm.com/
+4 .	http://meteora.ucsd.edu/s2k/s2k_home.html
+5 .	http://www.postgresql.org
+6 .	http://www.postgresql.org/users-lounge/
+7 . As an explanation for why this works: PostgreSQL user names are separate from operating system user accounts. If you connect to a database, you can choose what PostgreSQL user name to connect as; if you don't, it will default to the same name as your current operating system account. As it happens, there will always be a PostgreSQL user account that has the same name as the operating system user that started the server, and it also happens that that user always has permission to create databases. Instead of logging in as that user you can also specify the -U option everywhere to select a PostgreSQL user name to connect as.
+8 .	http://www.postgresql.org
+9 .	http://s2k-ftp.CS.Berkeley.EDU:8000/postgres/papers/
+10 .	http://s2k-ftp.CS.Berkeley.EDU:8000/postgres/papers/UCB-MS-zfong.pdf
+11 .	http://s2k-ftp.CS.Berkeley.EDU:8000/postgres/papers/ERL-M87-13.pdf
+12 .	http://simon.cs.cornell.edu/home/praveen/papers/partindex.de95.ps.Z
+13 .	http://s2k-ftp.CS.Berkeley.EDU:8000/postgres/papers/ERL-M85-95.pdf 6.	http://s2k-ftp.CS.Berkeley.EDU:8000/postgres/papers/ERL-M87-06.pdf 7.	http://s2k-ftp.CS.Berkeley.EDU:8000/postgres/papers/ERL-M89-82.pdf 8.	http://s2k-ftp.CS.Berkeley.EDU:8000/postgres/papers/ERL-M89-17.pdf 9.	http://s2k-ftp.CS.Berkeley.EDU:8000/postgres/papers/ERL-M90-34.pdf
+14 . http://s2k-ftp.CS.Berkeley.EDU:8000/postgres/papers/ERL-M90-36.pdf
+---------------
+
+------------------------------------------------------------
+
+---------------
+
+------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+Preface
+
+Preface
+
+i
+
+i
+
+
+
+i
+
+Chapter 1. Getting Started
+
+Chapter 1. Getting Started
+
+1
+
+1
+
+
+
+1
+
+Chapter 2. The SQL Language
+
+Chapter 2. The SQL Language
+
+1
+
+1
+
+
+
+1
+
+Chapter 3. Advanced Features
+
+Chapter 3. Advanced Features
+
+1
+
+1
+
+
+
+1
+
+
+
+
+
+
+
+1
+
+
+
+1
+
+Index
+
+Index
+
+1
+
+1
+
+Index
+
+1
+
