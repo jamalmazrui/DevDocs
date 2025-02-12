@@ -1,11 +1,11 @@
-# DevDocs
+﻿# DevDocs
 
 by Jamal Mazrui \
 Consultant, Access Success LLC
 
-This is a curated collection of free documentation for developers, including tutorials and reference materials for popular programming languages and tools.
+This is a curated collection of free, accessible documentation for developers, with tutorials and reference material about popular programming languages and tools.
 
-The documents are in .pdf format. Each file name is the same as the title of its content (or a close approximation to the title). For better accessibility, conversions to HTML and plain text formats (.htm and .txt) are also included (files with the same names except for a different extension).
+The documents are in .pdf format. Each file name is the same as the title of its content (or a close approximation to the title). For maximum accessibility, conversions to HTML and plain text formats (.htm and .txt) are also included (files with the same names except for a different extension).
 
 Over 80 documents are included on the following topics:
 
@@ -14,14 +14,17 @@ Over 80 documents are included on the following topics:
 - CPanel
 - CSS
 - Dotnet
+- Drupal
 - Git
 - HTML
 - Inno Setup
 - Java
 - JavaScript
 - Kotlin
+- Lua
 - Markdown
 - Node.js
+- Pandoc
 - PostgresSQL
 - Python
 - ReactJS
@@ -32,10 +35,14 @@ Over 80 documents are included on the following topics:
 - VBScript
 - Visual Basic
 - VS Code
-- Windows batch programming
+- Windows batch
 - Winforms
 - WordPress
 
-The whole collection may be downloaded in a zip archive from the following address:
+Individual documents may be downloaded from the following GitHub repository:
+
+<https://github.com/jamalmazrui/DevDocs?tab=readme-ov-file>
+
+Also, the whole collection may be downloaded in a single zip archive from the following address:
 
 <http://GitHub.com/JamalMazrui/DevDocs/archive/master.zip>
