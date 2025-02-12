@@ -1,0 +1,889 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Regular Expressions for Natural Language Processing</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:.25pt;
+	margin-left:.4in;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-.5pt;
+	line-height:103%;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:3.4pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:14.5pt;
+	font-family:"Calibri",sans-serif;
+	color:black;
+	font-weight:normal;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:0in;
+	margin-right:74.4pt;
+	margin-bottom:3.75pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;
+	font-weight:normal;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Calibri",sans-serif;
+	color:black;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Calibri",sans-serif;
+	color:black;}
+p.footnotedescription, li.footnotedescription, div.footnotedescription
+	{mso-style-name:"footnote description";
+	mso-style-link:"footnote description Char";
+	margin-top:0in;
+	margin-right:27.55pt;
+	margin-bottom:0in;
+	margin-left:0in;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:109%;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+span.footnotedescriptionChar
+	{mso-style-name:"footnote description Char";
+	mso-style-link:"footnote description";
+	font-family:"Calibri",sans-serif;
+	color:black;}
+span.footnotemark
+	{mso-style-name:"footnote mark";
+	font-family:"Cambria",serif;
+	color:black;
+	vertical-align:super;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:71.7pt 0in 137.7pt 74.4pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:74.4pt;
+margin-bottom:14.55pt;margin-left:0in;text-align:center;text-indent:0in;
+line-height:107%'><span style='font-size:17.0pt;line-height:107%'>Regular
+Expressions for Natural Language Processing</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:8.5pt;margin-left:0in;text-align:left;text-indent:0in;line-height:
+110%'><span style='font-size:11.0pt;line-height:110%'>                                                               </span><span
+style='font-size:12.0pt;line-height:110%'>Steven Bird                  Ewan
+Klein</span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:74.4pt;
+margin-bottom:21.1pt;margin-left:.5pt;text-align:center;line-height:110%'><span
+style='font-size:12.0pt;line-height:110%'>2006-01-29</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:2.45pt;margin-left:0in;text-align:left;text-indent:0in'><span
+style='font-size:11.0pt;line-height:103%'>              </span>Version:             0.6.2</p>
+
+<p class=MsoNormal align=left style='margin-left:0in;text-align:left;
+text-indent:0in'><span style='font-size:11.0pt;line-height:103%'>               </span>Revision:          1.13</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:2.05pt;margin-left:0in;text-align:left;text-indent:0in'><span
+style='font-size:11.0pt;line-height:103%'>               </span>Copyright:           <img
+width=12 height=13 id="Picture 10473"
+src="Regular%20Expressions%20for%20Natural%20Language%20Processing_files/image001.gif">2001-2006
+University of Pennsylvania</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:13.65pt;margin-left:0in;text-align:left;text-indent:0in'><span
+style='font-size:11.0pt;line-height:103%'>              </span>License:                  Creative
+Commons Attribution-ShareAlike License</p>
+
+<div style='border:solid black 1.0pt;padding:0in 0in 0in 0in;margin-left:21.55pt;
+margin-right:48.0pt'>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:2.65pt;margin-left:.5pt;text-align:left;line-height:107%;
+border:none;padding:0in'><span style='font-size:12.0pt;line-height:107%'>Note</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:30.3pt;
+margin-left:.5pt;line-height:102%;border:none;padding:0in'>This is a draft.
+Please send any feedback to the authors.</p>
+
+</div>
+
+<h1 style='margin-left:22.9pt;text-indent:-23.65pt'><span style='line-height:
+107%'>1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Introduction</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.25pt'>This chapter provides an introduction to regular
+expressions illustrated with examples from language processing.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:14.95pt'>We have already noted that a text
+can be viewed as a string of characters. What kinds of processing are performed
+at the character level? Perhaps word games are the most familiar example of
+such processing. In completing a crossword we may want to know which 3-letter
+English words end with the letter c (e.g. arc). We might want to know how many
+words can be formed from the letters: a, c, e, o, and n (e.g. ocean). We may
+want to nd out which unique English word contains the substring gnt (left as an
+exercise for the reader). In all these examples, we are considering which word
+- drawn from a large set of candidates - matches a given pattern. To put this
+in a more computational framework, we could imagine searching through a large
+digital corpus in order to nd all words that match a particular pattern. There
+are many serious uses of this so-called pattern matching.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:14.95pt'>One instructive example is the
+task of nding all doubled words in a text; an example would be the string for
+for example. Notice that we would be particularly interested in nding cases
+where the words were split across a linebreak (in practice, most erroneously
+doubled words occur in this context). Consequently, even with such a relatively
+banal task, we need to be able to describe patterns which refer not just to
+ordinary characters, but also to formatting information.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:14.95pt'>There are conventions for
+indicating structure in strings, also known as formatting. For example, there
+are a number of alternative ways of formatting a date string , such as
+23/06/2002, 6/23/02, or 2002-06-23. Whole texts may be formatted, such as an email
+message which contains header elds followed by the message body. Another
+familiar form of formatting involves visual structure, such as tabular format
+and bulleted lists.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:14.95pt'>Finally, texts may contain
+explicit markup , such as &lt;abbrev&gt;Phil&lt;/abbrev&gt;, which provides
+information about the interpretation or presentation of some piece of text. To
+summarize, in language processing, strings are ubiquitous, and they often
+contain important structure.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:14.95pt'>So far we have seen elementary
+examples of pattern matching, the matching of individual characters. More often
+we are interested in matching sequences of characters. For example, part of the
+operation of a naive spell-checker could be to remove a word- nal s from a
+suspect word token, in case the word is a plural, and see if the putative
+singular form exists in the dictionary. For this we must locate s and remove
+it, but only if it precedes a word boundary. This requires matching a pattern
+consisting of two characters.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:14.95pt'>Beyond this pattern matching on
+the content of a text, we often want to process the formatting and markup of a
+text. We may want to check the formatting of a document (e.g. to ensure that
+every sentence begins with a capital letter) or to reformat a document (e.g.
+replacing sequences of space characters with a single space). We may want to nd
+all date strings and extract the year. We may want to extract all words
+contained inside the &lt;abbrev&gt; &lt;/abbrev&gt; markup in order to
+construct a list of abbreviations.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+22.0pt;margin-left:-.75pt;text-indent:14.95pt'>Processing the content, format
+and markup of strings is a central task in most kinds of NLP. The most
+widespread method for string processing uses regular expressions.</p>
+
+<h1 style='margin-left:22.9pt;text-indent:-23.65pt'><span style='line-height:
+107%'>2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Simple Regular Expressions</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+16.5pt;margin-left:-.25pt'>In this section we will see the building blocks for
+simple regular expressions, along with a selection of linguistic examples. We
+can think of a regular expression as a specialised notation for describing
+patterns that we want to match. In order to make explicit when we are talking
+about a pattern patt, we will use the notation patt . The rst thing to say
+about regular expressions is that most letters match themselves. For example,
+the pattern singexactly matches the string sing. In addition, regular expressions
+provide us with a set of special characters<a href="#_ftn1" name="_ftnref1"
+title=""><sup><span style='color:blue'><sup><span style='font-size:10.0pt;
+line-height:103%;font-family:"Calibri",sans-serif;color:blue'>[1]</span></sup></span></sup></a><sup><span
+style='color:blue'> </span></sup>which give us a way to match sets of strings,
+and we will now look at these.</p>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:3.75pt;margin-left:
+29.9pt;text-indent:-30.65pt'>2.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The Wildcard</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.25pt'>The .symbol is called a wildcard: it matches any
+single character. For example, the regular expression s.ngmatches the following
+English words: sang, sing, song, and sung. Note that .will match not only
+alphabetic characters, but also numeric and whitespace characters.
+Consequently, s.ngwill also match non-words such as s3ng.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+6.9pt;margin-left:-.75pt;text-indent:14.95pt'>We can also use the wildcard
+symbol for counting characters. For instance ....zymatches six-letter strings
+that end in zy. The pattern ....berrynds words like cranberry. In our text from
+Wall Street Journal below, the pattern t...will match the words that and term,
+and will also match the word sequence to a (since the third .in the pattern can
+match the space character):</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>Paragraph 12 from wsj_0034:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:119.45pt;
+margin-bottom:11.3pt;margin-left:24.9pt;text-align:left;text-indent:0in;
+line-height:103%'>It’s probably worth paying a premium for funds that invest in
+markets that are partially closed to foreign investors, such as South Korea,
+some specialists say.      But some European funds recently have skyrocketed;
+Spain Fund has surged to a startling 120% premium.        It has been targeted
+by Japanese investors as a good long-term play tied to 1992’s European economic
+integration. And several new funds that aren’t even fully invested yet have
+jumped to trade at big premiums.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:124.7pt;margin-bottom:
+9.6pt;margin-left:25.4pt'>&quot;I’m very alarmed to see these rich
+valuations,&quot; says Smith Barney’s Mr. Porter.</p>
+
+<div style='border:solid black 1.0pt;padding:0in 0in 0in 0in;margin-left:22.05pt;
+margin-right:48.0pt'>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:2.65pt;margin-left:
+0in;text-indent:0in;border:none;padding:0in'>Note</h2>
+
+</div>
+
+<div style='border:solid black 1.0pt;padding:0in 0in 0in 0in;margin-left:21.55pt;
+margin-right:48.0pt'>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:9.5pt;
+margin-left:.5pt;line-height:102%;border:none;padding:0in'>Note that the
+wildcard matches exactly one character, and must be repeated for as many
+characters as should be matched. To match a variable number of characters we
+must use notation for optionality.</p>
+
+</div>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+8.55pt;margin-left:-.75pt;text-indent:14.95pt'>We can see exactly where a
+regular expression matches against a string using NLTK’s re_show function.
+Readers are encouraged to use re_show to explore the behaviour of regular
+expressions.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; from nltk_lite.utilities import re_show</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; string = &quot;&quot;&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:98.55pt;margin-bottom:
+.25pt;margin-left:25.4pt'>... It’s probably worth paying a premium for funds
+that invest in markets ... that are partially closed to foreign investors, such
+as South Korea, ...</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>... &quot;&quot;&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; re_show(’t...’, string)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:61.95pt;margin-bottom:
+24.75pt;margin-left:25.4pt'>I{t’s }probably wor{th p}aying a premium for funds
+{that} inves{t in} markets {that} are par{tial}ly closed {to f}oreign
+inves{tors}, such as Sou{th K}orea, ...</p>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:3.75pt;margin-left:
+29.9pt;text-indent:-30.65pt'>2.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Optionality</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+16.75pt;margin-left:-.25pt'>The ?symbol indicates that the immediately
+preceding regular expression is optional. The regular expression colou?rmatches
+both British and American spellings, colour and color. The expression that
+precedes the ? may be punctuation, such as an optional hyphen. For instance
+e-?mailmatches both e-mail and email.</p>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:3.75pt;margin-left:
+29.9pt;text-indent:-30.65pt'>2.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Repeatability</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.25pt'>The +symbol indicates that the immediately preceding
+expression is repeatable, up to an arbitrary number of times. For example, the
+regular expression coo+lmatches cool, coool, and so on. This symbol is
+particularly e ective when combined with the . symbol. For example, f.+fmatches
+all strings of length greater than two, that begin and end with the letter f
+(e.g. foolproof). The expression .+ednds strings that potentially have the
+past-tense -ed su x.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+16.7pt;margin-left:-.75pt;text-indent:14.95pt'>The *symbol indicates that the
+immediately preceding expression is both optional and repeatable. For example
+.*gnt.*matches all strings that contain gnt.</p>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:3.75pt;margin-left:
+29.9pt;text-indent:-30.65pt'>2.4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Choices</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.25pt'>Patterns using the wildcard symbol are very e ective,
+but there are many instances where we want to limit the set of characters that
+the wildcard can match. In such cases we can use the [] notation, which
+enumerates the set of characters to be matched - this is called a character
+class. For example, we can match any English vowel, but no consonant, using
+[aeiou]. Note that this pattern can be interpreted as saying match a or e or <span
+style='font-family:"Cambria",serif'>··· </span>or u; that is, the pattern
+resembles the wildcard in only matching a string of length one; unlike the
+wildcard, it restricts the characters matched to a speci c class (in this case,
+the vowels). Note that the order of vowels in the regular expression is insigni
+cant, and we would have had the same result with the expression [uoiea] . As a
+second example, the expression p[aeiou]tmatches the words: pat, pet, pit, pot,
+and put.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:5.55pt;text-indent:9.4pt'>We can combine the [] notation with
+our notation for repeatability. For example, expression p[aeiou]+tmatches the
+words listed above, along with: peat, poet, and pout.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:14.95pt'>Often the choices we want to
+describe cannot be expressed at the level of individual characters. As
+discussed in the tagging tutorial, di erent parts of speech are often tagged
+using labels from a tagset. In the Brown tagset, for example, singular nouns have
+the tag NN1, while plural nouns have the tag</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.25pt'>NN2, while nouns which are unspeci ed for number
+(e.g., aircraft) are tagged NN0. So we might use</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:5.55pt'>NN.*as a pattern which will match
+any nominal tag. Now, suppose we were processing the output of a tagger to
+extract string of tokens corresponding to noun phrases, we might want to nd all
+nouns (NN.*), adjectives (JJ.*), determiners (DT) and cardinals (CD), while
+excluding all other word types (e.g. verbs VB.*). It is possible, using a
+single regular expression, to search for this set of candidates using the
+choice operator |as follows:NN.*|JJ.*|DT|CD. This says: match NN.* or JJ.* or
+DT or CD.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+10.35pt;margin-left:-.75pt;text-indent:14.95pt'>As another example of
+multi-character choices, suppose that we wanted to create a program to simplify
+English prose, replacing rare words (like habitation) with a more frequent,
+synonymous word (like home). In this situation, we need to map from a potentially
+large set of words to an individual word. We can match the set of words using
+the choice operator. In the case of the word home, we would want to match the
+regular expression dwelling|domicile|abode|habitation.</p>
+
+<div style='border:solid black 1.0pt;padding:0in 0in 0in 0in;margin-left:22.05pt;
+margin-right:48.0pt'>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:2.65pt;margin-left:
+0in;text-indent:0in;border:none;padding:0in'>Note</h2>
+
+</div>
+
+<div style='border:solid black 1.0pt;padding:0in 0in 0in 0in;margin-left:21.55pt;
+margin-right:48.0pt'>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:27.25pt;
+margin-left:.5pt;line-height:102%;border:none;padding:0in'>Note that the choice
+operator has wide scope, so that abc|defis a choice between abd and def, and
+not between abced and abdef. The latter choice must be written using
+parentheses: ab(c|d)ed.</p>
+
+</div>
+
+<h1 style='margin-left:22.9pt;text-indent:-23.65pt'><span style='line-height:
+107%'>3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>More Complex Regular Expressions</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+16.8pt;margin-left:-.25pt'>In this section we will cover operators which can be
+used to construct more powerful and useful regular expressions.</p>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:3.75pt;margin-left:
+29.9pt;text-indent:-30.65pt'>3.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Ranges</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.25pt'>Earlier we saw how the [] notation could be used to
+express a set of choices between individual characters. Instead of listing each
+character, it is also possible to express a range of characters, using the -
+operator. For example, [a-z] matches any lowercase letter. This allows us to
+avoid the overpermissive matching we noted above with the pattern t... . If we
+were to use the pattern t[a-z][a-z][a-z], then we would no longer match the two
+word sequence to a.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:14.95pt'>As expected, ranges can be
+combined with other operators. For example [A-Z][a-z]*matches words that have
+an initial capital letter followed by any number of lowercase letters. The
+pattern 20[0-4][0-9]matches year expressions in the range 2000 to 2049.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+16.7pt;margin-left:-.75pt;text-indent:14.95pt'>Ranges can be combined, e.g.
+[a-zA-Z]which matches any lowercase or uppercase letter. The expression
+[b-df-hj-np-tv-z]+matches words consisting only of consonants (e.g. pygmy).</p>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:3.75pt;margin-left:
+29.9pt;text-indent:-30.65pt'>3.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Complementation</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.25pt'>We just saw that the character class
+[b-df-hj-np-tv-z]+allows us to match sequences of consonants. However, this
+expression is quite cumbersome. A better alternative is to say: let’s match
+anything which isn’t a vowel. To do this, we need a way of expressing
+complementation. We do this using the symbol ^ as the rst character inside a
+class expression []. Let’s look at an example. The regular expression
+[^aeiou]is just like our earlier character class[aeiou], except now the set of
+vowels is preceded by ^. The expression as a whole is interpreted as matching
+anything which fails to match [aeiou]. In other words, it matches all lowercase
+consonants (plus all uppercase letters and non-alphabetic characters).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:14.95pt'>As another example, suppose we
+want to match any string which is enclosed by the HTML tags for boldface,
+namely &lt;B&gt; and &lt;/B&gt;. We might try something like this:
+&lt;B&gt;.*&lt;/B&gt; . This would successfully match
+&lt;B&gt;important&lt;/B&gt;, but would also match &lt;B&gt;important&lt;/B&gt;
+and &lt;B&gt;urgent&lt;/B&gt;, since the .*subpattern will happily match all
+the characters from the end of important to the end of urgent. One way of
+ensuring that we only look at matched pairs of tags would be to use the
+expression &lt;B&gt;[^&lt;]*&lt;/B&gt;, where the chararacter class matches
+anything other than a left angle bracket.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:14.95pt'>Finally, note that character
+class complementation also works with ranges. Thus [^a-z]matches anything other
+than the lower case alphabetic characters a through z.</p>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:3.75pt;margin-left:
+29.9pt;text-indent:-30.65pt'>3.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Common Special Symbols</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+10.15pt;margin-left:-.25pt'>So far, we have only looked at patterns which match
+with the content of character strings. However, it is also useful to be able to
+refer to formatting properties of texts. Two important symbols in this regard
+are ^and$which are used to anchor matches to the beginnings or ends of lines in
+a le.</p>
+
+<div style='border:solid black 1.0pt;padding:0in 0in 0in 0in;margin-left:22.05pt;
+margin-right:48.0pt'>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:2.65pt;margin-left:
+0in;text-indent:0in;border:none;padding:0in'>Note</h2>
+
+</div>
+
+<div style='border:solid black 1.0pt;padding:0in 0in 0in 0in;margin-left:21.55pt;
+margin-right:48.0pt'>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:9.5pt;
+margin-left:0in;text-indent:4.15pt;line-height:102%;border:none;padding:0in'>^ has
+two quite distinct uses: it is interpreted as complementation when it occurs as
+the rst symbol within a character class, and as matching the beginning of lines
+when it occurs elsewhere in a pattern.</p>
+
+</div>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:14.95pt'>For example, suppose we wanted to
+nd all the words that occur at the beginning of lines in the WSJ text above.
+Our rst attempt might look like ^[A-Za-z]+. This says: starting at the
+beginning of a line, look for one or more alphabetic characters (upper or lower
+case), followed by a space. This will match the words that, some, been, and
+even. However, it fails to match It’s, since ’ isn’t an alphabetic character. A
+second attempt might be ^[^ ]+, which says to match any string starting at the
+beginning of a line, followed by one or more characters which are not the space
+character, followed by a space. This matches all the previous words, together
+with It’s, skyrocketed, 1992s, I’m and &quot;Mr.. As a second example,
+[a-z]*s$will match words ending in s that occur at the end of a line. Finally,
+consider the pattern ^$; this matches strings where no character occurs between
+the beginning and the end of a line - in other words, empty lines!</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.75pt;text-indent:14.95pt'>As we have seen, special
+characters like .,*,+and$give us powerful means to generalise over character
+strings. But suppose we wanted to match against a string which itself contains
+one or more special characters? An example would be the arithmetic statement
+$5.00 * ($3.05 + $0.85). In this case, we need to resort to the so-called
+escape character \ ( backslash ). For example, to match a dollar amount, we
+might use \$[1-9][0-9]*\.[0-9][0-9]. The same goes for matching other special
+characters.</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=569
+ style='width:426.5pt;margin-left:9.95pt;border-collapse:collapse'>
+ <tr style='height:14.35pt'>
+  <td width=569 colspan=2 valign=top style='width:426.5pt;border:solid black 1.0pt;
+  padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Special Sequences</p>
+  </td>
+ </tr>
+ <tr style='height:14.35pt'>
+  <td width=100 valign=top style='width:74.85pt;border:solid black 1.0pt;
+  border-top:none;padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>\b</p>
+  </td>
+  <td width=469 valign=top style='width:351.65pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Word boundary (zero width)</p>
+  </td>
+ </tr>
+ <tr style='height:14.35pt'>
+  <td width=100 valign=top style='width:74.85pt;border:solid black 1.0pt;
+  border-top:none;padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>\d</p>
+  </td>
+  <td width=469 valign=top style='width:351.65pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Any decimal digit (equivalent to [0-9])</p>
+  </td>
+ </tr>
+ <tr style='height:14.35pt'>
+  <td width=100 valign=top style='width:74.85pt;border:solid black 1.0pt;
+  border-top:none;padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>\D</p>
+  </td>
+  <td width=469 valign=top style='width:351.65pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Any non-digit character (equivalent to [^0-9])</p>
+  </td>
+ </tr>
+ <tr style='height:14.35pt'>
+  <td width=100 valign=top style='width:74.85pt;border:solid black 1.0pt;
+  border-top:none;padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>\s</p>
+  </td>
+  <td width=469 valign=top style='width:351.65pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Any whitespace character (equivalent to [ \t\n\r\f\v]</p>
+  </td>
+ </tr>
+ <tr style='height:14.35pt'>
+  <td width=100 valign=top style='width:74.85pt;border:solid black 1.0pt;
+  border-top:none;padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>\S</p>
+  </td>
+  <td width=469 valign=top style='width:351.65pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Any non-whitespace character (equivalent to [^
+  \t\n\r\f\v])</p>
+  </td>
+ </tr>
+ <tr style='height:14.35pt'>
+  <td width=100 valign=top style='width:74.85pt;border:solid black 1.0pt;
+  border-top:none;padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>\w</p>
+  </td>
+  <td width=469 valign=top style='width:351.65pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Any alphanumeric character (equivalent to [a-zA-Z0-9_])</p>
+  </td>
+ </tr>
+ <tr style='height:14.35pt'>
+  <td width=100 valign=top style='width:74.85pt;border:solid black 1.0pt;
+  border-top:none;padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>\W</p>
+  </td>
+  <td width=469 valign=top style='width:351.65pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:3.1pt 5.75pt 0in 6.2pt;height:14.35pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Any non-alphanumeric character (equivalent to
+  [^a-zA-Z0-9_])</p>
+  </td>
+ </tr>
+</table>
+
+<h1 style='margin-left:22.9pt;text-indent:-23.65pt'><span style='line-height:
+107%'>4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Python Interface</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:-.25pt'>The Python re module provides a convenient interface
+to an underlying regular expression engine. The module allows a regular
+expression pattern to be compiled into a object whose methods can then be
+called.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+8.55pt;margin-left:-.75pt;text-indent:14.95pt'>In the next example, we assume
+that we have a local copy (i.e., words) of the Unix dictionary, which may be
+found in the NLTK data/words directory. This le contains over 400,000 words,
+one per line.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; from re import *</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+7.4pt;margin-left:25.4pt'>&gt;&gt;&gt; from nltk_lite.corpora import words</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+8.45pt;margin-left:15.45pt'>Next we read in the list of words and count them:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; wordlist = list(words.raw())</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:380.9pt;margin-bottom:
+7.5pt;margin-left:25.4pt'>&gt;&gt;&gt; len(wordlist) 45378</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+8.0pt;margin-left:-.75pt;text-indent:14.95pt'>Now we can compile a regular
+expression for words containing a sequence of two ’a’s and nd the matches:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; r1 = compile(’.*aa.*’)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; [w for w in wordlist if r1.match(w)]</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-.8pt;margin-bottom:7.35pt;
+margin-left:25.4pt'>[’Afrikaans’, ’bazaar’, ’bazaars’, ’Canaan’, ’Haag’,
+’Haas’, ’Isaac’, ’Isaacs’, ’Isaacson’, ’Iz</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+8.0pt;margin-left:-.75pt;text-indent:14.95pt'>Suppose now that we want to    nd
+all three-letter words ending in the letter c . Our    rst attempt might be as
+follows:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; r1 = compile(’..c’)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; [w for w in wordlist if
+r1.match(w)][:10]</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-.8pt;margin-bottom:7.35pt;
+margin-left:25.4pt'>[’accede’, ’acceded’, ’accedes’, ’accelerate’,
+’accelerated’, ’accelerates’, ’accelerating’, ’a</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+7.9pt;margin-left:-.75pt;text-indent:14.95pt'>The problem is that we have
+matched words containing three-letter sequences ending in cwhich occur anywhere
+within a word. For example, the pattern will match cin words like aback,
+Aerobacter and albacore. Instead, we must revise our pattern so that it is
+anchored to the beginning and ends of the word: ^...$:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; r2 = compile(’^..c$’)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; [w for w in wordlist if r2.match(w)]</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+6.65pt;margin-left:25.4pt'>[’arc’, ’Doc’, ’Lac’, ’Mac’, ’Vic’]</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+7.95pt;margin-left:-.75pt;text-indent:14.95pt'>In the section on
+complementation, we brie y looked at the task of matching strings which were
+enclosed by HTML markup. Our rst attempt is illustrated in the following code
+example, where we incorrectly match the whole string, rather than just the
+substring &lt;B&gt;important&lt;/B&gt;.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; html = ’&lt;B&gt;important&lt;/B&gt; and
+&lt;B&gt;urgent&lt;/B&gt;’</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; r2 = compile(’&lt;B&gt;.*&lt;/B&gt;’)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; print r2.findall(html)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+6.65pt;margin-left:25.4pt'>[’&lt;B&gt;important&lt;/B&gt; and
+&lt;B&gt;urgent&lt;/B&gt;’]</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+8.05pt;margin-left:4.15pt;text-indent:.15in'>As we pointed out, one solution is
+to use a character class which matches with the complement of &lt;:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; r4 =
+compile(’&lt;B&gt;[^&lt;]*&lt;/B&gt;’)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:25.4pt'>&gt;&gt;&gt; print r4.findall(html)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+7.35pt;margin-left:25.4pt'>[’&lt;B&gt;important&lt;/B&gt;’,
+’&lt;B&gt;urgent&lt;/B&gt;’]</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+21.9pt;margin-left:-.75pt;text-indent:14.95pt'>However, there is another way of
+approaching this problem. &lt;B&gt;.*&lt;/B&gt;gets the wrong results because
+the *operator tries to consume as much input as possible. That is, the matching
+is said to be greedy. In the current case, * matches everything after the rst
+&lt;B&gt;, including the following &lt;/B&gt; and &lt;B&gt;. If we instead use
+the non-greedy star operator *?, we get the desired match, since*? tries to
+consume as little input as possible.</p>
+
+<h1 style='margin-left:22.9pt;text-indent:-23.65pt'><span style='line-height:
+107%'>5<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Exercises</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+9.6pt;margin-left:24.95pt;text-indent:-12.75pt'><span style='line-height:103%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Describe
+the class of strings matched by the following regular expressions:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+4.2pt;margin-left:47.95pt;text-indent:-.2in'><span style='line-height:103%'>a)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>[a-zA-Z]+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+4.2pt;margin-left:47.95pt;text-indent:-.2in'><span style='line-height:103%'>b)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>[A-Z][a-z]*</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+4.25pt;margin-left:47.95pt;text-indent:-.2in'><span style='line-height:103%'>c)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>\d+(\.\d+)?</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+.25pt;margin-left:47.95pt;text-indent:-.2in'><span style='line-height:103%'>d)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>([bcdfghjklmnpqrstvwxyz][aeiou][bcdfghjklmnpqrstvwxyz])*</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+10.1pt;margin-left:47.95pt;text-indent:-.2in'><span style='line-height:103%'>e)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>\w+|[^\w\s]+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+10.1pt;margin-left:24.95pt;text-indent:-12.75pt'><span style='line-height:103%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Write a
+program to convert individual words to Pig Latin. Words starting with a vowel
+have way appended (e.g. is becomes isway). Words beginning with a consonant
+have all consonants up to the rst vowel moved to the end of the word, and then
+ay is appended (e.g. start becomes artstay).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+4.05pt;margin-left:47.95pt;text-indent:-.2in'><span style='line-height:103%'>a)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Extend
+the program to convert text, instead of individual words.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+10.05pt;margin-left:47.95pt;text-indent:-.2in'><span style='line-height:103%'>b)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Extend it
+further to preserve capitalisation, to keep qu together (i.e. so that quiet
+becomes ietquay), and to detect when y is used as a consonant (e.g. yellow) vs
+a vowel (e.g. style).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+8.1pt;margin-left:24.95pt;text-indent:-12.75pt'><span style='line-height:103%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Write a
+utility function that takes a URL as its argument, and returns the contents of
+the URL, with all HTML markup removed. Use urllib.urlopen to access the
+contents of the URL, e.g. raw_contents =
+urllib.urlopen(’http://nltk.sourceforge.net/’).read().</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+8.15pt;margin-left:24.95pt;text-indent:-12.75pt'><span style='line-height:103%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Write a
+program to guess the number of syllables from the orthographic representation
+of words (e.g. English text).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+8.15pt;margin-left:24.95pt;text-indent:-12.75pt'><span style='line-height:103%'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Download
+some text from a language that has vowel harmony (e.g. Hungarian), extract the
+vowel sequences of words, and create a vowel bigram table.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:74.05pt;margin-bottom:
+6.65pt;margin-left:24.95pt;text-indent:-12.75pt'><span style='line-height:103%'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Obtain a
+pronunciation lexicon, and try generating nonsense rhymes.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.7pt;margin-left:158.8pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%'><img
+width=193 height=1 id="Group 8675"
+src="Regular%20Expressions%20for%20Natural%20Language%20Processing_files/image002.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:14.95pt;text-align:left;text-indent:0in;
+line-height:107%'><a href="http://nltk.sourceforge.net/"><span
+style='color:blue;text-decoration:none'>NLTK</span></a></p>
+
+</div>
+
+<div><br clear=all>
+
+<hr align=left size=1 width="33%">
+
+<div id=ftn1>
+
+<p class=footnotedescription><a href="#_ftnref1" name="_ftn1" title=""><span
+class=footnotemark><span class=footnotemark><span style='font-size:10.0pt;
+line-height:103%'>[1]</span></span></span></a> These are often called
+metacharacters; that is, characters which express properties of (ordinary)
+characters.</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
