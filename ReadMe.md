@@ -9,7 +9,9 @@ The documents are in .pdf format. Each file name is the same as the title of its
 
 Over 80 documents are included on the following topics:
 
+- Algorithms
 - AutoIT
+- C++
 - C#
 - CPanel
 - CSS
@@ -24,11 +26,13 @@ Over 80 documents are included on the following topics:
 - Lua
 - Markdown
 - Node.js
+- Pandas
 - Pandoc
 - PostgresSQL
 - Python
 - ReactJS
 - Regular Expressions
+- Selenium
 - SQLite
 - Swift
 - VBA
