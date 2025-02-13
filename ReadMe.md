@@ -3,7 +3,7 @@
 by Jamal Mazrui \
 Consultant, Access Success LLC
 
-This is a curated collection of free, accessible documentation for developers, with tutorials and reference material about popular programming languages and tools.
+This is a curated collection of freely-distributable, accessible documentation for developers, with tutorials and reference material about popular programming languages and tools.
 
 The documents are in .pdf format. Each file name is the same as the title of its content (or a close approximation to the title). For maximum accessibility, conversions to HTML and plain text formats (.htm and .txt) are also included (files with the same names except for a different extension).
 
@@ -11,8 +11,8 @@ Over 80 documents are included on the following topics:
 
 - Algorithms
 - AutoIT
-- C++
 - C#
+- C++
 - CPanel
 - CSS
 - Dotnet
@@ -23,6 +23,7 @@ Over 80 documents are included on the following topics:
 - Java
 - JavaScript
 - Kotlin
+- Lenux server administration
 - Lua
 - Markdown
 - Node.js
