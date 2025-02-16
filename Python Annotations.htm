@@ -1,0 +1,483 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Annotations Best Practices</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:47.3pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-.5pt;
+	line-height:108%;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:5.0pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:14.5pt;
+	font-family:"Calibri",sans-serif;
+	color:#20435C;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:5.4pt;
+	margin-left:0in;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Times New Roman",serif;
+	color:#20435C;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Times New Roman",serif;
+	color:#20435C;
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Calibri",sans-serif;
+	color:#20435C;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:73.1pt 1.0in 91.65pt 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:17.65pt;margin-left:0in;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=603 height=1 id="Group 3741"
+src="Annotations%20Best%20Practices_files/image001.gif"></span></p>
+
+<p class=MsoNormal align=right style='margin:0in;text-align:right;text-indent:
+0in;line-height:107%'><b><span style='font-size:25.0pt;line-height:107%;
+font-family:"Calibri",sans-serif'>Annotations Best Practices</span></b></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:.05pt;
+margin-bottom:28.95pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><b><i><span style='font-size:12.0pt;line-height:107%;
+font-family:"Calibri",sans-serif'>Release 3.13.2</span></i></b></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:0in;
+margin-bottom:25.6pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><b><span style='font-size:14.5pt;line-height:107%;font-family:
+"Calibri",sans-serif'>Guido van Rossum and the Python development team</span></b></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.7pt;
+margin-bottom:4.55pt;margin-left:.5pt;text-align:right;line-height:110%'><b><span
+style='font-family:"Calibri",sans-serif'>February 15, 2025</span></b></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.7pt;
+margin-bottom:0in;margin-left:.5pt;text-align:right;line-height:110%'><b><span
+style='font-family:"Calibri",sans-serif'>Python Software Foundation</span></b></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.7pt;
+margin-bottom:20.25pt;margin-left:.5pt;text-align:right;line-height:110%'><b><span
+style='font-family:"Calibri",sans-serif'>Email: docs@python.org</span></b></p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:14.95pt;margin-left:
+-.25pt'>Contents</h1>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:10.15pt;margin-left:14.95pt;text-align:left;text-indent:-14.95pt;
+line-height:107%'><b><span style='line-height:107%;color:#355F7C'>1<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='color:#355F7C'>Accessing The Annotations Dict Of An Object In Python
+3.10 And Newer                </span>1</b></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:10.15pt;margin-left:14.95pt;text-align:left;text-indent:-14.95pt;
+line-height:107%'><b><span style='line-height:107%;color:#355F7C'>2<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='color:#355F7C'>Accessing The Annotations Dict Of An Object In Python 3.9
+And Older   </span>2</b></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:10.15pt;margin-left:14.95pt;text-align:left;text-indent:-14.95pt;
+line-height:107%'><b><span style='line-height:107%;color:#355F7C'>3<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='color:#355F7C'>Manually Un-Stringizing Stringized Annotations              </span>3</b></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:10.15pt;margin-left:14.95pt;text-align:left;text-indent:-14.95pt;
+line-height:107%'><b><span style='line-height:107%;color:#355F7C'>4<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='color:#355F7C'>Best Practices For </span></b><b><span style='font-size:
+9.0pt;line-height:107%;color:#355F7C'>__annotations__ </span></b><b><span
+style='color:#355F7C'>In Any Python Version              </span>3</b></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:10.15pt;margin-left:14.95pt;text-align:left;text-indent:-14.95pt;
+line-height:107%'><b><span style='line-height:107%;color:#355F7C'>5<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='font-size:9.0pt;line-height:107%;color:#355F7C'>__annotations__ </span></b><b><span
+style='color:#355F7C'>Quirks               </span>3</b></p>
+
+<h2 style='margin-top:0in;margin-right:-.75pt;margin-bottom:3.0pt;margin-left:
+-.75pt'><span style='font-size:10.0pt;line-height:107%;color:#355F7C'>Index                                                                                                                                                                                            </span><span
+style='font-size:10.0pt;line-height:107%;color:black'>5</span></h2>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:22.4pt;margin-left:0in;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=603 height=1 id="Group 3742"
+src="Annotations%20Best%20Practices_files/image001.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:25.4pt;text-align:left;line-height:107%'><b>author</b></p>
+
+<p class=MsoNormal style='margin-bottom:19.3pt'>Larry Hastings</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:8.05pt;margin-left:.1in;text-align:left;line-height:107%'><b>Abstract</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.5pt;margin-bottom:6.0pt;
+margin-left:7.95pt'>This document is designed to encapsulate the best practices
+for working with annotations dicts. If you write Python code that examines <span
+style='font-size:9.0pt;line-height:108%'>__annotations__ </span>on Python
+objects, we encourage you to follow the guidelines described below.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.5pt;margin-bottom:6.0pt;
+margin-left:7.95pt'><span style='position:relative;z-index:-1895825408'><span
+style='left:0px;position:absolute;left:0px;top:-91px;width:602px;height:185px'><img
+width=602 height=185 src="Annotations%20Best%20Practices_files/image002.gif"></span></span>The
+document is organized into four sections: best practices for accessing the
+annotations of an object in Python versions 3.10 and newer, best practices for
+accessing the annotations of an object in Python versions 3.9 and older, other
+best practices for <span style='font-size:9.0pt;line-height:108%'>__annotations__
+</span>that apply to any Python version, and quirks of <span style='font-size:
+9.0pt;line-height:108%'>__annotations__</span>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:30.45pt;
+margin-left:7.95pt'>Note that this document is specifically about working with <span
+style='font-size:9.0pt;line-height:108%'>__annotations__</span>, not uses <i>for
+</i>annotations. If you’re looking for information on how to use “type hints”
+in your code, please see the <span style='font-size:9.0pt;line-height:108%'>typing
+</span>module.</p>
+
+<h1 style='margin-left:.2in;text-indent:-15.15pt'>1 Accessing The Annotations
+Dict Of An Object In Python 3.10 And Newer</h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Python 3.10 adds a new function
+to the standard library: <span style='font-size:9.0pt;line-height:108%'>inspect.get_annotations()</span>.
+In Python versions 3.10 and newer, calling this function is the best practice
+for accessing the annotations dict of any object that supports annotations.
+This function can also “un-stringize” stringized annotations for you.</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>If for some reason <span
+style='font-size:9.0pt;line-height:108%'>inspect.get_annotations() </span>isn’t
+viable for your use case, you may access the <span style='font-size:9.0pt;
+line-height:108%'>__annotations__ </span>data member manually. Best practice
+for this changed in Python 3.10 as well: as of Python 3.10, <span
+style='font-size:9.0pt;line-height:108%'>o.__annotations__ </span>is guaranteed
+to <i>always </i>work on Python functions, classes, and modules. If you’re
+certain the object you’re examining is one of these three <i>specific </i>objects,
+you may simply use <span style='font-size:9.0pt;line-height:108%'>o.__annotations__
+</span>to get at the object’s annotations dict.</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>However, other types of
+callables–for example, callables created by <span style='font-size:9.0pt;
+line-height:108%'>functools.partial()</span>–may not have an <span
+style='font-size:9.0pt;line-height:108%'>__annotations__ </span>attribute
+defined. When accessing the <span style='font-size:9.0pt;line-height:108%'>__annotations__
+</span>of a possibly unknown object, best practice in Python versions 3.10 and
+newer is to call <span style='font-size:9.0pt;line-height:108%'>getattr() </span>with
+three arguments, for example <span style='font-size:9.0pt;line-height:108%'>getattr(o,
+'__annotations__', None)</span>.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:21.3pt;margin-left:0in;text-align:left;text-indent:0in;
+line-height:108%'>Before Python 3.10, accessing <span style='font-size:9.0pt;
+line-height:108%'>__annotations__ </span>on a class that defines no annotations
+but that has a parent class with annotations would return the parent’s <span
+style='font-size:9.0pt;line-height:108%'>__annotations__</span>. In Python 3.10
+and newer, the child class’s annotations will be an empty dict instead.</p>
+
+<h1 style='margin-left:.2in;text-indent:-15.15pt'>2 Accessing The Annotations
+Dict Of An Object In Python 3.9 And Older</h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>In Python 3.9 and older,
+accessing the annotations dict of an object is much more complicated than in
+newer versions. The problem is a design flaw in these older versions of Python,
+specifically to do with class annotations.</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Best practice for accessing the
+annotations dict of other objects–functions, other callables, and modules–is
+the same as best practice for 3.10, assuming you aren’t calling <span
+style='font-size:9.0pt;line-height:108%'>inspect.get_annotations()</span>: you
+should use three-argument <span style='font-size:9.0pt;line-height:108%'>getattr()
+</span>to access the object’s <span style='font-size:9.0pt;line-height:108%'>__annotations__
+</span>attribute.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Unfortunately, this isn’t best practice for classes. The
+problem is that, since <span style='font-size:9.0pt;line-height:108%'>__annotations__
+</span>is optional on classes, and because classes can inherit attributes from
+their base classes, accessing the <span style='font-size:9.0pt;line-height:
+108%'>__annotations__ </span>attribute of a class may inadvertently return the
+annotations dict of a <i>base class. </i>As an example:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:10.15pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=137
+src="Annotations%20Best%20Practices_files/image003.gif"></span></p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>This will print the annotations
+dict from <span style='font-size:9.0pt;line-height:108%'>Base</span>, not <span
+style='font-size:9.0pt;line-height:108%'>Derived</span>.</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Your code will have to have a
+separate code path if the object you’re examining is a class (<span
+style='font-size:9.0pt;line-height:108%'>isinstance(o, type)</span>). In that
+case, best practice relies on an implementation detail of Python 3.9 and
+before: if a class has annotations defined, they are stored in the class’s <span
+style='font-size:9.0pt;line-height:108%'>__dict__ </span>dictionary. Since the
+class may or may not have annotations defined, best practice is to call the <span
+style='font-size:9.0pt;line-height:108%'>get() </span>method on the class dict.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.25pt'>To put it all together, here is some sample code that
+safely accesses the <span style='font-size:9.0pt;line-height:108%'>__annotations__
+</span>attribute on an arbitrary object in Python 3.9 and before:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:10.05pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=73
+src="Annotations%20Best%20Practices_files/image004.gif"></span></p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>After running this code, <span
+style='font-size:9.0pt;line-height:108%'>ann </span>should be either a
+dictionary or <span style='font-size:9.0pt;line-height:108%'>None</span>.
+You’re encouraged to double-check the type of <span style='font-size:9.0pt;
+line-height:108%'>ann </span>using <span style='font-size:9.0pt;line-height:
+108%'>isinstance() </span>before further examination.</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Note that some exotic or
+malformed type objects may not have a <span style='font-size:9.0pt;line-height:
+108%'>__dict__ </span>attribute, so for extra safety you may also wish to use <span
+style='font-size:9.0pt;line-height:108%'>getattr() </span>to access <span
+style='font-size:9.0pt;line-height:108%'>__dict__</span>.</p>
+
+<h1 style='margin-left:-.25pt'>3 Manually Un-Stringizing Stringized Annotations</h1>
+
+<p class=MsoNormal style='margin-left:-.25pt'>In situations where some
+annotations may be “stringized”, and you wish to evaluate those strings to
+produce the Python values they represent, it really is best to call <span
+style='font-size:9.0pt;line-height:108%'>inspect.get_annotations() </span>to do
+this work for you.</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>If you’re using Python 3.9 or
+older, or if for some reason you can’t use <span style='font-size:9.0pt;
+line-height:108%'>inspect.get_annotations()</span>, you’ll need to duplicate
+its logic. You’re encouraged to examine the implementation of <span
+style='font-size:9.0pt;line-height:108%'>inspect.get_annotations() </span>in
+the current Python version and follow a similar approach.</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>In a nutshell, if you wish to
+evaluate a stringized annotation on an arbitrary object <span style='font-size:
+9.0pt;line-height:108%'>o</span>:</p>
+
+<p class=MsoNormal style='margin-left:24.9pt;text-indent:-8.95pt'><span
+style='line-height:108%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span>If <span style='font-size:9.0pt;line-height:108%'>o </span>is a
+module, use <span style='font-size:9.0pt;line-height:108%'>o.__dict__ </span>as
+the <span style='font-size:9.0pt;line-height:108%'>globals </span>when calling <span
+style='font-size:9.0pt;line-height:108%'>eval()</span>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.2pt;
+margin-left:24.9pt;text-indent:-8.95pt;line-height:112%'><span
+style='line-height:112%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span>If <span style='font-size:9.0pt;line-height:112%'>o </span>is a
+class, use <span style='font-size:9.0pt;line-height:112%'>sys.modules[o.__module__].__dict__
+</span>as the <span style='font-size:9.0pt;line-height:112%'>globals</span>,
+and <span style='font-size:9.0pt;line-height:112%'>dict(vars(o)) </span>as the <span
+style='font-size:9.0pt;line-height:112%'>locals</span>, when calling <span
+style='font-size:9.0pt;line-height:112%'>eval()</span>.</p>
+
+<p class=MsoNormal style='margin-left:24.9pt;text-indent:-8.95pt'><span
+style='line-height:108%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span>If <span style='font-size:9.0pt;line-height:108%'>o </span>is a
+wrapped callable using <span style='font-size:9.0pt;line-height:108%'>functools.update_wrapper()</span>,
+<span style='font-size:9.0pt;line-height:108%'>functools.wraps()</span>, or <span
+style='font-size:9.0pt;line-height:108%'>functools. partial()</span>,
+iteratively unwrap it by accessing either <span style='font-size:9.0pt;
+line-height:108%'>o.__wrapped__ </span>or <span style='font-size:9.0pt;
+line-height:108%'>o.func </span>as appropriate, until you have found the root
+unwrapped function.</p>
+
+<p class=MsoNormal style='margin-left:24.9pt;text-indent:-8.95pt'><span
+style='line-height:108%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span>If <span style='font-size:9.0pt;line-height:108%'>o </span>is a
+callable (but not a class), use <span style='font-size:9.0pt;line-height:108%'>o.__globals__
+</span>as the globals when calling <span style='font-size:9.0pt;line-height:
+108%'>eval()</span>.</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>However, not all string values
+used as annotations can be successfully turned into Python values by <span
+style='font-size:9.0pt;line-height:108%'>eval()</span>. String values could
+theoretically contain any valid string, and in practice there are valid use
+cases for type hints that require annotating with string values that
+specifically <i>can’t </i>be evaluated. For example:</p>
+
+<p class=MsoNormal style='margin-left:24.9pt;text-indent:-8.95pt'><span
+style='line-height:108%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><a href="https://peps.python.org/pep-0604/"><b><span
+style='color:#377063;text-decoration:none'>PEP 604</span></b></a><b><span
+style='color:#377063'> </span></b>union types using <span style='font-size:
+9.0pt;line-height:108%'>|</span>, before support for this was added to Python
+3.10.</p>
+
+<p class=MsoNormal style='margin-left:24.9pt;text-indent:-8.95pt'><span
+style='line-height:108%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span>Definitions that aren’t needed at runtime, only imported when <span
+style='font-size:9.0pt;line-height:108%'>typing.TYPE_CHECKING </span>is true.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:21.75pt;
+margin-left:-.25pt'>If <span style='font-size:9.0pt;line-height:108%'>eval() </span>attempts
+to evaluate such values, it will fail and raise an exception. So, when
+designing a library API that works with annotations, it’s recommended to only
+attempt to evaluate string values when explicitly requested to by the caller.</p>
+
+<h1 style='margin-left:-.25pt'>4 Best Practices For <span style='font-size:
+13.0pt;line-height:107%;font-family:"Times New Roman",serif'>__annotations__ </span>In
+Any Python Version</h1>
+
+<p class=MsoNormal style='margin-left:24.9pt;text-indent:-8.95pt'><span
+style='line-height:108%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span>You should avoid assigning to the <span style='font-size:9.0pt;
+line-height:108%'>__annotations__ </span>member of objects directly. Let Python
+manage setting <span style='font-size:9.0pt;line-height:108%'>__annotations__</span>.</p>
+
+<p class=MsoNormal style='margin-left:24.9pt;text-indent:-8.95pt'><span
+style='line-height:108%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span>If you do assign directly to the <span style='font-size:9.0pt;
+line-height:108%'>__annotations__ </span>member of an object, you should always
+set it to a <span style='font-size:9.0pt;line-height:108%'>dict </span>object.</p>
+
+<p class=MsoNormal style='margin-left:24.9pt;text-indent:-8.95pt'><span
+style='line-height:108%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span>If you directly access the <span style='font-size:9.0pt;
+line-height:108%'>__annotations__ </span>member of an object, you should ensure
+that it’s a dictionary before attempting to examine its contents.</p>
+
+<p class=MsoNormal style='margin-left:24.9pt;text-indent:-8.95pt'><span
+style='line-height:108%'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span>You should avoid modifying <span style='font-size:9.0pt;
+line-height:108%'>__annotations__ </span>dicts.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:22.65pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>You
+should avoid deleting the <span style='font-size:9.0pt;line-height:108%'>__annotations__
+</span>attribute of an object.</p>
+
+<h2><span style='font-size:14.5pt;line-height:107%;font-family:"Calibri",sans-serif'>5
+</span>__annotations__ <span style='font-size:14.5pt;line-height:107%;
+font-family:"Calibri",sans-serif'>Quirks</span></h2>
+
+<p class=MsoNormal style='margin-left:-.25pt'>In all versions of Python 3,
+function objects lazy-create an annotations dict if no annotations are defined
+on that object. You can delete the <span style='font-size:9.0pt;line-height:
+108%'>__annotations__ </span>attribute using <span style='font-size:9.0pt;
+line-height:108%'>del fn.__annotations__</span>, but if you then access <span
+style='font-size:9.0pt;line-height:108%'>fn. __annotations__ </span>the object
+will create a new empty dict that it will store and return as its annotations.
+Deleting the annotations on a function before it has lazily created its
+annotations dict will throw an <span style='font-size:9.0pt;line-height:108%'>AttributeError</span>;
+using <span style='font-size:9.0pt;line-height:108%'>del fn.__annotations__ </span>twice
+in a row is guaranteed to always throw an <span style='font-size:9.0pt;
+line-height:108%'>AttributeError</span>.</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>Everything in the above paragraph
+also applies to class and module objects in Python 3.10 and newer.</p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>In all versions of Python 3, you
+can set <span style='font-size:9.0pt;line-height:108%'>__annotations__ </span>on
+a function object to <span style='font-size:9.0pt;line-height:108%'>None</span>.
+However, subsequently accessing the annotations on that object using <span
+style='font-size:9.0pt;line-height:108%'>fn.__annotations__ </span>will
+lazy-create an empty dictionary as per the first paragraph of this section.
+This is <i>not </i>true of modules and classes, in any Python version; those
+objects permit setting <span style='font-size:9.0pt;line-height:108%'>__annotations__
+</span>to any Python value, and will retain whatever value is set.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.1pt;
+margin-left:-.25pt'>If Python stringizes your annotations for you (using <span
+style='font-size:9.0pt;line-height:108%'>from __future__ import annotations</span>),
+and you specify a string as an annotation, the string will itself be quoted. In
+effect the annotation is quoted <i>twice. </i>For example:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:10.1pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img border=0 width=611 height=73
+src="Annotations%20Best%20Practices_files/image005.gif"></span></p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>This prints <span
+style='font-size:9.0pt;line-height:108%'>{'a': &quot;'str'&quot;}</span>. This
+shouldn’t really be considered a “quirk”; it’s mentioned here simply because it
+might be surprising.<br clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:7.4pt;margin-left:
+-.25pt'>Index</h1>
+
+<p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+0in;line-height:107%'><span style='font-size:14.5pt;line-height:107%;
+font-family:"Calibri",sans-serif'>P</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:284.55pt;
+margin-bottom:6.2pt;margin-left:19.7pt;text-align:left;text-indent:-20.45pt;
+line-height:112%'><span style='font-size:9.0pt;line-height:112%'>Python
+Enhancement Proposals PEP 604</span>, <span style='color:#355F7C'>3</span></p>
+
+</div>
+
+</body>
+
+</html>

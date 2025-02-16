@@ -1,0 +1,1171 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Argparse Tutorial</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:.05pt;
+	margin-bottom:.15pt;
+	margin-left:.5pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-.5pt;
+	line-height:108%;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:5.3pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:14.5pt;
+	font-family:"Calibri",sans-serif;
+	color:#20435C;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:.05in;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;
+	color:#20435C;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Calibri",sans-serif;
+	color:#20435C;
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Calibri",sans-serif;
+	color:#20435C;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:73.1pt 1.0in 1.1in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+@page WordSection2
+	{size:595.3pt 841.9pt;
+	margin:74.0pt 1.0in 82.85pt 1.0in;}
+div.WordSection2
+	{page:WordSection2;}
+@page WordSection3
+	{size:595.3pt 841.9pt;
+	margin:72.4pt 1.0in 72.15pt 1.0in;}
+div.WordSection3
+	{page:WordSection3;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:17.65pt;margin-left:0in;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=603 height=1 id="Group 16237"
+src="Argparse%20Tutorial_files/image001.gif"></span></p>
+
+<p class=MsoNormal align=right style='margin:0in;text-align:right;text-indent:
+0in;line-height:107%'><b><span style='font-size:25.0pt;line-height:107%;
+font-family:"Calibri",sans-serif'>Argparse Tutorial</span></b></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:0in;
+margin-bottom:28.95pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><b><i><span style='font-size:12.0pt;line-height:107%;
+font-family:"Calibri",sans-serif'>Release 3.13.2</span></i></b></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:0in;
+margin-bottom:25.6pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><b><span style='font-size:14.5pt;line-height:107%;font-family:
+"Calibri",sans-serif'>Guido van Rossum and the Python development team</span></b></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.7pt;
+margin-bottom:4.55pt;margin-left:.5pt;text-align:right;line-height:110%'><b><span
+style='font-family:"Calibri",sans-serif'>February 15, 2025</span></b></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.7pt;
+margin-bottom:0in;margin-left:.5pt;text-align:right;line-height:110%'><b><span
+style='font-family:"Calibri",sans-serif'>Python Software Foundation</span></b></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.7pt;
+margin-bottom:20.25pt;margin-left:.5pt;text-align:right;line-height:110%'><b><span
+style='font-family:"Calibri",sans-serif'>Email: docs@python.org</span></b></p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;margin-left:
+-.25pt'>Contents</h1>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:10.05pt;margin-left:14.95pt;text-align:left;text-indent:-14.95pt;
+line-height:107%'><b><span style='line-height:107%;color:#355F7C'>1<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='color:#355F7C'>Concepts        </span>2</b></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:10.05pt;margin-left:14.95pt;text-align:left;text-indent:-14.95pt;
+line-height:107%'><b><span style='line-height:107%;color:#355F7C'>2<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='color:#355F7C'>The basics     </span>2</b></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:10.05pt;margin-left:14.95pt;text-align:left;text-indent:-14.95pt;
+line-height:107%'><b><span style='line-height:107%;color:#355F7C'>3<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='color:#355F7C'>Introducing Positional arguments          </span>3</b></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:.1pt;margin-left:14.95pt;text-align:left;text-indent:-14.95pt;
+line-height:107%'><b><span style='line-height:107%;color:#355F7C'>4<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='color:#355F7C'>Introducing Optional arguments            </span>4</b></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.7pt;
+margin-bottom:10.05pt;margin-left:0in;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'>       </span><span style='color:#355F7C'>4.1    Short
+options                            </span>. . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . .                               6</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:10.05pt;margin-left:14.95pt;text-align:left;text-indent:-14.95pt;
+line-height:107%'><b><span style='line-height:107%;color:#355F7C'>5<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='color:#355F7C'>Combining Positional and Optional arguments </span>6</b></p>
+
+<h2 style='margin-top:0in;margin-right:-.75pt;margin-bottom:.1pt;margin-left:
+-.75pt;text-indent:0in'><span style='font-size:10.0pt;line-height:107%;
+font-family:"Times New Roman",serif;color:#355F7C'>6    Getting a little more
+advanced                                                                                                                                    </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Times New Roman",serif;
+color:black'>10</span></h2>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.7pt;
+margin-bottom:.1pt;margin-left:0in;text-align:left;text-indent:0in;line-height:
+107%'><span style='font-size:11.0pt;line-height:107%;font-family:"Calibri",sans-serif'>       </span><span
+style='color:#355F7C'>6.1    Specifying ambiguous arguments                    </span>.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .                        11</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.7pt;
+margin-bottom:10.05pt;margin-left:0in;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'>       </span><span style='color:#355F7C'>6.2    Conflicting
+options                          </span>. . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . .                           12</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:10.05pt;margin-left:14.95pt;text-align:left;text-indent:-14.95pt;
+line-height:107%'><b><span style='line-height:107%;color:#355F7C'>7<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='color:#355F7C'>How to translate the argparse output    </span>13</b></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:10.05pt;margin-left:14.95pt;text-align:left;text-indent:-14.95pt;
+line-height:107%'><b><span style='line-height:107%;color:#355F7C'>8<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span
+style='color:#355F7C'>Custom type converters            </span>14</b></p>
+
+<h2 style='margin-top:0in;margin-right:-.75pt;margin-bottom:3.0pt;margin-left:
+-.75pt;text-indent:0in'><span style='font-size:10.0pt;line-height:107%;
+font-family:"Times New Roman",serif;color:#355F7C'>9    Conclusion                                                                                                                                                                        </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Times New Roman",serif;
+color:black'>14</span></h2>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:22.4pt;margin-left:0in;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=603 height=1 id="Group 16238"
+src="Argparse%20Tutorial_files/image001.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:25.4pt;text-align:left;line-height:107%'><b>author</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.65pt;
+margin-left:47.3pt'>Tshepang Mbambo</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:20.0pt;
+margin-left:-.25pt'>This tutorial is intended to be a gentle introduction to <span
+style='font-size:9.0pt;line-height:108%'>argparse</span>, the recommended
+command-line parsing module in the Python standard library.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:8.55pt;margin-left:.1in;text-align:left;line-height:107%'><span
+style='color:#145DEA'>® </span><b>Note</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.5pt;margin-bottom:.15pt;
+margin-left:7.95pt'><span style='position:relative;z-index:-1895825408'><span
+style='left:0px;position:absolute;left:0px;top:-36px;width:602px;height:137px'><img
+width=602 height=137 src="Argparse%20Tutorial_files/image002.gif"></span></span>The
+standard library includes two other libraries directly related to command-line
+parameter processing: the lower level <span style='font-size:9.0pt;line-height:
+108%'>optparse </span>module (which may require more code to configure for a
+given application, but also allows an application to request behaviors that <span
+style='font-size:9.0pt;line-height:108%'>argparse </span>doesn’t support), and
+the very low level <span style='font-size:9.0pt;line-height:108%'>getopt </span>(which
+specifically serves as an equivalent to the <span style='font-size:9.0pt;
+line-height:108%'>getopt() </span>family of functions available to C
+programmers). While neither of those modules is covered directly in this guide,
+many of the core concepts in <span style='font-size:9.0pt;line-height:108%'>argparse
+</span>first originated in <span style='font-size:9.0pt;line-height:108%'>optparse</span>,
+so some aspects of this tutorial will also be relevant to <span
+style='font-size:9.0pt;line-height:108%'>optparse </span>users.</p>
+
+<h1 style='margin-left:-.25pt'>1 Concepts</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.4pt;
+margin-left:-.25pt'>Let’s show the sort of functionality that we are going to
+explore in this introductory tutorial by making use of the <b><span
+style='font-size:9.0pt;line-height:108%'>ls </span></b>command:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:1.1pt;margin-left:-.25pt;text-align:left'><b><span
+style='font-size:9.0pt;line-height:108%;color:#C75C0A'>$ </span></b><span
+style='font-size:9.0pt;line-height:108%'>ls</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.5pt;margin-left:-.25pt;text-align:left;line-height:111%'><span
+style='font-size:9.0pt;line-height:111%;color:#333333'>cpython devguide prog.py
+pypy rm-unused-function.patch</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:85.5pt;
+margin-bottom:.5pt;margin-left:-.25pt;text-align:left;line-height:111%'><b><span
+style='font-size:9.0pt;line-height:111%;color:#C75C0A'>$ </span></b><span
+style='font-size:9.0pt;line-height:111%'>ls pypy </span><span style='font-size:
+9.0pt;line-height:111%;color:#333333'>ctypes_configure demo dotviewer include
+lib_pypy lib-python ...</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:1.1pt;margin-left:-.25pt;text-align:left'><b><span
+style='font-size:9.0pt;line-height:108%;color:#C75C0A'>$ </span></b><span
+style='font-size:9.0pt;line-height:108%'>ls -l</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.5pt;margin-left:-.25pt;text-align:left;line-height:111%'><span
+style='font-size:9.0pt;line-height:111%;color:#333333'>total 20</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:133.9pt;
+margin-bottom:.5pt;margin-left:-.25pt;text-align:left;line-height:111%'><span
+style='position:relative;z-index:-1895824384'><span style='left:0px;position:
+absolute;left:-5px;top:-101px;width:611px;height:264px'><img width=611
+height=264 src="Argparse%20Tutorial_files/image003.gif"></span></span><span
+style='font-size:9.0pt;line-height:111%;color:#333333'>drwxr-xr-x 19 wena wena
+4096 Feb 18 18:51 cpython drwxr-xr-x 4 wena wena 4096 Feb 8 12:04 devguide
+-rwxr-xr-x 1 wena wena 535 Feb 19 00:05 prog.py drwxr-xr-x 14 wena wena 4096
+Feb 7 00:59 pypy</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.5pt;margin-left:-.25pt;text-align:left;line-height:111%'><span
+style='font-size:9.0pt;line-height:111%;color:#333333'>-rw-r--r-- 1 wena wena
+741 Feb 18 01:01 rm-unused-function.patch</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:1.1pt;margin-left:-.25pt;text-align:left'><b><span
+style='font-size:9.0pt;line-height:108%;color:#C75C0A'>$ </span></b><span
+style='font-size:9.0pt;line-height:108%'>ls --help</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.5pt;margin-left:-.25pt;text-align:left;line-height:111%'><span
+style='font-size:9.0pt;line-height:111%;color:#333333'>Usage: ls [OPTION]...
+[FILE]...</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.5pt;margin-left:-.25pt;text-align:left;line-height:111%'><span
+style='font-size:9.0pt;line-height:111%;color:#333333'>List information about
+the FILEs (the current directory by default).</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.5pt;margin-left:-.25pt;text-align:left;line-height:111%'><span
+style='font-size:9.0pt;line-height:111%;color:#333333'>Sort entries
+alphabetically if none of -cftuvSUX nor --sort is specified.</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:13.35pt;margin-left:-.25pt;text-align:left;line-height:111%'><span
+style='font-size:9.0pt;line-height:111%;color:#333333'>...</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.6pt;
+margin-left:-.25pt'>A few concepts we can learn from the four commands:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.6pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>The <b><span
+style='font-size:9.0pt;line-height:108%'>ls </span></b>command is useful when
+run without any options at all. It defaults to displaying the contents of the
+current directory.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.05pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>If we
+want beyond what it provides by default, we tell it a bit more. In this case,
+we want it to display a different directory, <span style='font-size:9.0pt;
+line-height:108%'>pypy</span>. What we did is specify what is known as a
+positional argument. It’s named so because the program should know what to do
+with the value, solely based on where it appears on the command line. This
+concept is more relevant to a command like <b><span style='font-size:9.0pt;
+line-height:108%'>cp</span></b>, whose most basic usage is <span
+style='font-size:9.0pt;line-height:108%'>cp SRC DEST</span>. The first position
+is <i>what you want copied, </i>and the second position is <i>where you want it
+copied to</i>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Now, say
+we want to change behaviour of the program. In our example, we display more
+info for each file instead of just showing the file names. The <span
+style='font-size:9.0pt;line-height:108%'>-l </span>in that case is known as an
+optional argument.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:21.35pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>That’s a
+snippet of the help text. It’s very useful in that you can come across a
+program you have never used before, and can figure out how it works simply by
+reading its help text.</p>
+
+<h1 style='margin-left:-.25pt'>2 The basics</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Let us start with a very simple example which does (almost)
+nothing:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=57
+src="Argparse%20Tutorial_files/image004.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Following is a result of running the code:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:0in;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=168
+src="Argparse%20Tutorial_files/image005.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=40
+src="Argparse%20Tutorial_files/image006.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.6pt;
+margin-left:-.25pt'>Here is what is happening:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.1pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Running
+the script without any options results in nothing displayed to stdout. Not so
+useful.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.7pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>The
+second one starts to display the usefulness of the <span style='font-size:9.0pt;
+line-height:108%'>argparse </span>module. We have done almost nothing, but
+already we get a nice help message.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:21.4pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>The <span
+style='font-size:9.0pt;line-height:108%'>--help </span>option, which can also
+be shortened to <span style='font-size:9.0pt;line-height:108%'>-h</span>, is
+the only option we get for free (i.e. no need to specify it). Specifying
+anything else results in an error. But even then, we do get a useful usage
+message, also for free.</p>
+
+<h1 style='margin-left:-.25pt'>3 Introducing Positional arguments</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>An example:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=89
+src="Argparse%20Tutorial_files/image007.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>And running the code:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=216
+src="Argparse%20Tutorial_files/image008.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.75pt;
+margin-left:-.25pt'>Here is what’s happening:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>We’ve
+added the <span style='font-size:9.0pt;line-height:108%'>add_argument() </span>method,
+which is what we use to specify which command-line options the program is
+willing to accept. In this case, I’ve named it <span style='font-size:9.0pt;
+line-height:108%'>echo </span>so that it’s in line with its function.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.2pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Calling
+our program now requires us to specify an option.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.15pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>The <span
+style='font-size:9.0pt;line-height:108%'>parse_args() </span>method actually
+returns some data from the options specified, in this case, <span
+style='font-size:9.0pt;line-height:108%'>echo</span>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.6pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>The
+variable is some form of ‘magic’ that <span style='font-size:9.0pt;line-height:
+108%'>argparse </span>performs for free (i.e. no need to specify which variable
+that value is stored in). You will also notice that its name matches the string
+argument given to the method, <span style='font-size:9.0pt;line-height:108%'>echo</span>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Note however that, although the help display looks nice and
+all, it currently is not as helpful as it can be. For example we see that we
+got <span style='font-size:9.0pt;line-height:108%'>echo </span>as a positional
+argument, but we don’t know what it does, other than by guessing or by reading
+the source code. So, let’s make it a bit more useful:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:0in;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=56
+src="Argparse%20Tutorial_files/image009.gif"></span></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:0in;margin-left:.5pt;text-align:right;line-height:107%'><span
+style='font-size:8.0pt;line-height:107%'>(continued from previous page)</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=40
+src="Argparse%20Tutorial_files/image010.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>And we get:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=137
+src="Argparse%20Tutorial_files/image011.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Now, how about doing something even more useful:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=89
+src="Argparse%20Tutorial_files/image012.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Following is a result of running the code:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:10.05pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=89
+src="Argparse%20Tutorial_files/image013.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>That didn’t go so well. That’s because <span
+style='font-size:9.0pt;line-height:108%'>argparse </span>treats the options we
+give it as strings, unless we tell it otherwise. So, let’s tell <span
+style='font-size:9.0pt;line-height:108%'>argparse </span>to treat that input as
+an integer:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=105
+src="Argparse%20Tutorial_files/image014.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Following is a result of running the code:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=89
+src="Argparse%20Tutorial_files/image015.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:20.7pt;
+margin-left:-.25pt'>That went well. The program now even helpfully quits on bad
+illegal input before proceeding.</p>
+
+<h1 style='margin-left:-.25pt'>4 Introducing Optional arguments</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>So far we have been playing with positional arguments. Let
+us have a look on how to add optional ones:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.35pt;
+margin-bottom:0in;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=56
+src="Argparse%20Tutorial_files/image016.gif"></span></p>
+
+</div>
+
+<span style='font-size:10.0pt;line-height:108%;font-family:"Times New Roman",serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection2>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=56
+src="Argparse%20Tutorial_files/image017.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>And the output:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=216
+src="Argparse%20Tutorial_files/image018.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.7pt;
+margin-left:-.25pt'>Here is what is happening:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.6pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>The
+program is written so as to display something when <span style='font-size:9.0pt;
+line-height:108%'>--verbosity </span>is specified and display nothing when not.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>To show
+that the option is actually optional, there is no error when running the
+program without it. Note that by default, if an optional argument isn’t used,
+the relevant variable, in this case <span style='font-size:9.0pt;line-height:
+108%'>args.verbosity</span>, is given <span style='font-size:9.0pt;line-height:
+108%'>None </span>as a value, which is the reason it fails the truth test of
+the <span style='font-size:9.0pt;line-height:108%'>if </span>statement.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.15pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>The help
+message is a bit different.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.15pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>When
+using the <span style='font-size:9.0pt;line-height:108%'>--verbosity </span>option,
+one must also specify some value, any value.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>The above example accepts arbitrary integer values for <span
+style='font-size:9.0pt;line-height:108%'>--verbosity</span>, but for our simple
+program, only two values are actually useful, <span style='font-size:9.0pt;
+line-height:108%'>True </span>or <span style='font-size:9.0pt;line-height:108%'>False</span>.
+Let’s modify the code accordingly:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=121
+src="Argparse%20Tutorial_files/image019.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>And the output:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=184
+src="Argparse%20Tutorial_files/image020.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Here is what is happening:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.7pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>The
+option is now more of a flag than something that requires a value. We even
+changed the name of the option to match that idea. Note that we now specify a
+new keyword, <span style='font-size:9.0pt;line-height:108%'>action</span>, and
+give it the value <span style='font-size:9.0pt;line-height:108%'>&quot;store_true&quot;</span>.
+This means that, if the option is specified, assign the value <span
+style='font-size:9.0pt;line-height:108%'>True </span>to <span style='font-size:
+9.0pt;line-height:108%'>args.verbose</span>. Not specifying it implies <span
+style='font-size:9.0pt;line-height:108%'>False</span>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.05pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>It
+complains when you specify a value, in true spirit of what flags actually are.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:16.65pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Notice
+the different help text.</p>
+
+<h2 style='margin-left:-.25pt'>4.1 Short options</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>If you are familiar with command line usage, you will
+notice that I haven’t yet touched on the topic of short versions of the
+options. It’s quite simple:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=121
+src="Argparse%20Tutorial_files/image021.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>And here goes:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=137
+src="Argparse%20Tutorial_files/image022.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:21.35pt;
+margin-left:-.25pt'>Note that the new ability is also reflected in the help
+text.</p>
+
+<h1 style='margin-left:-.25pt'>5 Combining Positional and Optional arguments</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Our program keeps growing in complexity:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=200
+src="Argparse%20Tutorial_files/image023.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>And now the output:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:0in;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=72
+src="Argparse%20Tutorial_files/image024.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=88
+src="Argparse%20Tutorial_files/image025.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.05pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>We’ve
+brought back a positional argument, hence the complaint.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.85pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Note that
+the order does not matter.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>How about we give this program of ours back the ability to
+have multiple verbosity values, and actually get to use them:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=232
+src="Argparse%20Tutorial_files/image026.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>And the output:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=184
+src="Argparse%20Tutorial_files/image027.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>These all look good except the last one, which exposes a
+bug in our program. Let’s fix it by restricting the values the <span
+style='font-size:9.0pt;line-height:108%'>--verbosity </span>option can accept:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:0in;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=200
+src="Argparse%20Tutorial_files/image028.gif"></span></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:-.75pt;
+margin-bottom:0in;margin-left:.5pt;text-align:right;line-height:107%'><span
+style='font-size:8.0pt;line-height:107%'>(continued from previous page)</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=40
+src="Argparse%20Tutorial_files/image029.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>And the output:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=216
+src="Argparse%20Tutorial_files/image030.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.45pt;
+margin-left:-.25pt'>Note that the change also reflects both in the error
+message as well as the help string.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Now, let’s use a different approach of playing with
+verbosity, which is pretty common. It also matches the way the CPython
+executable handles its own verbosity argument (check the output of <span
+style='font-size:9.0pt;line-height:108%'>python --help</span>):</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=232
+src="Argparse%20Tutorial_files/image031.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>We have introduced another action, “count”, to count the
+number of occurrences of specific options.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:0in;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=264
+src="Argparse%20Tutorial_files/image032.gif"></span></p>
+
+</div>
+
+<span style='font-size:10.0pt;line-height:108%;font-family:"Times New Roman",serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection3>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:10.15pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=104
+src="Argparse%20Tutorial_files/image033.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.6pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Yes, it’s
+now more of a flag (similar to <span style='font-size:9.0pt;line-height:108%'>action=&quot;store_true&quot;</span>)
+in the previous version of our script. That should explain the complaint.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.05pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>It also
+behaves similar to “store_true” action.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.1pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Now
+here’s a demonstration of what the “count” action gives. You’ve probably seen
+this sort of usage before.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.05pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>And if
+you don’t specify the <span style='font-size:9.0pt;line-height:108%'>-v </span>flag,
+that flag is considered to have <span style='font-size:9.0pt;line-height:108%'>None
+</span>value.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.05pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>As should
+be expected, specifying the long form of the flag, we should get the same
+output.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Sadly,
+our help output isn’t very informative on the new ability our script has
+acquired, but that can always be fixed by improving the documentation for our
+script (e.g. via the <span style='font-size:9.0pt;line-height:108%'>help </span>keyword
+argument).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.85pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>That last
+output exposes a bug in our program.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Let’s fix:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=264
+src="Argparse%20Tutorial_files/image034.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>And this is what it gives:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=153
+src="Argparse%20Tutorial_files/image035.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.6pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>First
+output went well, and fixes the bug we had before. That is, we want any value
+&gt;= 2 to be as verbose as possible.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.85pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Third
+output not so good.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Let’s fix that bug:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:10.05pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=232
+src="Argparse%20Tutorial_files/image036.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:5.75pt;margin-left:0in;text-align:left;text-indent:0in;
+line-height:109%'>We’ve just introduced yet another keyword, <span
+style='font-size:9.0pt;line-height:109%'>default</span>. We’ve set it to <span
+style='font-size:9.0pt;line-height:109%'>0 </span>in order to make it
+comparable to the other int values. Remember that by default, if an optional
+argument isn’t specified, it gets the <span style='font-size:9.0pt;line-height:
+109%'>None </span>value, and that cannot be compared to an int value (hence the
+<span style='font-size:9.0pt;line-height:109%'>TypeError </span>exception).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>And:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:10.05pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=41
+src="Argparse%20Tutorial_files/image037.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:21.35pt;
+margin-left:-.25pt'>You can go quite far just with what we’ve learned so far,
+and we have only scratched the surface. The <span style='font-size:9.0pt;
+line-height:108%'>argparse </span>module is very powerful, and we’ll explore a
+bit more of it before we end this tutorial.</p>
+
+<h1 style='margin-left:-.25pt'>6 Getting a little more advanced</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>What if we wanted to expand our tiny program to perform
+other powers, not just squares:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=216
+src="Argparse%20Tutorial_files/image038.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Output:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:0in;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=612 height=177
+src="Argparse%20Tutorial_files/image039.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=88
+src="Argparse%20Tutorial_files/image040.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Notice that so far we’ve been using verbosity level to <i>change
+</i>the text that gets displayed. The following example instead uses verbosity
+level to display <i>more </i>text instead:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=200
+src="Argparse%20Tutorial_files/image041.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Output:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:18.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=121
+src="Argparse%20Tutorial_files/image042.gif"></span></p>
+
+<h2 style='margin-left:-.25pt'>6.1 Specifying ambiguous arguments</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>When there is ambiguity in deciding whether an argument is
+positional or for an argument, <span style='font-size:9.0pt;line-height:108%'>--
+</span>can be used to tell <span style='font-size:9.0pt;line-height:108%'>parse_args()
+</span>that everything after that is a positional argument:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:0in;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=296
+src="Argparse%20Tutorial_files/image043.gif"></span></p>
+
+<h2 style='margin-left:-.25pt'>6.2 Conflicting options</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>So far, we have been working with two methods of an <span
+style='font-size:9.0pt;line-height:108%'>argparse.ArgumentParser </span>instance.
+Let’s introduce a third one, <span style='font-size:9.0pt;line-height:108%'>add_mutually_exclusive_group()</span>.
+It allows for us to specify options that conflict with each other. Let’s also
+change the rest of the program so that the new functionality makes more sense:
+we’ll introduce the <span style='font-size:9.0pt;line-height:108%'>--quiet </span>option,
+which will be the opposite of the <span style='font-size:9.0pt;line-height:
+108%'>--verbose </span>one:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=280
+src="Argparse%20Tutorial_files/image044.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Our program is now simpler, and we’ve lost some
+functionality for the sake of demonstration. Anyways, here’s the output:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=612 height=200
+src="Argparse%20Tutorial_files/image045.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.5pt;
+margin-left:-.25pt'>That should be easy to follow. I’ve added that last output
+so you can see the sort of flexibility you get, i.e. mixing long form options
+with short form ones.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Before we conclude, you probably want to tell your users
+the main purpose of your program, just in case they don’t know:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:0in;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=612 height=209
+src="Argparse%20Tutorial_files/image046.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:10.1pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=88
+src="Argparse%20Tutorial_files/image047.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Note that slight difference in the usage text. Note the <span
+style='font-size:9.0pt;line-height:108%'>[-v | -q]</span>, which tells us that
+we can either use <span style='font-size:9.0pt;line-height:108%'>-v </span>or <span
+style='font-size:9.0pt;line-height:108%'>-q</span>, but not both at the same
+time:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:22.15pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=216
+src="Argparse%20Tutorial_files/image048.gif"></span></p>
+
+<h1 style='margin-left:-.25pt'>7 How to translate the argparse output</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:136%'>The output of the <span style='font-size:
+9.0pt;line-height:136%'>argparse </span>module such as its help text and error
+messages are all made translatable using the <span style='font-size:9.0pt;
+line-height:136%'>gettext </span>module. This allows applications to easily
+localize messages produced by <span style='font-size:9.0pt;line-height:136%'>argparse</span>.
+See also i18n-howto. For instance, in this <span style='font-size:9.0pt;
+line-height:136%'>argparse </span>output:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:10.6pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img width=611 height=216
+src="Argparse%20Tutorial_files/image049.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:5.6pt;margin-left:-.25pt;text-align:left'>The strings <span
+style='font-size:9.0pt;line-height:108%'>usage:</span>, <span style='font-size:
+9.0pt;line-height:108%'>positional arguments:</span>, <span style='font-size:
+9.0pt;line-height:108%'>options: </span>and <span style='font-size:9.0pt;
+line-height:108%'>show this help message and exit </span>are all translatable.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.4pt;
+margin-left:-.25pt'>In order to translate these strings, they must first be
+extracted into a <span style='font-size:9.0pt;line-height:108%'>.po </span>file.
+For example, using <a href="https://babel.pocoo.org/"><span style='color:#377063;
+text-decoration:none'>Babel</span></a>, run this command:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:14.3pt;margin-left:-.25pt;text-align:left'><span
+style='position:relative;z-index:-1895823360'><span style='left:0px;position:
+absolute;left:-5px;top:-6px;width:611px;height:25px'><img width=611 height=25
+src="Argparse%20Tutorial_files/image050.gif"></span></span><b><span
+style='font-size:9.0pt;line-height:108%;color:#C75C0A'>$ </span></b><span
+style='font-size:9.0pt;line-height:108%'>pybabel extract -o messages.po
+/usr/lib/python3.12/argparse.py</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.15pt;
+margin-left:-.25pt'>This command will extract all translatable strings from the
+<span style='font-size:9.0pt;line-height:108%'>argparse </span>module and
+output them into a file named <span style='font-size:9.0pt;line-height:108%'>messages.po</span>.
+This command assumes that your Python installation is in <span
+style='font-size:9.0pt;line-height:108%'>/usr/lib</span>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>You can find out the location of the <span
+style='font-size:9.0pt;line-height:108%'>argparse </span>module on your system
+using this script:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:10.15pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img border=0 width=611 height=41
+src="Argparse%20Tutorial_files/image051.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.85pt;
+margin-left:-.25pt'>Once the messages in the <span style='font-size:9.0pt;
+line-height:108%'>.po </span>file are translated and the translations are
+installed using <span style='font-size:9.0pt;line-height:108%'>gettext</span>, <span
+style='font-size:9.0pt;line-height:108%'>argparse </span>will be able to
+display the translated messages.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:21.85pt;
+margin-left:-.25pt'>To translate your own strings in the <span
+style='font-size:9.0pt;line-height:108%'>argparse </span>output, use <span
+style='font-size:9.0pt;line-height:108%'>gettext</span>.</p>
+
+<h1 style='margin-left:-.25pt'>8 Custom type converters</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.4pt;
+margin-left:-.25pt'>The <span style='font-size:9.0pt;line-height:108%'>argparse
+</span>module allows you to specify custom type converters for your
+command-line arguments. This allows you to modify user input before it’s stored
+in the <span style='font-size:9.0pt;line-height:108%'>argparse.Namespace</span>.
+This can be useful when you need to pre-process the input before it is used in
+your program.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.95pt;
+margin-left:-.25pt'>When using a custom type converter, you can use any
+callable that takes a single string argument (the argument value) and returns
+the converted value. However, if you need to handle more complex scenarios, you
+can use a custom action class with the <b>action </b>parameter instead.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>For example, let’s say you want to handle arguments with
+different prefixes and process them accordingly:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img border=0 width=611 height=184
+src="Argparse%20Tutorial_files/image052.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>Output:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-3.4pt;
+margin-bottom:9.95pt;margin-left:-3.4pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img border=0 width=611 height=41
+src="Argparse%20Tutorial_files/image053.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.75pt;
+margin-left:-.25pt'>In this example, we:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.15pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Created a
+parser with custom prefix characters using the <span style='font-size:9.0pt;
+line-height:108%'>prefix_chars </span>parameter.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.65pt;
+margin-left:24.9pt;text-indent:-8.95pt'><span style='line-height:108%'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Defined
+two arguments, <span style='font-size:9.0pt;line-height:108%'>-a </span>and <span
+style='font-size:9.0pt;line-height:108%'>+a</span>, which used the <span
+style='font-size:9.0pt;line-height:108%'>type </span>parameter to create custom
+type converters to store the value in a tuple with the prefix.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:21.4pt;
+margin-left:-.25pt'>Without the custom type converters, the arguments would
+have treated the <span style='font-size:9.0pt;line-height:108%'>-a </span>and <span
+style='font-size:9.0pt;line-height:108%'>+a </span>as the same argument, which
+would have been undesirable. By using custom type converters, we were able to
+differentiate between the two arguments.</p>
+
+<h1 style='margin-left:-.25pt'>9 Conclusion</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt'>The <span style='font-size:9.0pt;line-height:108%'>argparse
+</span>module offers a lot more than shown here. Its docs are quite detailed
+and thorough, and full of examples. Having gone through this tutorial, you
+should easily digest them without feeling overwhelmed.</p>
+
+</div>
+
+</body>
+
+</html>
