@@ -1,0 +1,2266 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Introduction to PowerShell</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:32.8pt;
+	margin-bottom:.15pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:103%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:.15pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria",serif;
+	color:#21798E;
+	text-decoration:underline;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria",serif;
+	color:#2DA2BF;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria",serif;
+	color:#2DA2BF;
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria",serif;
+	color:#21798E;
+	font-weight:bold;
+	text-decoration:underline;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:74.0pt 69.4pt 8.9pt 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+@page WordSection2
+	{size:8.5in 11.0in;
+	margin:52.9pt 69.4pt 52.3pt 1.0in;}
+div.WordSection2
+	{page:WordSection2;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:32.8pt;margin-bottom:
+0in;margin-left:0in;text-indent:0in;line-height:107%'><img width=168
+height=168 src="Introduction%20to%20PowerShell_files/image001.gif" align=left
+hspace=12><b><u><span style='font-size:16.0pt;line-height:107%'>Understanding
+PowerShell</span></u></b><b><span style='font-size:16.0pt;line-height:107%'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:32.8pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:107%'><b><span style='font-size:12.0pt;
+line-height:107%'>Required:</span></b><span style='font-size:12.0pt;line-height:
+107%'> PowerShell 3.0 or greater </span></p>
+
+<p class=MsoNormal style='margin-left:-.25pt'>(Some cmdlets are in PowerShell
+2.0) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:32.8pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:107%'><span style='font-size:12.0pt;
+line-height:107%'>Windows Server and Active Directory Preferred </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:32.8pt;margin-bottom:
+.2pt;margin-left:-.25pt;line-height:103%'><span style='font-size:10.0pt;
+line-height:103%'>Peter McEldowney </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:32.8pt;margin-bottom:
+13.65pt;margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:32.8pt;margin-bottom:
+0in;margin-left:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:14.0pt;line-height:107%;font-family:"Cambria",serif;
+color:#21798E'>Contents </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:6.35pt;
+margin-left:-.25pt'>Expanding Functionality and Finding cmdlets ..............................................................................................
+2 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:6.35pt;
+margin-left:-.25pt'>Getting help in PowerShell and referencing syntax
+......................................................................................
+5 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:6.5pt;
+margin-left:-.25pt'>Understanding Syntax to use Get-Help outputs
+...........................................................................................
+6 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:6.35pt;
+margin-left:-.25pt'>Working with the Event Log
+..........................................................................................................................
+7 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:6.35pt;
+margin-left:-.25pt'>Managing Windows Features and Roles in Windows Server
+..................................................................... 10 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:6.45pt;
+margin-left:-.25pt'>Managing Your Network Adapter
+...............................................................................................................
+11 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:6.35pt;
+margin-left:-.25pt'>Working with variables
+...............................................................................................................................
+14 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:6.45pt;
+margin-left:-.25pt'>Working with text [strings and arrays]
+.......................................................................................................
+15 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:6.35pt;
+margin-left:-.25pt'>Using a basic for loop
+..................................................................................................................................
+16 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:6.35pt;
+margin-left:-.25pt'>Understanding the ActiveDirectory module
+...............................................................................................
+18 </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:2.15pt;
+margin-bottom:5.9pt;margin-left:.5pt;text-align:right;line-height:107%'>Managing
+the Default Domain Password Policy .....................................................................................
+18 </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:2.15pt;
+margin-bottom:5.9pt;margin-left:.5pt;text-align:right;line-height:107%'>Creating
+new users
+.................................................................................................................................
+19 </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:2.15pt;
+margin-bottom:5.9pt;margin-left:.5pt;text-align:right;line-height:107%'>Creating
+New Organizational Units
+.........................................................................................................
+21 </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:2.15pt;
+margin-bottom:8.8pt;margin-left:.5pt;text-align:right;line-height:107%'>Getting
+Information about AD objects
+...................................................................................................
+23<b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:9.7pt;
+margin-left:-.25pt'><u><span style='font-size:12.0pt;line-height:103%;
+font-family:"Cambria",serif;color:#2DA2BF'>Objective:</span></u> Introduce a
+basic and fundamental understanding of common PowerShell usage. </p>
+
+<p class=MsoNormal align=right style='margin:0in;text-align:right;text-indent:
+0in;line-height:107%'><img width=625 height=3 id="Group 24618"
+src="Introduction%20to%20PowerShell_files/image002.gif"> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:9.8pt;
+margin-left:0in;text-indent:0in;line-height:107%'><u><span style='font-size:
+12.0pt;line-height:107%;font-family:"Cambria",serif;color:#2DA2BF'>What is
+PowerShell?</span></u><span style='font-size:12.0pt;line-height:107%;
+font-family:"Cambria",serif;color:#2DA2BF'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>PowerShell is Command Prompt (cmd) on steroids. It is
+designed to enable complex scripts that can manipulate your environment
+precisely. Not only can you use legacy executables that are native to Windows
+(like ipconfig or the net commands), but there are now modules that can be
+added to enhance capability and management potential. The individual commands
+within these modules, called cmdlets, will prove to be the easiest and most
+robust means to configure, automate, and monitor systems. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.25pt;
+margin-left:-.25pt;line-height:103%'>For more information on PowerShell, please
+check out <a
+href="http://technet.microsoft.com/en-us/scriptcenter/dd772285.aspx"><span
+style='color:#FF8119'>Windows Powershell Cmdlets</span></a><a
+href="http://technet.microsoft.com/en-us/scriptcenter/dd772285.aspx"><span
+style='color:#FF8119;text-decoration:none'> </span></a><a
+href="http://technet.microsoft.com/en-us/scriptcenter/dd772285.aspx"><span
+style='color:#FF8119'>http://technet.microsoft.com/en</span></a><a
+href="http://technet.microsoft.com/en-us/scriptcenter/dd772285.aspx"><span
+style='color:#FF8119'>-</span></a><a
+href="http://technet.microsoft.com/en-us/scriptcenter/dd772285.aspx"><span
+style='color:#FF8119'>us/scriptcenter/dd772285.aspx</span></a><a
+href="http://technet.microsoft.com/en-us/scriptcenter/dd772285.aspx"><span
+style='color:black;text-decoration:none'> </span></a></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.25pt;
+margin-left:-.25pt;line-height:103%'>For videos that demonstrate more
+PowerShell, check out <a
+href="http://technet.microsoft.com/en-us/scriptcenter/powershell.aspx"><span
+style='color:#FF8119'>Scripting with Windows PowerShell</span></a><a
+href="http://technet.microsoft.com/en-us/scriptcenter/powershell.aspx"><span
+style='color:#FF8119;text-decoration:none'> </span></a><a
+href="http://technet.microsoft.com/en-us/scriptcenter/powershell.aspx"><span
+style='color:#FF8119'>http://technet.microsoft.com/en</span></a><a
+href="http://technet.microsoft.com/en-us/scriptcenter/powershell.aspx"><span
+style='color:#FF8119'>-</span></a><a
+href="http://technet.microsoft.com/en-us/scriptcenter/powershell.aspx"><span
+style='color:#FF8119'>us/scriptcenter/powershell.aspx</span></a><a
+href="http://technet.microsoft.com/en-us/scriptcenter/powershell.aspx"><span
+style='color:black;text-decoration:none'> </span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.9pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal align=right style='margin:0in;text-align:right;text-indent:
+0in;line-height:107%'><img border=0 width=625 height=3 id="Group 24620"
+src="Introduction%20to%20PowerShell_files/image002.gif"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.9pt;margin-bottom:.2pt;
+margin-left:-.25pt;line-height:103%'><b><span style='font-size:12.0pt;
+line-height:103%'>For Best Results: </span></b><span style='font-size:10.0pt;
+line-height:103%'>Manually type all commands into your PowerShell console. </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.9pt;margin-bottom:.2pt;
+margin-left:86.05pt;line-height:103%'><span style='font-size:10.0pt;line-height:
+103%'>This gets you comfortable navigating PowerShell. </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:27.0pt;text-indent:0in;line-height:107%'><span style='font-size:
+10.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:2.75pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><span style='font-size:10.0pt;line-height:107%'>[Anything after <b>Ex:</b> 
+that is in <i>italics </i>can be entered into a PowerShell console window] </span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>To learn how to run PowerShell efficiently using the
+keyboard, check out: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Help
+about_Line_Editing </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>For an easier to read version, pipe the output to the <i>more</i>
+command. This will be explained later: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Help
+about_Line_Editing | more </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>For more detailed and advanced information on advanced
+PowerShell functionality, check out the embedded help documentation. All of the
+help sections can be found using: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.2pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Help
+about </i></p>
+
+<h1 style='margin-left:-.25pt'>Expanding Functionality and Finding cmdlets<u><span
+style='text-decoration:none'> </span></u></h1>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.9pt;margin-bottom:.2pt;
+margin-left:-.25pt;line-height:103%'><span style='font-size:10.0pt;line-height:
+103%'>PowerShell allows users to manipulate outputs to suit current needs. Take
+the <i>get-command </i>cmdlets; we can use it to find command-lets (cmdlets): </span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+style='font-size:10.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-indent:0in;line-height:107%'><span style='font-size:
+10.0pt;line-height:107%'>                <b>Ex:           </b>    <i>Get-Command
+</i></span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i><span
+style='font-size:10.0pt;line-height:107%'> </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:39.95pt;margin-bottom:
+.2pt;margin-left:-.25pt;line-height:103%'><span style='font-size:10.0pt;
+line-height:103%'>Notice how we used a verb and a noun/action.  We can get the
+available verbs in PowerShell with: [Notice how there is never a space between
+the verb and the noun] </span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+style='font-size:10.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-indent:0in;line-height:107%'><span style='font-size:
+10.0pt;line-height:107%'>                <b>Ex:            </b><i>Get-Verb </i></span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i><span
+style='font-size:10.0pt;line-height:107%'> </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.9pt;margin-bottom:.2pt;
+margin-left:-.25pt;line-height:103%'><span style='font-size:10.0pt;line-height:
+103%'>We can manipulate the output of the <i>Get-Command</i> cmdlet by
+specifying a verb. The next example shows how we can find all the cmdlets we
+have available to us that contain the verb <i>get</i>: </span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+style='font-size:10.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-indent:0in;line-height:107%'><span style='font-size:
+10.0pt;line-height:107%'>                <b>Ex:            </b><i>Get-Command
+–Verb Get </i></span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i><span
+style='font-size:10.0pt;line-height:107%'> </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.9pt;margin-bottom:.2pt;
+margin-left:-.25pt;line-height:103%'><span style='font-size:10.0pt;line-height:
+103%'>Notice how long the output is. We can use a command (actually an old
+command) called more. This command is pipe | capable (sometimes referred to as
+| piping and can typically be found below the backspace key with a shift). This
+means that it can take the output of another command as its input. Using this
+input, the command creates a scrolling document that can be incremented 1 line
+at a time or 1 page at a time. We will be using this frequently for making
+outputs easier to read because more is pipe capable. </span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+style='font-size:10.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-indent:0in;line-height:107%'><span style='font-size:
+10.0pt;line-height:107%'>                <b>Ex:           </b><i>Get-Command
+–Verb Get | more</i> </span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+style='font-size:10.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.9pt;margin-bottom:.2pt;
+margin-left:-.25pt;line-height:103%'><span style='font-size:10.0pt;line-height:
+103%'>We can narrow our results down even more by specifying a module. Take
+NetTCPIP: </span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+style='font-size:10.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>                <b><span
+style='font-size:10.0pt;line-height:107%'>Ex:           </span></b><i><span
+style='font-size:10.0pt;line-height:107%'>Get-Command –Verb Get –Module
+NetTCPIP</span></i><span style='font-size:10.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+style='font-size:10.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.9pt;margin-bottom:.2pt;
+margin-left:-.25pt;line-height:103%'><span style='font-size:10.0pt;line-height:
+103%'>These arguments (or switches or options) are crucial. We can cycle
+through the available arguments by pressing <i>tab</i> after we enter a dash. This
+can be done for most cmdlet but if the module is not loaded that contains the
+cmdlets, then autofill will not work until the module is loaded (covered next).
+</span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+style='font-size:10.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.2pt;
+margin-left:0in;text-indent:0in;line-height:103%'>                <b><span
+style='font-size:10.0pt;line-height:103%'>Ex:</span></b><i><span
+style='font-size:10.0pt;line-height:103%'>           Get-Command –</span></i><span
+style='font-size:10.0pt;line-height:103%'>[press tab immediately following the
+dash]<i> </i></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:0in;line-height:107%'><span style='font-size:10.0pt;
+line-height:107%'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.9pt;margin-bottom:.2pt;
+margin-left:-.25pt;line-height:103%'><span style='font-size:10.0pt;line-height:
+103%'>Similar to the legacy more command, many cmdlets are pipe capable. This
+is identified by being able to ‘Accept Pipeline Input.’ In the next example, we
+are finding a specific column and grouping objects by the text that is in that
+particular column. This will also tell us how many commands are available in
+each module. </span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+style='font-size:10.0pt;line-height:107%'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-indent:0in;line-height:107%'><span style='font-size:
+10.0pt;line-height:107%'>                <b>Ex:            </b><i>Get-Command
+|Group-Object module </i></span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i><span
+style='font-size:10.0pt;line-height:107%'> </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-54.8pt;margin-bottom:
+2.1pt;margin-left:-54.4pt;text-indent:0in;line-height:107%'><img border=0
+width=773 height=196 id="Picture 751"
+src="Introduction%20to%20PowerShell_files/image003.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:0in;text-indent:0in;line-height:107%'><i><span style='font-size:
+10.0pt;line-height:107%'> </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.75pt;text-indent:0in'>                [We can also use the <i>group</i>
+alias instead of typing the full cmdlet name <i>group-object</i>] </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Now since we can find the cmdlets available in a module, we
+should know how to import modules into PowerShell so that we can do more. All
+the modules that are on our local machines have already been imported but look
+at<a href="http://www.nsoftware.com/powershell/"><span style='color:black;
+text-decoration:none'> </span></a><a href="http://www.nsoftware.com/powershell/"><span
+style='color:#FF8119'>/n software inc</span></a><a
+href="http://www.nsoftware.com/powershell/"><span style='color:black;
+text-decoration:none'> </span></a>as an example, you can import SSH, SFTP,
+HTTP, web publishing, Instant Messaging, and more modules. These can be used
+for advanced functionality but if you install these cmdlets, you will notice
+that in the default Profile that is loaded with PowerShell, it adds a line that
+states <i>import-module netcmdlets </i>so that the module loads at when
+PowerShell loads. These cmdlets are not discussed beyond this section in this
+tutorial.      [ </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.25pt;
+margin-left:-.25pt;line-height:103%'><a
+href="http://www.netcmdlets.com/download/"><span style='color:#FF8119'>http://www.netcmdlets.com/download/</span></a><a
+href="http://www.netcmdlets.com/download/"><span style='color:black;text-decoration:
+none'> </span></a>] </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>The default Profile is loaded when PowerShell starts. This
+is located in your documents folder under the </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>WindowsPowerShell folder in a file called
+Microsoft.PowerShell_profile.ps1 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>This file is loaded every time PowerShell loads and can be
+configured to alter prompts or set up aliases or however you want to configure
+your PowerShell console. This makes migrating settings from one PowerShell
+console to any PowerShell console simple because this file can be backed up. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Next, we should work with the idea that the same task can
+be accomplished many ways. For example, if we want to check for the
+servermanager module (that we will be using later), we can do this with: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:    
+     </b><i>Get-Module –ListAvailable | where name –match servermanager </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>One nice aspect of using <i>get-module</i> to find your
+cmdlets is that you can find out way more information about the module. Let us
+use another pipe capable cmdlet to help us called <i>format-list. </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><i>                </i><b>Ex:
+         </b><i>Get-Module –ListAvailable | where name –match servermanager |
+Format-List </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>There are many other ways to format and since format is a
+verb, we can find all the commands that begin with format by using: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Command
+–Verb Format </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>We will be using various <i>Format-</i> cmdlets throughout
+this introduction. We can view all the commands using that are available for a
+particular module with <i>get-command</i>: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Command
+–Module servermanager </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:24.45pt;margin-bottom:
+.15pt;margin-left:-.25pt'>This module allows us to manage roles and features of
+Server from the PowerShell command line. If the servermanager module is not
+installed (ie. no output), you can import it by using: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><b>                Ex: </b>         <i>Import-Module
+ServerManager</i> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-44.55pt;margin-bottom:
+2.1pt;margin-left:-53.0pt;text-indent:0in;line-height:107%'><img border=0
+width=758 height=130 id="Picture 923"
+src="Introduction%20to%20PowerShell_files/image004.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>The last command demonstrated how we can use the <i>get-command</i>
+cmdlet to find all of cmdlets that are associated with the servermanager
+module. The cool part about this is that we can use this for any module. For
+example, if you have the management tools installed with your roles, it should
+include PowerShell management cmdlets. Like earlier, let us take the output of
+a command and perform formatting by piping the output to pipe compatible
+cmdlets like the <i>sort-object</i> cmdlet. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:0in;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Command
+–All| group module | sort name </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-46.65pt;margin-bottom:
+2.7pt;margin-left:-45.95pt;text-indent:0in;line-height:107%'><img border=0
+width=751 height=255 id="Picture 925"
+src="Introduction%20to%20PowerShell_files/image005.jpg"></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Notice how we used the <i>–All </i>switch. There are other
+switches we can use too. We can find these extra switches by using the
+following command (switches are just options specified after the command to
+customize our commands). In legacy command prompt, the order of the switches
+matters. In </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>PowerShell, the switches only matter if the switch
+parameter is required [in other words, the text of the switch is in square
+brackets] but what the switch needs as an input (aka the data type) is not
+surrounded by [square brackets]. You can also find out required switch by using
+the <i>–full</i> switch with the get-help cmdlet or checking out the <i>–online</i>
+TechNet for a cmdlet, explained on the next page. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.8pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-left:-.25pt'>Getting help in PowerShell and referencing
+syntax<u><span style='text-decoration:none'> </span></u></h1>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:14.0pt;line-height:107%'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Just like in the old days of command prompt, <i>-? (dash-
+question mark?)</i> is available for quick syntax reference. This will bring up
+the <i>get-help</i> for <i>get-help </i>(ie. <i>Get-Help Get-Help</i>). </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Help
+-? </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-40.9pt;margin-bottom:
+3.0pt;margin-left:-43.55pt;text-indent:0in;line-height:107%'><img border=0
+width=740 height=174 id="Picture 1074"
+src="Introduction%20to%20PowerShell_files/image006.jpg"></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:14.0pt;line-height:107%'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>If we check out the help of the <i>get-command</i> cmdlet,
+we can see that there are no required parameters. If we look at the <i>get-help
+</i>output, we can see that the <i>get-help</i> cmdlets does require a string. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:</b>    
+     <i>Get-Help Get-Command</i> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:20.65pt;margin-bottom:
+.15pt;margin-left:-.25pt'>Whenever you do not know the syntax for a command,
+you can use the <i>get-help</i> cmdlet. The original <i>get-help</i> cmdlet
+tends to have a lots of switches and can be very confusing, luckily the <i>–detailed</i>
+argument will explain the function of each argument. These can be your best
+friend or worst enemy, depending on how much you like reading. Some can be
+longer and short are short and sweet. You cannot get to the detailed help
+section using the <i>-?</i> so if you’re going for speed, create an alias. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:</b>     
+   <i>Get-Help Get-Command –detailed | more </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:130.5pt;text-indent:0in;line-height:107%'><img border=0 width=276
+height=364 id="Picture 1076"
+src="Introduction%20to%20PowerShell_files/image007.jpg"></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:20.4pt;margin-bottom:
+.15pt;margin-left:-.25pt'>Want a little more information directly from TechNet
+about the cmdlet that you are inquiring about? Use the <i>–online</i> argument.
+This is especially nice for understanding exactly what a cmdlet can have passed
+to it (whether by pipe or just what the cmdlet is expecting after that specific
+argument. [It even opens in another window] </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>                 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Help
+Get-Module -online </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>                 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Another awesome part about PowerShell is the simplicity of
+finding comprehensive explanations of everything scripting. Check out some of
+the available about sections: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:    
+      </b><i>Get-Help about | more </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>If you would like a detailed reading of this page, please
+use: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:     
+    </b><i>Get-Help about | Format-List –Property * </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-48.3pt;margin-bottom:
+2.45pt;margin-left:-51.95pt;text-indent:0in;line-height:107%'><img border=0
+width=761 height=330 id="Picture 1203"
+src="Introduction%20to%20PowerShell_files/image008.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Notice the immense number of entries. Each entry is
+detailed and very informative. Check out this entry about Aliases. Within the
+first paragraph or 2, it explains how to make your own alias. [An example of an
+alias, you could type <i>ip</i> to get to <i>ipconfig </i>with the alias below
+the help documentation] </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:    
+     </b><i>get-help about_Alias | more </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>New-Alias
+–Name ip –Value ipconfig </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-left:-.25pt'>Understanding Syntax to use Get-Help outputs<u><span
+style='text-decoration:none'> </span></u></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>When viewing the <i>get-help</i> documentation that is
+associated with many cmdlets, you may notice a section titled Syntax. Here is
+what the <i>get-help get-command </i>Syntax output looks like:<b><span
+style='font-size:14.0pt;line-height:103%'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-53.45pt;margin-bottom:
+2.05pt;margin-left:-54.8pt;text-indent:0in;line-height:107%'><img border=0
+width=772 height=246 id="Picture 1326"
+src="Introduction%20to%20PowerShell_files/image009.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Anything enclosed in [Square Brackets] means optional. In
+other words, the cmdlet will work without that argument passed/typed to the
+cmdlet, but you can tell the cmdlet to run in a particular manner, for a
+particular item, or even formatting outputs with specific arguments passed to
+(or typed after) the cmdlet. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>As well, with most of the arguments, there is a data type
+that is enclosed in a less than &lt;and a greater than&gt; symbol. Data types
+are the formatting of the data that is expected by the cmdlet. For example,
+&lt;Int32&gt; means that a whole number (or integer) is expected.
+&lt;String&gt; means that basic text is expected. Strings are best passed with
+quotation marks around them. This is because a space is interpreted as another
+argument being passed where quotation marks mean that it is all part of the
+same string. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>This means that we can ensure that the data being passed to
+the cmdlet is syntactically and structurally correct. If the data type is
+incorrect, you will receive an error telling you so, like the example below. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-50.1pt;margin-bottom:
+0in;margin-left:-53.7pt;text-indent:0in;line-height:107%'><img border=0
+width=766 height=373 src="Introduction%20to%20PowerShell_files/image010.gif"></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>The previous command says to get all log names in the event
+log. This output will tell you what Logs are available for you to access, the
+size of the log, and the behavior of the log as it acquires entries as the log
+reaches its maximum size limitations. Next, we can try: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:</b>   
+<i>     Get-EventLog –LogName System </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>As we can see, we get a significant amount of information.
+Looking at the <i>get-help</i>, we can find ways to limit the results based on
+particular items. To find an entry after a particular date, use the <i>–After
+mm/dd/yy </i>argument. Visit <i>get-help get-eventlog –detailed</i> for more
+information.  </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-EventLog
+–LogName System –After 6/21/13 </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:18.8pt;margin-bottom:
+.15pt;margin-left:-.25pt'>This can generate a very large output. However, we
+can also limit our results by creating a stipulation that the value in the
+column must match in order to be displayed. [Note: You must press enter on a
+blank line to run the command.] </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-EventLog
+–LogName System –After 6/21/13 ` </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><img width=265 height=197
+src="Introduction%20to%20PowerShell_files/image011.jpg" align=left hspace=12><i>|
+Where-Object EntryType –Match Error </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-42.15pt;margin-bottom:
+2.15pt;margin-left:-37.6pt;text-indent:0in;line-height:107%'><img border=0
+width=734 height=186 id="Picture 1550"
+src="Introduction%20to%20PowerShell_files/image012.jpg"></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Now we can better analyze events.<i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'><i>Where-Object</i> has an alias of <i>where</i> native to
+PowerShell. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Say we wanted to clean up the output of the event log. We
+can pipe the entire output to the <i>selectobject </i>cmdlets, where it will
+select individual columns for us. Try the following cmdlets to manipulate your
+output for the information you want. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>[Check out <i>get-help select-object –detailed</i> for more
+information]. Just like before, we can shorten <i>select-object</i> to <i>select</i>.
+We can do this for a couple of pipe capable cmdlets, but not all. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:     
+    </b><i>Get-EventLog –LogName System –After (Get-Date).Date `</i><b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><i>| Where EntryType –match Error ` </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><i>| Select Source, Message ` </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><i>| Format-List </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>There are a couple of important items to note with these
+last examples. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>First, we have tick marks at the ` end of each row. This
+means that the </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>same line continues on the next line. This is great for
+scripting because it makes reading the script significantly easier. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Another item to note is the <i>(Get-Date).Date</i> portion
+of the command. If you run this, you will see that this pull just the date from
+the <i>Get-Date</i> cmdlet. If we take a closer look at the <i>Get-Date </i>cmdlet,
+we can see that it contains valuable information. The Date. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Date
+| Format-List </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>If we want to pull a specific value from the formatted
+output of <i>Get-Date</i>, we can do that by appending a period. to <i>(Get-Date).</i>
+and specify the item title. We want todays date with no time so we use <i>(GetDate).Date
+</i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>We could use any name that is in the left hand column. This
+goes for the output of any command that we surround in (parenthesis). </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>We can also use <i>Select-Object</i> similarly to that. The
+only difference is that <i>Select-Object </i>displays a column title where the
+method (previously).mentioned does not store column names. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>We can <i>select</i> any of the strings surrounded by the
+red box: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-40.15pt;margin-bottom:
+2.5pt;margin-left:-42.8pt;text-indent:0in;line-height:107%'><img border=0
+width=738 height=227 id="Picture 1682"
+src="Introduction%20to%20PowerShell_files/image013.jpg"></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-indent:0in;line-height:107%'><i>                </i><b>Ex:</b>
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:72.5pt;line-height:103%'><i>Get-EventLog –LogName System –After
+(Get-Date).Date ` </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:104.05pt;line-height:103%'><i>| Where-Object EntryType –Match Error
+` </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:106.55pt;margin-bottom:
+.6pt;margin-left:104.05pt;line-height:103%'><i>| Select-Object Index,
+TimeGenerated, Source, Message ` | Format-List </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:1.0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-45.55pt;margin-bottom:
+2.6pt;margin-left:-48.25pt;text-indent:0in;line-height:107%'><img border=0
+width=752 height=159 id="Picture 1684"
+src="Introduction%20to%20PowerShell_files/image014.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:1.0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+</div>
+
+<span style='font-size:11.0pt;line-height:103%;font-family:"Calibri",sans-serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>What the previous command says is that we want to get all
+entries in the Event Log named ‘System’ and anywhere where the ‘EntryType’ has
+a match to the word ‘Error,’ we are going to select (or display) the Index,
+TimeGenerated, Source, and Message columns. We are then going to format it as a
+list. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>For a more detailed and advanced EventLog usage
+documentation, check out: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>                 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:    
+     </b><i>Get-Help about_EventLogs | more </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-left:-.25pt'>Managing Windows Features and Roles in Windows
+Server<u><span style='text-decoration:none'> </span></u></h1>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:14.0pt;line-height:107%'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Microsoft Windows Server almost always includes the
+servermanager module for Windows but I have encountered machines where it is
+not native. If server manager is not installed, use the second <b>Ex: </b>below
+to import it. The first <b>Ex: </b>will return available cmdlets. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:0in;text-indent:0in;line-height:103%'>                <b>Ex: </b>        <i>get-command
+–module servermanager </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:0in;text-indent:0in;line-height:103%'>                <b>Ex:         </b><i>import-module
+servermanager </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>The commands that the servermanager module includes are all
+that you need to manage Windows features and roles (yes, this includes in
+Server Core, if you have PowerShell installed). </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Try the following command to list all of the Windows
+Features that are available. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><b>                Ex:     
+   </b><i>Get-WindowsFeature </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Using this will allow you to see all of the many available
+features on your installation of Windows Server. To narrow your search, try
+something along the lines of: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:     
+    </b><i>Get-WindowsFeature | where Name –match RSAT </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>This is telling Windows to list all available features
+(installed and not installed) that contain a match to the letters RSAT. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-45.95pt;margin-bottom:
+2.1pt;margin-left:-45.55pt;text-indent:0in;line-height:107%'><img border=0
+width=750 height=190 id="Picture 1834"
+src="Introduction%20to%20PowerShell_files/image015.jpg"></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>To add any of the features found with the <i>Get-WindowsFeature</i>
+cmdlets, you can use the <i>Add-</i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'><i>WindowsFeature</i> cmdlets (or <i>Install-WindowsFeature</i>,
+since <i>Add-WindowsFeature </i>is simply an Alias). We can prove this by using
+the following command: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:    
+     </b><i>Get-Help Add-WindowsFeature </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-43.5pt;margin-bottom:
+2.15pt;margin-left:-44.6pt;text-indent:0in;line-height:107%'><img border=0
+width=745 height=261 id="Picture 2007"
+src="Introduction%20to%20PowerShell_files/image016.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>The <i>Add-WindowsFeature </i>cmdlet has an abundance of
+handy switches. For example, we can append      </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'><i>–IncludeAllSubFeature </i>to install everything that is
+indented under a particular feature. We can also use   <i>–IncludeManagementTools</i>
+to make sure that the MMC snap-in and the scripting cmdlets are available. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>We can also use this if the MMC was not installed during
+the initial installation of the Role or Feature. For example, to install
+Hyper-V with the cmdlets and mmc, you can use: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex: </b>        <i>Add-WindowsFeature
+Hyper-V –IncludeManagementTools </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>As well, if we wanted to add or remove (<i>remove-windowsfeature</i>)
+features like the GUI, we can do it by using the following command: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:     
+   </b><i>Add-WindowsFeature User-Interfaces-Infra –IncludeAllSubFeature </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>This will also install Desktop-Experience, which will make
+the GUI aspect of Windows Server more like </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Windows Desktop by allow much more customization (like,
+right click on the Desktop and selecting Personalize). As well, you could take
+a Full GUI installation of Windows, configure it to your liking, and remove the
+GUI to improve server efficiency by using the following command: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:     
+    </b><i>Remove-WindowsFeature User-Interfaces-Infra –IncludeManagementTools </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Note how I included the <i>–IncludeManagementTools </i>switch
+but not the <i>–IncludeAllSubFeature </i>switch. This is because the <i>–IncludeAllSubFeature
+</i>is implied when removing roles but sometimes you might not want to remove
+the management tools so that they can be used to manage remote machines. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-left:-.25pt'>Managing Your Network Adapter<u><span
+style='text-decoration:none'> </span></u></h1>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>The first aspect of managing your Network Adapter requires knowing
+what is available for you to configure. There is a large variety of modules
+included in PowerShell 3.0 to help you configure your Network: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Module
+–ListAvailable | Where name –match “net” </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>The best way to determine what a module can perform is to
+explore the commands. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Command
+–Module NetAdapter </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><i>                                Get-Command
+–Module NetTCPIP </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><i>                                Get-Command
+–Module NetworkTransition </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>There is an abundance of advanced functionality that
+PowerShell 3.0 has added so check it out and if you need help with syntax, use
+the <i>Get-Help</i> cmdlets. For example, the <i>Get-NetAdapter</i> cmdlets,
+that is part of the <i>NetAdapter</i> module can pull information about the
+physical medium of the device, link speed, interface index, and much more. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:     
+    </b><i>Get-NetAdapter </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>For the actually configuring a network adapter, many
+cmdlets will allow you to specify an interface index so that you do not have to
+remember the name of the interface. The <i>Get-NetAdapter</i> cmdlet will
+display the ifIndex (or InterfaceIndex) for the installed Network Adapters. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>As well, there are many switches we can use to manipulate
+the <i>Get-NetAdapter</i> cmdlet. For example, we can use the <i>–Physical</i>
+or the <i>–IncludeHidden</i> switches to filter by devices. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-NetAdapter
+–Physical </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><i>                </i><b>Ex: 
+       </b><i>Get-NetAdapter –IncludeHidden </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>We can also use the <i>Format-List<b> </b></i>cmdlets so
+that the output has more room to display. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><img width=335 height=266
+src="Introduction%20to%20PowerShell_files/image017.jpg" align=left hspace=12>                <b>Ex: 
+       </b><i>Get-NetAdapter | Format-List </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Once we know which network adapter we want to configure,
+let us look at what we can do through the NetTCPIP module. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Command
+–module NetTCPIP </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>These are the cmdlets to manage the local network setting
+of the machine. We can get, set, or create a new routing table entry; we can
+get, set, or create a new IP address for an adapter. We can also remove any of
+these. The best way to use these is to reference the embedded help
+documentation. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>New-NetIPAddress
+-?</i> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>The only required field for the <i>New-NetIPAddress </i>cmdlets
+is an IP address and an Interface Alias or Interface Index (since you can use
+either, they have 2 separate syntax listings). The Interface Alias is just the
+name of the adapter. Let’s try using the Interface Index (remember, this is
+machine specific). </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>New-NetIPAddress
+10.11.12.99 –InterfaceIndex 15</i><b> </b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.15pt;
+margin-left:36.7pt;text-indent:0in;line-height:107%'><img border=0 width=526
+height=343 id="Picture 2294"
+src="Introduction%20to%20PowerShell_files/image018.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Notice how it creates 2 entries. An ActiveStore entry and a
+PersistentStore entry. The Persistent means that it will persist across reboots
+where the Active means that it will only store that entry for the active
+windows session (ie. a reboot will remove that entry). </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>PowerShell also makes reading and managing the Routing
+table much easier. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.5pt;
+margin-left:-.75pt;text-indent:0in;line-height:107%'><img border=0 width=625
+height=227 id="Picture 2296"
+src="Introduction%20to%20PowerShell_files/image019.jpg"></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>If we quickly reference the Syntax with <i>Set-NetRoute -?</i>
+we can see that we do not need any configuration options to run the cmdlets
+successfully. However, if we do not specify anything, there will be no entry
+made into the routing table. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>[Since this command has so many configurable options, we
+will use a tick ` again to span multiple lines] </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:0in;text-indent:0in;line-height:103%'>                <b>Ex:</b>         <i>New-NetRoute 
+-DestinationPrefix 192.168.99.0/24 ` </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:144.55pt;line-height:103%'><i>-NextHop 192.168.99.22 ` </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:144.55pt;line-height:103%'><i>-RouteMetric 200 ` </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:144.55pt;line-height:103%'><i>-Publish No ` </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:144.55pt;line-height:103%'><i>-PolicyStore ActiveStore ` </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:144.55pt;line-height:103%'><i>-InterfaceIndex 15</i> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.1pt;
+margin-left:0in;text-indent:0in;line-height:107%'><img border=0 width=624
+height=159 id="Picture 2413"
+src="Introduction%20to%20PowerShell_files/image020.jpg"></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Removing a Routing Table entry is really easy. You just
+need <i>Remove-NetRoute</i> [Prefix to remove]. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Remove-NetRoute
+192.168.99.0/24 </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal align=right style='margin:0in;text-align:right;text-indent:
+0in;line-height:107%'><img border=0 width=624 height=108 id="Picture 2411"
+src="Introduction%20to%20PowerShell_files/image021.jpg"> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>The best way to learn the NetTCPIP module for PowerShell is
+to use it. Remember the module and you can always search for Syntax. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-left:-.25pt'>Working with variables<u><span style='text-decoration:
+none'> </span></u></h1>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Variables are indicated by a $before a word. We use
+variables to store information. For example, say we wanted to store a bunch of
+text (a string of text) for a particular variable. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><b>                Ex:          </b><i>$a
+= 'bob,patricia,robert,brenda,pony,what,neverman,test,netboot' </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Now if we type in <i>$a</i> into PowerShell, it will return
+our list. We can store anything we want in variable. This can be very handy if
+we can to prompt a user for credentials and store it in a variable. Try this: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><b>                Ex:          </b><i>$cred
+= Get-Credential </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Say we want to open an elevated Command Prompt with our
+stored credentials. If we entered our credentials correctly, we will
+successfully open an elevated cmd window. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Start-Process
+cmd –Credential $cred </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>If you want to learn more about the properties of the
+variables that we have defined, use the         <i>Get-Member </i>cmdlet: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>$cred
+| Get-Member –MemberType Property </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>This shows that we have 2 things stored in the properties
+of this variable, a string for the username and a SecureString for the
+password.  </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-left:-.25pt'>Working with text [strings and arrays]<u><span
+style='text-decoration:none'> </span></u></h1>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Say we have this variable defined and we want to call a
+specific letter from the string. We can do this by using a means of calling
+items from an array of items that we have defined: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:0in;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>$a
+= “bob,patricia,robert,brenda,pony,what,neverman,test,netboot” </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>We can also measure the length of strings by appending
+.Length to any defined variable or a string. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>$a
+= “bob,patricia,robert,brenda,pony,what,neverman,test,netboot” </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><i>                                $a.Length
+</i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><i>                 </i><b>or
+          </b><i>“bob,patricia,robert,brenda,pony,what,neverman,test,netboot”.Length
+</i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>We can also call the letters of a string based on the
+position in the string. For example, if we wanted to get the letter in the very
+first position (position index starts at 0), we can get b by using: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>                 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:         </b><i>$a[0]
+</i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.65pt;
+margin-left:0in;text-indent:0in;line-height:107%'><img border=0 width=624
+height=45 id="Picture 2592"
+src="Introduction%20to%20PowerShell_files/image022.jpg"></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>PowerShell has the ability to manipulate strings. For
+example, say we want to format the text defined earlier as <i>$a</i>. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><img
+width=453 height=196 src="Introduction%20to%20PowerShell_files/image023.jpg"
+align=left hspace=12> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>$a
+–Split “,” </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.9pt;
+margin-left:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:14.0pt;line-height:107%'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Or we can replace our variable <i>$a </i>with this newly
+formatted list (which is now an array). All we need to do is redefine $a with
+our split switch. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>$a
+= $a –Split “,” </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Now if we call <i>$a</i> we can see that our list is
+formatted better. We have also now transformed our 1 string into multiple
+strings. This is called an array. We can also accomplish this by inputting each
+string surrounded by quotation marks, separated by a comma. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:             </b><i>$a
+= “bob”,”patricia”,”robert”,”brenda”,”pony”,”what”,”neverman”,”test”,”netboot” </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>This is called an array because we have multiple terms
+(strings) defined under the same variable. Now if we call the variable, they
+appear on their respective lines. We can also call a specific string from our
+array of strings, based on its position. For example, if we wanted to print the
+name Brenda on the screen, we could use <i>$a[3]</i> because Brenda is the 4<sup>th</sup>
+name on the list (we start counting at 0): </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><img
+width=422 height=47 src="Introduction%20to%20PowerShell_files/image024.jpg"
+align=left hspace=12> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>$a[3]
+</i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>If we wanted to pull up the 1<sup>st</sup> item on our
+list, it would resemble: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>$a[0]
+</i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>What the [square] brackets after the variable say is that
+we want to call the first entry on our list. However, splitting to create
+arrays or just to format text is not the only manipulation we can perform on
+text. We can also replace text. Say we wanted to replace text. We can simply
+append the replace switch at the end, and if formatted correctly, we can
+replace text. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>For example, say we are typing quickly and have a happy of
+typing 7 instead of y when defining our variables. We can replace characters
+instead of having to retype all of our text. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:           </b><i>$a
+= “binar7”,”happ7”,”snap”,”gidd7” </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><img
+width=343 height=181 src="Introduction%20to%20PowerShell_files/image025.jpg"
+align=left hspace=12><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Let us re-define our variable while replacing 7 with y. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>$a
+= $a –replace (“7”,”y”) </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Now when we call <i>$a</i>, we get our originally intended
+list. We can also output this array to a text file. Remember that &gt; means
+overwrite a file and &gt;&gt; means append to the end of a file. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>$a
+&gt; C:\users_list.txt </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Or say we have a text file and want to use it as an array
+that can be called by a variable. Let us take the previously outputted file and
+assign it to the variable using the <i>Get-Content</i> cmdlet. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>$b
+= Get-Content C:\users_list.txt </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Now we can call contents of a text file based on line
+number that we want to enumerate from. For example, say we have a text file
+that has usernames all on separate lines. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:64.05pt;margin-bottom:
+.6pt;margin-left:-.25pt;line-height:103%'>                <b>Ex:          </b><i>“John
+Doe”,”John Smith”,”Frank Zappa”,”Bob Saget” &gt; C:\test_users.txt     </i><b>Ex:</b><i>
+         (Get-Content C:\test_users.txt)[2] </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>In the next section, you will see how we can use a for loop
+to count. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-left:-.25pt'>Using a basic for loop<u><span style='text-decoration:
+none'> </span></u></h1>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:14.0pt;line-height:107%'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>A for loop can be used for performing many tasks. This
+makes repetitive tasks much simpler. This is done by counting. We can count by
+any increment we want. This can be especially handy when creating multiple
+users that follow a similar naming convention. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Let’s take a look at a basic for loop. The following loop
+will count to 10, starting at 1. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:1.0in;text-indent:-.5in'><img width=309 height=436
+src="Introduction%20to%20PowerShell_files/image026.jpg" align=left hspace=12>[Note:
+if you copy and paste this into your PowerShell window, you will have to press
+enter on a blank line to proceed, just like with a tick `] </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-indent:0in;line-height:107%'>                <b>Ex:</b>
+                                         <i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:72.5pt;line-height:103%'><i>for ( $i = 1 ; $i –ile 10 ; $i++ ) { </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><i>Write-Host $i </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><i>} </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>If we wanted to change the starting number, we can change
+the initial definition of <i>$i</i>. Say we wanted to start at 7: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-indent:0in;line-height:107%'>                <b>Ex:</b>
+                                         <i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:72.5pt;line-height:103%'><i>for ( $i = 7 ; $i –ile 10 ; $i++ ) { </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><i>Write-Host $i </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><i>} </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>It is also important to note that everything within the
+curly brackets is executed for each increment. This means that if we have 2
+lines that say <i>Write-Host $i</i>, we will have our number printed on our
+screen twice for each execution of the for loop. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-indent:0in;line-height:107%'>                <b>Ex:</b>
+                                         <i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:72.5pt;line-height:103%'><i>for ( $i = 7 ; $i –ile 10 ; $i++ ) { </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><i>Write-Host $i </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><i>Write-Host $i </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><i>} </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>As well, with for loops, we can increment by whatever
+number we choose. For example, if we wanted to  start at 3 and increment by 3
+to the number 27, our syntax would look like: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-indent:0in;line-height:107%'>                <b>Ex: </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:72.5pt;line-height:103%'><img width=379 height=155
+src="Introduction%20to%20PowerShell_files/image027.jpg" align=left hspace=12><i>for
+( $i = 3 ; $i –ile 27 ; $i+= 3 ) { </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><i>Write-Host $i </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:108.5pt;line-height:103%'><i>} </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Consider alternative uses for this. If we define an array
+of strings and want to call them, one at a time, we can do this by first
+defining the array and then using a for loop. Note the placement of the
+variable that is counting (in this case <i>$i</i>). This </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>variable will count wherever it is located. Here, we use it
+to cycle through items in our array with <i>$a[$i] </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:126.4pt;margin-bottom:
+.15pt;margin-left:-.25pt'>                <b>Ex:          </b><i>$a = </i>“John
+Doe”,”John Smith”,”Frank Zappa”,”Bob Saget” <i>                 for ($i = 0;$i
+–ile 3;$i++) { </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><img width=423 height=97
+src="Introduction%20to%20PowerShell_files/image028.jpg" align=left hspace=12><i>                                                $b
+= $a[$i] </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><i>                                                Write-Host
+$b </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><i>                                                }</i>
+</p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>We can also find out the contents of a text file by
+concatenating the contents on the screen. We can either use the full cmdlets
+name or the alias. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Content
+C:\users_list.txt </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-indent:0in;line-height:107%'><i>                                </i><b>or
+</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.35pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>cat
+C:\users_list.txt </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:14.0pt;line-height:107%'> </span></b></p>
+
+<h1 style='margin-left:-.25pt'>Understanding the ActiveDirectory module<u><span
+style='text-decoration:none'> </span></u></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Managing the Default Domain Password Policy </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Once we get comfortable working with verbs and nouns, our
+potential for advanced management of Active Directory becomes apparent. For
+example, look at the noun ADDefaultDomainPasswordPolicy. We can get or set our
+password policy for AD. [Note: the<i> –Credential (Get-Credential) </i>argument
+is optional and only needs to be run if you are not logged into a privileged
+user.] </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-ADDefaultDomainPasswordPolicy
+-Credential (Get-Credential)</i> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><img
+width=414 height=169 src="Introduction%20to%20PowerShell_files/image029.jpg"
+align=left hspace=12> </p>
+
+<p class=MsoNormal align=right style='margin:0in;text-align:right;text-indent:
+0in;line-height:107%'><img border=0 width=624 height=201 id="Picture 3100"
+src="Introduction%20to%20PowerShell_files/image030.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>We can see what the current requirements are for the
+domain. Now, if we want to change these settings, we can do this easily with
+the <i>Set-ADDefaultDomainPasswordPolicy</i> cmdlet. There is only 1
+requirement for this and that is specifying the domain the change is occurring
+for (identity). </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Set-ADDefaultDomainPasswordPolicy
+–ComplexityEnabled $true ` </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><i>                                                                                                        
+-Identity “dc=peter,dc=local” </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.05pt;text-indent:0in;line-height:107%'><img border=0 width=607
+height=221 id="Picture 3104"
+src="Introduction%20to%20PowerShell_files/image031.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>To find the syntax to change anything listed, check out: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Set-ADDefaultDomainPasswordPolicy
+-?</i> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>In order to understand how to format the Identity portion
+of an Active Directory command, it is important to understand the components of
+AD. For example, dc stands for Domain Component. Since we are changing the
+password policy for peter.local, we use “dc=peter,dc=local” as our LDAP string.
+If we were changing the password policy for a subdomain like sub.peter.local,
+we would use “dc=sub,dc=peter,dc=local” as our LDAP formatted string. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.95pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Creating new users </h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>One consideration to take into account when setting up
+users is the need to meet the password policy defined for the user. If these
+requirements are not met, PS will return an error. As well, if we do not pass a
+securestring to the cmdlet, it will also return an error. Creating users can be
+very complex. You can also Delegate control, specify encryption types, and even
+associate X509 certificates with a user. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex: </b>        <i>New-ADUser
+-?<b> </b></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:-.75pt;text-indent:0in;line-height:107%'><b><i>                                </i>or
+</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><b><i>                </i>Ex:
+         </b><i>Get-Help New-ADUser –detailed | more </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>For example, if we want to create a new user and pass a
+password that meets the password policy, we can store a securestring like this:
+</p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>$testpass
+= Read-Host –Prompt “password” –AsSecureString </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Notice how if we try to call the variable (enter just the
+variable name into the console window), it shows up as a
+System.Security.SecureString object. Now when we want to create a user with
+those credentials, we should be able to just pass the <i>$testpass </i>variable
+to our cmdlet for successful account creation. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>New-ADUser
+-Name TestUser -AccountPassword $testpass -Enabled 1 </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Note how we must specify that we want the user account to
+be enabled with a Boolean value (a Boolean value is just a <i>1</i> or a <i>0</i>).
+We can either use a <i>1</i> to indicate true or we can also use <i>$true </i>to
+indicate true as well. We could also use <i>0</i> or <i>$false</i>. Also notice
+how we cannot use the <i>$cred</i> variable because it is not the right type of
+object. We can however store a System.Security.SecureString object by taking a
+string and converting it to a SecureString. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>$password
+= Read-Host –Prompt “password” </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><i>                </i><b>                </b><i>$password
+= ConvertTo-SecureString $password –AsPlainText –Force  </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-44.2pt;margin-bottom:
+0in;margin-left:-51.05pt;text-indent:0in;line-height:107%'><img border=0
+width=754 height=171 id="Picture 3289"
+src="Introduction%20to%20PowerShell_files/image032.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>This is the same as 2 steps before but this demonstrates
+how we can have a string stored in a variable, and then convert it to the data
+type [SecureString]. Notice how when we try to view it when it is a string, we
+can but once we convert the data type to [System.Security.SecureString], there
+is protections against viewing the contents of the variable. This is valuable
+because we can also encapsulate cmdlets within our commands. Say we want to
+create users with a default password. We can do this on 1 line instead of doing
+it across multiple lines. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>New-ADUser
+–Name testuser01 ` </i></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:9.75pt;
+margin-bottom:0in;margin-left:.5pt;text-align:right;line-height:107%'><i>–AccountPassword
+(ConvertTo-SecureString “password123” –AsPlainText –Force) </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Note how the part that uses the cmdlets <i>ConvertTo-SecureString</i>
+is enclosed in parenthesis. This indicates that it is a separate part and that
+the output should be used in its place. Remember, the password must meet the
+complexity requirements of the domain. If it does not, PowerShell will tell
+you. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-35.4pt;margin-bottom:
+2.1pt;margin-left:-38.25pt;text-indent:0in;line-height:107%'><img border=0
+width=725 height=164 id="Picture 3417"
+src="Introduction%20to%20PowerShell_files/image033.jpg"></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>If we use a password that is complex: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>New-ADUser
+–Name testuser01 ` </i></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:4.8pt;
+margin-bottom:0in;margin-left:.5pt;text-align:right;line-height:107%'><i>–AccountPassword
+(ConvertTo-SecureString “p@ssword123” –AsPlainText –Force) </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>And we make sure that the username we are trying to create
+does not already exist: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-41.05pt;margin-bottom:
+2.7pt;margin-left:-43.6pt;text-indent:0in;line-height:107%'><img border=0
+width=740 height=259 id="Picture 3419"
+src="Introduction%20to%20PowerShell_files/image034.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'><img width=290 height=129
+src="Introduction%20to%20PowerShell_files/image035.jpg" align=left hspace=12>Removing
+users is easier than adding them. We can use <i>Get-ADUser</i> to get user
+information or   <i>Remove-ADUser </i>to clean up old users.  </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-ADUser
+testuser01 </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Remember, user accounts must explicitly be enabled with the
+<i>–Enabled $true</i> or <i>–Enabled 1</i> argument passed to the <i>New-ADUser</i>
+cmdlet. To remove the user we just created: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Remove-ADUser
+testuser01 </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>After you are prompted to confirm deleting the user, we can
+no longer <i>Get-ADUser testuser01 </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-21.45pt;margin-bottom:
+2.25pt;margin-left:-24.75pt;text-indent:0in;line-height:107%'><img border=0
+width=689 height=194 id="Picture 3561"
+src="Introduction%20to%20PowerShell_files/image036.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.8pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-left:-.25pt'>Creating New Organizational Units </h2>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+style='font-size:12.0pt;line-height:107%'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>As should be apparent now, many of these commands are
+pretty obvious. Just using the <i>Get-Command</i> cmdlet to find all the active
+directory information can be extremely PowerShell and insightful.  </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-Command
+–module activedirectory </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>[Remember, you can also specify a verb at the same time so
+you know what you can get, set, etc.] </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Let’s look at the Syntax for the cmdlet <i>New-ADOrganizationalUnit
+</i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><i>                </i><b>Ex:
+         </b><i>New-ADOrganizationalUnit -? </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-42.25pt;margin-bottom:
+2.25pt;margin-left:-45.0pt;text-indent:0in;line-height:107%'><img border=0
+width=744 height=172 id="Picture 3563"
+src="Introduction%20to%20PowerShell_files/image037.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>The only required argument is the <i>–Name</i>. This means
+we can create a new OU at the top-level of the domain with the following: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><img
+width=324 height=36 src="Introduction%20to%20PowerShell_files/image038.jpg"
+align=left hspace=12> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>New-ADOrganizationalUnit
+Bogus_Users </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>When we get to <i>Get-ADOrganizationalUnit </i>and remove <i>Remove-ADOrganizationalUnit</i>,
+we must be more aware of how the cmdlet functions. We cannot just use <i>Remove-ADOrganizationalUnit
+</i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'><i>Bogus_Users </i>because it will not find the object. We
+must be more specific and say where the object is: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-ADOrganizationalUnit
+&quot;ou=Bogus_Users,dc=peter,dc=local&quot;</i> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-16.5pt;margin-bottom:
+2.1pt;margin-left:-19.05pt;text-indent:0in;line-height:107%'><img border=0
+width=675 height=300 id="Picture 3614"
+src="Introduction%20to%20PowerShell_files/image039.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>It is very important to read the <span style='color:red;
+background:black'>red text</span><span style='color:red'> </span>that
+PowerShell outputs as it will always tell you the problem. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Sometimes the problem is very complex but sometimes it is
+easy to resolve. Note the following errors: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-19.35pt;margin-bottom:
+2.05pt;margin-left:-21.95pt;text-indent:0in;line-height:107%'><img border=0
+width=682 height=277 id="Picture 3616"
+src="Introduction%20to%20PowerShell_files/image040.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>First, AD cannot find the OU we are trying to remove. Ok,
+replace it with an LDAP string to specify the exact object. Then we find the
+Object but access is denied! Well, when creating an OU, it is protected from
+accidental deletion by the <i>–ProtectedFromAccidentalDeletion $true </i>argument
+being the default. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>So how can we fix this? We can edit the properties of an
+object (like a user or an OU) with the Set verb. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Set-ADOrganizationalUnit
+“ou=Bogus_Users,dc=peter,dc=local” ` </i></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:26.55pt;
+margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;line-height:
+107%'><i>-ProtectedFromAccidentalDeletion $false </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal align=right style='margin:0in;text-align:right;text-indent:
+0in;line-height:107%'><img border=0 width=624 height=125 id="Picture 3612"
+src="Introduction%20to%20PowerShell_files/image041.jpg"> </p>
+
+<h2 style='margin-left:-.25pt'>Getting Information about AD objects </h2>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>Since everything in Active Directory is an object, it is
+beneficial to know how to find an object. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-ADObject
+–Filter * </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i> </i></p>
+
+<p class=MsoNormal align=right style='margin:0in;text-align:right;text-indent:
+0in;line-height:107%'><img border=0 width=624 height=182 id="Picture 3694"
+src="Introduction%20to%20PowerShell_files/image042.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:9.2pt;margin-bottom:.15pt;
+margin-left:-.25pt'>The command indicates that we want to <i>Get-ADObject </i>and
+filter by a wildcard (so, get everything). This is where using our filtering
+techniques discussed earlier become very helpful. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-ADObject
+-Filter * | Where ObjectClass -match organizationalUnit </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal align=right style='margin:0in;text-align:right;text-indent:
+0in;line-height:107%'><img border=0 width=623 height=232 id="Picture 3696"
+src="Introduction%20to%20PowerShell_files/image043.jpg"> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>We can also filter our results multiple times: </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'>                <b>Ex:          </b><i>Get-ADObject
+–Filter * ` </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:117.5pt;line-height:103%'><i>| Where ObjectClass –match
+organizationUnit ` </i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><img
+border=0 width=627 height=191
+src="Introduction%20to%20PowerShell_files/image044.gif"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.55pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>This is barely scratching the surface of PowerShell. The
+best way to learn is to explore. Don’t be intimidated by it, just play around,
+mess things up, and keep your images handy in case you have to reinstall. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><u>For a
+TechNet blog on how to import user information from a CSV [Comma Separated
+Values file]:</u> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:.15pt;
+margin-left:-.25pt'>http://blogs.technet.com/b/heyscriptingguy/archive/2011/12/22/use-powershell-to-read-a-csv-file-andcreate-active-directory-user-accounts.aspx
+</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,599 @@
+﻿Understanding PowerShell 
+Required: PowerShell 3.0 or greater 
+(Some cmdlets are in PowerShell 2.0) 
+Windows Server and Active Directory Preferred 
+Peter McEldowney 
+ 
+Contents 
+Expanding Functionality and Finding cmdlets .............................................................................................. 2 
+Getting help in PowerShell and referencing syntax ...................................................................................... 5 
+Understanding Syntax to use Get-Help outputs ........................................................................................... 6 
+Working with the Event Log .......................................................................................................................... 7 
+Managing Windows Features and Roles in Windows Server ..................................................................... 10 
+Managing Your Network Adapter ............................................................................................................... 11 
+Working with variables ............................................................................................................................... 14 
+Working with text [strings and arrays] ....................................................................................................... 15 
+Using a basic for loop .................................................................................................................................. 16 
+Understanding the ActiveDirectory module ............................................................................................... 18 
+Managing the Default Domain Password Policy ..................................................................................... 18 
+Creating new users ................................................................................................................................. 19 
+Creating New Organizational Units ......................................................................................................... 21 
+Getting Information about AD objects ................................................................................................... 23 
+Objective: Introduce a basic and fundamental understanding of common PowerShell usage. 
+ 
+ 
+What is PowerShell? 
+PowerShell is Command Prompt (cmd) on steroids. It is designed to enable complex scripts that can manipulate your environment precisely. Not only can you use legacy executables that are native to Windows (like ipconfig or the net commands), but there are now modules that can be added to enhance capability and management potential. The individual commands within these modules, called cmdlets, will prove to be the easiest and most robust means to configure, automate, and monitor systems. 
+ 
+For more information on PowerShell, please check out Windows Powershell Cmdlets http://technet.microsoft.com/en-us/scriptcenter/dd772285.aspx 
+ 
+For videos that demonstrate more PowerShell, check out Scripting with Windows PowerShell http://technet.microsoft.com/en-us/scriptcenter/powershell.aspx 
+ 
+ 
+For Best Results: Manually type all commands into your PowerShell console. 
+This gets you comfortable navigating PowerShell. 
+ 
+[Anything after Ex:  that is in italics can be entered into a PowerShell console window] 
+ 
+To learn how to run PowerShell efficiently using the keyboard, check out: 
+ 
+ 	Ex:  	Get-Help about_Line_Editing 
+ 
+For an easier to read version, pipe the output to the more command. This will be explained later: 
+ 	Ex:  	Get-Help about_Line_Editing | more 
+ 
+For more detailed and advanced information on advanced PowerShell functionality, check out the embedded help documentation. All of the help sections can be found using: 
+ 
+ 	Ex: 	Get-Help about 
+Expanding Functionality and Finding cmdlets 
+ 
+PowerShell allows users to manipulate outputs to suit current needs. Take the get-command cmdlets; we can use it to find command-lets (cmdlets): 
+ 
+ 	Ex:  	    Get-Command 
+ 
+Notice how we used a verb and a noun/action.  We can get the available verbs in PowerShell with: [Notice how there is never a space between the verb and the noun] 
+ 
+ 	Ex:     	 Get-Verb 
+ 
+We can manipulate the output of the Get-Command cmdlet by specifying a verb. The next example shows how we can find all the cmdlets we have available to us that contain the verb get: 
+ 
+ 	Ex:     	 Get-Command -Verb Get 
+ 
+Notice how long the output is. We can use a command (actually an old command) called more. This command is pipe | capable (sometimes referred to as | piping and can typically be found below the backspace key with a shift). This means that it can take the output of another command as its input. Using this input, the command creates a scrolling document that can be incremented 1 line at a time or 1 page at a time. We will be using this frequently for making outputs easier to read because more is pipe capable. 
+ 
+ 	Ex: 	Get-Command -Verb Get | more 
+ 
+We can narrow our results down even more by specifying a module. Take NetTCPIP: 
+ 
+	Ex: 	Get-Command -Verb Get -Module NetTCPIP 
+ 
+These arguments (or switches or options) are crucial. We can cycle through the available arguments by pressing tab after we enter a dash. This can be done for most cmdlet but if the module is not loaded that contains the cmdlets, then autofill will not work until the module is loaded (covered next). 
+ 
+	Ex: 	Get-Command -[press tab immediately following the dash] 
+ 
+Similar to the legacy more command, many cmdlets are pipe capable. This is identified by being able to 'Accept Pipeline Input.' In the next example, we are finding a specific column and grouping objects by the text that is in that particular column. This will also tell us how many commands are available in each module. 
+ 
+ 	Ex:    	 Get-Command |Group-Object module 
+ 
+
+ 
+ 	[We can also use the group alias instead of typing the full cmdlet name group-object] 
+ 
+Now since we can find the cmdlets available in a module, we should know how to import modules into PowerShell so that we can do more. All the modules that are on our local machines have already been imported but look at /n software inc as an example, you can import SSH, SFTP, HTTP, web publishing, Instant Messaging, and more modules. These can be used for advanced functionality but if you install these cmdlets, you will notice that in the default Profile that is loaded with PowerShell, it adds a line that states import-module netcmdlets so that the module loads at when PowerShell loads. These cmdlets are not discussed beyond this section in this tutorial. 	[ 
+http://www.netcmdlets.com/download/ ] 
+The default Profile is loaded when PowerShell starts. This is located in your documents folder under the 
+WindowsPowerShell folder in a file called Microsoft.PowerShell_profile.ps1 
+This file is loaded every time PowerShell loads and can be configured to alter prompts or set up aliases or however you want to configure your PowerShell console. This makes migrating settings from one PowerShell console to any PowerShell console simple because this file can be backed up. 
+ 
+Next, we should work with the idea that the same task can be accomplished many ways. For example, if we want to check for the servermanager module (that we will be using later), we can do this with: 
+ 
+ 	Ex:     	 Get-Module -ListAvailable | where name -match servermanager 
+ 
+One nice aspect of using get-module to find your cmdlets is that you can find out way more information about the module. Let us use another pipe capable cmdlet to help us called format-list. 
+ 
+ 	Ex: 	Get-Module -ListAvailable | where name -match servermanager | Format-List 
+ 
+There are many other ways to format and since format is a verb, we can find all the commands that begin with format by using: 
+ 
+ 	Ex: 	Get-Command -Verb Format 
+ 
+We will be using various Format- cmdlets throughout this introduction. We can view all the commands using that are available for a particular module with get-command: 
+ 
+ 	Ex: 	Get-Command -Module servermanager 
+ 
+This module allows us to manage roles and features of Server from the PowerShell command line. If the servermanager module is not installed (ie. no output), you can import it by using: 
+ 
+ 	Ex:     	 Import-Module ServerManager 
+ 
+
+ 
+The last command demonstrated how we can use the get-command cmdlet to find all of cmdlets that are associated with the servermanager module. The cool part about this is that we can use this for any module. For example, if you have the management tools installed with your roles, it should include PowerShell management cmdlets. Like earlier, let us take the output of a command and perform formatting by piping the output to pipe compatible cmdlets like the sort-object cmdlet. 
+  
+	Ex:  	Get-Command -All| group module | sort name 
+ 
+
+ 
+Notice how we used the -All switch. There are other switches we can use too. We can find these extra switches by using the following command (switches are just options specified after the command to customize our commands). In legacy command prompt, the order of the switches matters. In 
+PowerShell, the switches only matter if the switch parameter is required [in other words, the text of the switch is in square brackets] but what the switch needs as an input (aka the data type) is not surrounded by [square brackets]. You can also find out required switch by using the -full switch with the get-help cmdlet or checking out the -online TechNet for a cmdlet, explained on the next page. 
+ 
+Getting help in PowerShell and referencing syntax 
+ 
+Just like in the old days of command prompt, -? (dash- question mark?) is available for quick syntax reference. This will bring up the get-help for get-help (ie. Get-Help Get-Help). 
+ 
+ 	Ex: 	Get-Help -? 
+
+ 
+If we check out the help of the get-command cmdlet, we can see that there are no required parameters. If we look at the get-help output, we can see that the get-help cmdlets does require a string. 
+ 
+ 	Ex:     	 Get-Help Get-Command 
+ 
+Whenever you do not know the syntax for a command, you can use the get-help cmdlet. The original get-help cmdlet tends to have a lots of switches and can be very confusing, luckily the -detailed argument will explain the function of each argument. These can be your best friend or worst enemy, depending on how much you like reading. Some can be longer and short are short and sweet. You cannot get to the detailed help section using the -? so if you're going for speed, create an alias. 
+ 
+ 	Ex:      	Get-Help Get-Command -detailed | more 
+ 
+
+ 
+Want a little more information directly from TechNet about the cmdlet that you are inquiring about? Use the -online argument. This is especially nice for understanding exactly what a cmdlet can have passed to it (whether by pipe or just what the cmdlet is expecting after that specific argument. [It even opens in another window] 
+ 	 
+ 	Ex:  	Get-Help Get-Module -online 
+ 	 
+Another awesome part about PowerShell is the simplicity of finding comprehensive explanations of everything scripting. Check out some of the available about sections: 
+ 
+ 	Ex:     	 Get-Help about | more 
+ 
+If you would like a detailed reading of this page, please use: 
+ 
+ 	Ex:      	Get-Help about | Format-List -Property * 
+ 
+
+Notice the immense number of entries. Each entry is detailed and very informative. Check out this entry about Aliases. Within the first paragraph or 2, it explains how to make your own alias. [An example of an alias, you could type ip to get to ipconfig with the alias below the help documentation] 
+ 
+ 	Ex:     	 get-help about_Alias | more 
+ 
+ 	Ex: 	New-Alias -Name ip -Value ipconfig 
+ 
+Understanding Syntax to use Get-Help outputs 
+When viewing the get-help documentation that is associated with many cmdlets, you may notice a section titled Syntax. Here is what the get-help get-command Syntax output looks like: 
+
+Anything enclosed in [Square Brackets] means optional. In other words, the cmdlet will work without that argument passed/typed to the cmdlet, but you can tell the cmdlet to run in a particular manner, for a particular item, or even formatting outputs with specific arguments passed to (or typed after) the cmdlet. 
+ 
+As well, with most of the arguments, there is a data type that is enclosed in a less than <and a greater than> symbol. Data types are the formatting of the data that is expected by the cmdlet. For example, <Int32> means that a whole number (or integer) is expected. <String> means that basic text is expected. Strings are best passed with quotation marks around them. This is because a space is interpreted as another argument being passed where quotation marks mean that it is all part of the same string. 
+ 
+This means that we can ensure that the data being passed to the cmdlet is syntactically and structurally correct. If the data type is incorrect, you will receive an error telling you so, like the example below. 
+ 
+
+ 
+The previous command says to get all log names in the event log. This output will tell you what Logs are available for you to access, the size of the log, and the behavior of the log as it acquires entries as the log reaches its maximum size limitations. Next, we can try: 
+ 
+ 	Ex:      	Get-EventLog -LogName System 
+ 
+As we can see, we get a significant amount of information. Looking at the get-help, we can find ways to limit the results based on particular items. To find an entry after a particular date, use the -After mm/dd/yy argument. Visit get-help get-eventlog -detailed for more information.  
+ 
+ 	Ex: 	Get-EventLog -LogName System -After 6/21/13 
+ 
+This can generate a very large output. However, we can also limit our results by creating a stipulation that the value in the column must match in order to be displayed. [Note: You must press enter on a blank line to run the command.] 
+ 
+ 	Ex: 	Get-EventLog -LogName System -After 6/21/13 ` 
+| Where-Object EntryType -Match Error 
+
+ 
+Now we can better analyze events. 
+Where-Object has an alias of where native to PowerShell. 
+ 
+Say we wanted to clean up the output of the event log. We can pipe the entire output to the selectobject cmdlets, where it will select individual columns for us. Try the following cmdlets to manipulate your output for the information you want. 
+ 
+[Check out get-help select-object -detailed for more information]. Just like before, we can shorten select-object to select. We can do this for a couple of pipe capable cmdlets, but not all. 
+ 
+ 	Ex:      	Get-EventLog -LogName System -After (Get-Date).Date ` 
+| Where EntryType -match Error ` 
+| Select Source, Message ` 
+| Format-List 
+ 
+There are a couple of important items to note with these last examples. 
+First, we have tick marks at the ` end of each row. This means that the 
+same line continues on the next line. This is great for scripting because it makes reading the script significantly easier. 
+ 
+Another item to note is the (Get-Date).Date portion of the command. If you run this, you will see that this pull just the date from the Get-Date cmdlet. If we take a closer look at the Get-Date cmdlet, we can see that it contains valuable information. The Date. 
+ 
+ 	Ex: 	Get-Date | Format-List 
+ 
+If we want to pull a specific value from the formatted output of Get-Date, we can do that by appending a period. to (Get-Date). and specify the item title. We want todays date with no time so we use (GetDate).Date 
+We could use any name that is in the left hand column. This goes for the output of any command that we surround in (parenthesis). 
+ 
+We can also use Select-Object similarly to that. The only difference is that Select-Object displays a column title where the method (previously).mentioned does not store column names. 
+ 
+We can select any of the strings surrounded by the red box: 
+
+ 
+ 	Ex: 
+Get-EventLog -LogName System -After (Get-Date).Date ` 
+| Where-Object EntryType -Match Error ` 
+| Select-Object Index, TimeGenerated, Source, Message ` | Format-List 
+ 
+
+ 
+
+What the previous command says is that we want to get all entries in the Event Log named 'System' and anywhere where the 'EntryType' has a match to the word 'Error,' we are going to select (or display) the Index, TimeGenerated, Source, and Message columns. We are then going to format it as a list. 
+ 
+For a more detailed and advanced EventLog usage documentation, check out: 
+ 	 
+ 	Ex:     	 Get-Help about_EventLogs | more 
+ 
+Managing Windows Features and Roles in Windows Server 
+ 
+Microsoft Windows Server almost always includes the servermanager module for Windows but I have encountered machines where it is not native. If server manager is not installed, use the second Ex: below to import it. The first Ex: will return available cmdlets. 
+ 
+	Ex:      	get-command -module servermanager 
+ 
+	Ex:      	import-module servermanager 
+ 
+The commands that the servermanager module includes are all that you need to manage Windows features and roles (yes, this includes in Server Core, if you have PowerShell installed). 
+ 
+Try the following command to list all of the Windows Features that are available. 
+ 
+ 	Ex:      	Get-WindowsFeature 
+ 
+Using this will allow you to see all of the many available features on your installation of Windows Server. To narrow your search, try something along the lines of: 
+ 
+ 	Ex:      	Get-WindowsFeature | where Name -match RSAT 
+ 
+This is telling Windows to list all available features (installed and not installed) that contain a match to the letters RSAT. 
+ 
+
+ 
+To add any of the features found with the Get-WindowsFeature cmdlets, you can use the Add-
+WindowsFeature cmdlets (or Install-WindowsFeature, since Add-WindowsFeature is simply an Alias). We can prove this by using the following command: 
+ 
+ 	Ex:     	 Get-Help Add-WindowsFeature 
+ 
+
+The Add-WindowsFeature cmdlet has an abundance of handy switches. For example, we can append      
+-IncludeAllSubFeature to install everything that is indented under a particular feature. We can also use   -IncludeManagementTools to make sure that the MMC snap-in and the scripting cmdlets are available. 
+We can also use this if the MMC was not installed during the initial installation of the Role or Feature. For example, to install Hyper-V with the cmdlets and mmc, you can use: 
+ 
+ 	Ex:      	Add-WindowsFeature Hyper-V -IncludeManagementTools 
+ 
+As well, if we wanted to add or remove (remove-windowsfeature) features like the GUI, we can do it by using the following command: 
+ 
+ 	Ex:      	Add-WindowsFeature User-Interfaces-Infra -IncludeAllSubFeature 
+ 
+This will also install Desktop-Experience, which will make the GUI aspect of Windows Server more like 
+Windows Desktop by allow much more customization (like, right click on the Desktop and selecting Personalize). As well, you could take a Full GUI installation of Windows, configure it to your liking, and remove the GUI to improve server efficiency by using the following command: 
+ 
+ 	Ex:      	Remove-WindowsFeature User-Interfaces-Infra -IncludeManagementTools 
+ 
+Note how I included the -IncludeManagementTools switch but not the -IncludeAllSubFeature switch. This is because the -IncludeAllSubFeature is implied when removing roles but sometimes you might not want to remove the management tools so that they can be used to manage remote machines. 
+ 
+Managing Your Network Adapter 
+ 
+The first aspect of managing your Network Adapter requires knowing what is available for you to configure. There is a large variety of modules included in PowerShell 3.0 to help you configure your Network: 
+ 
+ 	Ex: 	Get-Module -ListAvailable | Where name -match "net" 
+ 
+The best way to determine what a module can perform is to explore the commands. 
+ 
+ 	Ex: 	Get-Command -Module NetAdapter 
+ 	 	Get-Command -Module NetTCPIP 
+ 	 	Get-Command -Module NetworkTransition 
+ 
+There is an abundance of advanced functionality that PowerShell 3.0 has added so check it out and if you need help with syntax, use the Get-Help cmdlets. For example, the Get-NetAdapter cmdlets, that is part of the NetAdapter module can pull information about the physical medium of the device, link speed, interface index, and much more. 
+ 
+ 	Ex:      	 Get-NetAdapter 
+ 
+For the actually configuring a network adapter, many cmdlets will allow you to specify an interface index so that you do not have to remember the name of the interface. The Get-NetAdapter cmdlet will display the ifIndex (or InterfaceIndex) for the installed Network Adapters. 
+ 
+As well, there are many switches we can use to manipulate the Get-NetAdapter cmdlet. For example, we can use the -Physical or the -IncludeHidden switches to filter by devices. 
+ 
+ 	Ex: 	Get-NetAdapter -Physical 
+ 	Ex:  	Get-NetAdapter -IncludeHidden 
+ 
+We can also use the Format-List cmdlets so that the output has more room to display. 
+ 
+ 	Ex:  	Get-NetAdapter | Format-List 
+ 
+Once we know which network adapter we want to configure, let us look at what we can do through the NetTCPIP module. 
+ 
+ 	Ex: 	Get-Command -module NetTCPIP 
+ 
+These are the cmdlets to manage the local network setting of the machine. We can get, set, or create a new routing table entry; we can get, set, or create a new IP address for an adapter. We can also remove any of these. The best way to use these is to reference the embedded help documentation. 
+ 
+ 	Ex:  	New-NetIPAddress -? 
+ 
+The only required field for the New-NetIPAddress cmdlets is an IP address and an Interface Alias or Interface Index (since you can use either, they have 2 separate syntax listings). The Interface Alias is just the name of the adapter. Let's try using the Interface Index (remember, this is machine specific). 
+ 
+ 	Ex: 	New-NetIPAddress 10.11.12.99 -InterfaceIndex 15 
+ 
+
+Notice how it creates 2 entries. An ActiveStore entry and a PersistentStore entry. The Persistent means that it will persist across reboots where the Active means that it will only store that entry for the active windows session (ie. a reboot will remove that entry). 
+ 
+PowerShell also makes reading and managing the Routing table much easier. 
+
+ 
+If we quickly reference the Syntax with Set-NetRoute -? we can see that we do not need any configuration options to run the cmdlets successfully. However, if we do not specify anything, there will be no entry made into the routing table. 
+[Since this command has so many configurable options, we will use a tick ` again to span multiple lines] 
+ 
+	Ex:  	New-NetRoute  -DestinationPrefix 192.168.99.0/24 ` 
+-NextHop 192.168.99.22 ` 
+-RouteMetric 200 ` 
+-Publish No ` 
+-PolicyStore ActiveStore ` 
+-InterfaceIndex 15 
+
+ 
+Removing a Routing Table entry is really easy. You just need Remove-NetRoute [Prefix to remove]. 
+ 
+ 	Ex: 	Remove-NetRoute 192.168.99.0/24 
+ 
+ 
+ 
+The best way to learn the NetTCPIP module for PowerShell is to use it. Remember the module and you can always search for Syntax. 
+ 
+Working with variables 
+ 
+Variables are indicated by a $before a word. We use variables to store information. For example, say we wanted to store a bunch of text (a string of text) for a particular variable. 
+ 
+ 	Ex: 	$a = 'bob,patricia,robert,brenda,pony,what,neverman,test,netboot' 
+ 
+Now if we type in $a into PowerShell, it will return our list. We can store anything we want in variable. This can be very handy if we can to prompt a user for credentials and store it in a variable. Try this: 
+ 
+ 	Ex: 	$cred = Get-Credential 
+ 
+Say we want to open an elevated Command Prompt with our stored credentials. If we entered our credentials correctly, we will successfully open an elevated cmd window. 
+ 
+ 	Ex: 	Start-Process cmd -Credential $cred 
+ 
+If you want to learn more about the properties of the variables that we have defined, use the         Get-Member cmdlet: 
+ 
+ 	Ex: 	$cred | Get-Member -MemberType Property 
+ 
+This shows that we have 2 things stored in the properties of this variable, a string for the username and a SecureString for the password.  
+ 
+Working with text [strings and arrays] 
+ 
+Say we have this variable defined and we want to call a specific letter from the string. We can do this by using a means of calling items from an array of items that we have defined: 
+ 
+	Ex: 	$a = "bob,patricia,robert,brenda,pony,what,neverman,test,netboot" 
+ 
+We can also measure the length of strings by appending .Length to any defined variable or a string. 
+ 
+ 	Ex: 	$a = "bob,patricia,robert,brenda,pony,what,neverman,test,netboot" 
+ 	 	$a.Length 
+ 
+ 	or 	"bob,patricia,robert,brenda,pony,what,neverman,test,netboot".Length 
+ 
+We can also call the letters of a string based on the position in the string. For example, if we wanted to get the letter in the very first position (position index starts at 0), we can get b by using: 
+ 	 
+ 	Ex:  	$a[0] 
+ 
+
+ 
+PowerShell has the ability to manipulate strings. For example, say we want to format the text defined earlier as $a. 
+ 
+ 	Ex: 	$a -Split "," 
+ 
+ 
+Or we can replace our variable $a with this newly formatted list (which is now an array). All we need to do is redefine $a with our split switch. 
+ 
+ 	Ex: 	$a = $a -Split "," 
+ 
+ 
+Now if we call $a we can see that our list is formatted better. We have also now transformed our 1 string into multiple strings. This is called an array. We can also accomplish this by inputting each string surrounded by quotation marks, separated by a comma. 
+ 
+ 	Ex: 	$a = "bob","patricia","robert","brenda","pony","what","neverman","test","netboot" 
+ 
+This is called an array because we have multiple terms (strings) defined under the same variable. Now if we call the variable, they appear on their respective lines. We can also call a specific string from our array of strings, based on its position. For example, if we wanted to print the name Brenda on the screen, we could use $a[3] because Brenda is the 4th name on the list (we start counting at 0): 
+ 
+ 	Ex: 	$a[3] 
+ 
+If we wanted to pull up the 1st item on our list, it would resemble: 
+ 
+ 	Ex: 	$a[0] 
+ 
+What the [square] brackets after the variable say is that we want to call the first entry on our list. However, splitting to create arrays or just to format text is not the only manipulation we can perform on text. We can also replace text. Say we wanted to replace text. We can simply append the replace switch at the end, and if formatted correctly, we can replace text. 
+For example, say we are typing quickly and have a happy of typing 7 instead of y when defining our variables. We can replace characters instead of having to retype all of our text. 
+ 
+ 	Ex: 	$a = "binar7","happ7","snap","gidd7" 
+ 
+Let us re-define our variable while replacing 7 with y. 
+ 
+ 	Ex: 	$a = $a -replace ("7","y") 
+ 
+Now when we call $a, we get our originally intended list. We can also output this array to a text file. Remember that > means overwrite a file and >> means append to the end of a file. 
+ 
+ 	Ex: 	$a > C:\users_list.txt 
+ 
+Or say we have a text file and want to use it as an array that can be called by a variable. Let us take the previously outputted file and assign it to the variable using the Get-Content cmdlet. 
+ 
+ 	Ex: 	$b = Get-Content C:\users_list.txt 
+ 
+Now we can call contents of a text file based on line number that we want to enumerate from. For example, say we have a text file that has usernames all on separate lines. 
+ 
+ 	Ex: 	"John Doe","John Smith","Frank Zappa","Bob Saget" > C:\test_users.txt  	Ex: 	(Get-Content C:\test_users.txt)[2] 
+ 
+In the next section, you will see how we can use a for loop to count. 
+ 
+Using a basic for loop 
+ 
+A for loop can be used for performing many tasks. This makes repetitive tasks much simpler. This is done by counting. We can count by any increment we want. This can be especially handy when creating multiple users that follow a similar naming convention. 
+ 
+Let's take a look at a basic for loop. The following loop will count to 10, starting at 1. 
+[Note: if you copy and paste this into your PowerShell window, you will have to press enter on a blank line to proceed, just like with a tick `] 
+ 
+ 	Ex: 	 	 	 
+for ( $i = 1 ; $i -ile 10 ; $i++ ) { 
+Write-Host $i 
+} 
+ 
+If we wanted to change the starting number, we can change the initial definition of $i. Say we wanted to start at 7: 
+ 
+ 	Ex: 	 	 	 
+for ( $i = 7 ; $i -ile 10 ; $i++ ) { 
+Write-Host $i 
+} 
+ 
+It is also important to note that everything within the curly brackets is executed for each increment. This means that if we have 2 lines that say Write-Host $i, we will have our number printed on our screen twice for each execution of the for loop. 
+ 
+ 	Ex: 	 	 	 
+for ( $i = 7 ; $i -ile 10 ; $i++ ) { 
+Write-Host $i 
+Write-Host $i 
+} 
+ 
+As well, with for loops, we can increment by whatever number we choose. For example, if we wanted to  start at 3 and increment by 3 to the number 27, our syntax would look like: 
+ 
+ 	Ex: 
+for ( $i = 3 ; $i -ile 27 ; $i+= 3 ) { 
+Write-Host $i 
+} 
+ 
+Consider alternative uses for this. If we define an array of strings and want to call them, one at a time, we can do this by first defining the array and then using a for loop. Note the placement of the variable that is counting (in this case $i). This 
+variable will count wherever it is located. Here, we use it to cycle through items in our array with $a[$i] 
+ 
+ 	Ex: 	$a = "John Doe","John Smith","Frank Zappa","Bob Saget"  	 	for ($i = 0;$i -ile 3;$i++) { 
+ 	 	 	$b = $a[$i] 
+ 	 	 	Write-Host $b 
+ 	 	 	} 
+ 
+We can also find out the contents of a text file by concatenating the contents on the screen. We can either use the full cmdlets name or the alias. 
+ 
+ 	Ex: 	Get-Content C:\users_list.txt 
+ 	 	or 
+ 	Ex: 	cat C:\users_list.txt 
+ 
+Understanding the ActiveDirectory module 
+ 
+Managing the Default Domain Password Policy 
+Once we get comfortable working with verbs and nouns, our potential for advanced management of Active Directory becomes apparent. For example, look at the noun ADDefaultDomainPasswordPolicy. We can get or set our password policy for AD. [Note: the -Credential (Get-Credential) argument is optional and only needs to be run if you are not logged into a privileged user.] 
+ 
+ 	Ex:  	Get-ADDefaultDomainPasswordPolicy -Credential (Get-Credential) 
+ 
+ 
+We can see what the current requirements are for the domain. Now, if we want to change these settings, we can do this easily with the Set-ADDefaultDomainPasswordPolicy cmdlet. There is only 1 requirement for this and that is specifying the domain the change is occurring for (identity). 
+ 
+ 	Ex: 	Set-ADDefaultDomainPasswordPolicy -ComplexityEnabled $true ` 
+ 	 	 	 	 	 	         -Identity "dc=peter,dc=local" 
+
+To find the syntax to change anything listed, check out: 
+ 
+ 	Ex: 	Set-ADDefaultDomainPasswordPolicy -? 
+ 
+In order to understand how to format the Identity portion of an Active Directory command, it is important to understand the components of AD. For example, dc stands for Domain Component. Since we are changing the password policy for peter.local, we use "dc=peter,dc=local" as our LDAP string. If we were changing the password policy for a subdomain like sub.peter.local, we would use "dc=sub,dc=peter,dc=local" as our LDAP formatted string. 
+ 
+Creating new users 
+One consideration to take into account when setting up users is the need to meet the password policy defined for the user. If these requirements are not met, PS will return an error. As well, if we do not pass a securestring to the cmdlet, it will also return an error. Creating users can be very complex. You can also Delegate control, specify encryption types, and even associate X509 certificates with a user. 
+ 
+ 	Ex:  	New-ADUser -? 
+ 	 	or 
+ 	Ex: 	Get-Help New-ADUser -detailed | more 
+ 
+For example, if we want to create a new user and pass a password that meets the password policy, we can store a securestring like this: 
+ 
+ 	Ex: 	$testpass = Read-Host -Prompt "password" -AsSecureString 
+ 
+Notice how if we try to call the variable (enter just the variable name into the console window), it shows up as a System.Security.SecureString object. Now when we want to create a user with those credentials, we should be able to just pass the $testpass variable to our cmdlet for successful account creation. 
+ 
+ 	Ex:  	New-ADUser -Name TestUser -AccountPassword $testpass -Enabled 1 
+ 
+Note how we must specify that we want the user account to be enabled with a Boolean value (a Boolean value is just a 1 or a 0). We can either use a 1 to indicate true or we can also use $true to indicate true as well. We could also use 0 or $false. Also notice how we cannot use the $cred variable because it is not the right type of object. We can however store a System.Security.SecureString object by taking a string and converting it to a SecureString. 
+ 
+ 	Ex: 	$password = Read-Host -Prompt "password" 
+ 	 	$password = ConvertTo-SecureString $password -AsPlainText -Force  
+ 
+
+This is the same as 2 steps before but this demonstrates how we can have a string stored in a variable, and then convert it to the data type [SecureString]. Notice how when we try to view it when it is a string, we can but once we convert the data type to [System.Security.SecureString], there is protections against viewing the contents of the variable. This is valuable because we can also encapsulate cmdlets within our commands. Say we want to create users with a default password. We can do this on 1 line instead of doing it across multiple lines. 
+ 
+ 	Ex: 	New-ADUser -Name testuser01 ` 
+-AccountPassword (ConvertTo-SecureString "password123" -AsPlainText -Force) 
+ 
+Note how the part that uses the cmdlets ConvertTo-SecureString is enclosed in parenthesis. This indicates that it is a separate part and that the output should be used in its place. Remember, the password must meet the complexity requirements of the domain. If it does not, PowerShell will tell you. 
+
+ 
+If we use a password that is complex: 
+ 
+ 	Ex: 	New-ADUser -Name testuser01 ` 
+-AccountPassword (ConvertTo-SecureString "p@ssword123" -AsPlainText -Force) 
+ 
+And we make sure that the username we are trying to create does not already exist: 
+
+Removing users is easier than adding them. We can use Get-ADUser to get user information or   Remove-ADUser to clean up old users.  
+ 
+ 	Ex: 	Get-ADUser testuser01 
+ 
+Remember, user accounts must explicitly be enabled with the -Enabled $true or -Enabled 1 argument passed to the New-ADUser cmdlet. To remove the user we just created: 
+ 
+ 	Ex: 	Remove-ADUser testuser01 
+ 
+After you are prompted to confirm deleting the user, we can no longer Get-ADUser testuser01 
+
+ 
+Creating New Organizational Units 
+ 
+As should be apparent now, many of these commands are pretty obvious. Just using the Get-Command cmdlet to find all the active directory information can be extremely PowerShell and insightful.  
+ 
+ 	Ex: 	Get-Command -module activedirectory 
+ 
+[Remember, you can also specify a verb at the same time so you know what you can get, set, etc.] 
+Let's look at the Syntax for the cmdlet New-ADOrganizationalUnit 
+ 
+ 	Ex: 	New-ADOrganizationalUnit -? 
+
+The only required argument is the -Name. This means we can create a new OU at the top-level of the domain with the following: 
+ 
+ 	Ex: 	New-ADOrganizationalUnit Bogus_Users 
+ 
+When we get to Get-ADOrganizationalUnit and remove Remove-ADOrganizationalUnit, we must be more aware of how the cmdlet functions. We cannot just use Remove-ADOrganizationalUnit 
+Bogus_Users because it will not find the object. We must be more specific and say where the object is: 
+ 
+ 	Ex: 	Get-ADOrganizationalUnit "ou=Bogus_Users,dc=peter,dc=local" 
+
+It is very important to read the red text that PowerShell outputs as it will always tell you the problem. 
+Sometimes the problem is very complex but sometimes it is easy to resolve. Note the following errors: 
+
+First, AD cannot find the OU we are trying to remove. Ok, replace it with an LDAP string to specify the exact object. Then we find the Object but access is denied! Well, when creating an OU, it is protected from accidental deletion by the -ProtectedFromAccidentalDeletion $true argument being the default. 
+ 
+So how can we fix this? We can edit the properties of an object (like a user or an OU) with the Set verb. 
+ 
+ 	Ex: 	Set-ADOrganizationalUnit "ou=Bogus_Users,dc=peter,dc=local" ` 
+-ProtectedFromAccidentalDeletion $false 
+ 
+ 
+Getting Information about AD objects 
+ 
+Since everything in Active Directory is an object, it is beneficial to know how to find an object. 
+ 
+ 	Ex: 	Get-ADObject -Filter * 
+ 
+ 
+The command indicates that we want to Get-ADObject and filter by a wildcard (so, get everything). This is where using our filtering techniques discussed earlier become very helpful. 
+ 
+ 	Ex: 	Get-ADObject -Filter * | Where ObjectClass -match organizationalUnit 
+ 
+ 
+We can also filter our results multiple times: 
+ 
+ 	Ex:  	Get-ADObject -Filter * ` 
+| Where ObjectClass -match organizationUnit ` 
+
+ 
+This is barely scratching the surface of PowerShell. The best way to learn is to explore. Don't be intimidated by it, just play around, mess things up, and keep your images handy in case you have to reinstall. 
+ 
+For a TechNet blog on how to import user information from a CSV [Comma Separated Values file]: 
+http://blogs.technet.com/b/heyscriptingguy/archive/2011/12/22/use-powershell-to-read-a-csv-file-andcreate-active-directory-user-accounts.aspx 
+P a g e | 1 
+ 
+
+P a g e | 1 
+ 
+
+P a g e | 1 
+ 
+
+P a g e | 10 
+ 
+
+P a g e | 10 
+ 
+
+P a g e | 10 
+ 
+
