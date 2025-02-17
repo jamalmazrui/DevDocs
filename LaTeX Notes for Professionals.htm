@@ -1,0 +1,2262 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>LaTeX Notes for Professionals</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="table-of-contents">Table of Contents</h1>
+<p><a href="#Chapter_13__Defining_macros"><u>Chapter 13: Defining macros
+.................................................................................................................................
+40</u></a></p>
+<p><a href="#Chapter_14__Build_Tools"><u>Chapter 14: Build Tools
+............................................................................................................................................
+41</u></a></p>
+<p><a href="#Chapter_15__Accessing_documentat"><u>Chapter 15: Accessing
+documentation of LaTeX packages
+..................................................................
+42</u></a></p>
+<p><a href="#Chapter_16__Creating_posters_usi"><u>Chapter 16: Creating
+posters using beamer
+.................................................................................................
+45</u></a></p>
+<p><a href="#Chapter_17__Engraving_Sheet_Musi"><u>Chapter 17: Engraving
+Sheet Music
+...................................................................................................................
+54</u></a></p>
+<p><a href="#chapter-1-getting-started-with-latex"><u>Chapter 1: Getting
+started with LaTeX</u></a></p>
+<p><a href="#chapter-2-title-pages"><u>Chapter 2: Title
+Pages</u></a></p>
+<p><a href="#chapter-3-header-and-footer"><u>Chapter 3: Header and
+Footer</u></a></p>
+<p><a href="#chapter-4-text-formatting"><u>Chapter 4: Text
+Formatting</u></a></p>
+<p><a href="#chapter-5-tables"><u>Chapter 5: Tables</u></a></p>
+<p><a href="#chapter-6-typesetting-mathematics"><u>Chapter 6:
+Typesetting Mathematics</u></a></p>
+<p><a href="#chapter-7-creating-a-bibliography"><u>Chapter 7: Creating a
+Bibliography</u></a></p>
+<p><a href="#chapter-8-add-citation"><u>Chapter 8: Add
+Citation</u></a></p>
+<p><a href="#chapter-9-counters-if-statements-and"><u>Chapter 9:
+Counters, if statements and</u></a></p>
+<p><a href="#chapter-10-document-classes"><u>Chapter 10: Document
+Classes</u></a></p>
+<p><a href="#chapter-11-drawing-graphs"><u>Chapter 11: Drawing
+Graphs</u></a></p>
+<p><a href="#chapter-12-presentation-with-beamer"><u>Chapter 12:
+Presentation with beamer</u></a></p>
+<p><a href="#chapter-13-defining-macros"><u>Chapter 13: Defining
+macros</u></a></p>
+<p><a href="#chapter-14-build-tools"><u>Chapter 14: Build
+Tools</u></a></p>
+<p><a href="#chapter-15-accessing-documentation-of"><u>Chapter 15:
+Accessing documentation of</u></a></p>
+<p><a href="#chapter-16-creating-posters-using-beamer"><u>Chapter 16:
+Creating posters using beamer</u></a></p>
+<p><a href="#chapter-17-engraving-sheet-music"><u>Chapter 17: Engraving
+Sheet Music</u></a></p>
+<p>Notes for Professionals LaTeX LaTeX Notes for Professionals</p>
+<p><img src="media/index-1_1.jpeg" style="width:6.5in;height:4.02778in"
+alt="index-1_1.jpg" /></p>
+<p>50+ pages</p>
+<p>of professional hints and tricks</p>
+<p><a href="https://goalkicker.com">GoalKicker.com</a> Disclaimer</p>
+<p>This is an unocial free book created for educational purposes and
+is</p>
+<p><a href="https://goalkicker.com">Free Programming Books</a> not
+aliated with ocial LaTeX group(s) or company(s).</p>
+<p>All trademarks and registered trademarks are</p>
+<p>the property of their respective owners</p>
+<h1 id="contents">Contents</h1>
+<p><a href="#About"><strong>About</strong></a>
+...................................................................................................................................................................................
+<a href="#About">1</a></p>
+<p><a href="#chapter-1-getting-started-with-latex"><strong>Chapter 1:
+Getting started with LaTeX</strong></a>
+..............................................................................................................
+<a href="#chapter-1-getting-started-with-latex">2</a></p>
+<p><a href="#chapter-1-getting-started-with-latex">Section 1.1: LaTeX
+Editors</a>
+..............................................................................................................................................
+<a href="#chapter-1-getting-started-with-latex">2</a></p>
+<p><a href="#chapter-1-getting-started-with-latex">Section 1.2:
+Installation and Setup</a>
+...............................................................................................................................
+<a href="#chapter-1-getting-started-with-latex">2</a></p>
+<p><a href="#chapter-2-title-pages"><strong>Chapter 2: Title
+Pages</strong></a>
+................................................................................................................................................
+<a href="#chapter-2-title-pages">7</a></p>
+<p><a href="#chapter-2-title-pages">Section 2.1: Standard report
+titlepage
+.........................................................................................................................
+7</a></p>
+<p><a href="#chapter-3-header-and-footer"><strong>Chapter 3: Header and
+Footer</strong></a>
+...............................................................................................................................
+<a href="#chapter-3-header-and-footer">8</a></p>
+<p><a href="#chapter-3-header-and-footer">Section 3.1: Using fancyhdr
+and titleps packages
+......................................................................................................
+8</a></p>
+<p><a href="#page_12">Section 3.2: Page number as CurrPage/TotalPages in
+footer</a>
+.................................................................................
+<a href="#page_12">9</a></p>
+<p><a href="#chapter-4-text-formatting"><strong>Chapter 4: Text
+Formatting</strong></a>
+..................................................................................................................................
+<a href="#chapter-4-text-formatting">11</a></p>
+<p><a href="#chapter-4-text-formatting">Section 4.1: Bold text</a>
+...................................................................................................................................................
+<a href="#chapter-4-text-formatting">11</a></p>
+<p><a href="#chapter-4-text-formatting">Section 4.2: Emphazise Text</a>
+.......................................................................................................................................
+<a href="#chapter-4-text-formatting">11</a></p>
+<p><a href="#chapter-4-text-formatting">Section 4.3: Strike through
+text</a>
+..................................................................................................................................
+<a href="#chapter-4-text-formatting">11</a></p>
+<p><a href="#chapter-5-tables"><strong>Chapter 5: Tables</strong></a>
+.......................................................................................................................................................
+<a href="#chapter-5-tables">12</a></p>
+<p><a href="#chapter-5-tables">Section 5.1: The tabular environment</a>
+........................................................................................................................
+<a href="#chapter-5-tables">12</a></p>
+<p><a href="#page_16">Section 5.2: Coloring Table</a>
+.........................................................................................................................................
+<a href="#page_16">13</a></p>
+<p><a href="#chapter-6-typesetting-mathematics"><strong>Chapter 6:
+Typesetting Mathematics</strong></a>
+...............................................................................................................
+<a href="#chapter-6-typesetting-mathematics">16</a></p>
+<p><a href="#chapter-6-typesetting-mathematics">Section 6.1: Basic
+Equations</a>
+.......................................................................................................................................
+<a href="#chapter-6-typesetting-mathematics">16</a></p>
+<p><a href="#Section_6_2__Finding_Symbols">Section 6.2: Finding
+Symbols</a>
+.....................................................................................................................................
+<a href="#Section_6_2__Finding_Symbols">17</a></p>
+<p><a href="#Section_6_2__Finding_Symbols">Section 6.3: Packages
+available for use</a>
+...................................................................................................................
+<a href="#Section_6_2__Finding_Symbols">17</a></p>
+<p><a href="#Font_packages">Section 6.4: Good Commands to Know</a>
+....................................................................................................................
+<a href="#Font_packages">18</a></p>
+<p><a href="#Math_symbols_are_automatically_i">Section 6.5: Creating New
+Symbols</a>
+...........................................................................................................................
+<a href="#Math_symbols_are_automatically_i">19</a></p>
+<p><a href="#Math_symbols_are_automatically_i">Section 6.6: Matrices</a>
+...................................................................................................................................................
+<a href="#Math_symbols_are_automatically_i">19</a></p>
+<p><a href="#chapter-7-creating-a-bibliography"><strong>Chapter 7:
+Creating a Bibliography</strong></a>
+..................................................................................................................
+<a href="#chapter-7-creating-a-bibliography">21</a></p>
+<p><a href="#chapter-7-creating-a-bibliography">Section 7.1: Basic
+bibliography with biber</a>
+.................................................................................................................
+<a href="#chapter-7-creating-a-bibliography">21</a></p>
+<p><a href="#page_25">Section 7.2: Basic bibliography without packages
+(manual formatting)</a>
+.............................................................. <a
+href="#page_25">22</a></p>
+<p><a href="#chapter-8-add-citation"><strong>Chapter 8: Add
+Citation</strong></a>
+...........................................................................................................................................
+<a href="#chapter-8-add-citation">23</a></p>
+<p><a href="#chapter-8-add-citation">Section 8.1: Add citation to
+already existing LaTeX document</a>
+..............................................................................
+<a href="#chapter-8-add-citation">23</a></p>
+<p><a href="#chapter-9-counters-if-statements-and"><strong>Chapter 9:
+Counters, if statements and loops with LaTeX</strong></a>
+................................................................... <a
+href="#chapter-9-counters-if-statements-and">24</a></p>
+<p><a href="#chapter-9-counters-if-statements-and">Section 9.1:
+Operations with counters</a>
+.......................................................................................................................
+<a href="#chapter-9-counters-if-statements-and">24</a></p>
+<p><a href="#____symbolizes_new_line">Section 9.2: Counter declaration,
+initialization and printing to pdf</a>
+........................................................................
+<a href="#____symbolizes_new_line">25</a></p>
+<p><a href="#____symbolizes_new_line">Section 9.3: If statements</a>
+...........................................................................................................................................
+<a href="#____symbolizes_new_line">25</a></p>
+<p><a href="#If_a_number_is_odd___ifodd_value">Section 9.4: Loops -
+repeating things</a>
+........................................................................................................................
+<a href="#If_a_number_is_odd___ifodd_value">26</a></p>
+<p><a href="#_setcounter_int__0">Section 9.5: Using loops in Tikz</a>
+..................................................................................................................................
+<a href="#_setcounter_int__0">28</a></p>
+<p><a href="#chapter-10-document-classes"><strong>Chapter 10: Document
+Classes</strong></a>
+............................................................................................................................
+<a href="#chapter-10-document-classes">30</a></p>
+<p><a href="#chapter-10-document-classes">Section 10.1: Article</a>
+......................................................................................................................................................
+<a href="#chapter-10-document-classes">30</a></p>
+<p><a href="#chapter-10-document-classes">Section 10.2: Beamer</a>
+...................................................................................................................................................
+<a href="#chapter-10-document-classes">30</a></p>
+<p><a href="#_begin_frame">Section 10.3: Defining the document class</a>
+................................................................................................................
+<a href="#_begin_frame">31</a></p>
+<p><a href="#chapter-11-drawing-graphs"><strong>Chapter 11: Drawing
+Graphs</strong></a>
+..................................................................................................................................
+<a href="#chapter-11-drawing-graphs">32</a></p>
+<p><a href="#chapter-11-drawing-graphs">Section 11.1: TikZ -- Graph
+specifications</a>
+...................................................................................................................
+<a href="#chapter-11-drawing-graphs">32</a></p>
+<p><a href="#page_36">Section 11.2: TikZ -- Algorithmic graph
+drawing</a>
+.......................................................................................................
+<a href="#page_36">33</a></p>
+<p><a href="#page_37">Section 11.3: State Transition Diagram of a Markov
+Chain</a>
+.....................................................................................
+<a href="#page_37">34</a></p>
+<p><a href="#page_38">Section 11.4: TikZ -- Manual layout</a>
+............................................................................................................................
+<a href="#page_38">35</a></p>
+<p><a href="#chapter-12-presentation-with-beamer"><strong>Chapter 12:
+Presentation with beamer package</strong></a>
+........................................................................................
+<a href="#chapter-12-presentation-with-beamer">37</a></p>
+<p><a href="#chapter-12-presentation-with-beamer">Section 12.1: Simple
+one author title slide</a>
+..................................................................................................................
+<a href="#chapter-12-presentation-with-beamer">37</a></p>
+<p><a href="#page_41">Section 12.2: Multiple author and aliation title
+slide</a>
+..............................................................................................
+<a href="#page_41">38</a></p>
+<p><span id="Chapter_13__Defining_macros" class="anchor"></span><a
+href="#chapter-13-defining-macros">Chapter 13: Defining macros</a>
+.................................................................................................................................
+<a href="#chapter-13-defining-macros">40</a></p>
+<p><a href="#chapter-13-defining-macros">Section 13.1: Basic definition
+of macros</a>
+.....................................................................................................................
+<a href="#chapter-13-defining-macros">40</a></p>
+<p><span id="Chapter_14__Build_Tools" class="anchor"></span><a
+href="#chapter-14-build-tools">Chapter 14: Build Tools</a>
+............................................................................................................................................
+<a href="#chapter-14-build-tools">41</a></p>
+<p><a href="#chapter-14-build-tools">Section 14.1: Arara</a>
+........................................................................................................................................................
+<a href="#chapter-14-build-tools">41</a></p>
+<p><span id="Chapter_15__Accessing_documentat" class="anchor"></span><a
+href="#chapter-15-accessing-documentation-of">Chapter 15: Accessing
+documentation of LaTeX packages</a>
+.................................................................. <a
+href="#chapter-15-accessing-documentation-of">42</a></p>
+<p><a href="#chapter-15-accessing-documentation-of">Section 15.1:
+CTAN</a>
+........................................................................................................................................................
+<a href="#chapter-15-accessing-documentation-of">42</a></p>
+<p><a href="#Section_15_2__TeX_Live____texdoc">Section 15.2: TeX Live --
+texdoc</a>
+.................................................................................................................................
+<a href="#Section_15_2__TeX_Live____texdoc">44</a></p>
+<p><span id="Chapter_16__Creating_posters_usi" class="anchor"></span><a
+href="#chapter-16-creating-posters-using-beamer">Chapter 16: Creating
+posters using beamer</a>
+.................................................................................................
+<a href="#chapter-16-creating-posters-using-beamer">45</a></p>
+<p><a href="#chapter-16-creating-posters-using-beamer">Section 16.1:
+Orientation and size</a>
+...............................................................................................................................
+<a href="#chapter-16-creating-posters-using-beamer">45</a></p>
+<p><a href="#chapter-16-creating-posters-using-beamer">Section 16.2:
+Basic outline of a beamer poster</a>
+........................................................................................................
+<a href="#chapter-16-creating-posters-using-beamer">45</a></p>
+<p><a href="#Section_16_3__Full_example_of_be">Section 16.3: Full
+example of beamer poster</a>
+............................................................................................................
+<a href="#Section_16_3__Full_example_of_be">49</a></p>
+<p><span id="Chapter_17__Engraving_Sheet_Musi" class="anchor"></span><a
+href="#chapter-17-engraving-sheet-music">Chapter 17: Engraving Sheet
+Music</a>
+...................................................................................................................
+<a href="#chapter-17-engraving-sheet-music">54</a></p>
+<p><a href="#chapter-17-engraving-sheet-music">Section 17.1:
+LilyPond</a>
+...................................................................................................................................................
+<a href="#chapter-17-engraving-sheet-music">54</a></p>
+<p><a href="#Credits"><strong>Credits</strong></a>
+..............................................................................................................................................................................
+<a href="#Credits">56</a></p>
+<p><a href="#You_may_also_like"><strong>You may also like</strong></a>
+........................................................................................................................................................
+<a href="#You_may_also_like">57</a></p>
+<p><span id="About" class="anchor"></span>About</p>
+<p>Please feel free to share this PDF with anyone for free,</p>
+<p>latest version of this book can be downloaded from:</p>
+<p><a
+href="https://goalkicker.com/LaTeXBook">https://goalkicker.com/LaTeXBook</a></p>
+<p><em>This</em> LaTeX Notes for Professionals <em>book is compiled from
+<a href="https://archive.org/details/documentation-dump.7z">Stack
+Overflow</a></em></p>
+<p><a
+href="https://archive.org/details/documentation-dump.7z">Documentation</a>,
+the content is written by the beautiful people at Stack Overflow.</p>
+<p>Text content is released under Creative Commons BY-SA, see credits at
+the end</p>
+<p>of this book whom contributed to the various chapters. Images may be
+copyright</p>
+<p>of their respective owners unless otherwise specified</p>
+<p>This is an unofficial free book created for educational purposes and
+is not affiliated with official LaTeX group(s) or company(s) nor Stack
+Overflow. All</p>
+<p>trademarks and registered trademarks are the property of their
+respective</p>
+<p>company owners</p>
+<p>The information presented in this book is not guaranteed to be
+correct nor</p>
+<p>accurate, use at your own risk</p>
+<p>Please send feedback and corrections to web@petercv.com</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 1</p>
+<h1 id="chapter-1-getting-started-with-latex">Chapter 1: Getting started
+with LaTeX</h1>
+<p>Version Release Date</p>
+<p>LaTeX 2.09 1985-09-01</p>
+<p><a href="https://latex-project.org/guides/usrguide.pdf">LaTeX 2e</a>
+1994-06-01</p>
+<p>Section 1.1: LaTeX Editors</p>
+<p>While you can create LaTeX documents using any editor and compiling
+using the console, there exist several plugins</p>
+<p>for widely used editors to simplify creating LaTeX documents, and
+there are specialized LaTeX editors. An</p>
+<p><a
+href="http://tex.stackexchange.com/questions/339/latex-editors-ides">exhaustive
+list of LaTeX editors</a> <a href="http://tex.stackexchange.com/">is
+available on TeX.SE</a> (the StackExchange site, dedicated to TeX, LaTeX
+&amp; Friends).</p>
+<p>The most widely used editors, according to this list, are:</p>
+<p><a href="http://www.gnu.org/software/emacs/emacs.html">The Emacs</a>
+editor with the <a href="http://www.gnu.org/software/auctex/">AUCTeX
+extension.</a></p>
+<p><a href="http://www.vim.org/">The Vim</a> <a
+href="http://vim-latex.sourceforge.net/">editor with the LaTeX-suite
+plugin.</a></p>
+<p><a href="http://www.xm1math.net/texmaker/">Texmaker</a> – a
+specialized LaTeX IDE.</p>
+<p><a href="http://texstudio.sourceforge.net/">TeXstudio</a> – another
+LaTeX IDE.</p>
+<p><a href="https://github.com/TeXworks/texworks/releases">TeXworks</a>
+– one more LaTeX IDE.</p>
+<p>While experienced users of Emacs or Vim may want to stick to their
+editor (whose plugins provide a host of functionality unavailable
+elsewhere), a specialized IDE might be easier to install/use for
+beginners. The last three on</p>
+<p>the list have a preview function where one can see the results of the
+compilation of the document.</p>
+<p>Additionally, there are online LaTeX tools that can be of use to
+beginners or people that must collaborate, e.g.</p>
+<p><a href="https://www.sharelatex.com/">ShareLaTeX</a> and <a
+href="https://www.overleaf.com/">Overleaf</a>.</p>
+<p>Section 1.2: Installation and Setup</p>
+<p>You can choose between major distributions of LaTeX:</p>
+<p><a href="https://www.tug.org/texlive/">TeX Live</a> (Windows, Linux,
+and OS X), the standard, cross-platform distribution.</p>
+<p><a href="http://tug.org/mactex/">MacTeX (Mac) A packaged version of
+TeX Live made for OS X with some Mac-specific tools</a></p>
+<p><a href="http://miktex.org/">MiKTeX</a> (Windows) A separate
+distribution entirely that</p>
+<p>All distributions are more or less equivalent in an ideal world. TeX
+Live has the advantage of being available on all platforms and thus has
+much better community support. MiKTeX can take advantage of
+Windows-specific features.</p>
+<p>For licensing reasons, MiKTeX will also distribute a few packages
+that TeX Live will not.</p>
+<p>In all cases, the full install is recommended. Specifically, using
+MiKTeX's download-on-command feature will</p>
+<p>hang/crash many editors.</p>
+<p>Installation</p>
+<p>Windows (TeXLive)</p>
+<p>1. Download the most recent TeXLive install-tl-windows.exe <a
+href="https://www.tug.org/texlive/">from their website</a>.</p>
+<p>2. Run install-tl-windows.exe and follow the instructions.</p>
+<p>Windows (MiKTeX)</p>
+<p>1. Download the most recent MiKTeX installer from their <a
+href="http://miktex.org/download">website.</a> 2. Run the installer and
+follow the instructions.</p>
+<p>Mac OS X (TeXLive)</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 2</p>
+<p>1. <a href="http://www.tug.org/mactex/mactex-download.html">Download
+the most recent MacTeX from their website</a>.</p>
+<p>2. Run MacTeX.pkg and follow the instructions.</p>
+<p>Linux (TeXLive)</p>
+<p>Linux users have two options:</p>
+<p>1. Install via your distribution's package manager (usually several
+releases behind) 2. Install from upstream (released yearly, updated
+often)</p>
+<p>Using Package Managers</p>
+<p>Arch Linux: pacman -S texlive-most</p>
+<p>Debian/Ubuntu/Mint: apt-get install texlive-full</p>
+<p>Fedora: yum install texlive</p>
+<p>Note that using this method means that you will be dependent on that
+package's maintainer for the distribution for updates. These packages
+will often be several releases behind the most recent distribution,
+often meaning critical</p>
+<p>updates will be missing. It's almost always best to install from
+upstream. Also note that the distribution's package manager will
+probably not recognize the direct installation and could try to install
+it when one installs other related</p>
+<p>support packages.</p>
+<p>Installing from Upstream</p>
+<p>1. Download the most recent TeXLive install-tl-unx.tar.gz <a
+href="https://www.tug.org/texlive/">from their website.</a></p>
+<p>2. Extract the files from the archive with tar -zxvf
+install-tl-unx.tar.gz.</p>
+<p>3. Change into the downloaded folder with <strong>cd</strong>
+install-tl-unx.</p>
+<p>4. Run ./install-tl and follow the instructions.</p>
+<p>TeXLive should now be installed under /usr/local/texlive/YEAR/, where
+YEAR is the four digit year (e.g.</p>
+<p>2016). In this way, it is possible to have multiple TeXLive versions
+alongside each other and switch between them by changing your PATH
+variable.</p>
+<p>Open this folder and check the bin folder. It should contain a
+subfolder, which (depending on your platform)</p>
+<p>will be something like i386-linux or x86_64-linux.</p>
+<p>5. Add the TeX Live binary folder to your path with</p>
+<p>EXPORT PATH=/usr/local/texlive/YEAR/bin/PLATFORM:$PATH</p>
+<p>where YEAR is the four digit year (e.g. 2016), and PLATFORM is your
+platform (e.g. x86_64-linux).</p>
+<p>Test Installation</p>
+<p>The LaTeX installation is now complete. To test it, create a new file
+with your favorite text editor, name it test.tex</p>
+<p>and add the following content:</p>
+<p>\documentclass{article}</p>
+<p>\begin{document}</p>
+<p>Hello World!</p>
+<p>\end{document}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 3</p>
+<p>Now, open the console or terminal, navigate to the folder where you
+saved test.tex and run</p>
+<p>pdflatex test</p>
+<p>(Note that your editor may have facilities to run this for you.)</p>
+<p>This creates several new files, including test.pdf. This is the
+output document, and looks like this:</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 4</p>
+<p><img src="media/index-8_1.jpeg" style="width:6.375in;height:9in"
+alt="index-8_1.jpg" /></p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 5</p>
+<p>Congratulations, you have successfully installed LaTeX, and created
+your first LaTeX document!</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 6</p>
+<h1 id="chapter-2-title-pages">Chapter 2: Title Pages</h1>
+<p>Section 2.1: Standard report titlepage</p>
+<p>\documentclass{report}</p>
+<p>\begin{document}</p>
+<p>\title{I want to be a Wombat}</p>
+<p>\author{Carl Capybara}</p>
+<p>\maketitle</p>
+<p>\end{document}</p>
+<p>This will create a title page with no other content:</p>
+<p><img src="media/index-10_1.jpeg"
+style="width:2.77778in;height:1.79167in" alt="index-10_1.jpg" /></p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 7</p>
+<h1 id="chapter-3-header-and-footer">Chapter 3: Header and Footer</h1>
+<p>Section 3.1: Using fancyhdr and titleps packages</p>
+<p>\documentclass[12pt]{article}</p>
+<p>\usepackage{titleps}</p>
+<p>\usepackage{fancyhdr}</p>
+<p>\usepackage{graphicx}</p>
+<p>\usepackage{lipsum} <em>% for dummy text</em></p>
+<p>\pagestyle{myheadings}</p>
+<p>\pagestyle{fancy}</p>
+<p>\fancyhf{}</p>
+<p>\setlength{\headheight}{30pt}</p>
+<p>\renewcommand{\headrulewidth}{4pt}</p>
+<p>\renewcommand{\footrulewidth}{2pt}</p>
+<p>\fancyhead[L]{\includegraphics[width=1cm]{example-image-a}}
+\fancyhead[C]{}</p>
+<p>\fancyhead[R]{\rightmark}</p>
+<p>\fancyfoot[L]{ABC}</p>
+<p>\fancyfoot[C]{\textcopyright xyz}</p>
+<p>\fancyfoot[R]{\thepage}</p>
+<p>\begin{document}</p>
+<p>\section{First section}</p>
+<p>\subsection{One}</p>
+<p>\lipsum[1-3]</p>
+<p>\subsection{Two}</p>
+<p>\lipsum[4-6]</p>
+<p>\end{document}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 8</p>
+<p><span id="page_12" class="anchor"></span><img
+src="media/index-12_1.jpeg" style="width:6.5in;height:3.63889in"
+alt="index-12_1.jpg" /></p>
+<p>Section 3.2: Page number as CurrPage/TotalPages in footer</p>
+<p><img src="media/index-12_2.jpeg" style="width:6.5in;height:3.63889in"
+alt="index-12_2.jpg" /></p>
+<p>\documentclass[12pt]{article}</p>
+<p>\usepackage{lastpage}</p>
+<p>\usepackage{fancyhdr}</p>
+<p>\usepackage{graphicx}</p>
+<p>\usepackage{lipsum} <em>% for dummy text</em></p>
+<p>\pagestyle{myheadings}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 9</p>
+<p>\pagestyle{fancy}</p>
+<p>\fancyhf{}</p>
+<p>\setlength{\headheight}{30pt}</p>
+<p>\renewcommand{\headrulewidth}{1pt}</p>
+<p>\renewcommand{\footrulewidth}{2pt}</p>
+<p>\lhead{\includegraphics[width=1cm]{example-image-a}} \rhead{}</p>
+<p>\lfoot{ABC}</p>
+<p>\rfoot{\thepage/\pageref{LastPage}}</p>
+<p>\begin{document}</p>
+<p>\section{First section}</p>
+<p>\subsection{One}</p>
+<p>\lipsum[1-3]</p>
+<p>\end{document}</p>
+<p><img src="media/index-13_1.jpeg" style="width:6.5in;height:3.63889in"
+alt="index-13_1.jpg" /></p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 10</p>
+<h1 id="chapter-4-text-formatting">Chapter 4: Text Formatting</h1>
+<p>Section 4.1: Bold text</p>
+<p>In order to typeset text in bold, use \textbf:</p>
+<p>\textbf{This text is typeset in bold.}</p>
+<p>Section 4.2: Emphazise Text</p>
+<p>In order to emphasize text the command \emph can be used which
+usually displays the text in an italics font:</p>
+<p>This is some text with \emph{emphasized words}.</p>
+<p>Section 4.3: Strike through text</p>
+<p>The command \sout of the package ulem strikes through a text:</p>
+<p>\sout{This text is striked through}</p>
+<p>The package ulem redefines the command \emph. When you do not want to
+have this behavior you can use the</p>
+<p>package ulem with the option normalem:</p>
+<p>\usepackage[normalem]{ulem}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 11</p>
+<h1 id="chapter-5-tables">Chapter 5: Tables</h1>
+<p>Section 5.1: The tabular environment</p>
+<p>The tabular environment is the most basic way to create a table in
+LaTeX and doesn't require any other packages.</p>
+<p>\begin{tabular}{|lcr||}</p>
+<p>left aligned column &amp; center column &amp; right column \\</p>
+<p>\hline</p>
+<p>text &amp; text &amp; text \\</p>
+<p>text &amp; text &amp; text \\</p>
+<p>\end{tabular}</p>
+<p><img src="media/index-15_1.jpeg"
+style="width:5.66667in;height:1.02778in" alt="index-15_1.jpg" /></p>
+<p>The parameter (|lcr|| in the example) is called the <strong>table
+specification</strong> and tells LaTeX how many columns there are and
+how they are supposed to be formatted. Each letter represents a single
+column. Possible values are:</p>
+<p>Character Meaning</p>
+<p>l left aligned column</p>
+<p>c centered column</p>
+<p>r right aligned column</p>
+<p>p{'width'} e.g. p{5cm} paragraph column with defined width</p>
+<p>| (pipe character) vertical line</p>
+<p>|| (2 pipes) 2 vertical lines</p>
+<p>Cells are separated by the &amp; character. A row is ended by 2 back
+slashes \\.</p>
+<p>Horizontal lines can be inserted by using the \hline command.</p>
+<p>Tables are always formatted to be wide enough to include all the
+content. If a table is to big, LaTeX will print</p>
+<p>overfull hbox warnings. Possible solutions include using the
+p{'width'} specifier or other packages like tabularx.</p>
+<p>A table with column headings spanning over several columns can be
+created using the command</p>
+<p>\multicolumn{cols}{pos}{text}.</p>
+<p>\begin{center}</p>
+<p>\begin{tabular}{|c|c|c|c|}</p>
+<p>\hline</p>
+<p>&amp;\multicolumn{3}{|c|}{Income Groups}\\</p>
+<p>\cline{2-4}</p>
+<p>City&amp;Lower&amp;Middle&amp;Higher\\</p>
+<p>\hline</p>
+<p>City-1&amp; 11 &amp; 21 &amp; 13\\</p>
+<p>City-2&amp; 21 &amp; 31 &amp;41\\</p>
+<p>\hline</p>
+<p>\end{tabular}</p>
+<p>\end{center}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 12</p>
+<p><span id="page_16" class="anchor"></span><img
+src="media/index-16_1.jpeg" style="width:3.59722in;height:1.34722in"
+alt="index-16_1.jpg" /></p>
+<p>Note that the command \multicolumn has three mandatory arguments: the
+first argument specifies the number of columns over which the heading
+spans; the second argument specifies the position of the heading(l,c,r);
+and the</p>
+<p>third argument is the text for heading. The command \cline{2-4}
+specifies the the starting column(here, 2) and ending column(here, 4)
+over which a line is to be drawn.</p>
+<p>Section 5.2: Coloring Table</p>
+<p>To make the table more readable, following are the ways to color
+it:</p>
+<p>1. Rows</p>
+<p>2. Columns</p>
+<p>3. Lines</p>
+<p>4. Cells</p>
+<p>Coloring Rows</p>
+<p>Use \rowcolor <a href="http://ctan.org/pkg/colortbl">(provided by
+colortbl; also loaded by</a> <a
+href="http://ctan.org/pkg/xcolor">xcolor</a> under the [table] package
+option). Example:</p>
+<p>\documentclass{article}</p>
+<p>\usepackage[table]{xcolor}</p>
+<p>\begin{document}</p>
+<p>\begin{tabular}{ | l | l | l | }</p>
+<p>\rowcolor{green}</p>
+<p>A &amp; B &amp; C \\</p>
+<p>\rowcolor{red}</p>
+<p>D &amp; E &amp; F \\</p>
+<p>G &amp; H &amp; I \\</p>
+<p>\rowcolor{blue}</p>
+<p>J &amp; K &amp; L</p>
+<p>\end{tabular}</p>
+<p>\end{document}</p>
+<p><img src="media/index-16_2.jpeg"
+style="width:2.18056in;height:1.88889in" alt="index-16_2.jpg" /></p>
+<p>Coloring Columns</p>
+<p>Columns can be colored using following ways:</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 13</p>
+<p>Defining column color property outside the table tag using
+\newcolumntype:</p>
+<p>\newcolumntype{a}{ &gt;{\columncolor{yellow}} c }</p>
+<p>Defining column color property inside the table parameters</p>
+<p>\begin{tabular}{ | &gt;{\columncolor{red}} c | l | l }</p>
+<p>Example:</p>
+<p>\documentclass{article}</p>
+<p>\usepackage[table]{xcolor}</p>
+<p>\newcolumntype{a}{&gt;{\columncolor{yellow}}c}</p>
+<p>\newcolumntype{b}{&gt;{\columncolor{green}}c}</p>
+<p>\begin{document}</p>
+<p>\begin{tabular}{ a | &gt;{\columncolor{red}}c | l | b }</p>
+<p>\hline</p>
+<p>A &amp; B &amp; C &amp; D \\</p>
+<p>E &amp; F &amp; G &amp; H \\</p>
+<p>\hline</p>
+<p>\end{tabular}</p>
+<p>\end{document}</p>
+<p><img src="media/index-17_1.jpeg"
+style="width:2.88889in;height:1.38889in" alt="index-17_1.jpg" /></p>
+<p>Coloring Lines</p>
+<p>Use \arrayrulecolor. Example:</p>
+<p>\documentclass{article}</p>
+<p>\usepackage[table]{xcolor}</p>
+<p>\arrayrulecolor{blue}</p>
+<p>\begin{document}</p>
+<p>\begin{tabular}{ | l | l | l | }</p>
+<p>\hline</p>
+<p>A &amp; B &amp; C \\</p>
+<p>\hline</p>
+<p>D &amp; E &amp; F\\</p>
+<p>\hline</p>
+<p>G &amp; H &amp; I \\</p>
+<p>\hline</p>
+<p>\end{tabular}</p>
+<p>\end{document}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 14</p>
+<p><img src="media/index-18_1.jpeg"
+style="width:2.25in;height:1.63889in" alt="index-18_1.jpg" /></p>
+<p>Coloring Cells</p>
+<p>Use \cellcolor. Example:</p>
+<p>\documentclass{article}</p>
+<p>\usepackage[table]{xcolor}</p>
+<p>\begin{document}</p>
+<p>\begin{tabular}{ | l | l | l | }</p>
+<p>\hline</p>
+<p>A &amp; B &amp; C \\</p>
+<p>\hline</p>
+<p>D &amp; E &amp; \cellcolor{green}F \\</p>
+<p>\hline</p>
+<p>G &amp; H &amp; I \\</p>
+<p>\hline</p>
+<p>\end{tabular}</p>
+<p>\end{document}</p>
+<p><img src="media/index-18_2.jpeg"
+style="width:2.02778in;height:1.40278in" alt="index-18_2.jpg" /></p>
+<p>We can define our own colors too using package colortbl. Following
+are the tags examples:</p>
+<p>\definecolor{Gray}{gray}{0.85}</p>
+<p>\columncolor[RGB]{230, 242, 255}}</p>
+<p>\columncolor[HTML]{AAACED}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 15</p>
+<h1 id="chapter-6-typesetting-mathematics">Chapter 6: Typesetting
+Mathematics</h1>
+<p>One of the biggest advantages of LaTeX is its skill in typesetting
+equations. Here, the fundamentals of typesetting</p>
+<p>equations, some of the various packages that can be used, as well as
+common symbols, are described.</p>
+<p>Section 6.1: Basic Equations</p>
+<p>Simple, Inline Equations</p>
+<p>You can do a simple inline equation by using $an equation here$.</p>
+<p>For example, you might do</p>
+<p>$\lim\limits_{n \to \infty} \frac{1}{2^n} i\bar z$</p>
+<p>which, if we put a little fake text around it, gives</p>
+<p><img src="media/index-19_1.jpeg"
+style="width:1.26389in;height:0.27778in" alt="index-19_1.jpg" /></p>
+<p>Numbered, Centered Equations</p>
+<p>When writing papers or other documents, it is sometimes preferable to
+have your equations centered and numbered, as opposed to in-line. Then,
+use the \begin{equation} and \end{equation} commands.</p>
+<p>For example, if we use the code</p>
+<p>\begin{equation}</p>
+<p>\lim\limits_{n \to \infty} \frac{1}{2^n} i\bar z</p>
+<p>\end{equation}</p>
+<p>And add a little text around it, we get</p>
+<p><img src="media/index-19_2.jpeg"
+style="width:3.09722in;height:0.31944in" alt="index-19_2.jpg" /></p>
+<p>You can remove the numbering of the equation by using
+\begin{equation*} and \end{equation*}.</p>
+<p>For example, if we use the code</p>
+<p>\begin{equation*}</p>
+<p>\lim\limits_{n \to \infty} \frac{1}{2^n} i\bar z</p>
+<p>\end{equation*}</p>
+<p>and add a little text around it, we get</p>
+<p><img src="media/index-19_3.jpeg"
+style="width:5.02778in;height:1.16667in" alt="index-19_3.jpg" /></p>
+<p>(though it should be noted you have to use the amsmath package for
+this).</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 16</p>
+<p><span id="Section_6_2__Finding_Symbols" class="anchor"></span>Section
+6.2: Finding Symbols</p>
+<p>Sometimes, it can be difficult to find the mathematical symbol you
+need. There are several options here. The first</p>
+<p>(and quickest) is to use <a
+href="http://detexify.kirelabs.org/classify.html">Detexify</a>, where
+you draw the symbol you'd like, and it tries to find what you want, like
+as</p>
+<p>shown below:</p>
+<p><img src="media/index-20_1.jpeg" style="width:6.5in;height:3.15278in"
+alt="index-20_1.jpg" /></p>
+<p><a
+href="http://mirrors.ibiblio.org/CTAN/info/symbols/comprehensive/symbols-a4.pdf">Another
+option is to use the comprehensive LaTeX symbols list, which can be
+found here</a>. If you are using the</p>
+<p>package unicode-math <a
+href="http://ctan.math.washington.edu/tex-archive/macros/latex/contrib/unicode-math/unimath-symbols.pdf">this
+list</a> of all supported symbols can be helpful. Another option is <a
+href="http://web.ift.uib.no/Teori/KURS/WRK/TeX/symALL.html">this
+website, which has</a></p>
+<p>common math symbols.</p>
+<p>Section 6.3: Packages available for use</p>
+<p>While standard LaTeX is all that is needed for most simple
+mathematical formulae and equations, sometimes more</p>
+<p>symbols and tools are needed. There are multiple packages available
+that will enhance your equations and provide you with more to work with.
+Three of the main packages are described below. Remember, to load a
+package, type</p>
+<p>\usepackage{package} in your document preamble.</p>
+<p>amsmath</p>
+<p>The amsmath package is an incredibly useful package. It is used to
+allow your equations to be centered but not</p>
+<p>numbered, as in \begin{equation*}, it is used to create matrices (as
+described below) and it introduces many other useful commands, such as
+\overset and \underset, described below. The amsmath package
+documentation</p>
+<p><a href="ftp://ftp.ams.org/pub/tex/doc/amsmath/amsldoc.pdf">can be
+found here</a>.</p>
+<p>mathtools</p>
+<p>The mathtools package builds off of the amsmath package, adding
+further useful symbols and tools. It automatically loads the amsmath
+package, so you do not need to load both in your document preamble. The
+mathtools</p>
+<p><a
+href="http://texdoc.net/texmf-dist/doc/latex/mathtools/mathtools.pdf">documentation
+can be found here.</a></p>
+<p>amssymb</p>
+<p>The amssymb package provides many extra symbols that can be very
+handy for more complex equations. The</p>
+<p>amssymb documentation can be found <a
+href="http://texdoc.net/texmf-dist/doc/fonts/amsfonts/amssymb.pdf">here</a>.</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 17</p>
+<p><span id="Font_packages" class="anchor"></span>Font packages</p>
+<p><a
+href="http://tex.stackexchange.com/questions/58098/what-are-all-the-font-styles-i-can-use-in-math-mode/58124#58124">There
+are also various fonts you can use for your equations, as described on
+this question on the TeX stack</a></p>
+<p>exchange, for TeX, LaTeX, and friends.</p>
+<p><a
+href="ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf">This
+paper</a> is a concise explanation of the different features provided by
+some packages as well as standard LaTeX; it is very helpful.</p>
+<p>Section 6.4: Good Commands to Know</p>
+<p>Some of the most common commands include:</p>
+<p><strong>Fractions and Square Roots:</strong> For fractions, use \frac
+{numerator}{denominator}. For square roots, use \sqrt[root]{number}.</p>
+<p><strong>Greek letters:</strong> use the commands given in the table
+below:</p>
+<p><img src="media/index-21_1.jpeg" style="width:6.5in;height:5.54167in"
+alt="index-21_1.jpg" /></p>
+<p><strong>Operators:</strong> \leq gives the less than or equal to
+symbol, \geq gives the greater than or equal to symbol, \neq</p>
+<p>gives the not equal symbol, \sum gives the summation symbol, \partial
+gives the partial derivative symbol, \nabla gives the Laplacian
+operator, \times gives the cross product or multiplication symbol, \cdot
+gives the</p>
+<p>dot product or multiplication symbol, and \int gives the integral
+symbol.</p>
+<p><strong>Arrows:</strong> \rightarrow and \leftarrow give right and
+left arrows, respectively.</p>
+<p><strong>Percents:</strong> If typing % in LaTeX, it is important to
+include a backslash, \% as the percent symbol is normally</p>
+<p>used for comments.</p>
+<p><strong>Superscripts and Subscripts:</strong> To do a superscript,
+you can type x^2, or, for longer superscripts, x^{2x}. To</p>
+<p>do a subscript, you can type x_a, or, for longer subscripts,
+x_{ab}.</p>
+<p><strong>Bold:</strong> Use \boldmath{...} to make your math symbols
+bold. Other options are given at <a
+href="http://tex.stackexchange.com/questions/595/how-can-i-get-bold-math-symbols">this
+TeX.SX question</a>.</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 18</p>
+<p><span id="Math_symbols_are_automatically_i"
+class="anchor"></span>Math symbols are automatically italicized; if you
+don't want this to be true, make your equation text as described
+below.</p>
+<p><strong>Infinity:</strong> To write infinity, use the command
+\infty.</p>
+<p><strong>Moving items over or under another:</strong> First, for math
+operators only, there is an alternate method. You can</p>
+<p>type the math operator, say \int, and then use the \limits command.
+An example is \int\limits_{\infty} or \int\limits^{\infty}. Then, for
+normal cases, you can do \overset{top}{normal} or</p>
+<p>\underset{bottom}{normal}. This can be very useful for doing vectors.
+For example, you might do \overset{\rightarrow}{x} The amsmath package
+is need for overset and underset.</p>
+<p><strong>Curly Braces:</strong> Because curly braces are used in
+commands, it is necessary to type \{ or \} to get curly</p>
+<p>braces.</p>
+<p><strong>Text:</strong> To include text in equations, type
+\usepackage{amsmath} in the preamble, and then type \text{...}.</p>
+<p><strong>Space:</strong> To add space in your equations, type \quad
+between the two items you want to separate (for</p>
+<p>example, you might have $2x \quad cos).</p>
+<p>Section 6.5: Creating New Symbols</p>
+<p>Let's say you cannot find the symbol you need anywhere. You can
+create a custom symbol. For example, the code</p>
+<p>\documentclass{article}</p>
+<p>\usepackage{graphicx,amsmath,amssymb}</p>
+<p>\DeclareRobustCommand{\diamondtimes}{<em>%</em></p>
+<p>\mathbin{\text{\rotatebox[origin=c]{45}{$\boxplus$}}}<em>%</em></p>
+<p>}</p>
+<p>\begin{document}</p>
+<p>$a\diamondtimes b$</p>
+<p>\end{document}</p>
+<p>creates and calls a symbol, giving</p>
+<p><img src="media/index-22_1.png"
+style="width:3.29167in;height:1.41667in" alt="index-22_1.png" /></p>
+<p>This is a simpler example; it merely has to rotate an already
+existent symbol. However, you can create more</p>
+<p>complex symbols.</p>
+<p>This section is in the process of being expanded.</p>
+<p>Section 6.6: Matrices</p>
+<p>Matrices</p>
+<p>You must always use the amsmath package if you are going to use the
+following commands. There are four main</p>
+<p>types of matrix, as shown in the code below:</p>
+<p>\begin{matrix}</p>
+<p>a &amp; b \\</p>
+<p>c &amp; d</p>
+<p>\end{matrix}</p>
+<p>\quad</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 19</p>
+<p>\begin{pmatrix}</p>
+<p>a &amp; b \\</p>
+<p>c &amp; d</p>
+<p>\end{pmatrix}</p>
+<p>\quad</p>
+<p>\begin{bmatrix}</p>
+<p>a &amp; b \\</p>
+<p>c &amp; d</p>
+<p>\end{bmatrix}</p>
+<p>\quad</p>
+<p>\begin{vmatrix}</p>
+<p>a &amp; b \\</p>
+<p>c &amp; d</p>
+<p>\end{vmatrix}</p>
+<p>\quad</p>
+<p>\begin{Vmatrix}</p>
+<p>a &amp; b \\</p>
+<p>c &amp; d</p>
+<p>\end{Vmatrix}</p>
+<p>This code produces</p>
+<p><img src="media/index-23_1.jpeg"
+style="width:4.75in;height:0.88889in" alt="index-23_1.jpg" /></p>
+<p>There are a couple important things to note about this:</p>
+<p>1. It is important you put your matrix within the equation,
+equation*, or $...$ environment - the bmatrix</p>
+<p>command is not a math environment on its own.</p>
+<p>2. The construction of the matrix is actually fairly simple. For each
+row, you create each element (say x_{11}),</p>
+<p>then put a &amp;, and then write the next element. For multiple rows,
+at the end of each row put \\ (you do not</p>
+<p>have to do this for the last row). It is fairly similar to a table in
+this.</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 20</p>
+<h1 id="chapter-7-creating-a-bibliography">Chapter 7: Creating a
+Bibliography</h1>
+<p>Parameter Detail</p>
+<p>thebibliography This environment sets the scope for the actual
+bibliography. It defines a list-like environment</p>
+<p>within which you can use \bibitem to set a bibliography item.</p>
+<p>The thebibliography environment takes a single argument that
+represents the widest</p>
+<p>{x} element to be expected in the enumeration of the \bibitems. For
+less than 10 entries, use a</p>
+<p>single character/digit; for less than 100 entries, use two
+characters/digits, ...</p>
+<p>\ Set the bibliography item <strong>&lt;b&gt;</strong> and make it
+available to \cite within the document using the bibitem { }
+<strong>label &lt;a&gt; .</strong></p>
+<p>Section 7.1: Basic bibliography with biber</p>
+<p>To start a bibliography you need to define your sources. Create a <a
+href="http://www.bibtex.org/Format/">database file</a> (like
+sources.bib) and include some content:</p>
+<p>@book{Doe1993,</p>
+<p>Author = {John Doe},</p>
+<p>Publisher = {Earth University},</p>
+<p>Title = {Creating a bibliography with biber},</p>
+<p>Year = {1993}}</p>
+<p>You can then include your database file in your main document and
+cite the new source (Doe1993).</p>
+<p>\documentclass{article}</p>
+<p>% Include the biblatex package and tell it to use biber as a backend.
+% Without specifying the backend, it assumes biber.
+<em>\usepackage[backend=biber]{biblatex}</em></p>
+<p>% Define where biber can find your sources</p>
+<p>\addbibresource{sources.bib}</p>
+<p>\begin{document}</p>
+<p>"Biber isn't that difficult." \cite{Doe1993}</p>
+<p>% Use \cite{source-ID} to generate a citation</p>
+<p>% Print the bibliography</p>
+<p>\printbibliography</p>
+<p>\end{document}</p>
+<p>To compile the document, you will need to run 3 commands in
+sequence:</p>
+<p>1. pdflatex to create an auxiliary file which tells biber what
+sources are needed 2. biber to create an auxiliary file with all the
+sources which can be used by pdflatex</p>
+<p>3. pdflatex to include the auxiliary file and create the PDF</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 21</p>
+<p><span id="page_25" class="anchor"></span><img
+src="media/index-25_1.jpeg" style="width:6.5in;height:2.72222in"
+alt="index-25_1.jpg" /></p>
+<p><a href="http://ctan.org/pkg/biblatex">Find many more options and
+additional fields for bib files in the package documentation on
+CTAN.</a></p>
+<p>Section 7.2: Basic bibliography without packages (manual</p>
+<p>formatting)</p>
+<p><img src="media/index-25_2.jpeg"
+style="width:5.91667in;height:2.25in" alt="index-25_2.jpg" /></p>
+<p>\documentclass{article}<em>% or book, report, ...</em></p>
+<p>\begin{document}</p>
+<p>See \cite{citeA} or \cite{citeB} or \cite{citeA, citeB}.</p>
+<p>\begin{thebibliography}{x}</p>
+<p>% \bibitem{&lt;biblabel&gt;} &lt;citation&gt;</p>
+<p>\bibitem{citeA}</p>
+<p>{\scshape Author, A}, {\itshape A title}, Journal of So-and-So,
+2000.</p>
+<p>\bibitem{citeB}</p>
+<p>{\scshape Someone, B}, {\itshape Another title}, Book of books,
+1900.</p>
+<p>\end{thebibliography}</p>
+<p>\end{document}</p>
+<p>Note that unless you really know <em>why</em>, you should probably
+not do this. Using designated packages (see other</p>
+<p>examples) is preferable.</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 22</p>
+<h1 id="chapter-8-add-citation">Chapter 8: Add Citation</h1>
+<p>Section 8.1: Add citation to already existing LaTeX document</p>
+<p>At the end of the document add the following:</p>
+<p>\bibliographystyle{<em>style</em>}</p>
+<p>\bibliography{<em>file location</em>}</p>
+<p>Create a file with extension <em>.bib</em> and save the citation as
+follows:</p>
+<p>@inproceedings{citation_name,</p>
+<p>title={Paper Title},</p>
+<p>author={List Authors},</p>
+<p>pages={45--48},</p>
+<p>year={2013},</p>
+<p>organization={organization name}</p>
+<p>}</p>
+<p>To cite use the following: \citet{<em>citation_name</em>}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 23</p>
+<h1 id="chapter-9-counters-if-statements-and">Chapter 9: Counters, if
+statements and</h1>
+<p>loops with LaTeX</p>
+<p>Section 9.1: Operations with counters</p>
+<p>This example shows how to use mathematical operations with counters.
+It may be useful for loops in latex.</p>
+<p>Addition: \addtocounter{num}{n}</p>
+<p>this command adds n to num, where num is a counter and n is a
+positive integer.</p>
+<p>Subtraction: \addtocounter{num}{-n}</p>
+<p>this command subtracts n from num, where num is a counter and n is a
+positive integer.</p>
+<p>Multiplication: \multiply\value{num} by n</p>
+<p>this command multiply num by n, where num is a counter and n is an
+integer.</p>
+<p>Division \divide\value{num} by n</p>
+<p>this command divides num by n and gets the integer part of the
+quotient (num is a counter and n is an integer)</p>
+<p>\documentclass{article}</p>
+<p>\begin{document}</p>
+<p>\newcounter{num}</p>
+<p>\setcounter{num}{3}</p>
+<p>\addtocounter{num}{10}</p>
+<p>\thenum\\%prints 13</p>
+<p>\addtocounter{num}{-3}</p>
+<p>\thenum\\%prints 10</p>
+<p>\stepcounter{num}</p>
+<p>\thenum\\%prints 11</p>
+<p>\multiply\value{num} by \value{num}</p>
+<p>\thenum\\%prints 121</p>
+<p>\multiply\value{num} by 2</p>
+<p>\thenum\\%prints 242</p>
+<p>\divide\value{num} by 60</p>
+<p><em>\thenum</em>%prints 4</p>
+<p>\end{document}</p>
+<p>\newcommand{num} declares counter. \setcounter{num}{3} sets num value
+to 3.</p>
+<p>\addtocounter{num}{10} adds 10 to num.</p>
+<p>\addtocounter{num}{-3} subtract 3 from num.</p>
+<p>\stepcounter{num} adds 1 to num</p>
+<p>\multiply\value{num} by \value{num} squares num.</p>
+<p>\multiply\value{num} by 2 doubles num.</p>
+<p>\divide\value{num} by 60 divides num by 60 and gets the integer
+part.</p>
+<p>The result of the code: 13\\10\\11\\121\\242\\4</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 24</p>
+<p><span id="____symbolizes_new_line" class="anchor"></span>(\\
+symbolizes new line)</p>
+<p>intcalc package adds some other integer operations e.g. mod, pow,
+sng, abs, inv ...</p>
+<p><a
+href="http://ctan.mackichan.com/macros/latex/contrib/oberdiek/intcalc.pdf">intcalc_package.pdf</a></p>
+<p>Section 9.2: Counter declaration, initialization and printing to</p>
+<p>pdf</p>
+<p>It is possible to use integer variables with latex. To create a new
+variable we need the \newcounter{name}</p>
+<p>command, where name is the name of the new counter. The name must
+contain only letters. This command creates a new one with name \thename.
+With this command we can print name variable onto the paper. The initial
+value of</p>
+<p>name is 0. To give value to "name" we can use \setcounter{name}{n}
+where n is an integer. \value{name} is a function which returns with the
+value of name.</p>
+<p>\documentclass{article}</p>
+<p>\begin{document}</p>
+<p><em>\newcounter{num}</em> %new counter, initial value is 0</p>
+<p>\thenum <em>%print 0</em></p>
+<p>\setcounter{num}{3} <em>%set num to 3</em></p>
+<p>\thenum <em>%print 3</em></p>
+<p>\newcounter{number}</p>
+<p>\setcounter{number}{\value{num}} <em>%set number to value of num</em>
+\thenumber <em>%print 3</em></p>
+<p>Latex provides some other formats to print a number.</p>
+<p>Other types of printing:</p>
+<p>\arabic{num}\\</p>
+<p><em>\Roman{num}\\</em> % <em>→</em> I, II, III, IV, . . . (num = 1,
+2, 3, . . . ) <em>\roman{num}\\</em> % <em>→</em> i, ii, iii, iv, . . .
+(num = 1, 2, 3, . . . ) <em>\Alph{num}\\</em> % <em>→</em> A, B, C, D, .
+. . (num = 1, 2, 3, . . . , 26) <em>\alph{num}\\</em> % <em>→</em> a, b,
+c, d, . . . (num = 1, 2, 3, . . . , 26) <em>\fnsymbol{num}\\</em> %<em>→
+∗</em>, <em>†</em>, <em>‡</em>, <em>§</em>, <em>¶</em>, k, <em>∗∗</em>,
+<em>††</em>, <em>‡‡</em> (num = 1, 2, 3, . . . , 9)
+<em>\end{document}</em></p>
+<p><img src="media/index-28_1.jpeg"
+style="width:4.66667in;height:2.29167in" alt="index-28_1.jpg" /></p>
+<p>Section 9.3: If statements</p>
+<p>In latex we can use built-in commands to execute code whether the
+conditions are true or not.</p>
+<p>Comparing two integers: \ifnum\value{num}&gt;n {A} \else {B}\fi</p>
+<p>This code executes A if num&gt;n else B. We can substitute &gt; with
+&lt; and =.</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 25</p>
+<p><span id="If_a_number_is_odd___ifodd_value" class="anchor"></span>If
+a number is odd: \ifodd\value{num} {A}\else {B}\fi</p>
+<p>If num is odd then it executes A else B.</p>
+<p>If with condition: \ifthenelse{condition}{A}{B}</p>
+<p>We have to load ifthen package to use this command. If condition are
+true then it executes A else B.</p>
+<p>It is possible to create complex condition with \( \), \AND, \OR,
+\NOT.</p>
+<p><em>For example:</em> \ifthenelse{\(\NOT 4&lt;2 \OR
+4&gt;11\)\AND\isodd{4}}{A}{B}</p>
+<p>This piece of code writes down "B" on the page. \NOT 4&lt;2 is true
+and 4&gt;11 is false. If we connect a false and a true statement with
+"OR" then the result is true. So \(\NOT 4&lt;2 \OR 4&gt;11\) is true.
+\isodd{4} is false because 4 is even.</p>
+<p>A false and a true statement connected with "AND" is false, so the
+output is B.</p>
+<p>An example code:</p>
+<p>\documentclass{article}</p>
+<p>\usepackage{ifthen}</p>
+<p>\begin{document}</p>
+<p>\newcounter{num}</p>
+<p>\setcounter{num}{10}</p>
+<p>If num$&gt;$100 then the next sentence will be "Num is large." else
+"Num is small."</p>
+<p>Num is \ifnum \value{num}&gt;100 {large} \else {small}.</p>
+<p>If num is odd then the next sentence will begin with "Odd" if not
+then with "Even"</p>
+<p>\ifodd \value{num} {Odd} \else {Even} numbers are cool.</p>
+<p>If (num$&gt;$3 and (1$&lt;$0 or num$=$10)) is true then the next
+sentence will be "True." else "False."</p>
+<p>\ifthenelse{\value{num}&gt;3\AND\(1&lt;0 \OR
+\value{num}=10\)}{True.}{False.}</p>
+<p>\end{document}</p>
+<p><img src="media/index-29_1.jpeg"
+style="width:4.38889in;height:1.40278in" alt="index-29_1.jpg" /></p>
+<p>Section 9.4: Loops - repeating things</p>
+<p>We can create loops in latex. They are similar but not as
+customizable as loops in other programming languages. One alternative to
+use loops are @loops. If we use a command which includes "@" in its
+name, we must be put it</p>
+<p>between \makeatletter and \makeatother. It is not allowed to use them
+in a macro which describes a new definition.</p>
+<p>Wrong:</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 26</p>
+<p>\def\is#1#2{\makeatletter\@ifstar{#1}{#2}\makeatother</p>
+<p>Right:</p>
+<p>\makeatletter\def\is#1#2{\@ifstar{#1}{#2}}\makeatother</p>
+<p>@for loop: \@for\command:={list}\do{commands}</p>
+<p>Example<em>:</em></p>
+<p>\makeatletter</p>
+<p>\@for\sun:={rising,setting}\do{The sun is \sun.}</p>
+<p>\makeatother</p>
+<p>It creates the following text: The sun is rising. The sun is
+setting.</p>
+<p>@whilenum loop: \@whilenum condition\do{commands}</p>
+<p>Example<em>:</em></p>
+<p>\makeatletter</p>
+<p>\newcounter{int}</p>
+<p>\@whilenum\value{int}&lt;10\do</p>
+<p>{\stepcounter{int}\ifthenelse{\isodd{\value{int}}}{\theint}{}}
+\makeatother</p>
+<p>This code writes odd numbers from 1 to 9.</p>
+<p>"loop repeat" loop: \loop {commands} \ifnum condition \repeat</p>
+<p>Executes commands till condition is true.</p>
+<p>Example</p>
+<p>\setcounter{int}{1}</p>
+<p>\loop</p>
+<p>\theint</p>
+<p>\addtocounter{int}{2}</p>
+<p>\ifnum \value{int}&lt;10</p>
+<p>\repeat</p>
+<p>This code does the same as @whilenum loop.</p>
+<p>An example code:</p>
+<p>\documentclass{article}</p>
+<p>\usepackage{ifthen}</p>
+<p>\usepackage{amsmath} <em>%\text{} command needs this package</em>
+\begin{document}</p>
+<p>Demonstration of @for loop:</p>
+<p>\makeatletter</p>
+<p>\@for\sun:={rising,setting}\do{The sun is \sun. }</p>
+<p>\makeatother</p>
+<p>\newcounter{int}</p>
+<p>@whilenum loop:</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 27</p>
+<p><span id="_setcounter_int__0"
+class="anchor"></span>\setcounter{int}{0}</p>
+<p>\makeatletter</p>
+<p>\@whilenum\value{int}&lt;20\do</p>
+<p>{\stepcounter{int}\ifthenelse{\isodd{\value{int}}}{\theint\text{
+}}{}} \makeatother</p>
+<p>"loop repeat" loop:</p>
+<p>\setcounter{int}{1}</p>
+<p>\loop</p>
+<p>\theint</p>
+<p>\text{ }\addtocounter{int}{2}\ifnum\value{int}&lt;20</p>
+<p>\repeat</p>
+<p>\end{document}</p>
+<p><img src="media/index-31_1.jpeg"
+style="width:2.31944in;height:0.88889in" alt="index-31_1.jpg" /></p>
+<p>Section 9.5: Using loops in Tikz</p>
+<p>Loops are useful in Tikz.</p>
+<p>The following code draws a clock without numbers:</p>
+<p>\documentclass{article}</p>
+<p>\usepackage{ifthen}</p>
+<p>\usepackage{intcalc}</p>
+<p>\usepackage{tikz}</p>
+<p>\newcounter{num}</p>
+<p>\begin{document}</p>
+<p>\begin{tikzpicture}</p>
+<p>\makeatletter</p>
+<p>\setcounter{num}{1}</p>
+<p>\newcounter{angle}</p>
+<p>\draw (0,0) circle (3cm);</p>
+<p>\@whilenum\value{num}&lt;13\do{</p>
+<p>\setcounter{angle}{360}</p>
+<p>\multiply\value{angle} by \value{num}</p>
+<p>\divide\value{angle} by 12</p>
+<p>\ifnum \intcalcMod{\value{num}}{3}=0{</p>
+<p>\draw[line width=4pt] (\theangle:2cm) -- (\theangle:3cm); }\else
+{</p>
+<p>\draw[line width=1pt] (\theangle:2.3cm) -- (\theangle:3cm); }\fi</p>
+<p>\addtocounter{num}{1}</p>
+<p>}</p>
+<p>\makeatother</p>
+<p>\end{tikzpicture}</p>
+<p>\end{document}</p>
+<p>The result:</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 28</p>
+<p><img src="media/index-32_1.jpeg"
+style="width:2.38889in;height:2.13889in" alt="index-32_1.jpg" /></p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 29</p>
+<h1 id="chapter-10-document-classes">Chapter 10: Document Classes</h1>
+<p>Section 10.1: Article</p>
+<p>\documentclass{article}</p>
+<p>When to use the article class ?</p>
+<p>For articles in scientific journals, presentations, short reports,
+program documentation, invitations, ... <a
+href="https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Document_classes">1</a></p>
+<p>What are the specificities of this class ?</p>
+<p>An article doesn't contain chapters or parts. It can be divided in
+sections, subsections and paragraphs etc.</p>
+<p>By default, the title is shown at the top of the first page, and not
+on a separate title page.</p>
+<p>Simple example</p>
+<p>\documentclass{article}</p>
+<p>\title{Hello world}</p>
+<p>\author{Me }</p>
+<p>\date{\today}</p>
+<p>\begin{document}</p>
+<p>\maketitle</p>
+<p>Hello, World!</p>
+<p>\end{document}</p>
+<p>Section 10.2: Beamer</p>
+<p>\documentclass{beamer}</p>
+<p>When to use the beamer class ?</p>
+<p>For presentation slides.</p>
+<p>What are the specificities of this class ?</p>
+<p>The output is landscape-oriented. The document is separated in
+"frames" (slides).</p>
+<p>Simple example</p>
+<p>Following example was adapted from : <a
+href="https://www.sharelatex.com/learn/Beamer">sharelatex.com/learn/Beamer</a></p>
+<p>\documentclass{beamer}</p>
+<p>\usepackage[utf8]{inputenc}</p>
+<p>\title{Sample title}</p>
+<p>\author{Me}</p>
+<p>\date{\today}</p>
+<p>\begin{document}</p>
+<p>\frame{\titlepage}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 30</p>
+<p><span id="_begin_frame" class="anchor"></span>\begin{frame}</p>
+<p>\frametitle{Sample frame title}</p>
+<p>This is a text in first frame. This is a text in first frame. This is
+a text in first frame. \end{frame}</p>
+<p>\end{document}</p>
+<p>Section 10.3: Defining the document class</p>
+<p>The very first line in each of your LaTeX programs should do this. It
+should follow the form \documentclass{...}.</p>
+<p>What you put within the curly braces is very important. Some document
+classes give you extra commands to use, others use a different format,
+and all have specific parameters you can input (described in the
+parameters section).</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 31</p>
+<h1 id="chapter-11-drawing-graphs">Chapter 11: Drawing Graphs</h1>
+<p>Section 11.1: TikZ -- Graph specifications</p>
+<p>TikZ provides syntax similar to <a
+href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)">DOT
+which you can use to tighten up your graph drawing code
+considerably.</a></p>
+<p>\documentclass{standalone}</p>
+<p>\usepackage{tikz}</p>
+<p>\usetikzlibrary{graphs,quotes,arrows.meta}</p>
+<p>\begin{document}</p>
+<p>\begin{tikzpicture}</p>
+<p>\graph[nodes={draw,circle},edges={-{Stealth[]}}] {</p>
+<p>A -&gt; ["1"] B,</p>
+<p>A -&gt; C,</p>
+<p>C -&gt; B</p>
+<p>};</p>
+<p>\end{tikzpicture}</p>
+<p>\end{document}</p>
+<p><img src="media/index-35_1.png" style="width:2.25in;height:2.40278in"
+alt="index-35_1.png" /></p>
+<p>As you can see, you trade fine-grained control for easier syntax. The
+graphs library really shines when you specify</p>
+<p>more complicated graphs:</p>
+<p>\documentclass{standalone}</p>
+<p>\usepackage{tikz}</p>
+<p>\usetikzlibrary{graphs,graphs.standard}</p>
+<p>\begin{document}</p>
+<p>\begin{tikzpicture}</p>
+<p>\graph {</p>
+<p>A -&gt; { subgraph I_n [V= {B,C,D}] } -&gt; E</p>
+<p>};</p>
+<p>\end{tikzpicture}</p>
+<p>\end{document}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 32</p>
+<p><span id="page_36" class="anchor"></span><img
+src="media/index-36_1.png" style="width:3.30556in;height:3.27778in"
+alt="index-36_1.png" /></p>
+<p>There are many more options and pre-defined graphs; see section 19 of
+the TikZ manual.</p>
+<p>Section 11.2: TikZ -- Algorithmic graph drawing</p>
+<p>TikZ implements several algorithms for <em>automatic</em> graph
+layouts (requires LuaLaTeX).</p>
+<p>\documentclass{article}</p>
+<p>\usepackage{tikz}</p>
+<p>\usetikzlibrary{graphs,graphdrawing,quotes}</p>
+<p>\usegdlibrary{force}</p>
+<p>\begin{document}</p>
+<p>\begin{tikzpicture}</p>
+<p>\graph[spring layout] {</p>
+<p>A -&gt; ["1"] B,</p>
+<p>A -&gt; {C, D},</p>
+<p>C -&gt; {B, D},</p>
+<p>};</p>
+<p>\end{tikzpicture}</p>
+<p>\end{document}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 33</p>
+<p><span id="page_37" class="anchor"></span><img
+src="media/index-37_1.png" style="width:4.88889in;height:4.63889in"
+alt="index-37_1.png" /></p>
+<p>There are several algorithms and many options to influence them. See
+part IV of the TikZ manual for details.</p>
+<p>Section 11.3: State Transition Diagram of a Markov Chain</p>
+<p>Suppose the following matrix is the transition probability matrix
+associated with a Markov chain.</p>
+<p>0.5 0.2 0.3</p>
+<p>P= 0.0 0.1 0.9</p>
+<p>0.0 0.0 1.0</p>
+<p>In order to study the nature of the states of a Markov chain, a state
+transition diagram of the Markov chain is</p>
+<p>drawn.</p>
+<p>\documentclass[12pt,a4paper]{article}</p>
+<p>\usepackage{tikz}</p>
+<p>\usetikzlibrary{shapes,arrows,positioning}</p>
+<p>\begin{tikzpicture}[-&gt;,&gt;=stealth',shorten &gt;=2pt, line
+width=3pt,</p>
+<p>node distance=2cm, style ={minimum size=20mm}] \tikzstyle{every
+node}=[font=\huge]</p>
+<p>\node [circle, draw] (a) {1};</p>
+<p>\path (a) edge [loop above] (a);</p>
+<p>\node [circle, draw] (b) [right=of a] {2};</p>
+<p>\path (b) edge [loop above] (b);</p>
+<p>\draw[-&gt;] (a) -- (b);</p>
+<p>\node [circle, draw] (c) [below=of a] {3};</p>
+<p>\path (c) edge [loop below] (c);</p>
+<p>\draw[-&gt;] (a) -- (c);</p>
+<p>\draw[-&gt;] (b) -- (c);</p>
+<p>\end{tikzpicture}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 34</p>
+<p><span id="page_38" class="anchor"></span><img
+src="media/index-38_1.jpeg" style="width:2.25in;height:3.5in"
+alt="index-38_1.jpg" /></p>
+<p>Section 11.4: TikZ -- Manual layout</p>
+<p>Package <a href="http://ctan.org/pkg/pgf">TikZ</a> lends itself very
+well to drawing graphs.</p>
+<p>This is a small example (requires TikZ 3.0+):</p>
+<p>\documentclass{standalone}</p>
+<p>\usepackage{tikz}</p>
+<p>\usetikzlibrary{positioning,arrows.meta}</p>
+<p>\begin{document}</p>
+<p>\begin{tikzpicture}[auto,vertex/.style={draw,circle}]</p>
+<p>\node[vertex] (a) {A};</p>
+<p>\node[vertex,right=1cm of a] (b) {B};</p>
+<p>\node[vertex,below right=1cm and 0.5cm of a] (c) {C};</p>
+<p>\path[-{Stealth[]}]</p>
+<p>(a) edge node {1} (b)</p>
+<p>(a) edge (c)</p>
+<p>(c) edge (b);</p>
+<p>\end{tikzpicture}</p>
+<p>\end{document}</p>
+<p><img src="media/index-38_2.png"
+style="width:3.16667in;height:3.05556in" alt="index-38_2.png" /></p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 35</p>
+<p>You can create arbitrarily complex graphs; beware lengthy code,
+though. Recall that there is \foreach and take note of all the
+positioning and styling options (cf. TikZ manual, section 13 to 17).</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 36</p>
+<h1 id="chapter-12-presentation-with-beamer">Chapter 12: Presentation
+with beamer</h1>
+<p>package</p>
+<p>theme AnnArbor</p>
+<p>color theme seahoarse</p>
+<p>Section 12.1: Simple one author title slide</p>
+<p>\documentclass{beamer}</p>
+<p>\mode</p>
+<p>\usetheme{AnnArbor}</p>
+<p>\usecolortheme{seahorse}</p>
+<p>\title[Short topic]{Awesome long topic}</p>
+<p>\author[Name]{Full name}</p>
+<p>\institute[Institute short form]{Full name of institute}</p>
+<p>\date{\today}</p>
+<p>\begin{document}</p>
+<p>\maketitle</p>
+<p>\end{document}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 37</p>
+<p><span id="page_41" class="anchor"></span><img
+src="media/index-41_1.jpeg" style="width:6.5in;height:4.88889in"
+alt="index-41_1.jpg" /></p>
+<p>Section 12.2: Multiple author and aliation title slide</p>
+<p>\documentclass[compress]{beamer}</p>
+<p>\mode\</p>
+<p>\title[]{ABCDE for analysis of PQRS systems}</p>
+<p>\author[] {</p>
+<p>AA AAAA \inst{1}</p>
+<p>\and BB BBBB \inst{1}</p>
+<p>\and CC CCCC \inst{1}</p>
+<p>\and DD DDDD \inst{1}</p>
+<p>\and EE EEEE\inst{2}</p>
+<p>\and FF FFFF\inst{3}</p>
+<p>\and GG GGGG \inst{3}}</p>
+<p>\institute[]</p>
+<p>{</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 38</p>
+<p>\inst{1}<em>%</em></p>
+<p>Department of UV, Univ. of XYZ</p>
+<p>\and</p>
+<p>\inst{2}<em>%</em></p>
+<p>Department of MN, Univ. of XYZ</p>
+<p>\and</p>
+<p>\inst{3}</p>
+<p>Advanced Centre for PQR</p>
+<p>}</p>
+<p>\date[]{\today}</p>
+<p>\begin{document}</p>
+<p>\begin{frame}</p>
+<p>\titlepage</p>
+<p>\end{frame}</p>
+<p>\end{document}</p>
+<p><img src="media/index-42_1.jpeg" style="width:6.5in;height:4.86111in"
+alt="index-42_1.jpg" /></p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 39</p>
+<h1 id="chapter-13-defining-macros">Chapter 13: Defining macros</h1>
+<p>Parameter Details</p>
+<p>\macro The macro to define</p>
+<p>argcount The number of arguments the macro expects (optional)</p>
+<p>replacement text The replacement text for the macro. Inside that text
+#1, #2 etc. are replaced with the macro</p>
+<p>arguments.</p>
+<p>Section 13.1: Basic definition of macros</p>
+<p>Define a new basic command</p>
+<p>A macro can be defined using \newcommand. For example:</p>
+<p>\newcommand{\foo}{Just foo, you see?}</p>
+<p>defines a macro \foo that expands to Just foo, you see?. It can then
+be used like any built-in command, for</p>
+<p>example after that definition:</p>
+<p>He said: ``\foo''</p>
+<p>expands to</p>
+<p>He said: ``Just foo, you see?''</p>
+<p>Define a new command with arguments</p>
+<p>Macros can also have arguments. The number of arguments is given as
+optional argument between the command name and the replacement text. In
+the replacement text, the arguments are accessed with #1, #2 etc. For
+example:</p>
+<p>\newcommand{\better}[2]{A #1 is better than a #2.}
+\better{solution}{problem} <em>% gives: A solution is better than a
+problem</em></p>
+<p>Redefining an existing command</p>
+<p>If a macro has already been defined, \newcommand gives an error. To
+give a new definition for an existing command,</p>
+<p>\renewcommand is used instead. Other than the different name, the
+syntax is exactly the same. For example, after the definition of \foo
+above, one could use:</p>
+<p>\renewcommand{\foo}{Another foo, please.}</p>
+<p>After that redefinition, the macro \foo no longer expands to Just
+foo, you see? but to Another foo, please.</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 40</p>
+<h1 id="chapter-14-build-tools">Chapter 14: Build Tools</h1>
+<p>Section 14.1: Arara</p>
+<p><a href="https://github.com/cereda/arara">Arara is a cross-platform
+automation tool that's specially designed for TeX. It's included in a
+standard distribution,</a> so there's no need to install anything
+additional. It's most effectively understood as a means to record
+the</p>
+<p>compilation instructions in the TeX file itself:</p>
+<p>% arara: pdflatex</p>
+<p>\documentclass{article}</p>
+<p>\begin{document}</p>
+<p>Hello, world</p>
+<p>\end{document}</p>
+<p>These can be much more complicated, though:</p>
+<p>% arara: pdflatex</p>
+<p>% arara: biber</p>
+<p>% arara: pdflatex</p>
+<p>% To support a self-contained example, this builds a BibTeX file
+on-the-fly <em>\begin{filecontents}{references.bib}</em></p>
+<p>@article{dijkstra,</p>
+<p>author = {Dijkstra, Edsger W.},</p>
+<p>title = {Self-stabilizing Systems in Spite of Distributed Control},
+journal = {Commun. ACM},</p>
+<p>issue_date = {Nov. 1974},</p>
+<p>volume = {17},</p>
+<p>number = {11},</p>
+<p>month = nov,</p>
+<p>year = {1974},</p>
+<p>issn = {0001-0782},</p>
+<p>pages = {643--644},</p>
+<p>numpages = {2},</p>
+<p>url = {http://doi.acm.org/10.1145/361179.361202}, doi =
+{10.1145/361179.361202},</p>
+<p>acmid = {361202},</p>
+<p>publisher = {ACM},</p>
+<p>address = {New York, NY, USA},</p>
+<p>keywords = {distributed control, error recovery, harmonious
+cooperation, multiprocessing, mutual exclusion, networks, robustness,
+self-repair, self-stabilization, sharing, synchronization}, }</p>
+<p>\end{filecontents}</p>
+<p>\documentclass{article}</p>
+<p>\usepackage[backend=biber]{biblatex}</p>
+<p>\addbibresource{references.bib}</p>
+<p>\begin{document}</p>
+<p>Hello, World! \cite{dijkstra}.</p>
+<p>\printbibliography</p>
+<p>\end{document}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 41</p>
+<h1 id="chapter-15-accessing-documentation-of">Chapter 15: Accessing
+documentation of</h1>
+<p>LaTeX packages</p>
+<p>Section 15.1: CTAN</p>
+<p><a href="http://www.ctan.org/">The Comprehensive TeX Archive Network
+(CTAN) is indeed that,</a> <em>the</em> comprehensive repository of
+LaTeX packages. Most if not all quality packages (and more) are on
+there, and all the good ones include documentation.</p>
+<p>1. Enter the package name into the search bar.</p>
+<p><img src="media/index-45_1.jpeg"
+style="width:4.54167in;height:1.30556in" alt="index-45_1.jpg" /></p>
+<p>2. Select the package from the list.</p>
+<p><img src="media/index-45_2.jpeg" style="width:6.5in;height:5.20833in"
+alt="index-45_2.jpg" /></p>
+<p>3. Access the documentation documents.</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 42</p>
+<p><img src="media/index-46_1.jpeg" style="width:5.94444in;height:9in"
+alt="index-46_1.jpg" /></p>
+<p>Important: CTAN holds the most recent versions. If your installation
+is outdated the documentation won't match!</p>
+<p>In that case, refer to the documentation documents shipped with your
+LaTeX distribution.</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 43</p>
+<p><span id="Section_15_2__TeX_Live____texdoc"
+class="anchor"></span>Section 15.2: TeX Live -- texdoc</p>
+<p>If you use the <a href="http://tug.org/texlive/">TeX Live
+distribution you can use the command-line program</a> texdoc. For
+instance,</p>
+<p>texdoc biblatex</p>
+<p>will open the documentation of package biblatex.</p>
+<p>Or if you are not command-line-savvy, the same can be found online at
+<a href="http://www.texdoc.net/">http://www.texdoc.net/</a></p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 44</p>
+<h1 id="chapter-16-creating-posters-using-beamer">Chapter 16: Creating
+posters using beamer</h1>
+<p>Creating a poster using beamerposter package is very similar to
+creating a single frame. Put the content in columns.</p>
+<p>Within each column, separate the content using blocks.</p>
+<p>Section 16.1: Orientation and size</p>
+<p>While adding the beamerposter package, provide the required
+parameters.</p>
+<p>\usepackage[orientation=landscape,size=a1]{beamerposter}</p>
+<p>You can also customize the size of the poster.</p>
+<p>\usepackage[orientation=portrait,size=custom,height=110,width=80,scale=1.4]{beamerposter}</p>
+<p>The height and width dimensions here, are in cms. The scale is used
+for the font size.</p>
+<p>Section 16.2: Basic outline of a beamer poster</p>
+<p>In landscape orientation</p>
+<p>\documentclass[final,t]{beamer}</p>
+<p>\mode</p>
+<p>{</p>
+<p>\usetheme{Berlin}</p>
+<p>}</p>
+<p>\usepackage[orientation=landscape,size=a1,scale=1,debug]{beamerposter}
+\usepackage{lipsum} <em>% for dummy text</em></p>
+<p>\title[]{\huge Awesome title}</p>
+<p>\author[]{\large \textbf{Author Name1} \and Author Name2 \and Author
+Name3} \institute[]{\Large Dept of XYZ, ABC Institute}</p>
+<p>\date{}</p>
+<p>\begin{document}</p>
+<p>\begin{frame}</p>
+<p>\maketitle</p>
+<p>\begin{columns}[t]</p>
+<p>\begin{column}{.32\linewidth}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\end{column}</p>
+<p>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 45</p>
+<p>\begin{column}{.32\linewidth}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\end{column}</p>
+<p>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</p>
+<p>\begin{column}{.32\linewidth}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\end{column}</p>
+<p>\end{columns}</p>
+<p>\end{frame}</p>
+<p>\end{document}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 46</p>
+<p><img src="media/index-50_1.jpeg" style="width:6.5in;height:3.63889in"
+alt="index-50_1.jpg" /></p>
+<p>In portrait orientation</p>
+<p>\documentclass[final,t]{beamer}</p>
+<p>\mode</p>
+<p>{</p>
+<p>\usetheme{Berlin}</p>
+<p>}</p>
+<p>\usepackage[orientation=portrait,size=a1,scale=1,debug]{beamerposter}
+\usepackage{lipsum} <em>% for dummy text</em></p>
+<p>\title[]{\huge Awesome title}</p>
+<p>\author[]{\large \textbf{Author Name1} \and Author Name2 \and Author
+Name3} \institute[]{\Large Dept of XYZ, ABC Institute}</p>
+<p>\date{}</p>
+<p>\begin{document}</p>
+<p>\begin{frame}</p>
+<p>\maketitle</p>
+<p>\begin{columns}[t]</p>
+<p>\begin{column}{.45\linewidth}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 47</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\end{column}</p>
+<p>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</p>
+<p>\begin{column}{.45\linewidth}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\begin{block}{Some heading}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\end{column}</p>
+<p>\end{columns}</p>
+<p>\end{frame}</p>
+<p>\end{document}</p>
+<p><img src="media/index-51_1.jpeg" style="width:6.5in;height:3.63889in"
+alt="index-51_1.jpg" /></p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 48</p>
+<p><span id="Section_16_3__Full_example_of_be"
+class="anchor"></span>Section 16.3: Full example of beamer poster</p>
+<p>\documentclass[final,t]{beamer}</p>
+<p>\mode</p>
+<p>{</p>
+<p>\usetheme{Berlin}</p>
+<p>}</p>
+<p>\usepackage[orientation=landscape,size=a1,scale=1,debug]{beamerposter}
+\usepackage{lipsum} <em>% for dummy text</em></p>
+<p>\usepackage{graphicx} <em>% for dummy image</em></p>
+<p>\usepackage{tikz} <em>% for tikzpicture</em></p>
+<p>\usepackage{pgfplots} <em>% for plot</em></p>
+<p>\usetikzlibrary{arrows,shapes,positioning}</p>
+<p>\title[]{\huge Awesome title}</p>
+<p>\author[]{\large \textbf{Author Name1} \and Author Name2 \and Author
+Name3} \institute[]{\Large Dept of XYZ, ABC Institute}</p>
+<p>\date{}</p>
+<p>\begin{document}</p>
+<p>\begin{frame}</p>
+<p>\maketitle</p>
+<p>\begin{columns}[t]</p>
+<p>\begin{column}{.32\linewidth}</p>
+<p>\begin{block}{First paragraph}</p>
+<p>\lipsum[1]</p>
+<p>\end{block}</p>
+<p>\begin{block}{First figure}</p>
+<p>Some text describing figure</p>
+<p>\begin{center}</p>
+<p>\begin{figure}</p>
+<p>\includegraphics[scale=0.7]{example-image-a}</p>
+<p>\caption{First figure caption}</p>
+<p>\end{figure}</p>
+<p>\end{center}</p>
+<p>\end{block}</p>
+<p>\begin{block}{First list}</p>
+<p>\begin{itemize}</p>
+<p>\item Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel,
+wisi. \item Morbi auctor lorem non justo.</p>
+<p>\item Nam lacus libero, pretium at, lobortis vitae, ultricies et,
+tellus. \item Donec aliquet, tortor sed accumsan bibendum, erat ligula
+aliquet magna, vitae ornare odio</p>
+<p>metus a mi.</p>
+<p>\item Morbi ac orci et nisl hendrerit mollis.</p>
+<p>\item Suspendisse ut massa.</p>
+<p>\item Cras nec ante.</p>
+<p>\item Pellentesque a nulla.</p>
+<p>\item Cum sociis natoque penatibus et magnis dis parturient montes,
+nascetur ridiculus mus. \item Aliquam tincidunt urna.</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 49</p>
+<p>\item Nulla ullamcorper vestibulum turpis.</p>
+<p>\item Pellentesque cursus luctus mauris.</p>
+<p>\end{itemize}</p>
+<p>\end{block}</p>
+<p>\end{column}</p>
+<p>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</p>
+<p>\begin{column}{.32\linewidth}</p>
+<p>\begin{block}{Second list}</p>
+<p>\begin{enumerate}</p>
+<p>\item Nulla malesuada porttitor diam.</p>
+<p>\item Donec felis erat, congue non, volutpat at, tincidunt tristique,
+libero. \item Vivamus viverra fermentum felis.</p>
+<p>\item Donec nonummy pellentesque ante.</p>
+<p>\item Phasellus adipiscing semper elit.</p>
+<p>\item Proin fermentum massa ac quam.</p>
+<p>\item Sed diam turpis, molestie vitae, placerat a, molestie nec, leo.
+\item Maecenas lacinia.</p>
+<p>\item Nam ipsum ligula, eleifend at, accumsan nec, suscipit a,
+ipsum.</p>
+<p>\end{enumerate}</p>
+<p>\end{block}</p>
+<p>\begin{block}{First split block}</p>
+<p>\begin{columns}</p>
+<p>\begin{column}{0.5\linewidth}</p>
+<p>\begin{center}</p>
+<p>\begin{figure}</p>
+<p>\includegraphics[width=0.55\linewidth]{example-image-b}
+\caption{Second figure caption}</p>
+<p>\end{figure}</p>
+<p>\end{center}</p>
+<p>\begin{center}</p>
+<p>\begin{figure}</p>
+<p>\includegraphics[width=0.55\linewidth]{example-image-c}
+\caption{Third figure caption}</p>
+<p>\end{figure}</p>
+<p>\end{center}</p>
+<p>\end{column}</p>
+<p>\begin{column}{0.5\linewidth}</p>
+<p>Morbi blandit ligula feugiat magna.</p>
+<p>\begin{itemize}</p>
+<p>\item Nunc eleifend consequat lorem.</p>
+<p>\item Sed lacinia nulla vitae enim.</p>
+<p>\item Pellentesque tincidunt purus vel magna.</p>
+<p>\item Integer non enim.</p>
+<p>\item Praesent euismod nunc eu purus.</p>
+<p>\item Donec bibendum quam in tellus.</p>
+<p>\item Nullam cursus pulvinar lectus.</p>
+<p>\item Donec et mi.</p>
+<p>\item Nam vulputate metus eu enim.</p>
+<p>\item Vestibulum pellentesque felis eu massa.</p>
+<p>\end{itemize}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 50</p>
+<p>\end{column}</p>
+<p>\end{columns}</p>
+<p>\end{block}</p>
+<p>\begin{block}{First tikz picture}</p>
+<p>Morbi blandit ligula feugiat magna. Nunc eleifend consequat lorem.
+Sed lacinia nulla vitae enim. Pellentesque</p>
+<p>tincidunt purus vel magna.</p>
+<p>\begin{center}</p>
+<p>\begin{figure}</p>
+<p>\begin{tikzpicture}</p>
+<p>% Definitions</p>
+<p>\pgfmathsetmacro{\b}{75}</p>
+<p>\pgfmathsetmacro{\a}{15}</p>
+<p>\pgfmathsetmacro{\R}{2}</p>
+<p>\pgfmathsetmacro{\r}{1}</p>
+<p>\pgfmathsetmacro{\P}{\R*tan(\b)}</p>
+<p>\pgfmathsetmacro{\Q}{\R/cos(\b)}</p>
+<p>\pgfmathsetmacro{\p}{\r/tan(\a)}</p>
+<p>\pgfmathsetmacro{\q}{\r/sin(\a)}</p>
+<p>% Pulleys</p>
+<p>% big pulley</p>
+<p>\draw (0,0) circle (\R) ;</p>
+<p>\fill[left color=gray!80, right color=gray!60, middle</p>
+<p>color=white] (0,0) circle (\R) ;</p>
+<p>\draw[thick, white] (0,0) circle (.8*\R);</p>
+<p>\shade[ball color=white] (0,0) circle (.3) node[left,xshift=-5]
+{$P$};</p>
+<p>% small pulley</p>
+<p>\draw (\Q+\q-.3, 0) circle (\r);</p>
+<p>\fill[left color=gray!80, right color=gray!60, middle</p>
+<p>color=white] (\Q+\q-.3, 0) circle (\r) ;</p>
+<p>\draw[thick, white] (\Q+\q-.3,0) circle (.8*\r);</p>
+<p>\shade[ball color=white] (\Q+\q-.3,0) circle (.15)</p>
+<p>node[right, xshift=2] {$Q$};</p>
+<p>% belt and point labels</p>
+<p>\begin{scope}[ultra thick]</p>
+<p>\draw (\b:\R) arc (\b:360-\b:\R) ;</p>
+<p>\draw (\b:\R) -- ( \P, 0 );</p>
+<p>\draw (-\b:\R) -- ( \P, 0 );</p>
+<p>\draw (\Q-.3,0) -- + (\a:\p) arc (105:-105:\r) ;</p>
+<p>\draw (\Q-.3,0) -- + (-\a:\p);</p>
+<p>%\draw (\b:\R) arc (\b:360-\b:\r) ;</p>
+<p>\end{scope}</p>
+<p>\draw (0,0) -- (\b:\R) node[midway, above,sloped] {$R$} node[above]
+{$A$}; \draw (-\b:\R)--(0,0) ;</p>
+<p>\draw (\Q+\q-.3,0) -- +(105:\r) node[midway,above, sloped] {$r$}</p>
+<p>node[above] {$E$};</p>
+<p>\draw (\Q+\q-.3,0) -- +(-105:\r) node[below] {$D$}; \node[below] at
+(-\b:\R) {$B$};</p>
+<p>\node[below] at (\Q-.3,0) {$C$};</p>
+<p>% center line</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 51</p>
+<p>\draw[dash pattern=on5pt off3pt] (0,0) -- (\Q+\q-.3,0);</p>
+<p>% angle label</p>
+<p>\node[fill=white] at (0.73*\Q, 0) {$\theta$} ;</p>
+<p>\draw (\Q-1.8,0) arc (180:195:1.5);</p>
+<p>\draw (\Q-1.8,0) arc (180:165:1.5);</p>
+<p>\end{tikzpicture}</p>
+<p>\caption{First tikz picture caption}</p>
+<p>\end{figure}</p>
+<p>\end{center}</p>
+<p>Donec bibendum quam in tellus. Nullam cursus pulvinar lectus. Donec
+et mi. Nam vulputate metus eu enim. Vestibulum pellentesque felis eu
+massa.</p>
+<p>\end{block}</p>
+<p>\end{column}</p>
+<p>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</p>
+<p>\begin{column}{.32\linewidth}</p>
+<p>\begin{block}{Second paragraph}</p>
+<p>Fusce mauris. Vestibulum luctus nibh at lectus. Sed bibendum, nulla a
+faucibus semper, leo velit ultricies tellus, ac venenatis arcu wisi vel
+nisl. Vestibulum diam. Aliquam pellentesque, augue quis sagittis
+posuere, turpis lacus congue quam, in hendrerit risus eros eget felis.
+Maecenas eget erat in sapien mattis porttitor. Vestibulum porttitor.
+Nulla facilisi. Sed a turpis eu lacus commodo facilisis. Morbi
+fringilla, wisi in dignissim interdum, justo lectus sagittis dui, et
+vehicula libero dui cursus dui.</p>
+<p>\end{block}</p>
+<p>\begin{block}{First table}</p>
+<p>\begin{center}</p>
+<p>\begin{tabular}{lrrrrrr}</p>
+<p>\hline</p>
+<p>&amp; AAA &amp; BBB &amp; CCC &amp; DDD &amp; EEE &amp; FFF\\
+\hline</p>
+<p>XXX &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\</p>
+<p>YYY &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\</p>
+<p>ZZZ &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\</p>
+<p>\hline</p>
+<p>\end{tabular}</p>
+<p>\end{center}</p>
+<p>\end{block}</p>
+<p>\begin{block}{First plot}</p>
+<p>\begin{center}</p>
+<p>\begin{figure}</p>
+<p>\begin{tikzpicture}</p>
+<p>\begin{axis}[</p>
+<p>width=0.7\linewidth,</p>
+<p>max space between ticks=50,</p>
+<p>minor x tick num=2,</p>
+<p>minor y tick num=1,</p>
+<p>tick style={semithick,color=black},</p>
+<p>xlabel=Value,</p>
+<p>ylabel=Time (sec),</p>
+<p>xtick={0, 50, 100, 150},</p>
+<p>ytick={0, 2, 4, 6, 8}]</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 52</p>
+<p>\addplot[smooth, blue, mark=*] coordinates { (1,1.48) (2,1.48)
+(4,1.48) (8,1.48) (16,1.49)</p>
+<p>(32,1.49) (64,1.49) (128,1.85) (136,5.87) (138,6.84) (139,7.46)};</p>
+<p>\end{axis}</p>
+<p>\end{tikzpicture}</p>
+<p>\caption{First plot caption}</p>
+<p>\end{figure}</p>
+<p>\end{center}</p>
+<p>\end{block}</p>
+<p>\begin{block}{Third paragraph}</p>
+<p>Mauris tempor ligula sed lacus. Duis cursus enim ut augue. Cras ac
+magna. Cras nulla. Nulla egestas. Curabitur a leo. Quisque egestas wisi
+eget nunc.</p>
+<p>\end{block}</p>
+<p>\begin{block}{Third list}</p>
+<p>\begin{enumerate}</p>
+<p>\item Nam feugiat lacus vel est.</p>
+<p>\item Curabitur consectetuer.</p>
+<p>\end{enumerate}</p>
+<p>\end{block}</p>
+<p>\end{column}</p>
+<p>\end{columns}</p>
+<p>\end{frame}</p>
+<p>\end{document}</p>
+<p><img src="media/index-56_1.jpeg" style="width:6.5in;height:3.63889in"
+alt="index-56_1.jpg" /></p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 53</p>
+<h1 id="chapter-17-engraving-sheet-music">Chapter 17: Engraving Sheet
+Music</h1>
+<p>Section 17.1: LilyPond</p>
+<p>The LilyPond notation engraver can be used with LaTeX via the
+lilypond-book command. First lets create a LaTeX document (with the file
+extension .lytex) to embed our music in:</p>
+<p>\documentclass[letterpaper,12pt]{article}</p>
+<p>\begin{document}</p>
+<p>\begin{center}</p>
+<p>{\fontsize{24pt}{24pt}\textbf{Twa Corbies}}\\</p>
+<p>\end{center}</p>
+<p>\begin{flushright}</p>
+<p>\textsc{Your Name}</p>
+<p>\end{flushright}</p>
+<p>% We don't need to require anything for this because lilypond-book
+will process it. <em>\lilypondfile{TwaCorbies.ly}</em></p>
+<p>\end{document}</p>
+<p>Then we create our LilyPond file (.ly), including the
+lilypond-book-preamble.ly file (which LilyPond will know how to
+find):</p>
+<p>\version "2.16.2"</p>
+<p>\include "lilypond-book-preamble.ly"</p>
+<p>voice = &lt;&lt;</p>
+<p>\relative c' {</p>
+<p>\tempo "con affetto"</p>
+<p>\clef bass</p>
+<p>\key e \minor</p>
+<p>\time 3/4</p>
+<p>a a b | c a a | g a2 |</p>
+<p>a4 a b | c2 ~ c8 a8 | a8 g a2 |</p>
+<p>\bar "|."</p>
+<p>}</p>
+<p>\addlyrics{</p>
+<p>As I was wal -- king all a -- lane</p>
+<p>I heard twa cor -- bies make a mane.</p>
+<p>}</p>
+<p>&gt;&gt;</p>
+<p>\score {</p>
+<p>&lt;&lt;</p>
+<p>\new Staff = "voice" {</p>
+<p>\voice</p>
+<p>}</p>
+<p>&gt;&gt;</p>
+<p>\layout { }</p>
+<p>\midi {</p>
+<p>\context {</p>
+<p>\Score</p>
+<p>tempoWholesPerMinute = #(ly:make-moment 90 4)</p>
+<p>}</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 54</p>
+<p>}</p>
+<p>}</p>
+<p>to build, we then run the lilypond-book command:</p>
+<p>lilypond-book --include=mymusicsourcedirectory/ --pdf
+TwaCorbies.lytex</p>
+<p>which will output a PDF containing your LilyPond engraved music:</p>
+<p><img src="media/index-58_1.jpeg" style="width:6.5in;height:3.11111in"
+alt="index-58_1.jpg" /></p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 55</p>
+<p><span id="Credits" class="anchor"></span>Credits</p>
+<p>Thank you greatly to all the people from Stack Overflow Documentation
+who helped provide this content,</p>
+<p>more changes can be sent to web@petercv.com for new content to be
+published or updated</p>
+<p><a href="https://stackoverflow.com/users/1032073/">celtschk</a>
+Chapters 4 and 13</p>
+<p><a href="https://stackoverflow.com/users/7601666/">csekri</a> Chapter
+9</p>
+<p><a href="https://stackoverflow.com/users/3277573/">Hamzawey</a>
+Chapter 8</p>
+<p><a href="https://stackoverflow.com/users/1108828/">Harry</a> Chapter
+1</p>
+<p><a href="https://stackoverflow.com/users/4221706/">hbaderts</a>
+Chapter 1</p>
+<p><a href="https://stackoverflow.com/users/6723642/">heather</a>
+Chapters 6 and 10</p>
+<p><a href="https://stackoverflow.com/users/3476397/">jani</a> Chapter
+1</p>
+<p><a href="https://stackoverflow.com/users/6626369/">Johannes_B</a>
+Chapter 2</p>
+<p><a href="https://stackoverflow.com/users/6911592/">L.V.Rao</a>
+Chapters 5 and 11</p>
+<p><a href="https://stackoverflow.com/users/202140/">Louis</a> Chapter
+1</p>
+<p><a href="https://stackoverflow.com/users/3298787/">Nijin22</a>
+Chapters 1, 2, 5 and 7</p>
+<p><a href="https://stackoverflow.com/users/4154927/">Nikita Jain</a>
+Chapter 5</p>
+<p><a href="https://stackoverflow.com/users/539599/">Raphael</a>
+Chapters 7, 11 and 15</p>
+<p><a href="https://stackoverflow.com/users/1087001/">Sam Whited</a>
+Chapter 17</p>
+<p><a href="https://stackoverflow.com/users/2777074/">samcarter</a>
+Chapter 15</p>
+<p><a href="https://stackoverflow.com/users/1443496/">Sean Allred</a>
+Chapters 1 and 14</p>
+<p><a href="https://stackoverflow.com/users/211116/">Spacedman</a>
+Chapter 1</p>
+<p><a href="https://stackoverflow.com/users/1165155/">Stephan Kulla</a>
+Chapter 4</p>
+<p><a href="https://stackoverflow.com/users/2062965/">strpeter</a>
+Chapter 13</p>
+<p><a href="https://stackoverflow.com/users/5769838/">Sukanya B</a>
+Chapters 3, 12 and 16</p>
+<p><a href="https://stackoverflow.com/users/2319844/">Sumner Evans</a>
+Chapter 1</p>
+<p><a href="https://stackoverflow.com/users/914686/">Werner</a> Chapter
+7</p>
+<p><a href="https://goalkicker.com/">GoalKicker.com – LaTeX Notes for
+Professionals</a> 56</p>
+<p><span id="You_may_also_like" class="anchor"></span>You may also
+like</p>
+<p><img src="media/index-60_1.jpeg" style="width:2.52778in;height:3.5in"
+alt="index-60_1.jpg" /></p>
+<p><img src="media/index-60_2.jpeg" style="width:2.52778in;height:3.5in"
+alt="index-60_2.jpg" /></p>
+<p><img src="media/index-60_3.jpeg" style="width:2.52778in;height:3.5in"
+alt="index-60_3.jpg" /></p>
+<p><img src="media/index-60_4.jpeg" style="width:2.52778in;height:3.5in"
+alt="index-60_4.jpg" /></p>
+<p><img src="media/index-60_5.jpeg" style="width:2.52778in;height:3.5in"
+alt="index-60_5.jpg" /></p>
+<p><img src="media/index-60_6.jpeg" style="width:2.52778in;height:3.5in"
+alt="index-60_6.jpg" /></p>
+<p><img src="media/index-60_7.jpeg" style="width:2.52778in;height:3.5in"
+alt="index-60_7.jpg" /></p>
+<p><img src="media/index-60_8.jpeg" style="width:2.52778in;height:3.5in"
+alt="index-60_8.jpg" /></p>
+<p><img src="media/index-60_9.jpeg" style="width:2.52778in;height:3.5in"
+alt="index-60_9.jpg" /></p>
+</body>
+</html>

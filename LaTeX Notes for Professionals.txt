@@ -1,0 +1,671 @@
+﻿
+
+Contents
+About	1
+Chapter 1: Getting started with LaTeX	2
+Section 1.1: LaTeX Editors	2
+Section 1.2: Installation and Setup	2
+Chapter 2: Title Pages	7
+Section 2.1: Standard report titlepage	7
+Chapter 3: Header and Footer	8
+Section 3.1: Using fancyhdr and titleps packages	8
+Section 3.2: Page number as CurrPage/TotalPages in footer	9
+Chapter 4: Text Formatting	11
+Section 4.1: Bold text	11
+Section 4.2: Emphazise Text	11
+Section 4.3: Strike through text	11
+Chapter 5: Tables	12
+Section 5.1: The tabular environment	12
+Section 5.2: Coloring Table	13
+Chapter 6: Typesetting Mathematics	16
+Section 6.1: Basic Equations	16
+Section 6.2: Finding Symbols	17
+Section 6.3: Packages available for use	17
+Section 6.4: Good Commands to Know	18
+Section 6.5: Creating New Symbols	19
+Section 6.6: Matrices	19
+Chapter 7: Creating a Bibliography	21
+Section 7.1: Basic bibliography with biber	21
+Section 7.2: Basic bibliography without packages (manual formatting)	22
+Chapter 8: Add Citation	23
+Section 8.1: Add citation to already existing LaTeX document	23
+Chapter 9: Counters, if statements and loops with LaTeX	24
+Section 9.1: Operations with counters	24
+Section 9.2: Counter declaration, initialization and printing to pdf	25
+Section 9.3: If statements	25
+Section 9.4: Loops - repeating things	26
+Section 9.5: Using loops in Tikz	28
+Chapter 10: Document Classes	30
+Section 10.1: Article	30
+Section 10.2: Beamer	30
+Section 10.3: Defining the document class	31
+Chapter 11: Drawing Graphs	32
+Section 11.1: TikZ -- Graph specifications	32
+Section 11.2: TikZ -- Algorithmic graph drawing	33
+Section 11.3: State Transition Diagram of a Markov Chain	34
+Section 11.4: TikZ -- Manual layout	35
+Chapter 12: Presentation with beamer package	37
+Section 12.1: Simple one author title slide	37
+Section 12.2: Multiple author and aliation title slide	38
+Chapter 13: Defining macros	40
+Section 13.1: Basic definition of macros	40
+Chapter 14: Build Tools	41
+Section 14.1: Arara	41
+Chapter 15: Accessing documentation of LaTeX packages	42
+Section 15.1: CTAN	42
+Section 15.2: TeX Live -- texdoc	44
+Chapter 16: Creating posters using beamer	45
+Section 16.1: Orientation and size	45
+Section 16.2: Basic outline of a beamer poster	45
+Section 16.3: Full example of beamer poster	49
+Chapter 17: Engraving Sheet Music	54
+Section 17.1: LilyPond	54
+Credits	56
+You may also like	57
+
+
+About
+Please feel free to share this PDF with anyone for free, latest version of this book can be downloaded from: https://goalkicker.com/LaTeXBook
+This LaTeX Notes for Professionals book is compiled from Stack Overflow
+Documentation, the content is written by the beautiful people at Stack Overflow.
+Text content is released under Creative Commons BY-SA, see credits at the end of this book whom contributed to the various chapters. Images may be copyright of their respective owners unless otherwise specified
+This is an unofficial free book created for educational purposes and is not affiliated with official LaTeX group(s) or company(s) nor Stack Overflow. All trademarks and registered trademarks are the property of their respective company owners
+The information presented in this book is not guaranteed to be correct nor accurate, use at your own risk
+Please send feedback and corrections to web@petercv.com
+Chapter 1: Getting started with LaTeX
+Version	Release Date
+LaTeX 2.09 1985-09-01
+LaTeX 2e	1994-06-01
+Section 1.1: LaTeX Editors
+While you can create LaTeX documents using any editor and compiling using the console, there exist several plugins for widely used editors to simplify creating LaTeX documents, and there are specialized LaTeX editors. An exhaustive list of LaTeX editors is available on TeX.SE (the StackExchange site, dedicated to TeX, LaTeX & Friends).
+The most widely used editors, according to this list, are:
+The Emacs editor with the AUCTeX extension.
+The Vim editor with the LaTeX-suite plugin.
+Texmaker - a specialized LaTeX IDE.
+TeXstudio - another LaTeX IDE.
+TeXworks - one more LaTeX IDE.
+While experienced users of Emacs or Vim may want to stick to their editor (whose plugins provide a host of functionality unavailable elsewhere), a specialized IDE might be easier to install/use for beginners. The last three on the list have a preview function where one can see the results of the compilation of the document.
+Additionally, there are online LaTeX tools that can be of use to beginners or people that must collaborate, e.g. ShareLaTeX and Overleaf.
+Section 1.2: Installation and Setup
+You can choose between major distributions of LaTeX:
+TeX Live (Windows, Linux, and OS X), the standard, cross-platform distribution.
+MacTeX (Mac) A packaged version of TeX Live made for OS X with some Mac-specific tools MiKTeX (Windows) A separate distribution entirely that
+All distributions are more or less equivalent in an ideal world. TeX Live has the advantage of being available on all platforms and thus has much better community support. MiKTeX can take advantage of Windows-specific features. For licensing reasons, MiKTeX will also distribute a few packages that TeX Live will not.
+In all cases, the full install is recommended. Specifically, using MiKTeX's download-on-command feature will hang/crash many editors.
+Installation Windows (TeXLive)
+1. Download the most recent TeXLive install-tl-windows.exe from their website.
+2. Run install-tl-windows.exe and follow the instructions.
+Windows (MiKTeX)
+1. Download the most recent MiKTeX installer from their website.
+2. Run the installer and follow the instructions.
+Mac OS X (TeXLive)
+1. Download the most recent MacTeX from their website.
+2. Run MacTeX.pkg and follow the instructions.
+Linux (TeXLive)
+Linux users have two options:
+1. Install via your distribution's package manager (usually several releases behind)
+2. Install from upstream (released yearly, updated often)
+Using Package Managers
+Arch Linux: pacman -S texlive-most
+Debian/Ubuntu/Mint: apt-get install texlive-full Fedora: yum install texlive
+Note that using this method means that you will be dependent on that package's maintainer for the distribution for updates. These packages will often be several releases behind the most recent distribution, often meaning critical updates will be missing. It's almost always best to install from upstream. Also note that the distribution's package manager will probably not recognize the direct installation and could try to install it when one installs other related support packages.
+Installing from Upstream
+1. Download the most recent TeXLive install-tl-unx.tar.gz from their website.
+2. Extract the files from the archive with tar -zxvf install-tl-unx.tar.gz.
+cd install-tl-unx3. Change into the downloaded folder with .
+4. Run ./install-tl and follow the instructions.
+TeXLive should now be installed under /usr/local/texlive/YEAR/, where YEAR is the four digit year (e.g. 2016). In this way, it is possible to have multiple TeXLive versions alongside each other and switch between them by changing your PATH variable.
+Open this folder and check the bin folder. It should contain a subfolder, which (depending on your platform) will be something like i386-linux or x86_64-linux.
+5. Add the TeX Live binary folder to your path with
+
+where YEAR is the four digit year (e.g. 2016), and PLATFORM is your platform (e.g. x86_64-linux).
+Test Installation
+The LaTeX installation is now complete. To test it, create a new file with your favorite text editor, name it test.tex and add the following content:
+
+Now, open the console or terminal, navigate to the folder where you saved test.tex and run
+
+(Note that your editor may have facilities to run this for you.)
+This creates several new files, including test.pdf. This is the output document, and looks like this:
+
+
+Congratulations, you have successfully installed LaTeX, and created your first LaTeX document!
+
+Chapter 2: Title Pages
+Section 2.1: Standard report titlepage
+
+This will create a title page with no other content:
+
+
+Chapter 3: Header and Footer
+Section 3.1: Using fancyhdr and titleps packages
+
+
+
+Section 3.2: Page number as CurrPage/TotalPages in footer
+
+
+
+Chapter 4: Text Formatting
+Section 4.1: Bold text
+\textbfIn order to typeset text in bold, use :
+
+Section 4.2: Emphazise Text
+In order to emphasize text the command \emph can be used which usually displays the text in an italics font:
+
+Section 4.3: Strike through text
+The command \sout of the package ulem strikes through a text:
+
+\emphThe package ulem redefines the command . When you do not want to have this behavior you can use the package ulem with the option normalem:
+
+
+Chapter 5: Tables
+Section 5.1: The tabular environment
+The tabular environment is the most basic way to create a table in LaTeX and doesn't require any other packages.
+
+The parameter (|lcr|| in the example) is called the table specification and tells LaTeX how many columns there are and how they are supposed to be formatted. Each letter represents a single column. Possible values are:
+     Character	Meaning l	left aligned column c	centered column r	right aligned column
+5cmp{'width'} e.g. p{} paragraph column with defined width
+| (pipe character)	vertical line
+|| (2 pipes)	2 vertical lines
+Cells are separated by the & character. A row is ended by 2 back slashes \\.
+hlineHorizontal lines can be inserted by using the \ command.
+'width'Tables are always formatted to be wide enough to include all the content. If a table is to big, LaTeX will print overfull hbox warnings. Possible solutions include using the p{} specifier or other packages like tabularx.
+A table with column headings spanning over several columns can be created using the command
+
+
+\cline{2-4Note that the command \multicolumn has three mandatory arguments: the first argument specifies the number of columns over which the heading spans; the second argument specifies the position of the heading(l,c,r); and the third argument is the text for heading. The command } specifies the the starting column(here, 2) and ending column(here, 4) over which a line is to be drawn.
+Section 5.2: Coloring Table
+To make the table more readable, following are the ways to color it:
+1. Rows
+2. Columns
+3. Lines
+4. Cells
+Coloring Rows
+tableUse \rowcolor (provided by colortbl; also loaded by xcolor under the [] package option). Example:
+
+Coloring Columns
+Columns can be colored using following ways:
+
+Example:
+
+Coloring Lines
+
+
+Coloring Cells
+
+We can define our own colors too using package colortbl. Following are the tags examples:
+
+Chapter 6: Typesetting Mathematics
+One of the biggest advantages of LaTeX is its skill in typesetting equations. Here, the fundamentals of typesetting equations, some of the various packages that can be used, as well as common symbols, are described.
+Section 6.1: Basic Equations
+Simple, Inline Equations
+You can do a simple inline equation by using $an equation here$. For example, you might do
+
+which, if we put a little fake text around it, gives
+
+Numbered, Centered Equations
+\begin{equation} and \end{equationWhen writing papers or other documents, it is sometimes preferable to have your equations centered and numbered, as opposed to in-line. Then, use the } commands.
+For example, if we use the code
+
+And add a little text around it, we get
+
+\begin{equation*} and \end{equation*You can remove the numbering of the equation by using }.
+For example, if we use the code
+
+and add a little text around it, we get
+
+(though it should be noted you have to use the amsmath package for this).
+Section 6.2: Finding Symbols
+Sometimes, it can be difficult to find the mathematical symbol you need. There are several options here. The first (and quickest) is to use Detexify, where you draw the symbol you'd like, and it tries to find what you want, like as shown below:
+
+Another option is to use the comprehensive LaTeX symbols list, which can be found here. If you are using the package unicode-math this list of all supported symbols can be helpful. Another option is this website, which has common math symbols.
+Section 6.3: Packages available for use
+While standard LaTeX is all that is needed for most simple mathematical formulae and equations, sometimes more symbols and tools are needed. There are multiple packages available that will enhance your equations and provide you with more to work with. Three of the main packages are described below. Remember, to load a package, type
+usepackage{package\} in your document preamble.
+amsmath
+\begin{equation*The amsmath package is an incredibly useful package. It is used to allow your equations to be centered but not numbered, as in }, it is used to create matrices (as described below) and it introduces many other useful commands, such as \overset and \underset, described below. The amsmath package documentation can be found here. mathtools
+The mathtools package builds off of the amsmath package, adding further useful symbols and tools. It automatically loads the amsmath package, so you do not need to load both in your document preamble. The mathtools documentation can be found here. amssymb
+The amssymb package provides many extra symbols that can be very handy for more complex equations. The amssymb documentation can be found here.
+Font packages
+There are also various fonts you can use for your equations, as described on this question on the TeX stack exchange, for TeX, LaTeX, and friends.
+This paper is a concise explanation of the different features provided by some packages as well as standard LaTeX; it is very helpful.
+Section 6.4: Good Commands to Know
+
+sum gives the summation symbol, \partialgives the not equal symbol, \ gives the partial derivative symbol,
+cdotintx^{2xx_{ab\boldmath{...\nabla gives the Laplacian operator, \times gives the cross product or multiplication symbol, \ gives the dot product or multiplication symbol, and \ gives the integral symbol. Arrows: \rightarrow and \leftarrow give right and left arrows, respectively.
+Percents: If typing % in LaTeX, it is important to include a backslash, \% as the percent symbol is normally used for comments.
+Superscripts and Subscripts: To do a superscript, you can type x^2, or, for longer superscripts, }. To do a subscript, you can type x_a, or, for longer subscripts, }.
+Bold: Use } to make your math symbols bold. Other options are given at this TeX.SX question.
+Math symbols are automatically italicized; if you don't want this to be true, make your equation text as described below.
+inftyInfinity: To write infinity, use the command \.
+int, and then use the \limits command. An example is \int\limits_{\inftyMoving items over or under another: First, for math operators only, there is an alternate method. You can type the math operator, say \}
+int\limits^{\infty}. Then, for normal cases, you can do \overset{top}{normalor \} or
+\underset{bottom}{normal}. This can be very useful for doing vectors. For example, you might do
+\overset{\rightarrow}{x} The amsmath package is need for overset and underset.
+usepackage{amsmath} in the preamble, and then type \text{...Curly Braces: Because curly braces are used in commands, it is necessary to type \{ or \} to get curly braces.
+Text: To include text in equations, type \}.
+$2x \quad cosSpace: To add space in your equations, type \quad between the two items you want to separate (for example, you might have ).
+Section 6.5: Creating New Symbols
+Let's say you cannot find the symbol you need anywhere. You can create a custom symbol. For example, the code
+
+creates and calls a symbol, giving
+
+This is a simpler example; it merely has to rotate an already existent symbol. However, you can create more complex symbols.
+This section is in the process of being expanded. Section 6.6: Matrices
+Matrices
+You must always use the amsmath package if you are going to use the following commands. There are four main types of matrix, as shown in the code below:
+
+
+This code produces
+
+There are a couple important things to note about this:
+1. It is important you put your matrix within the equation, equation*, or $...$ environment - the bmatrix command is not a math environment on its own.
+x_{112. The construction of the matrix is actually fairly simple. For each row, you create each element (say }), then put a &, and then write the next element. For multiple rows, at the end of each row put \\ (you do not have to do this for the last row). It is fairly similar to a table in this.
+Chapter 7: Creating a Bibliography
+ParameterDetailthebibliographyThis environment sets the scope for the actual bibliography. It defines a list-like environmentbibitemwithin which you can use \ to set a bibliography item.
+The thebibliography environment takes a single argument that represents the widest
+bibitem{x}	element to be expected in the enumeration of the \s. For less than 10 entries, use a
+single character/digit; for less than 100 entries, use two characters/digits, ...
+<b> and make it available to \citebibitem{<a>} <b><aSet the bibliography item  within the document using the
+\ label >.
+Section 7.1: Basic bibliography with biber
+To start a bibliography you need to define your sources. Create a database file (like sources.bib) and include some content:
+
+You can then include your database file in your main document and cite the new source (Doe1993).
+
+To compile the document, you will need to run 3 commands in sequence:
+1. pdflatex to create an auxiliary file which tells biber what sources are needed
+2. biber to create an auxiliary file with all the sources which can be used by pdflatex
+3. pdflatex to include the auxiliary file and create the PDF
+
+Find many more options and additional fields for bib files in the package documentation on CTAN.
+Section 7.2: Basic bibliography without packages (manual formatting)
+
+Note that unless you really know why, you should probably not do this. Using designated packages (see other examples) is preferable.
+Chapter 8: Add Citation
+Section 8.1: Add citation to already existing LaTeX document
+At the end of the document add the following:
+\bibliographystyle{style}
+\bibliography{file location}
+Create a file with extension .bib and save the citation as follows:
+
+To cite use the following: \citet{citation_name}
+
+Chapter 9: Counters, if statements and loops with LaTeX
+Section 9.1: Operations with counters
+This example shows how to use mathematical operations with counters. It may be useful for loops in latex.
+\addtocounter{num}{n}Addition: 
+this command adds n to num, where num is a counter and n is a positive integer.
+\addtocounter{num}{-n}Subtraction: 
+this command subtracts n from num, where num is a counter and n is a positive integer.
+\multiply\value{num} by nMultiplication: 
+\divide\value{num} by nthis command multiply num by n, where num is a counter and n is an integer. Division this command divides num by n and gets the integer part of the quotient (num is a counter and n is an integer)
+
+\newcommand{num} declares counter. \setcounter{num}{3} sets num value to 3.
+\addtocounter{num}{10} adds 10 to num.
+\addtocounter{num}{-3} subtract 3 from num.
+\stepcounter{num} adds 1 to num
+\multiply\value{num} by \value{num} squares num.
+\multiply\value{num} by 2 doubles num.
+\divide\value{num} by 60 divides num by 60 and gets the integer part.
+The result of the code: 13\\10\\11\\121\\242\\4
+(\\ symbolizes new line) intcalc package adds some other integer operations e.g. mod, pow, sng, abs, inv ...
+intcalc_package.pdf
+Section 9.2: Counter declaration, initialization and printing to pdf
+\newcounter{nameIt is possible to use integer variables with latex. To create a new variable we need the } command, where name is the name of the new counter. The name must contain only letters. This command creates a new one with name \thename. With this command we can print name variable onto the paper. The initial value of
+\setcounter{name}{n} where n is an integer. \value{namename is 0. To give value to "name" we can use } is a function which returns with the value of name.
+
+Section 9.3: If statements
+In latex we can use built-in commands to execute code whether the conditions are true or not.
+\ifnum\value{num}>n {A} \else {B}\fiComparing two integers: 
+This code executes A if num>n else B. We can substitute > with < and =.
+\ifodd\value{num} {A}\else {B}\fiIf a number is odd: 
+If num is odd then it executes A else B.
+\ifthenelse{condition}{A}{BIf with condition: }
+We have to load ifthen package to use this command. If condition are true then it executes A else B.
+( It is possible to create complex condition with \\), \AND, \OR, \NOT.
+\ifthenelse{\(\NOT 4<2 \OR 4>11\)\AND\isodd{4}}{A}{BFor example: }
+\NOT 4<2This piece of code writes down "B" on the page.  is true and 4>11 is false. If we connect a false and a true
+\NOT 4<2 \OR 4>11\) is true. \isoddstatement with "OR" then the result is true. So \({4} is false because 4 is even.
+A false and a true statement connected with "AND" is false, so the output is B.
+An example code:
+
+Section 9.4: Loops - repeating things
+We can create loops in latex. They are similar but not as customizable as loops in other programming languages. One alternative to use loops are @loops. If we use a command which includes "@" in its name, we must be put it
+makeatletter and \makeatotherbetween \. It is not allowed to use them in a macro which describes a new definition.
+Wrong:
+
+Right:
+
+\@for\command:={list}\do{commands@for loop: }
+Example:
+
+It creates the following text: The sun is rising. The sun is setting.
+\@whilenum condition\do{commands@whilenum loop: }
+Example:
+
+This code writes odd numbers from 1 to 9.
+\loop {commands} \ifnum condition \repeat"loop repeat" loop: 
+Executes commands till condition is true.
+Example
+
+This code does the same as @whilenum loop.
+An example code:
+
+
+Section 9.5: Using loops in Tikz
+Loops are useful in Tikz.
+The following code draws a clock without numbers:
+
+The result:
+
+
+Chapter 10: Document Classes
+Section 10.1: Article
+\documentclass{article}
+When to use the article class ?
+For articles in scientific journals, presentations, short reports, program documentation, invitations, ... 1 What are the specificities of this class ?
+An article doesn't contain chapters or parts. It can be divided in sections, subsections and paragraphs etc.
+By default, the title is shown at the top of the first page, and not on a separate title page.
+
+Section 10.2: Beamer
+\documentclass{beamer} When to use the beamer class ?
+For presentation slides.
+What are the specificities of this class ?
+The output is landscape-oriented. The document is separated in "frames" (slides).
+Simple example
+Following example was adapted from : sharelatex.com/learn/Beamer
+
+
+Section 10.3: Defining the document class
+documentclass{...The very first line in each of your LaTeX programs should do this. It should follow the form \}. What you put within the curly braces is very important. Some document classes give you extra commands to use, others use a different format, and all have specific parameters you can input (described in the parameters section).
+
+Chapter 11: Drawing Graphs
+Section 11.1: TikZ -- Graph specifications
+TikZ provides syntax similar to DOT which you can use to tighten up your graph drawing code considerably.
+
+As you can see, you trade fine-grained control for easier syntax. The graphs library really shines when you specify more complicated graphs:
+
+
+There are many more options and pre-defined graphs; see section 19 of the TikZ manual.
+Section 11.2: TikZ -- Algorithmic graph drawing
+TikZ implements several algorithms for automatic graph layouts (requires LuaLaTeX).
+
+
+There are several algorithms and many options to influence them. See part IV of the TikZ manual for details.
+Section 11.3: State Transition Diagram of a Markov Chain
+Suppose the following matrix is the transition probability matrix associated with a Markov chain.
+
+In order to study the nature of the states of a Markov chain, a state transition diagram of the Markov chain is drawn.
+
+
+Section 11.4: TikZ -- Manual layout
+Package TikZ lends itself very well to drawing graphs.
+This is a small example (requires TikZ 3.0+):
+
+You can create arbitrarily complex graphs; beware lengthy code, though. Recall that there is \foreach and take note of all the positioning and styling options (cf. TikZ manual, section 13 to 17).
+
+Chapter 12: Presentation with beamer package
+  theme	AnnArbor color theme seahoarse
+Section 12.1: Simple one author title slide
+\documentclass{beamer}
+\mode<presentation>
+\usetheme{AnnArbor}
+\usecolortheme{seahorse}
+\title[Short topic]{Awesome long topic}
+\author[Name]{Full name}
+\institute[Institute short form]{Full name of institute}
+\date{\today}
+\begin{document}
+\maketitle
+\end{document}
+
+
+Section 12.2: Multiple author and aliation title slide
+\documentclass[compress]{beamer}
+\mode\<presentation>
+\title[]{ABCDE for analysis of PQRS systems}
+
+
+
+\begin{document}
+\begin{frame}
+\end{frame\titlepage }
+\end{document}
+
+Chapter 13: Defining macros
+	Parameter	Details
+\macro	The macro to define
+argcount	The number of arguments the macro expects (optional)
+The replacement text for the macro. Inside that text #1, #2 etc. are replaced with the macro
+replacement text
+arguments.
+Section 13.1: Basic definition of macros
+Define a new basic command
+newcommandA macro can be defined using \. For example:
+
+defines a macro \foo that expands to Just foo, you see?. It can then be used like any built-in command, for example after that definition:
+
+expands to
+
+Define a new command with arguments
+Macros can also have arguments. The number of arguments is given as optional argument between the command name and the replacement text. In the replacement text, the arguments are accessed with #1, #2 etc. For example:
+\newcommand{\better}[2]{A #1 is better than a #2.}
+\better{solution}{problem} % gives: A solution is better than a problem
+Redefining an existing command
+newcommandIf a macro has already been defined, \ gives an error. To give a new definition for an existing command, \renewcommand is used instead. Other than the different name, the syntax is exactly the same. For example, after the definition of \foo above, one could use:
+
+After that redefinition, the macro \foo no longer expands to Just foo, you see? but to Another foo, please.
+Chapter 14: Build Tools
+Section 14.1: Arara
+Arara is a cross-platform automation tool that's specially designed for TeX. It's included in a standard distribution, so there's no need to install anything additional. It's most effectively understood as a means to record the compilation instructions in the TeX file itself:
+
+These can be much more complicated, though:
+
+Chapter 15: Accessing documentation of LaTeX packages
+Section 15.1: CTAN
+The Comprehensive TeX Archive Network (CTAN) is indeed that, the comprehensive repository of LaTeX packages.
+Most if not all quality packages (and more) are on there, and all the good ones include documentation.
+1. Enter the package name into the search bar.
+
+2. Select the package from the list.
+
+3. Access the documentation documents.
+
+Important: CTAN holds the most recent versions. If your installation is outdated the documentation won't match! In that case, refer to the documentation documents shipped with your LaTeX distribution.
+Section 15.2: TeX Live -- texdoc
+If you use the TeX Live distribution you can use the command-line program texdoc. For instance,
+
+will open the documentation of package biblatex.
+Or if you are not command-line-savvy, the same can be found online at http://www.texdoc.net/
+
+Chapter 16: Creating posters using beamer
+Creating a poster using beamerposter package is very similar to creating a single frame. Put the content in columns. Within each column, separate the content using blocks.
+Section 16.1: Orientation and size
+While adding the beamerposter package, provide the required parameters.
+\usepackage[orientation=landscape,size=a1]{beamerposter}
+You can also customize the size of the poster.
+\usepackage[orientation=portrait,size=custom,height=110,width=80,scale=1.4]{beamerposter}
+The height and width dimensions here, are in cms. The scale is used for the font size.
+Section 16.2: Basic outline of a beamer poster
+In landscape orientation
+
+
+
+In portrait orientation
+
+
+
+Section 16.3: Full example of beamer poster
+
+
+   \item Nulla ullamcorper vestibulum turpis.
+   \item Pellentesque cursus luctus mauris.
+  \end{itemize}
+  \end{block}
+ 
+ 
+   \end{column}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{column}{.32\linewidth}
+ 
+  \begin{block}{Second list}
+  \begin{enumerate}    \item Nulla malesuada porttitor diam.
+   \item Donec felis erat, congue non, volutpat at, tincidunt tristique, libero.
+   \item Vivamus viverra fermentum felis.    \item Donec nonummy pellentesque ante.
+   \item Phasellus adipiscing semper elit.
+   \item Proin fermentum massa ac quam.
+   \item Sed diam turpis, molestie vitae, placerat a, molestie nec, leo.
+   \item Maecenas lacinia.
+   \item Nam ipsum ligula, eleifend at, accumsan nec, suscipit a, ipsum.
+  \end{enumerate}
+  \end{block}
+ 
+  \begin{block}{First split block}
+    \begin{columns}
+      \begin{column}{0.5\linewidth}
+     
+      \begin{center}       \begin{figure}
+       \includegraphics[width=0.55\linewidth]{example-image-b}
+       \caption{Second figure caption}
+      \end{figure}     \end{center}
+    \begin{center}
+      \begin{figure}
+       \includegraphics[width=0.55\linewidth]{example-image-c}
+       \caption{Third figure caption}
+      \end{figure}
+    \end{center}
+   
+   \end{column}
+   
+   \begin{column}{0.5\linewidth}
+   
+   Morbi blandit ligula feugiat magna.
+   \begin{itemize}
+   \item Nunc eleifend consequat lorem.
+   \item Sed lacinia nulla vitae enim.
+   \item Pellentesque tincidunt purus vel magna.
+   \item Integer non enim.
+   \item Praesent euismod nunc eu purus.
+   \item Donec bibendum quam in tellus.
+   \item Nullam cursus pulvinar lectus.
+   \item Donec et mi.
+   \item Nam vulputate metus eu enim.
+   \item Vestibulum pellentesque felis eu massa.
+   \end{itemize}
+  \end{column}
+  \end{columns}
+ 
+  \end{block}
+ 
+  \begin{block}{First tikz picture}
+  Morbi blandit ligula feugiat magna. Nunc eleifend consequat lorem. Sed lacinia nulla vitae enim. Pellentesque tincidunt purus vel magna.
+  \begin{center}   \begin{figure}
+   
+  \begin{tikzpicture}
+ 
+      % Definitions
+      \pgfmathsetmacro{\b}{75}
+      \pgfmathsetmacro{\a}{15}
+      \pgfmathsetmacro{\R}{2}
+      \pgfmathsetmacro{\r}{1}
+      \pgfmathsetmacro{\P}{\R*tan(\b)}
+      \pgfmathsetmacro{\Q}{\R/cos(\b)}
+      \pgfmathsetmacro{\p}{\r/tan(\a)}
+      \pgfmathsetmacro{\q}{\r/sin(\a)}
+      % Pulleys
+     
+      % big pulley
+      \draw (0,0) circle (\R) ;
+      \fill[left color=gray!80, right color=gray!60, middle         color=white] (0,0) circle (\R) ;       \draw[thick, white] (0,0) circle (.8*\R);
+      \shade[ball color=white] (0,0) circle (.3) node[left,xshift=-5] {$P$};
+      % small pulley
+      \draw (\Q+\q-.3, 0) circle (\r);
+      \fill[left color=gray!80, right color=gray!60, middle         color=white] (\Q+\q-.3, 0) circle (\r) ;       \draw[thick, white] (\Q+\q-.3,0) circle (.8*\r);       \shade[ball color=white] (\Q+\q-.3,0) circle (.15)       node[right, xshift=2] {$Q$};
+      % belt and point labels
+      \begin{scope}[ultra thick]
+        \draw (\b:\R) arc (\b:360-\b:\R) ;
+        \draw (\b:\R) -- ( \P, 0 );
+        \draw (-\b:\R) -- ( \P, 0 );
+        \draw (\Q-.3,0) -- + (\a:\p)  arc (105:-105:\r) ;
+        \draw (\Q-.3,0) -- + (-\a:\p);
+        %\draw (\b:\R) arc (\b:360-\b:\r) ;
+      \end{scope}
+   
+      \draw (0,0) -- (\b:\R) node[midway, above,sloped] {$R$} node[above] {$A$};
+      \draw (-\b:\R)--(0,0) ;
+      \draw (\Q+\q-.3,0) -- +(105:\r) node[midway,above, sloped] {$r$}         node[above] {$E$};
+      \draw (\Q+\q-.3,0) -- +(-105:\r) node[below] {$D$};
+      \node[below] at (-\b:\R) {$B$};
+      \node[below] at (\Q-.3,0) {$C$};
+      % center line
+      \draw[dash pattern=on5pt off3pt] (0,0) -- (\Q+\q-.3,0);
+      % angle label
+      \node[fill=white] at (0.73*\Q, 0) {$\theta$} ;
+      \draw (\Q-1.8,0) arc (180:195:1.5);
+      \draw (\Q-1.8,0) arc (180:165:1.5);
+  \end{tikzpicture}
+  \caption{First tikz picture caption}
+  \end{figure}   \end{center}
+  Donec bibendum quam in tellus. Nullam cursus pulvinar lectus. Donec et mi. Nam vulputate metus eu enim. Vestibulum pellentesque felis eu massa.
+  \end{block}
+ 
+  \end{column}
+ 
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{column}{.32\linewidth}
+ 
+  \begin{block}{Second paragraph}
+  Fusce mauris. Vestibulum luctus nibh at lectus. Sed bibendum, nulla a faucibus semper, leo velit ultricies tellus, ac venenatis arcu wisi vel nisl. Vestibulum diam. Aliquam pellentesque, augue quis sagittis posuere, turpis lacus congue quam, in hendrerit risus eros eget felis. Maecenas eget erat in sapien mattis porttitor. Vestibulum porttitor. Nulla facilisi. Sed a turpis eu lacus commodo facilisis. Morbi fringilla, wisi in dignissim interdum, justo lectus sagittis dui, et vehicula libero dui cursus dui.   \end{block}    
+     
+  \begin{block}{First table}
+  \begin{center}
+  \begin{tabular}{lrrrrrr}
+  \hline
+  & AAA & BBB & CCC & DDD & EEE & FFF\\ \hline
+XXX & 1 & 2 & 3 & 4 & 5 & 6 \\
+YYY & 1 & 2 & 3 & 4 & 5 & 6 \\
+ZZZ & 1 & 2 & 3 & 4 & 5 & 6 \\
+ 
+  \hline
+  \end{tabular}
+  \end{center}
+  \end{block}
+ 
+  \begin{block}{First plot}
+  \begin{center}   \begin{figure}
+    \begin{tikzpicture}     \begin{axis}[     width=0.7\linewidth,     max space between ticks=50,     minor x tick num=2,     minor y tick num=1,     tick style={semithick,color=black},     xlabel=Value,     ylabel=Time (sec),     xtick={0, 50, 100, 150},     ytick={0, 2, 4, 6, 8}]
+
+Chapter 17: Engraving Sheet Music
+Section 17.1: LilyPond
+The LilyPond notation engraver can be used with LaTeX via the lilypond-book command. First lets create a LaTeX document (with the file extension .lytex) to embed our music in:
+
+Then we create our LilyPond file (.ly), including the lilypond-book-preamble.ly file (which LilyPond will know how to find):
+
+
+to build, we then run the lilypond-book command: lilypond-book --include=mymusicsourcedirectory/ --pdf TwaCorbies.lytex which will output a PDF containing your LilyPond engraved music:
+
+
+Credits
+Thank you greatly to all the people from Stack Overflow Documentation who helped provide this content, more changes can be sent to web@petercv.com for new content to be published or updated
+celtschkChapters 4 and 13csekriChapter 9HamzaweyChapter 8HarryChapter 1hbadertsChapter 1heatherChapters 6 and 10janiChapter 1Johannes_BChapter 2L.V.RaoChapters 5 and 11LouisChapter 1Nijin22Chapters 1, 2, 5 and 7Nikita JainChapter 5RaphaelChapters 7, 11 and 15Sam WhitedChapter 17samcarterChapter 15Sean AllredChapters 1 and 14SpacedmanChapter 1Stephan KullaChapter 4strpeterChapter 13Sukanya BChapters 3, 12 and 16Sumner EvansChapter 1WernerChapter 7
+You may also like
+
+
+
+
+
+
+
+GoalKicker.com - LaTeX Notes for Professionals	1
+
+GoalKicker.com - LaTeX Notes for Professionals	1
+
+GoalKicker.com - LaTeX Notes for Professionals	1
+
+
+
+
+
+
+
