@@ -1,0 +1,1123 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Introduction to using XPath in JavaScript</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.65pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:108%;
+	font-size:11.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:.65pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:110%;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:"Courier New";
+	color:black;
+	font-weight:normal;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Courier New";
+	color:black;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:37.0pt 87.0pt 89.5pt 71.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.4pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:19.0pt;
+line-height:107%'>Introduction to using XPath in JavaScript</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+0in;margin-left:-.25pt'>This document describes the interface for using<a
+href="http://developer.mozilla.org/en/XPath"><span style='color:black;
+text-decoration:none'> XPath </span></a>in JavaScript internally, in
+extensions, and from</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>websites. Mozilla implements a fair amount of the<a
+href="http://www.w3.org/TR/DOM-Level-3-XPath/xpath.html"><span
+style='color:black;text-decoration:none'> DOM 3 XPath.</span></a> Which means
+that XPath expressions can be run against both HTML and XML documents.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+20.2pt;margin-left:-.25pt'>The main interface to using XPath is the<a
+href="http://developer.mozilla.org/en/DOM/document.evaluate"><span
+style='color:black;text-decoration:none'> evaluate </span></a>function of the<a
+href="http://developer.mozilla.org/en/DOM/document"><span style='color:black;
+text-decoration:none'> document </span></a>object.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.95pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:17.0pt;
+line-height:107%'>document.evaluate</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-.75pt;margin-bottom:
+18.85pt;margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;
+line-height:138%'>This method evaluates<a
+href="http://developer.mozilla.org/en/XPath"><span style='color:black;
+text-decoration:none'> XPath </span></a>expressions against an<a
+href="http://developer.mozilla.org/en/XML"><span style='color:black;text-decoration:
+none'> XML </span></a>based document (including HTML documents), and returns a <span
+style='font-family:"Courier New"'>XPathResult</span> object, which can be a
+single node or a set of nodes. The existing documentation for this method is
+located at<a href="http://developer.mozilla.org/en/DOM/document.evaluate"><span
+style='color:black;text-decoration:none'> DOM:document.evaluate,</span></a> but
+it is rather sparse for our needs at the moment; a more comprehensive
+examination will be given below. <span style='font-size:7.0pt;line-height:138%;
+font-family:"Courier New"'>var xpathResult = document.evaluate(
+xpathExpression, contextNode, namespaceResolver, resultType, result );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.55pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:15.0pt;
+line-height:107%'>Parameters</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>The<a
+href="http://developer.mozilla.org/en/DOM/document.evaluate"><span
+style='color:black;text-decoration:none'> evaluate </span></a>function takes a
+total of five parameters:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:8.75pt'><img width=7 height=40
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image001.gif"
+align=left hspace=12><span style='font-family:"Courier New"'>xpathExpression</span>:
+A string containing the XPath expression to be evaluated.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+12.1pt;margin-left:8.75pt'><span style='font-family:"Courier New"'>contextNode</span>:
+A node in the document against which the <span style='font-family:"Courier New"'>xpathExpression</span>
+should be evaluated, including any and all of its child nodes. The<a
+href="http://developer.mozilla.org/en/DOM/document"><span style='color:black;
+text-decoration:none'> document </span></a>node is the most commonly used.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+.75pt;margin-left:22.0pt;text-indent:-13.75pt'><span style='font-family:"Calibri",sans-serif'><img
+border=0 width=7 height=7 id="Group 6595"
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image002.gif"></span><span
+style='font-family:"Courier New"'> namespaceResolver</span>: A function that
+will be passed any namespace prefixes contained within <span style='font-family:
+"Courier New"'>xpathExpression</span> which returns a string representing the
+namespace URI associated with that prefix. This enables conversion between the
+prefixes used in the XPath expressions and the possibly different prefixes used
+in the document. The function can be either: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:6.25pt;margin-bottom:
+2.25pt;margin-left:30.75pt'><img width=8 height=45
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image003.gif"
+align=left hspace=12>Created by using the <a
+href="http://developer.mozilla.org/en/DOM/document.createNSResolver"><span
+style='font-family:"Courier New";color:black;text-decoration:none'>createNSResolver</span></a><a
+href="http://developer.mozilla.org/en/DOM/document.createNSResolver"><span
+style='color:black;text-decoration:none'> </span></a>method of a <a
+href="http://www.xulplanet.com/references/objref/XPathEvaluator.html"><span
+style='font-family:"Courier New";color:black;text-decoration:none'>XPathEvaluator</span></a><a
+href="http://www.xulplanet.com/references/objref/XPathEvaluator.html"><span
+style='color:black;text-decoration:none'> </span></a>object. You should use
+this virtually all of the time. <span style='font-family:"Courier New"'>null</span>,
+which can be used for HTML documents or when no namespace prefixes are used.
+Note that, if the <span style='font-family:"Courier New"'>xpathExpression</span>
+contains a namespace prefix, this will result in a <span style='font-family:
+"Courier New"'>DOMException</span> being thrown with the code <span
+style='font-family:"Courier New"'>NAMESPACE_ERR</span>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+12.0pt;margin-left:44.0pt;text-indent:-13.75pt'><span style='font-family:"Calibri",sans-serif'><img
+border=0 width=8 height=8 id="Group 6598"
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image004.gif"></span>   A
+custom user-defined function. See the Using a User Defined Namespace Resolver
+section in the appendix for details.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+0in;margin-left:8.75pt'><span style='font-family:"Calibri",sans-serif'><img
+border=0 width=7 height=7 id="Group 6599"
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image002.gif"></span><span
+style='font-family:"Courier New"'> resultType</span>: A constant that specifies
+the desired result type to be returned as a result of the</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+12.1pt;margin-left:22.5pt'>evaluation. The most commonly passed constant is <span
+style='font-family:"Courier New"'>XPathResult.ANY_TYPE</span> which will return
+the results of the XPath expression as the most natural type. There is a
+section in the appendix which contains a full list of the available constants.
+They are explained below in the section &quot;Specifying the Return Type.&quot;
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:22.0pt;text-indent:-13.75pt'><span style='font-family:"Calibri",sans-serif'><img
+border=0 width=7 height=7 id="Group 6600"
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image002.gif"></span><span
+style='font-family:"Courier New"'> result</span>: If an existing <span
+style='font-family:"Courier New"'>XPathResult</span> object is specified, it
+will be reused to return the results. Specifying <span style='font-family:"Courier New"'>null</span>
+will create a new <span style='font-family:"Courier New"'>XPathResult</span>
+object.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.55pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:15.0pt;
+line-height:107%'>Return Value</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+16.5pt;margin-left:-.25pt'>Returns <span style='font-family:"Courier New"'>xpathResult</span>,
+which is an <span style='font-family:"Courier New"'>XPathResult</span> object
+of the type specified in the <span style='font-family:"Courier New"'>resultType</span>
+parameter. The <span style='font-family:"Courier New"'>XPathResult</span>
+Interface is defined<a
+href="http://lxr.mozilla.org/seamonkey/source/dom/public/idl/xpath/nsIDOMXPathResult.idl"><span
+style='color:black;text-decoration:none'> here.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.55pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:15.0pt;
+line-height:107%'>Implementing a Default Namespace Resolver</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+3.25pt;margin-left:-.25pt'>We create a namespace resolver using the <span
+style='font-family:"Courier New"'>createNSResolver</span> method of the<a
+href="http://developer.mozilla.org/en/DOM/document"><span style='color:black;
+text-decoration:none'> document </span></a>object.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.55pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:5.0pt;
+line-height:107%;font-family:"Courier New"'>var nsResolver =
+document.createNSResolver( contextNode.ownerDocument == null ?
+contextNode.documentElement : contextNode.ownerDocument.documentElement );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>And then pass <span style='font-family:"Courier New"'>document.evaluate</span>,
+the <span style='font-family:"Courier New"'>nsResolver</span> variable as the <span
+style='font-family:"Courier New"'>namespaceResolver</span> parameter.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+0in;margin-left:-.25pt'>Note: XPath defines QNames without a prefix to match
+only elements in the null namespace. There is no way in XPath to pick up the
+default namespace as applied to a regular element reference (e.g., </p>
+
+<p class=MsoNormal style='margin-bottom:.65pt;line-height:110%'><span
+style='font-family:"Courier New"'>p[@id=’_myid’]</span> for <span
+style='font-family:"Courier New"'>xmlns=’http://www.w3.org/1999/xhtml’</span>).
+To match default</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+0in;margin-left:-.25pt'>elements in a non-null namespace, you either have to
+refer to a particular element using a form such as </p>
+
+<p class=MsoNormal style='margin-bottom:.65pt;line-height:110%'><span
+style='font-family:"Courier New"'>*/div/div[3]/p[3]/code[3]/span, line 1,
+column 70: &quot;)&quot; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+16.25pt;margin-left:-.25pt'><span style='font-family:"Courier New"'>expected[@id=’_myid’]</span>
+(this approach works well for dynamic XPath’s where the namespaces might not be
+known) or use prefixed name tests, and create a namespace resolver mapping the
+prefix to the namespace. Read more on how to create a user defined namespace
+resolver, if you wish to take the latter approach.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.55pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:15.0pt;
+line-height:107%'>Notes </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+16.5pt;margin-left:-.25pt'>Adapts any DOM node to resolve namespaces so that an<a
+href="http://developer.mozilla.org/en/XPath"><span style='color:black;
+text-decoration:none'> XPath </span></a>expression can be easily evaluated
+relative to the context of the node where it appeared within the document. This
+adapter works like the DOM Level 3 method <span style='font-family:"Courier New"'>lookupNamespaceURI</span>
+on nodes in resolving the <span style='font-family:"Courier New"'>namespaceURI</span>
+from a given prefix using the current information available in the node’s
+hierarchy at the time <span style='font-family:"Courier New"'>lookupNamespaceURI</span>
+is called. Also correctly resolves the implicit <span style='font-family:"Courier New"'>xml</span>
+prefix.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.55pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:15.0pt;
+line-height:107%'>Specifying the Return Type</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+12.85pt;margin-left:-.25pt'>The returned variable <span style='font-family:
+"Courier New"'>xpathResult</span> from <span style='font-family:"Courier New"'>document.evaluate</span>
+can either be composed of individual nodes (simple types), or a collection of
+nodes (node-set types).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.05pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:13.0pt;
+line-height:107%'>Simple Types</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>When the desired result type in <span
+style='font-family:"Courier New"'>resultType</span> is specified as either:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.65pt;
+margin-left:8.75pt;line-height:110%'><img width=7 height=45
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image005.gif"
+align=left hspace=12><span style='font-family:"Courier New"'>NUMBER_TYPE</span>
+- a double</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.65pt;
+margin-left:8.75pt;line-height:110%'><span style='font-family:"Courier New"'>STRING_TYPE</span>
+- a string</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.5pt;
+margin-left:8.75pt;line-height:110%'><span style='font-family:"Courier New"'>BOOLEAN_TYPE</span>
+- a boolean</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>We obtain the returned value of the expression by
+accessing the following properties respectively of the <span style='font-family:
+"Courier New"'>XPathResult</span> object.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:286.8pt;margin-bottom:
+.65pt;margin-left:8.75pt;line-height:110%'><img width=7 height=45
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image005.gif"
+align=left hspace=12><span style='font-family:"Courier New"'>numberValue
+stringValue booleanValue</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:9.3pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:12.0pt;
+line-height:107%'>Example</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+6.45pt;margin-left:-.25pt'>The following uses the XPath expression <a
+href="http://developer.mozilla.org/en/XPath/Functions/count"><span
+style='font-family:"Courier New";color:black;text-decoration:none'>count(//p)</span></a><a
+href="http://developer.mozilla.org/en/XPath/Functions/count"><span
+style='color:black;text-decoration:none'> </span></a>to obtain the number of <span
+style='font-family:"Courier New"'>&lt;p&gt;</span> elements in a HTML document:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.85pt;
+margin-left:-.25pt;line-height:110%'><span style='font-size:7.5pt;line-height:
+110%;font-family:"Courier New"'>var paragraphCount = document.evaluate(
+’count(//p)’, document, null, XPathResult.ANY_TYPE, null );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.65pt;
+margin-left:-.25pt;line-height:110%'><span style='font-size:7.5pt;line-height:
+110%;font-family:"Courier New"'>alert( ’This document contains ’ +
+paragraphCount.numberValue + ’ paragraph elements’ );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+4.1pt;margin-left:-.25pt'>Although Javascript allows us to convert the number
+to a string for display, the XPath interface will not automatically convert the
+numerical result if the <span style='font-family:"Courier New"'>stringValue</span>
+property is requested, so the following code will ’<b><span style='font-size:
+13.0pt;line-height:108%'>not</span>’</b> work:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.85pt;
+margin-left:-.25pt;line-height:110%'><span style='font-size:7.5pt;line-height:
+110%;font-family:"Courier New"'>var paragraphCount =
+document.evaluate(’count(//p)’, document, null, XPathResult.ANY_TYPE, null );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.75pt;
+margin-left:-.25pt;line-height:110%'><span style='font-size:7.5pt;line-height:
+110%;font-family:"Courier New"'>alert( ’This document contains ’ +
+paragraphCount.stringValue + ’ paragraph elements’ );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:75.35pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:177%'>Instead it will return an exception
+with the code <span style='font-family:"Courier New"'>NS_DOM_TYPE_ERROR</span>.
+<b><span style='font-size:13.0pt;line-height:177%'>Node-Set Types</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>The <span style='font-family:"Courier New"'>XPathResult</span>
+object allows node-sets to be returned in 3 principal different types:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+.4pt;margin-left:8.75pt'><img width=7 height=45
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image005.gif"
+align=left hspace=12>Iterators</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+.4pt;margin-left:8.75pt'>Snapshots</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:8.75pt'>First Nodes</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:9.3pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:12.0pt;
+line-height:107%'>Iterators</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>When the specified result type in the <span
+style='font-family:"Courier New"'>resultType</span> parameter is either:</p>
+
+<h1 style='margin-left:8.75pt'><img width=7 height=26
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image006.gif"
+align=left hspace=12>UNORDERED_NODE_ITERATOR_TYPE</h1>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:10.5pt;margin-left:
+8.75pt'>ORDERED_NODE_ITERATOR_TYPE</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>The <span style='font-family:"Courier New"'>XPathResult</span>
+object returned is a node-set of matched nodes which will behave as an
+iterator, allowing us to access the individual nodes contained by using the <span
+style='font-family:"Courier New"'>iterateNext()</span> method of the <span
+style='font-family:"Courier New"'>XPathResult</span>. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>Once we have iterated over all of the individual
+matched nodes, <span style='font-family:"Courier New"'>iterateNext()</span>
+will return <span style='font-family:"Courier New"'>null</span>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:135%'>Note however, that if the document is
+mutated (the document tree is modified) between iterations that will invalidate
+the iteration and the <span style='font-family:"Courier New"'>invalidIteratorState</span>
+property of <span style='font-family:"Courier New"'>XPathResult</span> is set
+to <span style='font-family:"Courier New"'>true</span>, and a <span
+style='font-family:"Courier New"'>NS_ERROR_DOM_INVALID_STATE_ERR</span>
+exception is thrown. <b>Iterator Example</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.55pt;
+margin-left:-.25pt;line-height:107%'><span style='font-size:6.5pt;line-height:
+107%;font-family:"Courier New"'>var iterator =
+document.evaluate(’//phoneNumber’, documentNode, null,
+XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:301.4pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:107%'><span style='font-size:6.5pt;
+line-height:107%;font-family:"Courier New"'>try {   var thisNode =
+iterator.iterateNext();   </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:209.85pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:107%'><span style='font-size:6.5pt;
+line-height:107%;font-family:"Courier New"'>  while (thisNode) {     alert(
+thisNode.textContent );     thisNode = iterator.iterateNext();   }     } catch
+(e) {   dump( ’Error: Document tree modified during iteration ’ + e );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:107%'><span style='font-size:6.5pt;line-height:
+107%;font-family:"Courier New"'>}</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:9.3pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:12.0pt;
+line-height:107%'>Snapshots</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>When the specified result type in the <span
+style='font-family:"Courier New"'>resultType</span> parameter is either:</p>
+
+<h1 style='margin-left:8.75pt'><img width=7 height=26
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image006.gif"
+align=left hspace=12>UNORDERED_NODE_SNAPSHOT_TYPE</h1>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:10.5pt;margin-left:
+8.75pt'>ORDERED_NODE_SNAPSHOT_TYPE</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>The <span style='font-family:"Courier New"'>XPathResult</span>
+object returned is a static node-set of matched nodes, which allows us to
+access each node through the <span style='font-family:"Courier New"'>snapshotItem(itemNumber)</span>
+method of the <span style='font-family:"Courier New"'>XPathResult</span>
+object, where <span style='font-family:"Courier New"'>itemNumber</span> is the
+index of the node to be retrieved. The total number of nodes contained can be
+accessed through the <span style='font-family:"Courier New"'>snapshotLength</span>
+property.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:132%'>Snapshots do not change with document
+mutations, so unlike the iterators the snapshot does not become invalid, but it
+may not correspond to the current document, for example the nodes may have been
+moved, it might contain nodes that no longer exist, or new nodes could have
+been added. <b>Snapshot Example</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.1in;
+margin-left:-.25pt;line-height:109%'><span style='font-size:6.0pt;line-height:
+109%;font-family:"Courier New"'>var nodesSnapshot =
+document.evaluate(’//phoneNumber’, documentNode, null,
+XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:249.35pt;margin-bottom:
+17.75pt;margin-left:-.25pt;line-height:109%'><span style='font-size:6.0pt;
+line-height:109%;font-family:"Courier New"'>for ( var i=0 ; i &lt;
+nodesSnapshot.snapshotLength; i++ ) {   dump(
+nodesSnapshot.snapshotItem(i).textContent ); }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:9.3pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:12.0pt;
+line-height:107%'>First Node</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>When the specified result type in the <span
+style='font-family:"Courier New"'>resultType</span> parameter is either:</p>
+
+<h1 style='margin-left:8.75pt'><img width=7 height=26
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image006.gif"
+align=left hspace=12>ANY_UNORDERED_NODE_TYPE</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.5pt;
+margin-left:8.75pt;line-height:110%'><span style='font-family:"Courier New"'>FIRST_ORDERED_NODE_TYPE</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>The <span style='font-family:"Courier New"'>XPathResult</span>
+object returned is only the first found node that matched the XPath expression.
+This can be accessed through the <span style='font-family:"Courier New"'>singleNodeValue</span>
+property of the <span style='font-family:"Courier New"'>XPathResult</span>
+object. This will be <span style='font-family:"Courier New"'>null</span> if the
+node set is empty.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+0in;margin-left:-.25pt;line-height:146%'>Note that, for the unordered subtype
+the single node returned might not be the first in document order, but for the
+ordered subtype you are guaranteed to get the first matched node in the
+document order. <b>First Node Example</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.1in;
+margin-left:-.25pt;line-height:109%'><span style='font-size:6.0pt;line-height:
+109%;font-family:"Courier New"'>var firstPhoneNumber =
+document.evaluate(’//phoneNumber’, documentNode, null,
+XPathResult.FIRST_ORDERED_NODE_TYPE, null );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.9pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:6.0pt;line-height:
+109%;font-family:"Courier New"'>dump( ’The first phone number found is ’ +
+firstPhoneNumber.singleNodeValue.textContent );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.05pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:13.0pt;
+line-height:107%'>The ANY_TYPE Constant</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+14.85pt;margin-left:-.25pt'>When the result type in the <span style='font-family:
+"Courier New"'>resultType</span> parameter is specified as <span
+style='font-family:"Courier New"'>ANY_TYPE</span>, the <span style='font-family:
+"Courier New"'>XPathResult </span>object returned, will be whatever type that
+naturally results from the evaluation of the expression. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+1.05pt;margin-left:-.25pt'>It could be any of the simple types ( <span
+style='font-family:"Courier New"'>NUMBER_TYPE, STRING_TYPE, BOOLEAN_TYPE</span>
+), <b><span style='font-size:13.0pt;line-height:108%'>but</span></b>, if the
+returned result type is a node-set then it will <b><span style='font-size:13.0pt;
+line-height:108%'>only</span></b> be an </p>
+
+<p class=MsoNormal style='margin-bottom:.65pt;line-height:110%'><span
+style='font-family:"Courier New"'>UNORDERED_NODE_ITERATOR_TYPE</span>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+20.25pt;margin-left:-.25pt'>To determine that type after evaluation, we use the
+<span style='font-family:"Courier New"'>resultType</span> property of the <span
+style='font-family:"Courier New"'>XPathResult </span>object. The constant
+values of this property are defined in the appendix. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.75pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:17.0pt;
+line-height:107%'>Examples</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.55pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:15.0pt;
+line-height:107%'>Within an HTML Document</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>The following code is intended to be placed in any
+JavaScript fragment within or linked to the HTML document against which the
+XPath expression is to be evaluated.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+0in;margin-left:-.25pt'>To extract all the <span style='font-family:"Courier New"'>&lt;h2&gt;</span>
+heading elements in an HTML document using XPath, the </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-.75pt;margin-bottom:
+8.2pt;margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;
+line-height:160%'><span style='font-family:"Courier New"'>xpathExpression</span>
+is simply ’<span style='font-family:"Courier New"'>//h2</span>’. Where, <span
+style='font-family:"Courier New"'>//</span> is the Recursive Descent Operator
+that matches elements with the nodeName <span style='font-family:"Courier New"'>h2</span>
+anywhere in the document tree. The full code for this is: <span
+style='font-size:9.0pt;line-height:160%;font-family:"Courier New"'>var headings
+= document.evaluate(’//h2’, document, null, XPathResult.ANY_TYPE, null );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>Notice that, since HTML does not have namespaces,
+we have passed <span style='font-family:"Courier New"'>null</span> for the <span
+style='font-family:"Courier New"'>namespaceResolver</span> parameter. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>Since we wish to search over the entire document
+for the headings, we have used the<a
+href="http://developer.mozilla.org/en/DOM/document"><span style='color:black;
+text-decoration:none'> document </span></a>object itself as the <span
+style='font-family:"Courier New"'>contextNode</span>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+8.05pt;margin-left:-.25pt'>The result of this expression is an <span
+style='font-family:"Courier New"'>XPathResult</span> object. If we wish to know
+the type of result returned, we may evaluate the <span style='font-family:"Courier New"'>resultType</span>
+property of the returned object. In this case, that will evaluate to <span
+style='font-family:"Courier New"'>4</span>, an <span style='font-family:"Courier New"'>UNORDERED_NODE_ITERATOR_TYPE</span>.
+This is the default return type when the result of the XPath expression is a
+node set. It provides access to a single node at a time and may not return
+nodes in a particular order. To access the returned nodes, we use the <span
+style='font-family:"Courier New"'>iterateNext() </span>method of the returned
+object:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.45pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>var thisHeading = headings.iterateNext();</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.45pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>var alertText = ’Level 2 headings in this
+document are:\n’</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:205.6pt;margin-bottom:
+13.05pt;margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;
+line-height:109%;font-family:"Courier New"'>while (thisHeading) {   alertText
++= thisHeading.textContent + ’\n’;   thisHeading = headings.iterateNext(); }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+16.7pt;margin-left:-.25pt'>Once we iterate to a node, we have access to all the
+standard<a href="http://developer.mozilla.org/en/DOM_interfaces"><span
+style='color:black;text-decoration:none'> DOM interfaces </span></a>on that
+node. After iterating through all the <span style='font-family:"Courier New"'>h2</span>
+elements returned from our expression, any further calls to <span
+style='font-family:"Courier New"'>iterateNext()</span> will return <span
+style='font-family:"Courier New"'>null</span>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.55pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:15.0pt;
+line-height:107%'>Evaluating against an XML document within an Extension</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+7.95pt;margin-left:-.25pt'>The following uses an XML document located at<a
+href="chrome://yourextension/content/peopleDB.xml"><span style='color:black;
+text-decoration:none'> chrome://yourextension/content/peopleDB.xml </span></a>as
+an example.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>&lt;?xml version=&quot;1.0&quot;?&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>&lt;people xmlns:xul =
+&quot;http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul&quot; &gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>  &lt;person&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:5.35pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;
+line-height:109%;font-family:"Courier New"'>        &lt;name
+first=&quot;george&quot; last=&quot;bush&quot; /&gt;         &lt;address
+street=&quot;1600 pennsylvania avenue&quot; city=&quot;washington&quot;
+country=&quot;usa&quot;/&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>       
+&lt;phoneNumber&gt;202-456-1111&lt;/phoneNumber&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>  &lt;/person&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>  &lt;person&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>        &lt;name first=&quot;tony&quot;
+last=&quot;blair&quot; /&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>        &lt;address street=&quot;10 downing
+street&quot; city=&quot;london&quot; country=&quot;uk&quot;/&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>        &lt;phoneNumber&gt;020 7925
+0918&lt;/phoneNumber&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>  &lt;/person&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:13.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>&lt;/people&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+.55pt;margin-left:-.25pt;line-height:134%'>To make the contents of the XML
+document available within the extension, we create an <a
+href="http://developer.mozilla.org/en/XMLHttpRequest"><span style='font-family:
+"Courier New";color:black;text-decoration:none'>XMLHttpRequest</span></a><a
+href="http://developer.mozilla.org/en/XMLHttpRequest"><span style='color:black;
+text-decoration:none'> </span></a>object to load the document synchronously,
+the variable <span style='font-family:"Courier New"'>xmlDoc</span> will contain
+the document as an <a href="http://developer.mozilla.org/en/XMLDocument"><span
+style='font-family:"Courier New";color:black;text-decoration:none'>XMLDocument</span></a><a
+href="http://developer.mozilla.org/en/XMLDocument"><span style='color:black;
+text-decoration:none'> </span></a>object against which we can use the <span
+style='font-family:"Courier New"'>evaluate</span> method JavaScript used in the
+extensions xul/js documents.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.45pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:5.5pt;line-height:
+109%;font-family:"Courier New"'>var req = new XMLHttpRequest();</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:166.9pt;margin-bottom:
+6.45pt;margin-left:-.25pt;line-height:109%'><span style='font-size:5.5pt;
+line-height:109%;font-family:"Courier New"'>req.open(&quot;GET&quot;,
+&quot;chrome://yourextension/content/peopleDB.xml&quot;, false);
+req.send(null);</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.45pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:5.5pt;line-height:
+109%;font-family:"Courier New"'>var xmlDoc = req.responseXML;           </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.45pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:5.5pt;line-height:
+109%;font-family:"Courier New"'>var nsResolver = xmlDoc.createNSResolver(
+xmlDoc.ownerDocument == null ? xmlDoc.documentElement :
+xmlDoc.ownerDocument.documentElement);</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:27.1pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:5.5pt;line-height:
+109%;font-family:"Courier New"'>var personIterator =
+xmlDoc.evaluate(’//person’, xmlDoc, nsResolver, XPathResult.ANY_TYPE, null );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:4.75pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:17.0pt;
+line-height:107%'>Appendix</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.05pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:13.0pt;
+line-height:107%'>Implementing a User Defined Namespace Resolver</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+8.2pt;margin-left:-.25pt'>This is an example for illustration only. This
+function will need to take namespace prefixes from the <span style='font-family:
+"Courier New"'>xpathExpression</span> and return the URI that corresponds to
+that prefix. For example, the expression:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:13.05pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>’//xhtml:td/mathml:math’</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>will select all<a
+href="http://developer.mozilla.org/en/MathML"><span style='color:black;
+text-decoration:none'> MathML </span></a>expressions that are the children of
+(X)HTML table data cell elements. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+0in;margin-left:-.25pt'>In order to associate the ’<span style='font-family:
+"Courier New"'>mathml:</span>’ prefix with the namespace URI </p>
+
+<p class=MsoNormal style='margin-bottom:8.1pt;line-height:110%'>’<span
+style='font-family:"Courier New"'>http://www.w3.org/1998/Math/MathML</span>’
+and ’<span style='font-family:"Courier New"'>xhtml:</span>’ with the URI ’<span
+style='font-family:"Courier New"'>http://www.w3.org/1999/xhtml</span>’ we
+provide a function:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:211.0pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;
+line-height:109%;font-family:"Courier New"'>function nsResolver(prefix) {   var
+ns = {     ’xhtml’ : ’http://www.w3.org/1999/xhtml’,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:173.2pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;
+line-height:109%;font-family:"Courier New"'>    ’mathml’:
+’http://www.w3.org/1998/Math/MathML’   };</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:297.4pt;margin-bottom:
+13.35pt;margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;
+line-height:109%;font-family:"Courier New"'>  return ns[prefix] || null; }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.85pt;
+margin-left:0in;text-indent:0in;line-height:232%'>Our call to <span
+style='font-family:"Courier New"'>document.evaluate</span> would then looks
+like: <span style='font-size:8.0pt;line-height:232%;font-family:"Courier New"'>document.evaluate(
+’//xhtml:td/mathml:math’, document, nsResolver, XPathResult.ANY_TYPE, null );</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.05pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:13.0pt;
+line-height:107%'>Implementing a default namespace for XML documents </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>As noted in the #Implementing a Default Namespace
+Resolver previously, the default resolver does not handle the default namespace
+for XML documents. For example with this document:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>&lt;?xml version=&quot;1.0&quot;
+encoding=&quot;UTF-8&quot;?&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>&lt;feed
+xmlns=&quot;http://www.w3.org/2005/Atom&quot;&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>    &lt;entry /&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>    &lt;entry /&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>    &lt;entry /&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:13.05pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>&lt;/feed&gt;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:5.2pt;margin-bottom:10.9pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+105%'><span style='font-family:"Courier New"'>doc.evaluate(’//entry’, doc,
+nsResolver, XPathResult.ANY_TYPE, null) </span>will return an empty set, where <span
+style='font-family:"Courier New"'>nsResolver</span> is the resolver returned by
+<span style='font-family:"Courier New"'>createNSResolver</span>. Passing a <span
+style='font-family:"Courier New"'>null</span> resolver doesn’t work any better,
+either.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+8.1pt;margin-left:-.25pt'>One possible workaround is to create a custom
+resolver that returns the correct default namespace (the Atom namespace in this
+case). Note that you still have to use some namespace prefix in your XPath
+expression, so that the resolver function will be able to change it to your
+required namespace. E.g.:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:232.6pt;margin-bottom:
+.15pt;margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;
+line-height:109%;font-family:"Courier New"'>function resolver() {     return
+’http://www.w3.org/2005/Atom’; }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:13.05pt;
+margin-left:-.25pt;line-height:109%'><span style='font-size:9.0pt;line-height:
+109%;font-family:"Courier New"'>doc.evaluate(’//myns:entry’, doc, resolver,
+XPathResult.ANY_TYPE, null)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>Note that a more complex resolver will be required
+if the document uses multiple namespaces.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+12.9pt;margin-left:-.25pt'>An approach which might work better (and allow
+namespaces not to be known ahead of time) is described in the next section.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.05pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:13.0pt;
+line-height:107%'>Using XPath functions to reference elements with a default
+namespace</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+12.85pt;margin-left:-.25pt'>Another approach to match default elements in a
+non-null namespace (and one which works well for dynamic XPath expressions
+where the namespaces might not be known), involves referring to a particular
+element using a form such as <span style='font-family:"Courier New"'>*/div[3]/div[3]/p/code/span,
+line 1, column 70: &quot;)&quot; expected[@id=’_myid’]</span>. This circumvents
+the problem of an XPath query not being able to detect the default namespace on
+a regularly labeled element.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.05pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:13.0pt;
+line-height:107%'>Getting specifically namespaced elements and attributes
+regardless of prefix </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>If one wishes to provide flexibility in namespaces
+(as they are intended) by not necessarily requiring a particular prefix to be
+used when finding a namespaced element or attribute, one must use special
+techniques.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>While one can adapt the approach in the above
+section to test for namespaced elements regardless of the prefix chosen (using
+local-name() in combination with namespace-uri() instead of name()), a more
+challenging situation occurs, however, if one wishes to grab an element with a
+particular namespaced attribute in a predicate (given the absence of
+implementation-independent variables in XPath 1.0).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:11.8pt;margin-bottom:
+10.9pt;margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;
+line-height:105%'>For example, one might try (incorrectly) to grab an element
+with a namespaced attribute as follows: <span style='font-family:"Courier New"'>var
+xpathlink = ’someElements/div[3]/div[4]/p[3]/code/span, line 1, column 104:
+&quot;)&quot; expected’;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>This could inadvertently grab some elements if one
+of its attributes existed that had a local name of &quot;href&quot;, but it was
+a different attribute which had the targeted (XLink) namespace (instead of
+@href).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:1.95pt;margin-bottom:
+10.65pt;margin-left:-.25pt'>In order to accurately grab elements with the XLink
+@href attribute (without also being confined to predefined prefixes in a
+namespace resolver), one could obtain them as follows:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:22.35pt;
+margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:3.5pt;
+line-height:105%;font-family:"Courier New"'>var xpathEls =
+’someElements[@*[local-name() = &quot;href&quot; and namespace-uri() =
+&quot;http://www.w3.org/1999/xlink&quot;]]’; // Grabs elements with any single
+attribute that has both the local name ’href’ and the XLink namespace var
+thislevel = xml.evaluate(xpathEls, xml, null, XPathResult.ANY_TYPE, null); var
+thisitemEl = thislevel.iterateNext();</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:13.0pt;
+line-height:107%'>XPathResult Defined Constants</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>Result Type Defined Constant                              Value      Description</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>A result set containing whatever type</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>naturally results from evaluation of the</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>expression. Note that if the result is a</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>ANY_TYPE                                                      0</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>node-set then</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>UNORDERED_NODE_ITERATOR_TYPE</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>is always the resulting type.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>A result containing a single number. This is</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>NUMBER_TYPE                                               1            useful
+for example, in an XPath expression</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>using the </span><span style='font-size:10.5pt;line-height:
+107%;font-family:"Courier New"'>count()</span><span style='font-size:10.5pt;
+line-height:107%'> function.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>STRING_TYPE                                                 2            A
+result containing a single string.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>A result containing a single boolean value.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>BOOLEAN_TYPE                                             3            This
+is useful for example, in an XPath</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>expression using the </span><span style='font-size:10.5pt;
+line-height:107%;font-family:"Courier New"'>not()</span><span style='font-size:
+10.5pt;line-height:107%'> function.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>A result node-set containing all the nodes</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>matching the expression. The nodes may</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>UNORDERED_NODE_ITERATOR_TYPE          4</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>not necessarily be in the same order that</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>they appear in the document.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>A result node-set containing all the nodes</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>matching the expression. The nodes in the</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>ORDERED_NODE_ITERATOR_TYPE               5</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>result set are in the same order that they</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>appear in the document.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>A result node-set containing snapshots of all</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>the nodes matching the expression. The</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>UNORDERED_NODE_SNAPSHOT_TYPE         6</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>nodes may not necessarily be in the same</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>order that they appear in the document.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>A result node-set containing snapshots of all</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>the nodes matching the expression. The</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>ORDERED_NODE_SNAPSHOT_TYPE              7</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>nodes in the result set are in the same order</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>that they appear in the document.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>A result node-set containing any single node</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>that matches the expression. The node is not</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>ANY_UNORDERED_NODE_TYPE                   8</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>necessarily the first node in the document</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>that matches the expression.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>A result node-set containing the first node</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>FIRST_ORDERED_NODE_TYPE                      9            in
+the document that matches the </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:10.5pt;
+line-height:107%'>expression.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:4.4pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:17.0pt;
+line-height:107%'>See also</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:20.5pt;
+margin-left:0in;text-indent:0in'><span style='font-family:"Calibri",sans-serif'><img
+border=0 width=7 height=7 id="Group 7396"
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image002.gif"></span>     <a
+href="http://developer.mozilla.org/en/Using_XPath"><span style='color:black;
+text-decoration:none'>Using XPath</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.95pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:17.0pt;
+line-height:107%'>Original Document Information </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:147.85pt;margin-bottom:
+.35pt;margin-left:8.75pt'><img width=7 height=64
+src="Introduction%20to%20using%20XPath%20in%20JavaScript_files/image007.gif"
+align=left hspace=12>Based Upon Original Document<a
+href="http://www-xray.ast.cam.ac.uk/~jgraham/mozilla/xpath-tutorial.html"><span
+style='color:black;text-decoration:none'> Mozilla XPath Tutorial </span></a>Original
+Source Author: James Graham.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:244.4pt;margin-bottom:
+24.15pt;margin-left:8.75pt'>Other Contributors: James Thompson. Last Updated
+Date: 2006-3-25.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.2pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:19.0pt;
+line-height:107%'>Attached Files</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.4pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:19.0pt;
+line-height:107%'>Attached Images</span></b></p>
+
+</div>
+
+</body>
+
+</html>
