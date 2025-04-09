@@ -1,0 +1,1091 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Introduction to JSON</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:OpenSymbol;
+	panose-1:5 1 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Liberation Sans";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.75pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:110%;
+	page-break-after:avoid;
+	font-size:33.0pt;
+	font-family:"Arial",sans-serif;
+	color:#0E64A9;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Arial",sans-serif;
+	color:#0E64A9;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:10.0in 7.5in;
+	margin:46.55pt 14.25pt 22.85pt 26.2pt;}
+div.WordSection1
+	{page:WordSection1;}
+@page WordSection2
+	{size:10.0in 7.5in;
+	margin:90.5pt 29.65pt 26.55pt 26.2pt;}
+div.WordSection2
+	{page:WordSection2;}
+@page WordSection3
+	{size:10.0in 7.5in;
+	margin:46.55pt 31.65pt 68.25pt 26.2pt;}
+div.WordSection3
+	{page:WordSection3;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:705.75pt;margin-bottom:
+0in;margin-left:-26.2pt'><img width=962 height=720
+src="Introduction%20to%20JSON_files/image001.gif"><br clear=ALL>
+<br clear=all style='page-break-before:always'>
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:20.05pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:110%'><b><span
+style='font-size:33.0pt;line-height:110%;font-family:"Arial",sans-serif;
+color:#0E64A9'>What is JSON?</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:11.35pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>JSON: </span><b><i><span
+style='font-size:36.0pt;line-height:106%;font-family:"Arial",sans-serif'>J</span></i></b><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>ava</span><b><i><span
+style='font-size:36.0pt;line-height:106%;font-family:"Arial",sans-serif'>S</span></i></b><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>cript </span><b><i><span
+style='font-size:36.0pt;line-height:106%;font-family:"Arial",sans-serif'>O</span></i></b><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>bject </span><b><i><span
+style='font-size:36.0pt;line-height:106%;font-family:"Arial",sans-serif'>N</span></i></b><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>otation.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:9.7pt;margin-bottom:18.9pt;
+margin-left:22.95pt;text-indent:-23.7pt;line-height:106%'><span
+style='font-size:28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>JSON
+is a simple, text-based way to store and transmit structured data. By using a
+simple syntax, the user can easily store anything from a single number through
+to strings, arrays, and objects using nothing but a string of plain text. You
+can also nest arrays and objects, allowing you to create complex data
+structures.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.75pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:110%'><b><span
+style='font-size:33.0pt;line-height:110%;font-family:"Arial",sans-serif;
+color:#0E64A9'>What is JSON?</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>JSON
+is a syntax for storing and exchanging data.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>JSON
+is text (no binary data).</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:166%'><span style='font-size:
+28.0pt;line-height:166%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:166%;font-family:"Arial",sans-serif'>JSON
+is a lightweight data-interchange format </span><span style='font-size:28.0pt;
+line-height:166%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:166%;font-family:"Arial",sans-serif'>JSON
+is &quot;self-describing&quot; and easy to understand </span><span
+style='font-size:28.0pt;line-height:166%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:166%;font-family:"Arial",sans-serif'>JSON
+is language independent.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.75pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:110%'><b><span
+style='font-size:33.0pt;line-height:110%;font-family:"Arial",sans-serif;
+color:#0E64A9'>Why use JSON?</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:5.15pt;margin-bottom:
+17.7pt;margin-left:22.95pt;text-indent:-23.7pt;line-height:106%'><span
+style='font-size:28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Since
+the JSON format is text only, it can easily be sent to and from a server, and
+used as a data format by any programming language.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:0in;
+margin-left:22.95pt;text-indent:-23.7pt;line-height:106%'><span
+style='font-size:28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>For
+IBM MQ, setting the message's Format attribute to 'MQSTR' (String) then when
+the receiving application performs an 'MQGET with Convert', MQ will convert the
+text from one CCSID to another </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:24.2pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>CCSID. i.e. ASCII to
+EBCDIC</span></p>
+
+<h1 style='margin-left:-.25pt'>JSON is NOT</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Overly
+Complex</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>A
+'document' format</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>A
+markup language</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>A
+programming language</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.75pt;
+margin-left:218.7pt;text-indent:-.5pt;line-height:110%'><b><span
+style='font-size:33.0pt;line-height:110%;font-family:"Arial",sans-serif;
+color:#0E64A9'>JSON Syntax</span></b><br clear=all style='page-break-before:
+always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>JSON Syntax Rules</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Data
+is in name/value pairs</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Data
+is separated by commas</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Curly
+braces hold objects i.e. { }  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Square
+brackets hold arrays i.e. [ ]</span></p>
+
+<h1 style='margin-left:-.25pt'>JSON Object Syntax</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Unordered
+sets of name/value pairs</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Starts
+with </span><b><span style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif;
+color:#009900'>{</span></b><span style='font-size:28.0pt;line-height:106%;
+font-family:"Arial",sans-serif'>  (left brace)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Ends
+with </span><b><span style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif;
+color:#009900'>}</span></b><span style='font-size:28.0pt;line-height:106%;
+font-family:"Arial",sans-serif'>  (right brace)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Each
+name is followed by </span><b><span style='font-size:28.0pt;line-height:106%;
+font-family:"Arial",sans-serif;color:#009900'>:</span></b><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>
+(colon) and then its value</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Name/value
+pairs are separated by </span><b><span style='font-size:28.0pt;line-height:
+106%;font-family:"Arial",sans-serif;color:#009900'>,</span></b><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'> 
+(comma)</span></p>
+
+<h1 style='margin-left:-.25pt'>JSON Data - A Name and a Value</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>JSON
+data is written as name/value pairs.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:17.25pt;
+margin-left:22.95pt;text-indent:-23.7pt;line-height:106%'><span
+style='font-size:28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>A
+name/value pair consists of a field name (in double quotes), followed by a
+colon, followed by a value:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:17.4pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>{ &quot;name&quot; :
+&quot;John&quot; }</span></p>
+
+<h1 style='margin-left:-.25pt'>JSON Arrays</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>An
+ordered collection of values</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Starts
+with </span><b><span style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif;
+color:#009900'>[</span></b><span style='font-size:28.0pt;line-height:106%;
+font-family:"Arial",sans-serif'>  (left bracket)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Ends
+with </span><b><span style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif;
+color:#009900'>]</span></b><span style='font-size:28.0pt;line-height:106%;
+font-family:"Arial",sans-serif'>  (right bracket)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Name/value
+pairs are separated by </span><b><span style='font-size:28.0pt;line-height:
+106%;font-family:"Arial",sans-serif;color:#009900'>,</span></b><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'> 
+(comma)</span></p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:.8in;margin-left:-.25pt'>JSON
+Array Example</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:16.0pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>{ </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:16.0pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>   &quot;name&quot; :
+&quot;John&quot;,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:16.0pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>   &quot;cars&quot; :
+[  &quot;Ford&quot;, &quot;BMW&quot;, &quot;Fiat&quot; ]</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'> }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.75pt;
+margin-left:175.0pt;text-indent:-.5pt;line-height:110%'><b><span
+style='font-size:33.0pt;line-height:110%;font-family:"Arial",sans-serif;
+color:#0E64A9'>JSON Data Types</span></b><br clear=all style='page-break-before:
+always'>
+</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:6.4pt;margin-left:
+-.25pt'>JSON Values</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:.5pt;text-indent:-.5pt'><span style='font-size:25.5pt;line-height:
+107%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:25.5pt;line-height:107%;font-family:"Arial",sans-serif'>In
+JSON, values must be one of the following data types:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:46.55pt;text-indent:-18.3pt'><sup><span style='font-size:17.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:25.5pt;line-height:107%;font-family:
+"Arial",sans-serif'>a string</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:46.55pt;text-indent:-18.3pt'><sup><span style='font-size:17.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:25.5pt;line-height:107%;font-family:
+"Arial",sans-serif'>a number</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:46.55pt;text-indent:-18.3pt'><sup><span style='font-size:17.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:25.5pt;line-height:107%;font-family:
+"Arial",sans-serif'>an object (JSON object)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:46.55pt;text-indent:-18.3pt'><sup><span style='font-size:17.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:25.5pt;line-height:107%;font-family:
+"Arial",sans-serif'>an array</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:46.55pt;text-indent:-18.3pt'><sup><span style='font-size:17.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:25.5pt;line-height:107%;font-family:
+"Arial",sans-serif'>a boolean</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:22.4pt;
+margin-left:46.55pt;text-indent:-18.3pt'><sup><span style='font-size:17.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:25.5pt;line-height:107%;font-family:
+"Arial",sans-serif'>null</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:.5pt;text-indent:-.5pt'><span style='font-size:25.5pt;line-height:
+107%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:25.5pt;line-height:107%;font-family:"Arial",sans-serif'>JSON
+values <b><i>cannot</i></b> be one of the following data types:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:46.55pt;text-indent:-18.3pt'><sup><span style='font-size:17.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:25.5pt;line-height:107%;font-family:
+"Arial",sans-serif'>a function</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:46.55pt;text-indent:-18.3pt'><sup><span style='font-size:17.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:25.5pt;line-height:107%;font-family:
+"Arial",sans-serif'>a date</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:46.55pt;text-indent:-18.3pt'><sup><span style='font-size:17.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:25.5pt;line-height:107%;font-family:
+"Arial",sans-serif'>undefined</span></p>
+
+<h1 style='margin-left:-.25pt'>JSON Strings</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Strings
+in JSON must be written in double quotes.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:17.45pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>{ &quot;name&quot; :
+&quot;John&quot; }</span><br clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>JSON Numbers</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:17.2pt;
+margin-left:22.95pt;text-indent:-23.7pt;line-height:106%'><span
+style='font-size:28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Numbers
+in JSON must be an integer or a floating point.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:17.45pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:.35pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>{ &quot;age&quot; : 30
+}</span><br clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>JSON Objects</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Values
+in JSON can be objects.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:13.45pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.9pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:24.0pt;line-height:
+107%;font-family:"Arial",sans-serif'>{</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.9pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:24.0pt;line-height:
+107%;font-family:"Arial",sans-serif'>&quot;employee&quot; : {  &quot;name&quot;
+: &quot;John&quot;, &quot;age&quot; : 30, &quot;city&quot; : &quot;New
+York&quot; }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.9pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:24.0pt;line-height:
+107%;font-family:"Arial",sans-serif'>}</span></p>
+
+<h1 style='margin-left:-.25pt'>JSON Arrays</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Values
+in JSON can be arrays.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:17.45pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:16.0pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>{</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:16.0pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>&quot;employees&quot; :
+[  &quot;John&quot;, &quot;Anna&quot;, &quot;Peter&quot; ]</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>}</span></p>
+
+<h1 style='margin-left:-.25pt'>JSON Booleans</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Values
+in JSON can be true or false.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:17.45pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>{ &quot;sale&quot; :
+true }</span><br clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'>JSON null</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Values
+in JSON can be null.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:17.45pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>{
+&quot;middlename&quot; : null }</span><br clear=all style='page-break-before:
+always'>
+</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:-.25pt'>Nested
+JSON Objects</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:18.5pt;line-height:
+107%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:18.5pt;line-height:107%;font-family:"Arial",sans-serif'>Values
+in a JSON object can be another JSON object.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.25pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:18.5pt;line-height:
+107%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:18.5pt;line-height:107%;font-family:"Arial",sans-serif'>Example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.25pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:18.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>myObj = {</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.25pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:18.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>                 
+&quot;name&quot;:&quot;John&quot;,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.25pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:18.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>                  &quot;age&quot;:30,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.25pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:18.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>                  &quot;cars&quot; : {</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.25pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:18.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>                              
+&quot;car1&quot; : &quot;Ford&quot;,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.25pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:18.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>                              
+&quot;car2&quot; : &quot;BMW&quot;,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.25pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:18.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>                              
+&quot;car3&quot; : &quot;Fiat&quot;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.25pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:18.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>                 }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.25pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:18.5pt;line-height:
+107%;font-family:"Arial",sans-serif'> }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.25pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:18.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>x = myObj.cars[&quot;cars2&quot;];</span></p>
+
+<h1 style='margin-left:-.25pt'>Arrays in JSON Objects</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Arrays
+can be values of an object property:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:15.55pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.7pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:108%'><span style='font-size:
+26.0pt;line-height:108%;font-family:"Arial",sans-serif'>myObj = {</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.7pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:108%'><span style='font-size:
+26.0pt;line-height:108%;font-family:"Arial",sans-serif'>              
+&quot;name&quot; : &quot;John&quot;,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.7pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:108%'><span style='font-size:
+26.0pt;line-height:108%;font-family:"Arial",sans-serif'>              
+&quot;age&quot; : 30,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.7pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:108%'><span style='font-size:
+26.0pt;line-height:108%;font-family:"Arial",sans-serif'>             
+&quot;cars&quot; : [  &quot;Ford&quot;, &quot;BMW&quot;, &quot;Fiat&quot; ]</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.7pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:108%'><span style='font-size:
+26.0pt;line-height:108%;font-family:"Arial",sans-serif'>}</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.7pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:108%'><span style='font-size:
+26.0pt;line-height:108%;font-family:"Arial",sans-serif'>x = myObj.cars[0];</span></p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:-.25pt'>Nested
+Arrays in JSON Objects</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.4pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:14.5pt;line-height:
+107%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:14.5pt;line-height:107%;font-family:"Arial",sans-serif'>Values
+in an array can also be another array, or even another JSON object:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:5.75pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:14.5pt;line-height:
+107%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:14.5pt;line-height:107%;font-family:"Arial",sans-serif'>Example</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.0pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:12.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>myObj = {</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.0pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:12.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>               &quot;name&quot; :
+&quot;John&quot;,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.0pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:12.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>               &quot;age&quot; : 30,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.0pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:12.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>               &quot;cars&quot; : [</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.0pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:12.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>                           {
+&quot;name&quot; : &quot;Ford&quot;,  &quot;models&quot;:[ &quot;Fiesta&quot;,
+&quot;Focus&quot;, &quot;Mustang&quot; ] },</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.0pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:12.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>                           {
+&quot;name&quot; : &quot;BMW&quot;, &quot;models&quot; : [ &quot;320&quot;,
+&quot;X3&quot;, &quot;X5&quot; ] },</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.0pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:12.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>                           {
+&quot;name&quot; : &quot;Fiat&quot;, &quot;models&quot; : [ &quot;500&quot;,
+&quot;Panda&quot; ] }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:626.65pt;margin-bottom:
+2.75pt;margin-left:-.25pt;text-indent:-.5pt;line-height:155%'><span
+style='font-size:12.5pt;line-height:155%;font-family:"Arial",sans-serif'>            
+]  }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.65pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:14.5pt;line-height:
+107%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:14.5pt;line-height:107%;font-family:"Arial",sans-serif'>To
+access arrays inside arrays, use a for-in loop for each array:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:377.45pt;margin-bottom:
+.15pt;margin-left:-.25pt;text-indent:-.5pt;line-height:150%'><span
+style='font-size:14.5pt;line-height:150%;font-family:"Arial",sans-serif'>for (i
+in myObj.cars) {     x += &quot;&lt;h1&gt;&quot; + myObj.cars[i].name  +
+&quot;&lt;/h1&gt;&quot;;     for (j in myObj.cars[i].models) {          x +=
+myObj.cars[i].models[j];</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.0pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:14.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>    }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:-.25pt;text-indent:-.5pt'><span style='font-size:14.5pt;line-height:
+107%;font-family:"Arial",sans-serif'>}</span></p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:-.25pt'>JSON
+Data Example</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:25.3pt'><img width=737 height=497 id="Picture 490"
+src="Introduction%20to%20JSON_files/image002.jpg"></p>
+
+</div>
+
+<span style='font-size:11.0pt;line-height:107%;font-family:"Calibri",sans-serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:17.15pt;
+margin-left:22.95pt;text-indent:-23.7pt;line-height:108%'><span
+style='font-size:26.0pt;line-height:108%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:26.0pt;line-height:108%;font-family:"Arial",sans-serif'>Both
+JSON and XML can be used as a data format when sending/receiving data between
+servers.</span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:10.4pt;
+margin-bottom:0in;margin-left:0in;text-align:center;line-height:109%'><span
+style='font-size:26.0pt;line-height:109%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:26.0pt;line-height:109%;font-family:"Arial",sans-serif'>The
+following JSON and XML examples both defines an employees object, with an array
+of 3 employees:</span><br clear=all style='page-break-before:always'>
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:690.35pt;margin-bottom:
+0in;margin-left:-26.2pt'>&nbsp;</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=867
+ style='width:650.2pt;margin-left:24.2pt;border-collapse:collapse'>
+ <tr style='height:151.45pt'>
+  <td width=867 valign=top style='width:650.2pt;border:none;border-bottom:solid #333333 1.0pt;
+  background:#EEEEEE;padding:3.65pt 5.75pt 0in 7.1pt;height:151.45pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Times New Roman",serif'>{&quot;employees&quot;:
+  [</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Times New Roman",serif'>                         
+  { &quot;firstName&quot;:&quot;John&quot;,
+  &quot;lastName&quot;:&quot;Doe&quot; },</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Times New Roman",serif'>                         
+  { &quot;firstName&quot;:&quot;Anna&quot;,
+  &quot;lastName&quot;:&quot;Smith&quot; },</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Times New Roman",serif'>                         
+  { &quot;firstName&quot;:&quot;Peter&quot;,
+  &quot;lastName&quot;:&quot;Jones&quot; }</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Times New Roman",serif'>                       
+  ]</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Times New Roman",serif'>}</span></p>
+  </td>
+ </tr>
+ <tr style='height:271.5pt'>
+  <td width=867 valign=top style='width:650.2pt;border:none;border-bottom:solid #333333 1.0pt;
+  background:#EEEEEE;padding:3.65pt 5.75pt 0in 7.1pt;height:271.5pt'>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Liberation Sans",sans-serif'>&lt;employees&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Liberation Sans",sans-serif'>  &lt;employee&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Liberation Sans",sans-serif'>    &lt;firstName&gt;John&lt;/firstName&gt;
+  &lt;lastName&gt;Doe&lt;/lastName&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Liberation Sans",sans-serif'> 
+  &lt;/employee&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Liberation Sans",sans-serif'>  &lt;employee&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Liberation Sans",sans-serif'>   
+  &lt;firstName&gt;Anna&lt;/firstName&gt;
+  &lt;lastName&gt;Smith&lt;/lastName&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Liberation Sans",sans-serif'> 
+  &lt;/employee&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Liberation Sans",sans-serif'>  &lt;employee&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Liberation Sans",sans-serif'>    &lt;firstName&gt;Peter&lt;/firstName&gt;
+  &lt;lastName&gt;Jones&lt;/lastName&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Liberation Sans",sans-serif'> 
+  &lt;/employee&gt;</span></p>
+  <p class=MsoNormal style='margin-bottom:0in'><span style='font-size:20.0pt;
+  line-height:107%;font-family:"Liberation Sans",sans-serif'>&lt;/employees&gt;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:.35pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>JSON
+is like XML because:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:4.15pt;
+margin-left:51.4pt;text-indent:-19.8pt;line-height:106%'><sup><span
+style='font-size:19.5pt;line-height:106%;font-family:"Arial",sans-serif;
+color:#0E64A9'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:28.0pt;line-height:106%;font-family:
+"Arial",sans-serif'>Both JSON and XML are &quot;self describing&quot; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:.35pt;
+margin-left:51.9pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:"Arial",sans-serif'>(human readable)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:3.65pt;
+margin-left:51.4pt;text-indent:-19.8pt;line-height:106%'><sup><span
+style='font-size:19.5pt;line-height:106%;font-family:"Arial",sans-serif;
+color:#0E64A9'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:28.0pt;line-height:106%;font-family:
+"Arial",sans-serif'>Both JSON and XML are hierarchical (values within values)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:3.7pt;
+margin-left:51.4pt;text-indent:-19.8pt;line-height:106%'><sup><span
+style='font-size:19.5pt;line-height:106%;font-family:"Arial",sans-serif;
+color:#0E64A9'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:28.0pt;line-height:106%;font-family:
+"Arial",sans-serif'>Both JSON and XML can be parsed and used by lots of
+programming languages</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:.35pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>JSON
+is unlike XML because:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:.35pt;
+margin-left:51.4pt;text-indent:-19.8pt;line-height:106%'><sup><span
+style='font-size:19.5pt;line-height:106%;font-family:"Arial",sans-serif;
+color:#0E64A9'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:28.0pt;line-height:106%;font-family:
+"Arial",sans-serif'>JSON doesn't use end tag</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:.35pt;
+margin-left:51.4pt;text-indent:-19.8pt;line-height:106%'><sup><span
+style='font-size:19.5pt;line-height:106%;font-family:"Arial",sans-serif;
+color:#0E64A9'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:28.0pt;line-height:106%;font-family:
+"Arial",sans-serif'>JSON is shorter</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:0in;
+margin-left:51.4pt;text-indent:-19.8pt'><sup><span style='font-size:19.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:28.0pt;line-height:107%;font-family:
+"Arial",sans-serif'>JSON is quicker to read and write</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:.35pt;
+margin-left:51.4pt;text-indent:-19.8pt;line-height:106%'><sup><span
+style='font-size:19.5pt;line-height:106%;font-family:"Arial",sans-serif;
+color:#0E64A9'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:28.0pt;line-height:106%;font-family:
+"Arial",sans-serif'>JSON can use arrays</span><br clear=all style='page-break-before:
+always'>
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:0in;
+margin-left:22.95pt;text-indent:-23.7pt;line-height:106%'><span
+style='font-size:28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>Since
+XML is widely used as data interchange format, we will try to draw a comparison
+between them. The purpose of the comparison is not to determine which is better
+but rather we will try to understand which one is suitable for storing specific
+kind of data.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:17.65pt;
+margin-left:22.95pt;text-indent:-23.7pt;line-height:106%'><span
+style='font-size:28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>XML is
+more expressive than JSON. XML sometimes also suffers from using tags
+repeatedly, where as JSON is much more concise.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>XML is
+more complex than JSON.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:106%'><span style='font-size:
+28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>JSON
+lacks namespaces</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.7pt;margin-bottom:18.9pt;
+margin-left:22.95pt;text-indent:-23.7pt;line-height:106%'><span
+style='font-size:28.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:28.0pt;line-height:106%;font-family:"Arial",sans-serif'>There
+are several specifications to define schema(metadata) for XML, for example DTD
+and XSD. JSON schema is available but is not as widely used as XML schemas.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.05pt;
+margin-left:18.45pt;text-indent:-19.2pt;line-height:106%'><span
+style='font-size:22.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:22.0pt;line-height:106%;font-family:"Arial",sans-serif'>XML
+and JSON can be used with most of the programming languages. The problem comes
+when matching XML tags used by one system may be different in another system,
+hence, XML data will require transformation.  i.e. &lt;FirstName&gt; vs
+&lt;first_name&gt;.  In the case of JSON, since objects and arrays are basic
+data structures used, it is easy to work with them in programs.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.05pt;
+margin-left:18.45pt;text-indent:-19.2pt;line-height:106%'><span
+style='font-size:22.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:22.0pt;line-height:106%;font-family:"Arial",sans-serif'>For
+selecting specific parts of an XML document, there is standard specification
+called XPath. This is widely used. In JSON, we have JSONPath to do the same,
+but it is not widely used.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.05pt;
+margin-left:18.45pt;text-indent:-19.2pt;line-height:106%'><span
+style='font-size:22.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:22.0pt;line-height:106%;font-family:"Arial",sans-serif'>XML
+has Xquery specification for querying XML data. JSON does have JAQL, JSONiq
+etc, but they are not in use widely.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.05pt;
+margin-left:18.45pt;text-indent:-19.2pt;line-height:106%'><span
+style='font-size:22.0pt;line-height:106%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:22.0pt;line-height:106%;font-family:"Arial",sans-serif'>XML
+has XSLT specification which may be used to apply a style to an XML document.
+JSON does not have any such thing.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:.5pt;text-indent:-.5pt'><span style='font-size:27.0pt;line-height:
+107%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:27.0pt;line-height:107%;font-family:"Arial",sans-serif'>Favor
+XML over JSON when any of these is true:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:48.65pt;text-indent:-19.1pt'><sup><span style='font-size:18.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:27.0pt;line-height:107%;font-family:
+"Arial",sans-serif'>You need message validation</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:48.65pt;text-indent:-19.1pt'><sup><span style='font-size:18.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:27.0pt;line-height:107%;font-family:
+"Arial",sans-serif'>You're using XSLT</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:48.65pt;text-indent:-19.1pt'><sup><span style='font-size:18.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:27.0pt;line-height:107%;font-family:
+"Arial",sans-serif'>Your messages include a lot of marked-up text</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:16.15pt;
+margin-left:48.65pt;text-indent:-19.1pt'><sup><span style='font-size:18.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:27.0pt;line-height:107%;font-family:
+"Arial",sans-serif'>You need to inter-operate with environments that don't
+support JSON</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:.5pt;text-indent:-.5pt'><span style='font-size:27.0pt;line-height:
+107%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:27.0pt;line-height:107%;font-family:"Arial",sans-serif'>Favor
+JSON over XML when all of these are true:</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:48.65pt;text-indent:-19.1pt'><sup><span style='font-size:18.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:27.0pt;line-height:107%;font-family:
+"Arial",sans-serif'>Messages don't need to be validated</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:48.65pt;text-indent:-19.1pt'><sup><span style='font-size:18.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:27.0pt;line-height:107%;font-family:
+"Arial",sans-serif'>You're not transforming messages</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:48.65pt;text-indent:-19.1pt'><sup><span style='font-size:18.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:27.0pt;line-height:107%;font-family:
+"Arial",sans-serif'>Your messages are mostly data, not marked-up text</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:48.65pt;text-indent:-19.1pt'><sup><span style='font-size:18.5pt;
+line-height:107%;font-family:"Arial",sans-serif;color:#0E64A9'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></sup><span style='font-size:27.0pt;line-height:107%;font-family:
+"Arial",sans-serif'>The messaging endpoints have good JSON tools</span></p>
+
+</div>
+
+<span style='font-size:11.0pt;line-height:107%;font-family:"Calibri",sans-serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection3>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:7.35pt;margin-left:
+-.25pt'>Java and JSON</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.1pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:163%'><span style='font-size:
+26.5pt;line-height:163%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:26.5pt;line-height:163%;font-family:"Arial",sans-serif'>JEE
+(Java Enterprise Edition) includes a JSON parser. </span><span
+style='font-size:24.5pt;line-height:163%;font-family:"Arial",sans-serif'>https://docs.oracle.com/javaee/7/tutorial/jsonp001.htm</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:16.7pt;
+margin-left:22.25pt;text-indent:-23.0pt;line-height:107%'><span
+style='font-size:26.5pt;line-height:107%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:26.5pt;line-height:107%;font-family:"Arial",sans-serif'>JSE
+(Java Standard Edition) does <b>not</b> include a JSON parser.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:13.25pt;
+margin-left:22.25pt;text-indent:-23.0pt;line-height:107%'><span
+style='font-size:26.5pt;line-height:107%;font-family:OpenSymbol;color:#0E64A9'>&#58746;</span><span
+style='font-size:26.5pt;line-height:107%;font-family:"Arial",sans-serif'>I
+suggest you use the Google-Gson parser for JSE projects.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.1pt;
+margin-left:-.25pt;text-indent:-.5pt;line-height:163%'><a
+href="https://github.com/google/gson"><span style='font-size:24.5pt;line-height:
+163%;font-family:"Arial",sans-serif;color:black;text-decoration:none'>https://github.com/google/gson
+</span></a><a href="https://en.wikipedia.org/wiki/Gson"><span style='font-size:
+24.5pt;line-height:163%;font-family:"Arial",sans-serif;color:black;text-decoration:
+none'>https://en.wikipedia.org/wiki/Gson </span></a><span style='font-size:
+24.5pt;line-height:163%;font-family:"Arial",sans-serif'>https://github.com/google/gson/blob/master/UserGuide.md</span></p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:-.25pt'>Questions
+&amp; Answers</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:42.4pt'><img border=0 width=777 height=505 id="Picture 782"
+src="Introduction%20to%20JSON_files/image003.jpg"></p>
+
+</div>
+
+</body>
+
+</html>

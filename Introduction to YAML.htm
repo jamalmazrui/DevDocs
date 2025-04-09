@@ -1,0 +1,2300 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Introduction to YAML</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Segoe UI Symbol";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:.4pt;
+	margin-bottom:19.4pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:108%;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:9.7pt;
+	margin-bottom:4.85pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:20.5pt;
+	font-family:"Arial",sans-serif;
+	color:black;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.35pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:17.5pt;
+	font-family:"Arial",sans-serif;
+	color:black;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:11.45pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:14.5pt;
+	font-family:"Arial",sans-serif;
+	color:black;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Arial",sans-serif;
+	color:black;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Arial",sans-serif;
+	color:black;
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Arial",sans-serif;
+	color:black;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.0pt 842.0pt;
+	margin:56.0pt 46.7pt 76.0pt 56.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:9.7pt;
+margin-bottom:2.85pt;margin-left:0in;text-align:center;text-indent:0in;
+line-height:107%'><b><span style='font-size:20.5pt;line-height:107%;font-family:
+"Arial",sans-serif'>Introduction to YAML</span></b></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:170.95pt;
+margin-bottom:45.2pt;margin-left:161.65pt;text-align:center;text-indent:0in;
+line-height:103%'><i><span style='font-size:10.0pt;line-height:103%'>Michel
+Casabianca </span></i><i><span style='font-size:10.0pt;line-height:103%;
+color:#0000A1'>casa@sweetohm.net</span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>This article is an introduction to YAML, a language
+to write structured data, as XML would for example, but in a more natural and
+less verbose way. We will see a description of the YAML syntax as well as
+examples in Java, Python and Go.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:13.8pt;
+margin-left:.5pt;line-height:107%'>Une <a
+href="https://sweetohm.net/article/introduction-yaml.html"><span
+style='color:#0000A1;text-decoration:none'>version en français est disponible
+ici</span></a><a href="https://sweetohm.net/article/introduction-yaml.html"><span
+style='color:black;text-decoration:none'>.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+22.55pt;margin-left:-.25pt'>A ZIP archive with source code for examples can be
+found at: <a href="http://www.sweetohm.net/arc/introduction-yaml.zip"><span
+style='color:#0000A1;text-decoration:none'>http://www.sweetohm.net/arc/introduction-yaml.zip</span></a>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:4.85pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:20.5pt;
+line-height:107%;font-family:"Arial",sans-serif'>What is YAML?</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>The name YAML means<b> YAML Ain't Markup Language</b>.
+If this immediately distances XML, it does not tell us what YAML is. YAML is, <a
+href="http://yaml.org/spec/1.2/spec.html"><span style='color:#0000A1;
+text-decoration:none'>according to its specification</span></a>, a data
+serialization language designed to be human-readable and working well with
+modern programming languages for everyday tasks.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Specifically, we could note the list of ingredients
+for a breakfast as follows:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>croissants</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>chocolate
+breads</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>ham</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>eggs</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>This is a valid YAML file that represents a list of
+strings. To be convinced, we can write the following Python script that parses
+the file, whose name is passed on the command line, and displays the result:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:99.6pt'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 5.75pt 0in 43.8pt;
+  height:99.6pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:301.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>#!/usr/bin/env
+  python # encoding: UTF-8</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:337.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>import
+  sys import yaml</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>print
+  yaml.load(open(sys.argv[1]))</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>This script will produce the following result:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>['croissants',
+'chocolate breads', 'ham', 'eggs']</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>Which means that the result of this parsing is a
+Python list containing the appropriate strings! The parser is therefore able to
+render<i> natural</i> data structures of the language used for parsing.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Now let's write a countdown:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>3</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>2</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>1</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>0</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>We obtain the following result:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>[3, 2, 1,
+0]</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>This is always a list, but the parser has
+recognized each element as an integer and not a simple string as in the
+previous example. The parser is therefore able to distinguish data types such
+as strings and integers, floating-point numbers, and dates. To do this, we use
+a natural syntax:<i> 3</i> is recognized as an integer while<i> ascending</i>
+is not because the integer cannot be converted to an integer, a floating point
+number, or any other type recognized by YAML. To force YAML to interpret<i> 3</i>
+as a string, you can surround it with quotation marks.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>YAML can also recognize associative arrays, so we
+could note a breakfast order as follows:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:328.5pt;margin-bottom:
+23.85pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>croissants:
+30 chocolate breads: 30 ham: 0 eggs: 0</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Which will be loaded in the following way:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>'chocolate
+breads': 30, 'croissants': 30, 'ham': 0, 'eggs': 0}</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>By combining the basic data types in
+YAML-recognized collections, almost any data structure can be represented. On
+the other hand, the textual representation of these data is very legible and
+almost natural.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>It is also possible to perform the reverse operation,
+namely to serialize data structures in memory as text. In the following
+example, we write on standard output a Python <span style='font-family:"Courier New"'>Dictionary</span>:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:109.9pt'>
+  <td width=644 valign=bottom style='width:483.0pt;background:#F0F0F0;
+  padding:0in 0in 6.2pt 43.8pt;height:109.9pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:307.2pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>#!/usr/bin/env
+  python # encoding: UTF-8</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>import yaml</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:319.2pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'>recipe = {     'name':
+  'sushi',</span></p>
+  <p class=MsoNormal align=right style='margin-top:0in;margin-right:-4.8pt;
+  margin-bottom:0in;margin-left:0in;text-align:right;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'>    'ingredients': ['rice', 'vinegar', 'sugar', 'salt',
+  'tuna', 'salmon'],</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>   
+'cooking time': 10,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.65pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>   
+'difficulty': 'difficult' }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>print
+yaml.dump(recipe)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Which will produce the following output:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:118.5pt;margin-bottom:
+32.6pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>difficulty:
+difficult ingredients: [rice, vinegar, sugar, salt, tuna, salmon] name: sushi
+cooking time: 10</span></p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:4.85pt;margin-left:
+-.25pt'>Basic syntax</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>After this brief introduction, here is a more
+exhaustive description of the YAML syntax.</p>
+
+<h2 style='margin-left:-.25pt'>Scalar</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.25pt;margin-left:-.25pt'>Scalars are the set of YAML types that are not
+collections (list or associative array). They can be represented by a list of
+Unicode characters. Here is a list of scalars recognized by YAML parsers:</p>
+
+<h3 style='margin-left:-.25pt'>String of characters</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Here is an example :</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>String</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>&quot;3&quot;-
+String on   a single line - &quot;Double quotation marks\t&quot;</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>'Single
+quotation marks\t'</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Which is parsed in the following way:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>[u'String',
+'3', u'String on a single line',</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>  'Double
+quotation marks\t', 'Simple quotation marks\\t']</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.75pt;margin-left:-.25pt'>The result of this parsing leads us to the
+following comments:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>Accented characters
+are handled, and more generally, Unicode is managed.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>Line breaks are not
+taken into account in strings, they are managed as in HTML or XML, namely they
+are replaced by spaces.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>Double quotation
+marks handle escape characters, such as \t for tabulation for instance.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>Single quotes do not
+handle escape characters that are transcribed literally.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>The list of escape
+characters managed by YAML includes the classical values, but also many others
+that can be found <a href="http://yaml.org/spec/current.html#id2517668"><span
+style='color:#0000A1;text-decoration:none'>in the YAML specification</span></a><a
+href="http://yaml.org/spec/current.html#id2517668"><span style='color:black;
+text-decoration:none'>.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>On the other hand, it is possible to write Unicode
+characters using the following notations:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-family:"Courier New"'>\xNN</span>: to write 8-bit Unicode
+characters, where <span style='font-family:"Courier New"'>NN</span> is a
+hexadecimal number.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-family:"Courier New"'>\uNNNN</span>: for 16-bit Unicode characters.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+14.1pt;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-family:"Courier New"'>\UNNNNNNNN</span>: for 32-bit Unicode
+characters.</p>
+
+<h3 style='margin-left:-.25pt'>Integers</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Here are some examples:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:292.5pt;margin-bottom:
+23.85pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>canonical:  
+12345 decimal:     +12_345 sexagesimal: 3:25:45 octal:       030071
+hexadecimal: 0x3039</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Which is parsed in the following way:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>{'octal':
+12345, 'hexadecimal': 12345, 'canonical': 12345,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'> 'decimal':
+12345, 'sexagesimal': 12345}</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.25pt;margin-left:-.25pt'>Thus most common notations of programming languages
+&#128;&#128;(such as octal or hexadecimal) are handled. Note that all these
+notations will be recognized as identical by a YAML parser and consequently
+will be equivalent like key of an associative array for example.</p>
+
+<h3 style='margin-left:-.25pt'>Floating point numbers</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Let's see the different notations for these numbers:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:268.5pt;margin-bottom:
+23.85pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>canonical:        
+1.23015e+3 exponential:       12.3015e+02 sexagesimal:       20:30.15
+fixed:             1_230.15 infinite negative: -.inf not a number:      .NaN</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Which is parsed in:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>{'not a
+number': nan, 'sexagesimal': 1230.1500000000001,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'> 'exponential':
+1230.1500000000001, 'fixed': 1230.1500000000001,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'> 'infinite
+negative': -inf, 'canonical': 1230.1500000000001}</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Classical notations are handled as well as infinites
+and values &#128;&#128;that are not numbers.</p>
+
+<h3 style='margin-left:-.25pt'>Dates</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>YAML also recognizes dates:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:202.5pt;margin-bottom:
+23.85pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>canonical:
+2001-12-15T02:59:43.1Z iso8601:   2001-12-14t21:59:43.10-05:00 space:    
+2001-12-14 21:59:43.10 -5 date:      2002-12-14</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>Which are parsed in the following way:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:63.6pt'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 5.75pt 0in 43.8pt;
+  height:63.6pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>{'date':
+  datetime.date(2002, 12, 14),</span></p>
+  <p class=MsoNormal align=center style='margin-top:0in;margin-right:49.45pt;
+  margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'> 'iso8601': datetime.datetime (2001, 12, 15, 2, 59, 43,
+  100000),</span></p>
+  <p class=MsoNormal align=center style='margin-top:0in;margin-right:37.45pt;
+  margin-bottom:0in;margin-left:0in;text-align:center;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'> 'canonical': datetime.datetime (2001, 12, 15, 2, 59, 43,
+  100000),</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> 'space':
+  datetime.datetime (2001, 12, 15, 2, 59, 43, 100000)}</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.25pt;margin-left:-.25pt'>The types resulting from the parsing depend on the
+language and the parser, but correspond to natural types for the considered
+times.</p>
+
+<h3 style='margin-left:-.25pt'>Miscellaneous</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>There are other scalars recognized by YAML parsers:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:364.5pt;margin-bottom:
+23.85pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>null: null
+null bis: ~ true: true true bis: yes true ter: on false: false false bis: no
+false ter: off</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Who will be parsed in:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:38.25pt;margin-bottom:
+.15pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>{'false
+bis': False, 'true ter': True, 'true bis': True,  'false ter': False, 'null':
+None, 'false': False,</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:38.25pt;margin-bottom:
+23.8pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'> 'null
+bis': None, 'true': True}</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Of course, the type of parsed values
+&#128;&#128;depends on the language and other special values &#128;&#128;can be
+recognized according to the languages &#128;&#128;and parsers. For example, the
+Ruby parser recognizes symbols (denoted <span style='font-family:"Courier New"'>:
+symbol</span> for instance) and parses them into Ruby symbols.</p>
+
+<h2 style='margin-left:-.25pt'>Collections</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>There are two types of collections recognized by
+YAML: lists and associative arrays.</p>
+
+<h3 style='margin-left:-.25pt'>Lists</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>These are ordered lists, and may contain several
+identical elements (as opposed to sets). The elements of a list are identified
+by a hyphen, as follows:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>butter 
+croissants - chocolate breads</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>ham</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>eggs</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>The elements of the list are distinguished thanks
+to the indentation: the first element is identified so that its second line is
+recognized as part of the first element of the list. This syntax can be
+compared to that of Python, except that in YAML,<b> tab characters are strictly
+forbidden for indentation</b>. This last rule is important and causes many
+parsing errors. It is important to set its editor to prohibit tabs for
+indenting YAML files.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>There is an alternative notation for lists, similar
+to that of Python or Ruby languages:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>[croissants,
+chocolate breads, ham, eggs]</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.25pt;margin-left:-.25pt'>This notation, called<i> in flow</i>, is more
+compact and sometimes allows to gain readability or compactness.</p>
+
+<h3 style='margin-left:-.25pt'>Associative Tables</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Called<i> Maps</i> or<i> Dictionaries</i> in some
+languages, they associate a value with a key:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:334.5pt;margin-bottom:
+23.85pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>croissants:
+2 chocolate breads: 1 ham: 0 eggs: 3</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'><i>Flow</i> notation is as follows:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>{croissants:
+2, chocolate breads: 1, ham: 0, eggs: 3}</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Which is parsed in the same way. This notation is
+identical to that of Python or Javascript and is similar to that used by Ruby.
+Note that Ruby 2 is also using this notation.</p>
+
+<h2 style='margin-left:-.25pt'>Comments</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>It is possible to include comments in a document in
+the same way as in most scripting languages:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'># comment</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Some text</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'># other
+comment</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Other text</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Note that these comments must not (and can not)
+contain useful parsing information since they are not generally accessible to
+the parser client code.</p>
+
+<h2 style='margin-left:-.25pt'>Multiple Documents</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>In the same file or stream, you can insert several
+YAML documents afterwards, starting them with a line consisting of three dashes
+(<span style='font-family:"Courier New"'>---</span>) and terminating them with
+a line of three dots (<span style='font-family:"Courier New"'>...</span>) as in
+the example below:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:358.5pt;margin-bottom:
+23.85pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>--first
+document ... --second document ...</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.95pt;margin-left:-.25pt'>Note that by default, YAML parsers wait for one
+document per file and may issue an error if they encounter more than one
+document. It is then necessary to use a particular function able to parse
+multiple documents (like <span style='font-family:"Courier New"'>yaml.load_all()</span>
+for PyYaml for instance).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+22.5pt;margin-left:-.25pt'>These documents can then be extracted sequentially
+from the stream.</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:4.85pt;margin-left:
+-.25pt'>Advanced syntax</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>In previous section, we saw the bare minimum to get
+by with YAML. We will now deal with more advanced notions that are not
+necessary in the first place.</p>
+
+<h2 style='margin-left:-.25pt'>References</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>YAML references are similar to pointers in
+programming languages. For instance:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Monday:   
+&amp;p 'potatoes'</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Tuesday:  
+*p</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Wednesday:
+*p</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Thursday: 
+*p</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Friday:   
+*p</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Saturday: 
+*p</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Sunday:   
+*p</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Which gives while parsed:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>{'Tuesday':
+'potatoes', 'Saturday': 'potatoes',</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'> 'Thursday':
+'potatoes', 'Monday': 'potatoes',</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'> 'Friday':
+'potatoes', 'Sunday': 'potatoes',</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.85pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'> 'Wednesday':
+'potatoes'}</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Note that an alias, indicated by an asterisk <span
+style='font-family:"Courier New"'>*</span>, must point to a valid anchor,
+indicated by an ampersand <span style='font-family:"Courier New"'>&amp;</span>,
+otherwise it results in a parsing error. So the following file will cause an
+error during parsing:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:29.1pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>*foo</span></p>
+
+<h2 style='margin-left:-.25pt'>tags</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Tags are data types indicators. By default, it is
+not necessary to indicate the type of data that is deduced from their form.
+However, in some cases, it may be necessary to force the data type, and YAML
+defines following default types:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:207.75pt;margin-bottom:
+24.2pt;margin-left:43.55pt;text-align:justify;text-justify:inter-ideograph;
+line-height:105%;background:#F0F0F0'><span style='font-size:10.0pt;line-height:
+105%;font-family:"Courier New"'>null:    !!null integer: !!int    3 float:  
+!!float  1.2 string:  !!str    string boolean: !!bool   true binary:  !!binary
+dGVzdA== map:     !!map    { key: value } seq:     !!seq    [ element1,
+element2 ] set:     !!set    { element1, element2 } omap:    !!omap   [ key:
+value ]</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>Matching tags begin with two exclamation points. When
+parsing, we get following types in Python:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:135.6pt'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 5.75pt 0in 43.8pt;
+  height:135.6pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>{'binary':
+  'test',</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> 'string':
+  'string',</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> 'seq':
+  ['element1', 'element2'],</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> 'map':
+  {'key': 'value'},</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> 'float':
+  1.2,</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:265.45pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'> 'boolean': True,  'omap':
+  [('key', 'value')],</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> None:
+  None</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> 'integer':
+  3,</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> 'set':
+  set(['element1', 'element2'])}</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.75pt;margin-left:-.25pt'>Note two additional types:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>The set: not ordered
+and cannot contain duplicates.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+11.6pt;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>The ordered
+associative array: it is an associative array whose entries are ordered.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>The usefulness of tags for these default types is
+limited. The real power of tags lies in the ability to define your own tags for
+your own data types.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>For instance, one could define his own type for people,
+with two fields: first name and last name. We must first declare the tag at the
+beginning of the document, then we can use it in the document, as in this
+example:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:1.55in'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 235.2pt 0in 43.8pt;
+  height:1.55in'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>%TAG
+  !people! tag:foo.org,2004:bar</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:66.0pt;margin-bottom:
+  0in;margin-left:0in;text-align:justify;text-justify:inter-ideograph;
+  text-indent:0in;line-height:107%'><span style='font-size:10.0pt;line-height:
+  107%;font-family:"Courier New"'>--- !people     first name: Omer     last
+  name:  Simpson - !people     first name: Bart     last name:  Simpson</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>We will see later how to use tags with Java and
+Python APIs to deserialize YAML structures into custom data types.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>It is also possible not to declare the tag and to
+explain it in the document, as follows:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:298.5pt;margin-bottom:
+29.5pt;margin-left:43.55pt;text-align:justify;text-justify:inter-ideograph;
+line-height:105%;background:#F0F0F0'><span style='font-size:10.0pt;line-height:
+105%;font-family:"Courier New"'>- !&lt;tag:foo.org,2004:bar&gt;     first name:
+Omer     last name:  Simpson - !&lt;tag:foo.org,2004:bar&gt;     first name:
+Bart     last name:  Simpson</span></p>
+
+<h2 style='margin-left:-.25pt'>Directives</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.15pt;margin-left:-.25pt'>The directives give instructions to parser. There
+are two of them:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:14.5pt;
+line-height:107%;font-family:"Arial",sans-serif'>TAG</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.15pt;margin-left:-.25pt'>As seen previously, declare a tag in the document.</p>
+
+<h3 style='margin-left:-.25pt'>YAML</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Indicates the YAML version of the document. Must be
+in the header of the document, as in the example below:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:394.5pt;margin-bottom:
+23.85pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>%YAML 1.1
+--test</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>A parser must refuse to process a document of a
+higher major version. For example, a parser in version <span style='font-family:
+"Courier New"'>1.1</span> should refuse to parse a document in YAML version <span
+style='font-family:"Courier New"'>2.0</span>. It should issue a warning if it
+is asked to parse a document of minor higher version, such as <span
+style='font-family:"Courier New"'>1.2</span> for instance. It must parse
+without protesting all versions equal or inferior, such as <span
+style='font-family:"Courier New"'>1.1</span> and <span style='font-family:"Courier New"'>1.0</span>.</p>
+
+<h2 style='margin-left:-.25pt'>Character sets and encoding</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+22.65pt;margin-left:-.25pt'>A YAML parser must accept any Unicode character,
+except for some <a href="http://yaml.org/spec/current.html#id2513160"><span
+style='color:#0000A1;text-decoration:none'>special characters</span></a><a
+href="http://yaml.org/spec/current.html#id2513160"><span style='color:black;
+text-decoration:none'>.</span></a> These characters can be encoded in<i> UTF-8</i>
+(default encoding),<i> UTF-16</i> or<i> UTF-32</i>. YAML parsers are able to
+determine the encoding of the text by examining the first character. It is
+therefore<b> impossible </b>to use any other encoding in a YAML file and in
+particular <span style='font-family:"Courier New"'>ISO-8859-1</span>.</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:4.85pt;margin-left:
+-.25pt'>YAML APIs</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>We will now play with YAML APIs for Java, Python and
+Go.</p>
+
+<h2 style='margin-left:-.25pt'>JYaml</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.25pt;margin-left:-.25pt'>JYaml is an OpenSource library for manipulating
+YAML documents in Java. The project is hosted by SourceForge and can be found
+at <a href="http://jyaml.sourceforge.net/"><span style='color:#0000A1;
+text-decoration:none'>http://jyaml.sourceforge.net/</span></a>. You will find
+on this site <a href="http://jyaml.sourceforge.net/tutorial.html"><span
+style='color:#0000A1;text-decoration:none'>a </span></a><a
+href="http://jyaml.sourceforge.net/tutorial.html"><span style='color:#0000A1;
+text-decoration:none'>tutorial</span></a><a
+href="http://jyaml.sourceforge.net/tutorial.html"><span style='color:black;
+text-decoration:none'> </span></a>and the <a
+href="http://jyaml.sourceforge.net/javadoc/index.html"><span style='color:#0000A1;
+text-decoration:none'>API References</span></a><a
+href="http://jyaml.sourceforge.net/javadoc/index.html"><span style='color:black;
+text-decoration:none'>.</span></a></p>
+
+<h3 style='margin-left:-.25pt'>Basic Usage</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>JYaml performs a default mapping of YAML structures to
+standard Java objects: it associates a list</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.9pt;margin-left:-.25pt'>with an instance of <span style='font-family:"Courier New"'>java.util.ArrayList</span>,
+an associative array with an instance of <span style='font-family:"Courier New"'>java.util.HashMap</span>
+and YAML primitive types to their Java counterpart.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Thus, to load a YAML file in a Java object, we will
+write the following code:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Object
+object = Yaml.load(new File(&quot;object.yml&quot;));</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>For instance, following file:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>One</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>2</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>{ three:
+3.0, four: true }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>Can be loaded into memory and displayed in the terminal
+with following code:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:158.3pt'>
+  <td width=644 valign=bottom style='width:483.0pt;background:#F0F0F0;
+  padding:0in 5.75pt 6.65pt 43.8pt;height:158.3pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>package jyaml;</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:277.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>import
+  java.io.File; import org.ho.yaml.Yaml;</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>public class Load {</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:157.45pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'>    public static void
+  main(String [] args)         throws Exception {         String filename =
+  &quot;test/object.yml&quot;;         if (args.length&gt;0) filename =
+  args[0];</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>       
+  System.out.println(Yaml.load(new File(filename)));</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.6pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>    }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>}</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>This will print in the terminal:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>[One, 2,
+{four=true, three=3.0}];</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Conversely, you can serialize a Java object in a
+YAML file as follows:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Yaml.dump(object,
+new File(&quot;dump.yml&quot;));</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>Thus, we can serialize a Java object structure with
+following code:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:303.6pt'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 5.75pt 0in 43.8pt;
+  height:303.6pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>package jyaml;</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:271.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>import
+  java.io.File; import java.util.ArrayList; import java.util.HashMap; import
+  java.util.List; import java.util.Map; import org.ho.yaml.Yaml;</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>public class Dump {</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:49.45pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'>    public static void
+  main(String [] args)         throws Exception {         List &lt;Object&gt;
+  object = new ArrayList&lt;Object&gt;();        
+  object.add(&quot;One&quot;);         object.add(2);         Map&lt;String,
+  Object&gt; map = new HashMap&lt;String, Object&gt;();        
+  map.put(&quot;three&quot;, 3.0);         map.put(&quot;four&quot;,
+  true);         object.add(map);         Yaml.dump(object, new
+  File(&quot;test/dump.yml&quot;));</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>    }</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>}</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>This code will produce following file:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>---</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>One</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>2 -
+!java.util.HashMap   four: true   three: !java.lang.Double 3.0</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.2pt;margin-left:-.25pt'>Note that this dump is a little disappointing
+because some standard types of YAML (such as associative arrays and floating
+point numbers) are serialized to Java types (such as <span style='font-family:
+"Courier New"'>java.util.HashMap</span> and <span style='font-family:"Courier New"'>java.lang.
+Double</span>). Such a file will not be loaded correctly using another
+programming language (or even another implementation in Java).</p>
+
+<h3 style='margin-left:-.25pt'>Advanced use</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>We can also work with types that are not generic
+and thus load instances of Java classes from YAML files.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>The first solution is to indicate the type of
+objects with YAML tags. Thus, the following YAML file:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:322.5pt;margin-bottom:
+23.85pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>---
+!jyaml.Order id: test123 Articles:  - !jyaml.Article     id:       test456    
+price:    3.5     quantity: 1  - !jyaml.Article     id:       test567    
+price:    2.0     quantity: 2</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>Will it be loaded using the following classes:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:329.1pt'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 5.75pt 0in 43.8pt;
+  height:329.1pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>package jyaml;</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>public class Order {</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:247.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  private String id;     private Article[] articles;</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:271.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  public String getId() {         return id;     }</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:229.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  public void setId(String id) {         this.id = id;     }</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:217.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  public Article[] getArticles() {         return articles;     }</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:139.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  public void setArticles(Article[] articles) {         this.articles =
+  articles;     }</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:67.45pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'>    public String
+  toString() {         StringBuffer buffer = new StringBuffer(&quot;[Order
+  id='&quot;)</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>           
+  .append (id)</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:56.25pt;margin-bottom:
+11.65pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>           
+.append (&quot;', articles='&quot;);         for(int i=0; i&lt;articles.length;
+i ++) {             Article Article = Articles[i];            
+buffer.append(article.toString());             if (i&lt;articles.length-1)
+buffer.append(&quot;,&quot;);         }        
+buffer.append(&quot;]&quot;);         return buffer.toString();     }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:56.25pt;margin-bottom:
+23.8pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>}</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>And:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=686
+ style='width:514.6pt;border-collapse:collapse'>
+ <tr style='height:459.6pt'>
+  <td width=686 style='width:514.6pt;background:#F0F0F0;padding:0in 0in 0in 43.8pt;
+  height:459.6pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>package jyaml;</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>public class Article {</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:296.8pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  private String id;     private double price;     private int quantity;</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:308.8pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  public String getId() {         return id;     }</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:266.8pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  public void setId(String id) {         this.id = id;     }</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:290.8pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  public double getPrice() {         return price;     }</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:230.8pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  public void setPrice(double price) {         this.price = price;     }</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:290.8pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  public int getQuantity() {         return quantity;     }</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:212.8pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  public void setQuantity(int quantity) {         this.quantity = quantity;    
+  }</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:-27.2pt;margin-bottom:
+  12.0pt;margin-left:0in;text-align:justify;text-justify:inter-ideograph;
+  text-indent:0in;line-height:105%'><span style='font-size:10.0pt;line-height:
+  105%;font-family:"Courier New"'>    public String toString () {        
+  return &quot;[Article id='&quot;+id+&quot;', price='&quot;+price+&quot;',
+  quantity='&quot;+quantity+&quot;']&quot;;     }</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>}</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>These classes respect the JavaBean convention,
+namely that they have accessors for its fields as well as an empty constructor
+(without arguments, implicit in Java). By loading it with the previous source,
+we get on the terminal:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>[Order
+id='test123', articles='[</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>  [Article
+id='test456', price='3.5', quantity='1'],</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>  [Article
+id='test567', price='2.0', quantity='2']</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>  ] '</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>]</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>There is another way to load these objects without
+the need to explicitly specify types. To do this, use the <span
+style='font-family:"Courier New"'>loadType()</span> method and pass it the YAML
+file to load as well as the type of the root object of the file. So, in our
+case, we could write the order file as follows:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:328.5pt;margin-bottom:
+23.85pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>id: test123
+articles:  - id:       test456    price:    3.5    quantity: 1  - id:      
+test567    price:    2.0    quantity: 2</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>And load it with following source:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:2.55in'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 5.75pt 0in 43.8pt;
+  height:2.55in'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>package jyaml;</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:277.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>import
+  java.io.File; import org.ho.yaml.Yaml;</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>public class Load2 {</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:19.45pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'>    public static void
+  main(String[] args)         throws Exception {        
+  System.out.println(Yaml.loadType(new File(&quot;test/order2.yml&quot;),</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>                                        
+  Order.class));</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>    }</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>}</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.2pt;margin-left:-.25pt'>This way of loading specific types is much more
+convenient because it does not overload the YAML file with Java types, which
+makes the portability between languages impossible. However, we may regret the
+obligation to declare the <span style='font-family:"Courier New"'>articles</span>
+field as an <span style='font-family:"Courier New"'>Article</span> array. If
+declared as <span style='font-family:"Courier New"'>List &lt;Article&gt;</span>,
+JYaml loads the objects in the list as instances of <span style='font-family:
+"Courier New"'>Map</span>. However, this is because the list type information
+is lost in the runtime and therefore JYaml cannot know the type of items in the
+list and therefore loads them with the default type.</p>
+
+<h3 style='margin-left:-.25pt'>Aliases and anchors</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>JYaml handles aliases and anchors for YAML files.
+Let's consider following example:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:364.5pt;margin-bottom:
+.15pt;margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>&amp;rob 
+name: Robert   age:  55 - &amp;elo   name: Elodie   age:  52 - name: Mickael  
+age:  31   parents:     - *rob</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>*elo</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>It can be loaded with following code:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=662
+ style='width:496.6pt;border-collapse:collapse'>
+ <tr style='height:3.55in'>
+  <td width=662 style='width:496.6pt;background:#F0F0F0;padding:0in 0in 0in 43.8pt;
+  height:3.55in'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>package jyaml;</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:296.8pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>import
+  java.io.File; import org.ho.yaml.Yaml;</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>public class Alias
+  &#128;&#128;{</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:50.8pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'>    public static void
+  main(String[] args)         throws Exception {         People[] people =
+  Yaml.loadType(new
+  File(&quot;test/alias.yml&quot;),                                        
+  People[].class);         for (int i=0; i&lt;people.length; i++) {            
+  People individual = people[i];</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>           
+  System.out.println(individual);</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>        }</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>       
+  // we test that references are identical</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:-27.2pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>       
+  System.out.println(&quot;Anchor
+  OK:&quot;+(people[2].getParents()[0]==people[0]));</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>    }</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>}</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.15pt;margin-left:-.25pt'>And we see that the aliases and anchors have been
+handled correctly.</p>
+
+<h3 style='margin-left:-.25pt'>Flow management</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>It is possible to serialize Java objects into a YAML
+stream as follows:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:160.5pt;margin-bottom:
+23.85pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>YamlEncoder
+enc = new YamlEncoder(outputStream); enc.writeObject(object1);
+enc.writeObject(object2); enc.close();</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>There is a shortcut to serialize a collection of
+objects in a stream as follows:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Yaml.dumpStream(collection.iterator(),
+file);</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>On the other hand, you can deserialize Java objects
+from a YAML stream as follows:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:2.05in'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 5.75pt 0in 43.8pt;
+  height:2.05in'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:133.45pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'>YamlDecoder dec = new
+  YamlDecoder(inputStream); try {</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:205.45pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'>  while (true) {    
+  Object object = dec.readObject ();</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>    /* do
+  something useful */</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>  }</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>} catch
+  (EOFException e) {</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:139.45pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'> 
+  System.out.println(&quot;Finished reading stream.&quot;); } finally {  
+  dec.close();</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>}</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>There is a shortcut to iterate on deserialized
+objects in a stream:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:86.25pt;margin-bottom:
+.15pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>for(Object
+object: Yaml.loadStream(input)) {   /* do something useful */</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:86.25pt;margin-bottom:
+26.2pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>}</span></p>
+
+<h3 style='margin-left:-.25pt'>Configuration file</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>It is possible to configure JYaml in a file, which must
+be named <span style='font-family:"Courier New"'>jyaml.yml</span> and be in
+current directory where the application runs or at the root of its<i> CLASSPATH</i>.
+Here is an example of such a file:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:123.6pt'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 5.75pt 0in 43.8pt;
+  height:123.6pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:247.45pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'>minimalOutput: true
+  indentAmount: &quot;    &quot; suppressWarnings: true encoding:
+  &quot;ISO-8859-1&quot; transfers:</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:217.45pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'>  company:
+  com.blah.Company   employee: com.blah.Employee handlers:</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> 
+  com.mycompany.MyFunkyObject: com.mycompany.jyaml.MyFunkyObjectWrapper</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>This configuration makes it possible in particular
+to configure mappings between YAML tags and Java classes. In the example above,
+the following mapping:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>company:
+com.blah.Company</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.95pt;margin-left:-.25pt'>Allows you to shorten the YAML tag to indicate the
+Java class used for deserialization. Thus, we can indicate the mapping for the <span
+style='font-family:"Courier New"'>com.blah.Company</span> class by a simple <span
+style='font-family:"Courier New"'>!Company</span> tag.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>On the other hand, this file is used to list
+wrappers classes that deserialize particular types whose classes do not respect
+the JavaBeans convention. Examples can be found <a
+href="http://jyaml.cvs.sourceforge.net/viewvc/jyaml/jyaml/src/org/ho/yaml/wrapper/"><span
+style='color:#0000A1;text-decoration:none'>in the project sources</span></a>.</p>
+
+<h3 style='margin-left:-.25pt'>Other features</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.75pt;margin-left:-.25pt'>It should be noted that JYaml has more to offer, in
+particular:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>Support for YAML
+Spring configuration files. This allows you to write more readable and compact
+files than their XML counterparts. For more information, <a
+href="http://jyaml.sourceforge.net/yaml4spring.html"><span style='color:#0000A1;
+text-decoration:none'>see this page</span></a><a
+href="http://jyaml.sourceforge.net/yaml4spring.html"><span style='color:black;
+text-decoration:none'>.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+11.6pt;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>A YAML format for
+DBUnit configuration files. See <a
+href="http://jyaml.sourceforge.net/yaml4dbunit.html"><span style='color:#0000A1;
+text-decoration:none'>this page</span></a>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>However, JYaml seems to suffer from limitations,
+especially for parsing dates that are not always recognized as such.</p>
+
+<h2 style='margin-left:-.25pt'>PyYAML</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.25pt;margin-left:-.25pt'>PyYaml is a Python library to manage YAML files. It
+can be downloaded from <a href="http://pyyaml.org/"><span style='color:#0000A1;
+text-decoration:none'>http://pyyaml.org/ </span></a>and you can find <a
+href="http://pyyaml.org/wiki/PyYAML"><span style='color:#0000A1;text-decoration:
+none'>documentation on this page</span></a>.</p>
+
+<h3 style='margin-left:-.25pt'>Installation</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+.3pt;margin-left:-.25pt'>PyYaml can use <a href="http://pyyaml.org/wiki/LibYAML"><span
+style='color:#0000A1;text-decoration:none'>LibYaml</span></a> written in C and
+very fast or a Python implementation that does not require this library. To
+install the library, <a
+href="http://pyyaml.org/download/pyyaml/PyYAML-3.08.tar.gz"><span
+style='color:#0000A1;text-decoration:none'>download the archive</span></a><a
+href="http://pyyaml.org/download/pyyaml/PyYAML-3.08.tar.gz"><span
+style='color:black;text-decoration:none'>,</span></a> unzip it, go to created
+directory and</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:3.25pt;margin-bottom:
+16.35pt;margin-left:0in;text-indent:0in;line-height:107%'>type <span
+style='font-family:"Courier New"'>python setup.py install</span>, or <span
+style='font-family:"Courier New"'>python setup.py --wihout-libyaml install</span>
+if you don't want to use LibYaml.</p>
+
+<h3 style='margin-left:-.25pt'>Basic Usage</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>To load a YAML file, whose name is passed on command
+line, we can proceed as follows:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:99.6pt'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 5.75pt 0in 43.8pt;
+  height:99.6pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:301.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>#!/usr/bin/env
+  python # encoding: UTF-8</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:337.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>import
+  sys import yaml</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>print
+  yaml.load(open(sys.argv[1]))</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>The <span style='font-family:"Courier New"'>load()</span>
+function takes a string of bytes, unicode, binary or text as parameter. Byte
+strings and files must be encoded in<i> UTF-8</i> or<i> UTF-16</i>. Encoding is
+determined by the parser by examining the Byte Order Mark (BOM), the first byte
+of the file. If no BOM is found,<i> UTF-8</i> is chosen.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>If the string or file contains multiple documents,
+we can load them all using the <span style='font-family:"Courier New"'>yaml.load_all()</span>
+function that returns an iterator. We can write:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:172.5pt;margin-bottom:
+24.05pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>for
+document in yaml.load_all(documents):     print document</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>To serialize a Python object into YAML, we can use
+the <span style='font-family:"Courier New"'>yaml.dump()</span> function:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:171.6pt'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 0in 0in 43.8pt;
+  height:171.6pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:307.2pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>#!/usr/bin/env
+  python # encoding: UTF-8</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>import yaml</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:319.2pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'>recipe = {     'name':
+  'sushi',</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:-4.8pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>    'ingredients':
+  ['rice', 'vinegar', 'sugar', 'salt', 'tuna', 'salmon'],</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>   
+  'cooking time': 10,</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:3.6in;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>   
+  'difficulty': 'difficult' }</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>print
+  yaml.dump(recipe)</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+14.05pt;margin-left:-.25pt'>The <span style='font-family:"Courier New"'>yaml.dump()</span>
+function can take a second optional parameter which must be a binary or open
+text file. It then writes the result of serialization to the file.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.8pt;margin-left:-.25pt'>To serialize multiple Python objects into a stream,
+you can use my <span style='font-family:"Courier New"'>yaml.dump_all()</span>
+function. This function takes a list or an iterator as parameter.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>The dump functions take additional parameters to
+indicate formatting details of generated YAML. We can thus specify the number
+of indentation characters to use, the number of characters per line, etc. In
+particular, <span style='font-family:"Courier New"'>default_flow_style</span>
+indicates whether we use stream style for lists and associative arrays. So,
+following code:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>print
+yaml.dump(range(5), default_flow_style=True)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Produces a representation using flow notation:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>[0, 1, 2,
+3, 4]</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>While following code:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>print
+yaml.dump(range (5), default_flow_style=False)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Produces a list notation:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>0</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>1</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>2</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>3</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:26.2pt;
+margin-left:55.05pt;text-indent:-12.0pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>4</span></p>
+
+<h3 style='margin-left:-.25pt'>Serialization and deserialization of Python
+classes</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>It is possible to explicitly declare the Python type
+to be used to deserialize a given YAML structure using a YAML tag. For example
+:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:3.55in'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 5.75pt 0in 43.8pt;
+  height:3.55in'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:301.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>#!/usr/bin/env
+  python # encoding: UTF-8</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>import yaml</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>class Person(object):</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>    def
+  __init __(self, name, age):</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:241.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>       
+  self.name = name         self.age = age</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>    def
+  __repr __(self):</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:43.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>       
+  return &quot;%s(name=%r, age=%r)&quot; % \               
+  (self.__class__.__name__, self.name, self.age)</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:241.45pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:105%'><span style='font-size:
+  10.0pt;line-height:105%;font-family:"Courier New"'>print yaml.load
+  (&quot;&quot;&quot; !!python/object: __main__.Person name: Robert age: 25</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>&quot;&quot;&quot;)</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Produces following output on the terminal:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Person(name='Robert',
+age=25)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>Conversely, a Python class can be serialized into a
+YAML stream as follows:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:207.6pt'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 5.75pt 0in 43.8pt;
+  height:207.6pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:301.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>#!/usr/bin/env
+  python # encoding: UTF-8</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>import yaml</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>class Person(object):</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>    def
+  __init__(self, name, age):</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:241.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>       
+  self.name = name         self.age = age</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>    def
+  __repr__(self):</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:61.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>       
+  return &quot;%s(name=%r, age=%r)&quot; % \                (self
+  .__class__.__name__, self.name, self.age)</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>print
+  yaml.dump(Person('Robert', 25), default_flow_style=False)</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>This code produces following output:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:262.5pt;margin-bottom:
+.15pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>!!python/object:__main__.Person
+age: 25 name: Robert</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.8pt;margin-left:-.25pt'>We see that PyYaml serialized the Python class using
+the same YAML tag notation. Note that building arbitrary Python objects from
+unreliable sources (typically from the internet) can be dangerous. This is why
+PyYaml offers the <span style='font-family:"Courier New"'>yaml.safe_load()</span>
+function which limits the building of objects to the basic types of YAML.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:-.25pt'>The notation seen above allows to deserialize YAML
+structures into instances of arbitrary Python classes. However, it is possible
+to use a simpler notation by inheriting our <span style='font-family:"Courier New"'>Person</span>
+class from the parent <span style='font-family:"Courier New"'>yaml.YAMLObject</span>
+as follows:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=644
+ style='width:483.0pt;border-collapse:collapse'>
+ <tr style='height:231.6pt'>
+  <td width=644 style='width:483.0pt;background:#F0F0F0;padding:0in 5.75pt 0in 43.8pt;
+  height:231.6pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:301.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>#!/usr/bin/env
+  python # encoding: UTF-8</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>import yaml</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>class Person
+  (yaml.YAMLObject):</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+  margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>    yaml_tag = '!person'</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>    def
+  __init__(self, name, age):</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:241.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>       
+  self.name = name         self.age = age</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>    def
+  __repr__(self):</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:61.45pt;margin-bottom:
+  12.0pt;margin-left:0in;text-indent:0in;line-height:105%'><span
+  style='font-size:10.0pt;line-height:105%;font-family:"Courier New"'>       
+  return &quot;%s(name=%r, age=%r)&quot; % \                (self
+  .__class__.__name__, self.name, self.age)</span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>print
+  yaml.dump(Person('Robert', 25), default_flow_style=False)</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>This produces on the console:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:376.5pt;margin-bottom:
+24.0pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>!person
+age: 25 name: Robert</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.9pt;margin-left:-.25pt'>Of course, we can deserialize this YAML structure by
+using the <span style='font-family:"Courier New"'>yaml.load()</span> function.
+However, this notation, which has the YAML <span style='font-family:"Courier New"'>!person</span>
+tag, is much more elegant than previous one, which indicates the qualified name
+of the class and not a shorter, more meaningful symbolic name.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>There is a bit of magic behind all this: the <span
+style='font-family:"Courier New"'>Person</span> class is registered as a Python
+type associated with the YAML <span style='font-family:"Courier New"'>person</span>
+tag which allows this elegant notation.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>There is a way to associate a regular expression
+with a Python class so that, for example, the notation <span style='font-family:
+"Courier New"'>3d6</span> is associated with a call to the constructor <span
+style='font-family:"Courier New"'>Dice(3, 6)</span>. I leave you to dig deeper <a
+href="http://pyyaml.org/wiki/PyYAMLDocumentation#Constructorsrepresentersresvers"><span
+style='color:#0000A1;text-decoration:none'>in </span></a><a
+href="http://pyyaml.org/wiki/PyYAMLDocumentation#Constructorsrepresentersresvers"><span
+style='color:#0000A1;text-decoration:none'>the appropriate section of the
+PyYaml documentation</span></a>.</p>
+
+<h2 style='margin-left:-.25pt'>Goyaml</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'><a href="http://gopkg.in/yaml.v2"><span
+style='color:#0000A1;text-decoration:none'>Goyaml</span></a><a
+href="http://gopkg.in/yaml.v2"><span style='color:black;text-decoration:none'> </span></a>is
+a Go library for parsing YAML files to inject content into user-defined
+structures. This method of parsing is generalized in Go: it is identical to
+that of XML or JSON for example.</p>
+
+<h3 style='margin-left:-.25pt'>Installation</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>To install the library in your<i> GOPATH</i>, you
+should type following command line:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:26.2pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>$ go get
+gopkg.in/yaml.v2</span></p>
+
+<h3 style='margin-left:-.25pt'>Definition of the structure</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Suppose we want to parse the following YAML file,
+which represents a user:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:352.5pt;margin-bottom:
+23.85pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>name:
+Robert age:  25</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>I could define following structure to represent this
+user:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>type User
+struct {   Name string</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>  Age  int</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:26.2pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>}</span></p>
+
+<h3 style='margin-left:-.25pt'>Parsing the file</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.75pt;margin-left:-.25pt'>To parse the file, you must:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>Create an empty
+structure.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>Read the contents of
+the YAML file.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+11.6pt;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>Parse the contents of
+the file by passing the address of the empty structure.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>So to parse our user file:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:98.25pt;margin-bottom:
+.15pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>var user
+User source, err := ioutil.ReadFile(&quot;user.yml&quot;) if err != nil {  
+panic(err) } err = yaml.Unmarshal(source, &amp;user) if err != nil {  
+panic(err) }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:98.25pt;margin-bottom:
+23.8pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>fmt.Printf(&quot;user:
+%v\n&quot;, user)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.15pt;margin-left:-.25pt'>This approach is very simple and addresses most
+YAML parsing use cases.</p>
+
+<h3 style='margin-left:-.25pt'>Structure tags</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>It is possible to tag the structure in order to
+specify the behavior of the parser. For instance, to specify an alternative
+name for the field, add following tag:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>type User
+struct {   Name string `yaml:&quot;first_name&quot;`</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>  Age  int</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:23.8pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>}</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+14.35pt;margin-left:-.25pt'>It indicates that the name of the field is<i>
+first_name</i> in YAML source file while the name in structure suggests that it
+should be<i> name</i>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>The general form of the tag is: <span
+style='font-family:"Courier New"'>yaml:&quot;[&lt;key&gt;][,&lt;flag1&gt;[,&lt;flag2&gt;]]</span>,
+where<i> key</i> is the name of the field and<i> flag</i> can have following
+values:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><b>omitempty</b>
+indicates that the field must be omitted if field is empty.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><b>flow</b>
+serializes using the inline style (lists will then be represented by <span
+style='font-family:"Courier New"'>[1, 2, 3]</span> and the maps by <span
+style='font-family:"Courier New"'>{foo: 1, bar: 2}</span> for example).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+16.2pt;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><b>inline</b> injects
+the structure to which it is applied so that its fields are treated as if they
+belonged to the enclosing structure.</p>
+
+<h3 style='margin-left:-.25pt'>Advanced usage</h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>It seems impossible to parse an abitrary YAML file
+with the technique described above, but it is false. Indeed, it is possible to
+write following code:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:98.25pt;margin-bottom:
+.15pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>var thing
+interface{} source, err := ioutil.ReadFile(&quot;user.yml&quot;) if err != nil
+{   panic(err) } err = yaml.Unmarshal(source, &amp;thing) if err != nil {  
+panic(err) }</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:98.25pt;margin-bottom:
+23.8pt;margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>fmt.Printf(&quot;Thing:
+%#v\n&quot;, thing)</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Which produces following output:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>$ go run
+generic.go user.yml</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:24.0pt;
+margin-left:43.55pt;line-height:109%;background:#F0F0F0'><span
+style='font-size:10.0pt;line-height:109%;font-family:"Courier New"'>Thing:
+map[interface {}]interface {}{&quot;name&quot;:&quot;Robert&quot;,
+&quot;age&quot;:25}</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>Since <span style='font-family:"Courier New"'>interface{}</span>
+designates any type, we can parse any YAML file. You will have to introspect
+the result of the parsing with<i> reflect</i> package, but this is another
+story (much more complicated ...).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>An example of implementation of this technique can
+be seen in <a href="http://github.com/c4s4/neon/"><span style='color:#0000A1;
+text-decoration:none'>my NeON project</span></a><a
+href="http://github.com/c4s4/neon/"><span style='color:black;text-decoration:
+none'>.</span></a> Note that the use of the<i> reflect</i> package is to be
+reserved for experienced users of the Go language, otherwise they might lose
+their sanity.</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:4.85pt;margin-left:
+-.25pt'>Conclusion</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:19.4pt;
+margin-left:-.25pt'>Now that we have a good idea of &#128;&#128;what YAML is,
+we can compare it to similar technologies such as JSON and XML.</p>
+
+<h2 style='margin-left:-.25pt'>YAML and JSON</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>These two formats of textual representation of data
+are very close, so much so that starting from the <i>1.2</i> version of the
+YAML specification, any JSON document is a valid YAML document (and can
+therefore be parsed by a YAML parser conforming to version<i> 1.2</i> of the
+specification).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>However, YAML has a greater readability. On the
+other hand, it is not tied to a particular programming language (as is JSON
+with JavaScript).</p>
+
+<h2 style='margin-left:-.25pt'>YAML and XML</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>These two technologies are quite different and YAML
+can not do everything XML can do. In particular, YAML is not suitable as a
+structured text format, so we could not replace XML by YAML to write DocBook
+for example.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:-.25pt'>On the other hand, in the field of serialization of
+data, YAML is much more specialized and powerful by its recognition of the
+usual primitive types and data structures such as lists and associative arrays.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Furthermore, YAML has a huge advantage in terms of
+syntax and readability, even by someone who is not familiar with the YAML
+specification. So, in the domain of configuration files that need to be
+manipulated by people who have no particular knowledge, is YAML's natural
+syntax a huge advantage.</p>
+
+<h2 style='margin-left:-.25pt'>YAML Usage</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.75pt;margin-left:-.25pt'>The two main uses of YAML are:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+0in;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>Configuration files.
+YAML allows typed configuration files and natural syntax. The Ruby on Rails
+configuration files are in YAML format.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+13.85pt;margin-left:.5in;text-indent:-8.5pt'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span>Serialization of
+data. It may be convenient to exchange data in YAML format as this format is
+independent of platform and programming language. The presence of aliases and
+anchors allows intelligent serializations.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+22.55pt;margin-left:-.25pt'>I hope this YAML presentation has given you the
+urge to use this data format in your own applications and spread the good word
+around you!</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:4.85pt;margin-left:
+-.25pt'>Resources</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:12.05pt;margin-bottom:
+19.4pt;margin-left:-.25pt'>Here are some useful URLs for YAML:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.25pt;text-indent:-8.5pt;line-height:107%'><span
+style='font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><a href="http://www.yaml.org/"><span style='color:#0000A1;
+text-decoration:none'>YAML Homepage</span></a>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.25pt;text-indent:-8.5pt;line-height:107%'><span
+style='font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><a href="http://yaml.org/spec/1.2/spec.html"><span
+style='color:#0000A1;text-decoration:none'>YAML 1.2 Specification</span></a><a
+href="http://yaml.org/spec/1.2/spec.html"><span style='color:black;text-decoration:
+none'>.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.25pt;text-indent:-8.5pt;line-height:107%'><span
+style='font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><a href="http://www.yaml.org/refcard.html"><span
+style='color:#0000A1;text-decoration:none'>YAML Reference Card</span></a><a
+href="http://www.yaml.org/refcard.html"><span style='color:black;text-decoration:
+none'>.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.25pt;text-indent:-8.5pt;line-height:107%'><span
+style='font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><a href="http://jyaml.sourceforge.net/"><span style='color:#0000A1;
+text-decoration:none'>JYaml Home Page</span></a><a
+href="http://jyaml.sourceforge.net/"><span style='color:black;text-decoration:
+none'>.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.25pt;text-indent:-8.5pt;line-height:107%'><span
+style='font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><a href="http://jyaml.sourceforge.net/tutorial.html"><span
+style='color:#0000A1;text-decoration:none'>JYaml Tutorial</span></a><a
+href="http://jyaml.sourceforge.net/tutorial.html"><span style='color:black;
+text-decoration:none'>.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.25pt;text-indent:-8.5pt;line-height:107%'><span
+style='font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><a href="http://jyaml.sourceforge.net/javadoc/index.html"><span
+style='color:#0000A1;text-decoration:none'>JYaml API References</span></a><a
+href="http://jyaml.sourceforge.net/javadoc/index.html"><span style='color:black;
+text-decoration:none'>.</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.25pt;text-indent:-8.5pt;line-height:107%'><span
+style='font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><a href="http://www.pyyaml.org/"><span style='color:#0000A1;
+text-decoration:none'>PyYaml Homepage</span></a>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.25pt;text-indent:-8.5pt;line-height:107%'><span
+style='font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><a href="http://pyyaml.org/wiki/PyYAML"><span style='color:#0000A1;
+text-decoration:none'>PyYaml Documentation</span></a>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.25pt;text-indent:-8.5pt;line-height:107%'><span
+style='font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><a href="http://gopkg.in/yaml.v2"><span style='color:#0000A1;
+text-decoration:none'>GoYaml Homepage</span></a>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.6pt;
+margin-left:35.25pt;text-indent:-8.5pt;line-height:107%'><span
+style='font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><a href="http://godoc.org/gopkg.in/yaml.v2"><span
+style='color:#0000A1;text-decoration:none'>GoYaml Documentation</span></a>.</p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i>Enjoy!</i></p>
+
+</div>
+
+</body>
+
+</html>

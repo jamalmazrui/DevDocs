@@ -1,0 +1,2855 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Web API Design</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI Symbol";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:11.55pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:102%;
+	font-size:12.0pt;
+	font-family:"Cambria",serif;
+	color:#1C1D1D;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.8pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Calibri",sans-serif;
+	color:#FF2100;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.8pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Calibri",sans-serif;
+	color:#FF2100;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.55in;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;
+	color:#383738;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{margin-top:0in;
+	margin-right:13.65pt;
+	margin-bottom:4.8pt;
+	margin-left:1.25pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	font-size:12.0pt;
+	font-family:"Cambria",serif;
+	color:black;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Arial",sans-serif;
+	color:#383738;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Calibri",sans-serif;
+	color:#FF2100;
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Calibri",sans-serif;
+	color:#FF2100;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:.7in 58.8pt 35.95pt 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+@page WordSection2
+	{size:8.5in 11.0in;
+	margin:1.3in 71.95pt 72.45pt 1.0in;}
+div.WordSection2
+	{page:WordSection2;}
+@page WordSection3
+	{size:8.5in 11.0in;
+	margin:50.05pt 58.8pt 33.35pt 1.0in;}
+div.WordSection3
+	{page:WordSection3;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:6.55pt;
+margin-bottom:13.8pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><img width=816 height=924
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image001.gif"><br
+clear=ALL>
+<b><span style='font-size:14.0pt;line-height:107%;color:#343434'>Brian Mulloy </span></b></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+style='color:#A7A8A8'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:29.45pt;
+margin-left:0in;text-indent:0in;line-height:107%'><b><span style='font-family:
+"Calibri",sans-serif'>                                 </span></b> </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:9.85pt;
+margin-bottom:11.25pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><span style='font-family:"Arial",sans-serif'> </span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i><span
+style='font-family:"Calibri",sans-serif;color:#4F81BC'> </span></i></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><i><span
+style='font-family:"Calibri",sans-serif;color:#4F81BC'> </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:24.6pt;
+margin-left:0in;text-indent:0in;line-height:107%'><b><span style='font-family:
+"Calibri",sans-serif;color:#FF2100'>Table of Contents </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'><b><span style='font-size:
+14.0pt;line-height:107%;color:black'>Web API Design  - Crafting Interfaces that
+Developers Love </span></b></p>
+
+<p class=MsoToc1><a href="#_Toc29719"><span style='color:black;text-decoration:
+none'>Introduction...................................................................................................................................... </span><span style='color:black;text-decoration:none'>3 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29720"><span style='color:black;text-decoration:
+none'>Nouns are good; verbs are bad...................................................................................................... </span><span style='color:black;text-decoration:none'>4 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29721"><span style='color:black;text-decoration:
+none'>Plural nouns and concrete names................................................................................................ </span><span style='color:black;text-decoration:none'>8 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29722"><span style='color:black;text-decoration:
+none'>Simplify associations - sweep complexity under the ‘?’........................................................... </span><span style='color:black;text-decoration:none'>9 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29723"><span style='color:black;text-decoration:
+none'>Handling errors............................................................................................................................. </span><span style='color:black;text-decoration:none'>10 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29724"><span style='color:black;text-decoration:
+none'>Tips for versioning........................................................................................................................ </span><span style='color:black;text-decoration:none'>13 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29725"><span style='color:black;text-decoration:
+none'>Pagination and partial response................................................................................................ </span><span style='color:black;text-decoration:none'>16 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29726"><span style='color:black;text-decoration:
+none'>What about responses that don’t involve resources?............................................................. </span><span style='color:black;text-decoration:none'>19 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29727"><span style='color:black;text-decoration:
+none'>Supporting multiple formats...................................................................................................... </span><span style='color:black;text-decoration:none'>20 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29728"><span style='color:black;text-decoration:
+none'>What about attribute names?..................................................................................................... </span><span style='color:black;text-decoration:none'>21 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29729"><span style='color:black;text-decoration:
+none'>Tips for search................................................................................................................................ </span><span style='color:black;text-decoration:none'>22 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29730"><span style='color:black;text-decoration:
+none'>Consolidate API requests in one subdomain........................................................................... </span><span style='color:black;text-decoration:none'>23 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29731"><span style='color:black;text-decoration:
+none'>Tips for handling exceptional behavior.................................................................................... </span><span style='color:black;text-decoration:none'>25 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29732"><span style='color:black;text-decoration:
+none'>Authentication............................................................................................................................... </span><span style='color:black;text-decoration:none'>27 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29733"><span style='color:black;text-decoration:
+none'>Making requests on your API...................................................................................................... </span><span style='color:black;text-decoration:none'>28 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29734"><span style='color:black;text-decoration:
+none'>Chatty APIs...................................................................................................................................... </span><span style='color:black;text-decoration:none'>30 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29735"><span style='color:black;text-decoration:
+none'>Complement with an SDK............................................................................................................ </span><span style='color:black;text-decoration:none'>31 </span></a></p>
+
+<p class=MsoToc1><a href="#_Toc29736"><span style='color:black;text-decoration:
+none'>The API Façade Pattern................................................................................................................ </span><span style='color:black;text-decoration:none'>32 </span></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.35pt;
+margin-left:0in;text-indent:0in;line-height:107%'><b><span style='font-size:
+11.0pt;line-height:107%;font-family:"Arial",sans-serif'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:10.55pt;
+margin-bottom:9.15pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'> </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:0in;
+margin-bottom:29.7pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><img width=107 height=20 id="Picture 98"
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image002.jpg"><a
+href="http://creativecommons.org/licenses/by-sa/3.0/"><span style='color:#1C1D1D;
+text-decoration:none'> </span></a>    </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;
+margin-left:-.75pt;text-indent:0in'>2                                                                                                                                                       </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>                         <span
+style='color:silver'> </span></p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29719">Introduction </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.65pt;margin-bottom:
+11.55pt;margin-left:-.25pt'>If you’re reading this, chances are that you care
+about designing Web APIs that developers will love and that you’re interested
+in applying proven design principles and best practices to your Web API.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:9.95pt;margin-bottom:
+11.55pt;margin-left:-.25pt'>One of the sources for our design thinking is REST.
+Because REST is an architectural style and not a strict standard, it allows for
+a lot of flexibly. Because of that flexibility and freedom of structure, there
+is also a big appetite for design best practices. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>This e-book is a collection of design practices that we
+have developed in collaboration with some of the leading API teams around the
+world, as they craft their API strategy through a design workshop that we
+provide at Apigee.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.75pt;margin-bottom:
+11.55pt;margin-left:-.25pt'>We call our point of view in API design “pragmatic
+REST”, because it places the success of the developer over and above any other
+design principle. The developer is the customer for the Web API. The success of
+an API design is measured by how quickly developers can get up to speed and
+start enjoying success using your API.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:13.45pt;
+margin-left:-.25pt'>We’d love your feedback – whether you agree, disagree, or
+have some additional practices and tips to add. The <a
+href="https://groups.google.com/forum/?fromgroups#!forum/api-craft"><span
+style='color:navy'>API Craft Google Group</span></a><a
+href="https://groups.google.com/forum/?fromgroups#!forum/api-craft"><span
+style='color:#1C1D1D;text-decoration:none'> </span></a>is a place where Web API
+design enthusiasts come together to share and debate design practices – we’d
+love to see you there. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.6pt;
+margin-left:0in;text-indent:0in;line-height:107%'><a
+href="http://blog.apigee.com/taglist/RESTful"><b><span style='font-size:14.0pt;
+line-height:107%;color:#E12F27;text-decoration:none'>Are you a Pragmatist or a
+RESTafarian? </span></b></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:5.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Let’s start with our overall point of view on API design.
+We advocate pragmatic, not dogmatic REST. What do we mean by dogmatic?    </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.15pt;margin-bottom:
+11.55pt;margin-left:-.25pt'>You might have seen discussion threads on true REST
+- some of them can get pretty strict and wonky.  Mike Schinkel sums it up well
+- defining a <a href="http://mikeschinkel.com/blog/whatisarestafarian/"><span
+style='color:navy'>RESTafarian</span></a><a
+href="http://mikeschinkel.com/blog/whatisarestafarian/"><span style='color:
+#1C1D1D;text-decoration:none'> </span></a>as follows: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;line-height:103%'><i>“A</i> RESTifarian<i> is a zealous
+proponent of the REST </i><a
+href="http://www.ics.uci.edu/~fielding/pubs/dissertation/abstract.htm"><i><span
+style='color:navy'>software architectural style</span></i></a><a
+href="http://www.ics.uci.edu/~fielding/pubs/dissertation/abstract.htm"><i><span
+style='color:#1C1D1D;text-decoration:none'> </span></i></a><i>as defined by </i><a
+href="http://roy.gbiv.com/"><i><span style='color:navy'>Roy T. Fielding</span></i></a><a
+href="http://roy.gbiv.com/"><i><span style='color:#1C1D1D;text-decoration:none'>
+</span></i></a><i>in </i><a
+href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm"><i><span
+style='color:navy'>Chapter 5</span></i></a><a
+href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm"><i><span
+style='color:#1C1D1D;text-decoration:none'> </span></i></a><i>of his </i><a
+href="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm"><i><span
+style='color:navy'>PhD. dissertation</span></i></a><a
+href="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm"><i><span
+style='color:#1C1D1D;text-decoration:none'> </span></i></a><i>at </i><a
+href="http://www.ics.uci.edu/"><i><span style='color:navy'>UC Irvine</span></i></a><a
+href="http://www.ics.uci.edu/"><i><span style='color:#1C1D1D;text-decoration:
+none'>.</span></i></a><i> You can find RESTifarians in the wild on the </i><a
+href="http://tech.groups.yahoo.com/group/rest-discuss/"><i><span
+style='color:navy'>REST-discuss mailing list</span></i></a><a
+href="http://tech.groups.yahoo.com/group/rest-discuss/"><i><span
+style='color:#1C1D1D;text-decoration:none'>.</span></i></a><i> But be careful,
+RESTifarians can be extremely meticulous when discussing the finer points of
+REST …”</i> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Our view: approach API design from the ‘outside-in’
+perspective. This means we start by asking - what are we trying to achieve with
+an API? </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:6.25pt;margin-bottom:
+11.55pt;margin-left:-.25pt'>The API’s job is to make the developer as
+successful as possible. The orientation for APIs is to think about design
+choices from the application developer’s point of view.  </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+</div>
+
+<span style='font-size:12.0pt;line-height:102%;font-family:"Cambria",serif;
+color:#1C1D1D'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:4.35pt;
+margin-left:-.25pt'>Why? Look at the value chain below – the application
+developer is the lynchpin of the entire API strategy. The primary design
+principle when crafting your API should be to maximize developer productivity
+and success.  This is what we call pragmatic REST. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.9pt;
+margin-left:-5.8pt;text-indent:0in;line-height:107%'><img border=0 width=607
+height=127 id="Picture 258"
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image003.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Pragmatic REST is a design problem </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>You have to get the design right, because design
+communicates how something will be used. The question becomes - what is the
+design with optimal benefit for the app developer? </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:15.25pt;
+margin-left:-.25pt'>The developer point of view is the guiding principle for
+all the specific tips and best practices we’ve compiled. </p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29720">Nouns are good; verbs are
+bad </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:.6pt;
+margin-left:-.25pt'>The number one principle in pragmatic RESTful design is:
+keep simple things simple. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Keep your base URL simple and intuitive</b> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The base URL is the most important design affordance of
+your API.  A simple and intuitive base URL design makes using your API easy. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Affordance is a design property that communicates how
+something should be used without requiring documentation.  A door handle's
+design should communicate whether you pull or push. Here's an example of a
+conflict between design affordance and documentation - not an intuitive
+interface! </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:3.55pt;
+margin-left:66.35pt;text-indent:0in;line-height:107%'><img border=0 width=376
+height=299 id="Picture 301"
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image004.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:16.5pt;
+margin-left:0in;text-indent:0in;line-height:107%'><span style='font-size:8.5pt;
+line-height:107%;color:#383738'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:13.7pt;
+margin-left:-.25pt'>A key litmus test we use for Web API design is that there
+should be only <b>2 base URLs per resource</b>. Let's model an API around a
+simple object or resource, a dog, and create a Web API for it. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The first URL is for a collection; the second is for a
+specific element in the collection.  </p>
+
+<p class=MsoNormal style='margin-left:-.75pt;text-indent:0in'>/dogs                           /dogs/1234
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:.6pt;
+margin-left:-.25pt'>Boiling it down to this level will also force the verbs out
+of your base URLs.    </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Keep verbs out of your base URLs</b> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Many Web APIs start by using a method-driven approach to
+URL design. These methodbased URLs sometimes contain verbs - sometimes at the
+beginning, sometimes at the end. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>For any resource that you model, like our dog, you can
+never consider one object in isolation. Rather, there are always related and
+interacting resources to account for - like owners, veterinarians, leashes,
+food, squirrels, and so on. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:16.3pt;
+margin-left:-.25pt'>Think about the method calls required to address all the
+objects in the dogs’ world. The URLs for our resource might end up looking
+something like this. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:-.2pt;margin-bottom:1.9pt;
+margin-left:.2pt;text-indent:0in;line-height:107%'><img border=0 width=624
+height=431 id="Picture 361"
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image005.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>It's a slippery slope - soon you have a long list of URLs
+and no consistent pattern making it difficult for developers to learn how to
+use your API.<b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Use HTTP verbs to operate on the collections and elements.</b> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:0in;
+margin-left:-.25pt'>For our dog resources, we have two base URLs that use nouns
+as labels, and we can operate on them with HTTP verbs. Our HTTP verbs are <b>POST</b>,
+<b>GET</b>, <b>PUT</b>, and <b>DELETE</b>. (We think of them as mapping to the
+acronym, <b>CRUD</b> (<b>C</b>reate-<b>R</b>ead-<b>U</b>pdate-<b>D</b>elete).)  
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.45pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:1.55pt;
+margin-left:-.25pt'>With our two resources (<span style='font-family:"Courier New"'>/dogs</span>
+and <span style='font-family:"Courier New"'>/dogs/1234</span>) and the four
+HTTP verbs, we have a rich set of capability that's intuitive to the developer.
+Here is a chart that shows what we mean for our dogs. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=638
+ style='width:6.65in;margin-left:-5.4pt;border-collapse:collapse'>
+ <tr style='height:52.1pt'>
+  <td width=135 valign=top style='width:101.15pt;background:#E23927;padding:
+  13.0pt 5.75pt 0in 0in;height:52.1pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:5.4pt;text-indent:0in;line-height:107%'><b><span
+  style='color:white'>Resource </span></b></p>
+  </td>
+  <td width=128 style='width:95.75pt;background:#E23927;padding:13.0pt 5.75pt 0in 0in;
+  height:52.1pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:white'>POST </span></b></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='color:black'>create</span><b><span style='color:white'> </span></b></p>
+  </td>
+  <td width=128 style='width:95.75pt;background:#E23927;padding:13.0pt 5.75pt 0in 0in;
+  height:52.1pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:41.7pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:white'>GET </span></b><span style='color:black'>read</span><b><span
+  style='color:white'> </span></b></p>
+  </td>
+  <td width=128 style='width:95.75pt;background:#E23927;padding:13.0pt 5.75pt 0in 0in;
+  height:52.1pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:28.45pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:white'>PUT </span></b><span style='color:black'>update</span><b><span
+  style='color:white'> </span></b></p>
+  </td>
+  <td width=120 style='width:90.35pt;background:#E23927;padding:13.0pt 5.75pt 0in 0in;
+  height:52.1pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b><span
+  style='color:white'>DELETE </span></b></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='color:black'>delete</span><b><span style='color:white'> </span></b></p>
+  </td>
+ </tr>
+ <tr style='height:53.25pt'>
+  <td width=135 valign=top style='width:101.15pt;background:#EDEBE0;padding:
+  13.0pt 5.75pt 0in 0in;height:53.25pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:5.4pt;text-indent:0in;line-height:107%'><b><span
+  style='color:black'>/dogs </span></b></p>
+  </td>
+  <td width=128 style='width:95.75pt;background:#EDEBE0;padding:13.0pt 5.75pt 0in 0in;
+  height:53.25pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:2.1pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:107%'><span style='color:
+  black'>Create a new dog </span></p>
+  </td>
+  <td width=128 valign=top style='width:95.75pt;background:#EDEBE0;padding:
+  13.0pt 5.75pt 0in 0in;height:53.25pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='color:black'>List dogs </span></p>
+  </td>
+  <td width=128 style='width:95.75pt;background:#EDEBE0;padding:13.0pt 5.75pt 0in 0in;
+  height:53.25pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:1.55pt;margin-bottom:
+  0in;margin-left:0in;text-indent:0in;line-height:107%'><span style='color:
+  black'>Bulk update dogs </span></p>
+  </td>
+  <td width=120 valign=top style='width:90.35pt;background:#EDEBE0;padding:
+  13.0pt 5.75pt 0in 0in;height:53.25pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='color:black'>Delete all dogs </span></p>
+  </td>
+ </tr>
+ <tr style='height:77.2pt'>
+  <td width=135 valign=top style='width:101.15pt;background:#EDEBE0;padding:
+  13.0pt 5.75pt 0in 0in;height:77.2pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:5.4pt;text-indent:0in;line-height:107%'><b><span
+  style='color:black'>/dogs/1234 </span></b></p>
+  </td>
+  <td width=128 valign=top style='width:95.75pt;background:#EDEBE0;padding:
+  13.0pt 5.75pt 0in 0in;height:77.2pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='color:black'>Error </span></p>
+  </td>
+  <td width=128 valign=top style='width:95.75pt;background:#EDEBE0;padding:
+  13.0pt 5.75pt 0in 0in;height:77.2pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='color:black'>Show Bo </span></p>
+  </td>
+  <td width=128 style='width:95.75pt;background:#EDEBE0;padding:13.0pt 5.75pt 0in 0in;
+  height:77.2pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+  margin-left:0in;text-indent:0in;line-height:99%'><span style='color:black'>If
+  exists update Bo </span></p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='color:black'>If not error </span></p>
+  </td>
+  <td width=120 valign=top style='width:90.35pt;background:#EDEBE0;padding:
+  13.0pt 5.75pt 0in 0in;height:77.2pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='color:black'>Delete Bo </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The point is that developers probably don't need the chart
+to understand how the API behaves. They can experiment with and learn the API
+without the documentation.   </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>In summary:  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Use two base URLs per resource.   </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Keep verbs out of your base URLs.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Use HTTP verbs to operate on the collections and elements. </p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29721">Plural nouns and concrete
+names  </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Let’s explore how to pick the nouns for your URLs.<span
+style='color:black'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:0in;
+margin-left:-.25pt'>Should you choose singular or plural nouns for your
+resource names? You'll see popular APIs use both. Let's look at a few examples:
+</p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.75pt;text-indent:0in;line-height:103%'><b>Foursquare                           GroupOn
+                               Zappos</b> </p>
+
+<p class=MsoNormal style='margin-left:-.75pt;text-indent:0in'>/checkins                                /deals 
+                                   /Product </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Given that the first thing most people probably do with a
+RESTful API is a GET, we think it reads more easily and is more intuitive to
+use plural nouns. But above all, avoid a mixed model in which you use singular
+for some resources, plural for others. Being consistent allows developers to
+predict and guess the method calls as they learn to work with your API. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Concrete names are better than abstract</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Achieving pure abstraction is sometimes a goal of API
+architects. However, that abstraction is not always meaningful for developers. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.35pt;
+margin-left:-.25pt'>Take for example an API that accesses content in various
+forms  - blogs, videos, news articles, and so on. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>An API that models everything at the highest level of
+abstraction - as <span style='font-family:"Courier New"'>/items</span> or <span
+style='font-family:"Courier New"'>/assets</span> in our example - loses the
+opportunity to paint a tangible picture for developers to know what they can do
+with this API. It is more compelling and useful to see the resources listed as
+blogs, videos, and news articles. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The level of abstraction depends on your scenario. You also
+want to expose a manageable number of resources. Aim for concrete naming and to
+keep the number of resources between 12 and 24. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>In summary, an intuitive API uses plural rather than
+singular nouns, and concrete rather than abstract names. </p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29722">Simplify associations -
+sweep complexity under the ‘?’ </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>In this section, we explore API design considerations when
+handling associations between resources and parameters like states and
+attributes.<b><span style='color:#FF2100'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Associations </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Resources almost always have relationships to other
+resources. What's a simple way to express these relationships in a Web API? </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Let's look again at the API we modeled in<a
+href="http://blog.apigee.com/detail/restful_api_design_nouns_are_good_verbs_are_bad/"><span
+style='color:#1C1D1D;text-decoration:none'> nouns are good, verbs are bad - the
+</span></a>API that interacts with our <b>dogs</b> resource. Remember, we had
+two base URLs: /dogs and dogs/1234. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:15.5pt;
+margin-left:-.25pt'>We're using HTTP verbs to operate on the resources and
+collections. Our dogs belong to owners. To get all the dogs belonging to a
+specific owner, or to create a new dog for that owner, do a <span
+style='font-family:"Courier New"'>GET</span> or a POST: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.35pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>GET /owners/5678/dogs </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.55pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>POST /owners/5678/dogs </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Now, the relationships can be complex. Owners have
+relationships with veterinarians, who have relationships with dogs, who have
+relationships with food, and so on. It's not uncommon to see people string
+these together making a URL 5 or 6 levels deep. Remember that once you have the
+primary key for one level, you usually don't need to include the levels above
+because you've already got your specific object. In other words, you shouldn't
+need too many cases where a URL is deeper than what we have above <span
+style='font-family:"Courier New"'>/resource/identifier/resource.</span> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Sweep complexity behind the ‘?’</b><b><span style='font-size:8.5pt;
+line-height:103%;font-family:"Arial",sans-serif;color:#383738'> </span></b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Most APIs have intricacies beyond the base level of a
+resource. Complexities can include many states that can be updated, changed,
+queried, as well as the attributes associated with a resource. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.45pt;
+margin-left:-.25pt'>Make it simple for developers to use the base URL by
+putting optional states and attributes behind the HTTP question mark. To get
+all red dogs running in the park: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.45pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>GET /dogs?color=red&amp;state=running&amp;location=park </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>In summary, keep your API intuitive by simplifying the
+associations between resources, and sweeping parameters and other complexities
+under the rug of the HTTP question mark. </p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29723">Handling errors </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Many software developers, including myself, don't always
+like to think about exceptions and error handling but it is a very important
+piece of the puzzle for any software developer, and especially for API
+designers. <b><span style='font-size:8.5pt;line-height:102%;font-family:"Arial",sans-serif;
+color:#383738'> </span></b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Why is good error design especially important for API designers? </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>From the perspective of the developer consuming your Web
+API, everything at the other side of that interface is a black box. Errors
+therefore become a key tool providing context and visibility into how to use an
+API. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>First, developers learn to write code through errors.  The
+&quot;test-first&quot; concepts of the extreme programming model and the more
+recent &quot;test driven development&quot; models represent a body of best
+practices that have evolved because this is such an important and natural way
+for developers to work. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Secondly, in addition to when they're developing their
+applications, developers depend on well-designed errors at the critical times
+when they are troubleshooting and resolving issues after the applications
+they've built using your API are in the hands of their users. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>How to think about errors in a pragmatic way with REST? </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Let's take a look at how three top APIs approach it. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.2pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Facebook </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.35pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>HTTP Status Code: 200 </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.7pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>{&quot;type&quot; : &quot;OauthException&quot;,
+&quot;message&quot;:&quot;(#803) Some of the aliases you requested do not
+exist: foo.bar&quot;} </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.2pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Twilio </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.35pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>HTTP Status Code: 401 </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.7pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>{&quot;status&quot; : &quot;401&quot;,
+&quot;message&quot;:&quot;Authenticate&quot;,&quot;code&quot;: 20003,
+&quot;more info&quot;: &quot;http://www.twilio.com/docs/errors/20003&quot;} </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.2pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>SimpleGeo </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.35pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>HTTP Status Code: 401 </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.55pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>{&quot;code&quot; : 401, &quot;message&quot;:
+&quot;Authentication Required&quot;} </span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Facebook</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>No matter what happens on a Facebook request, you get back
+the 200-status code - everything is OK. Many error messages also push down into
+the HTTP response. Here they also throw an #803 error but with no information
+about what #803 is or how to react to it. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Twilio</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Twilio does a great job aligning errors with HTTP status
+codes. Like Facebook, they provide a more granular error message but with a
+link that takes you to the documentation. Community commenting and discussion
+on the documentation helps to build a body of information and adds context for
+developers experiencing these errors. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>SimpleGeo</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:13.25pt;
+margin-left:-.25pt'>SimpleGeo provides error codes but with no additional value
+in the payload.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.7pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:14.0pt;
+line-height:107%'>A couple of best practices </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Use HTTP status codes</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Use HTTP status codes and try to map them cleanly to
+relevant standard-based codes. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>There are over 70 HTTP status codes. However, most
+developers don't have all 70 memorized. So if you choose status codes that are
+not very common you will force application developers away from building their
+apps and over to Wikipedia to figure out what you're trying to tell them.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Therefore, most API providers use a small subset. For
+example, the Google GData API uses only 10 status codes; Netflix uses 9, and
+Digg, only 8. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Google GData  </b></p>
+
+<p class=MsoNormal style='margin-left:-.75pt;text-indent:0in'>200      201      304
+     400      401      403      404      409      410      500 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Netflix </b></p>
+
+<p class=MsoNormal style='margin-left:-.75pt;text-indent:0in'>200      201      304
+     400      401      403      404      412      500<b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Digg  </b></p>
+
+<p class=MsoNormal style='margin-left:-.75pt;text-indent:0in'>200      400      401
+     403      404      410      500      503<b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>How many status codes should you use for your API? </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.85pt;
+margin-left:-.25pt'>When you boil it down, there are really only 3 outcomes in
+the interaction between an app and an API: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.05pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Everything
+worked - success </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.05pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>The
+application did something wrong – client error </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>The
+API did something wrong – server error </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.8pt;
+margin-left:-.25pt'>Start by using the following 3 codes. If you need more, add
+them. But you shouldn't need to go beyond 8. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.0pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>200
+- OK </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.05pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>400
+- Bad Request </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>500
+- Internal Server Error </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.85pt;
+margin-left:-.25pt'>If you're not comfortable reducing all your error
+conditions to these 3, try picking among these additional 5: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.0pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>201
+- Created </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.0pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>304
+- Not Modified </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:13.9pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>404
+– Not Found </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.0pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>401
+- Unauthorized </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>403
+- Forbidden </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>(Check out this good Wikipedia entry for all <a
+href="http://en.wikipedia.org/wiki/Http_error_codes"><span style='color:navy'>HTTP
+Status codes.)</span></a><a href="http://en.wikipedia.org/wiki/Http_error_codes"><span
+style='color:#1C1D1D;text-decoration:none'> </span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>It is important that the code that is returned can be
+consumed and acted upon by the application's business logic - for example, in
+an if-then-else, or a case statement.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Make messages returned in the payload as verbose as possible. </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.2pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Code for code </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>200 – OK </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.55pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>401 – Unauthorized </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.2pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Message for people </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.6pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>{&quot;developerMessage&quot; : &quot;Verbose, plain language
+description of the problem for the app developer with hints about how to fix
+it.&quot;, &quot;userMessage&quot;:&quot;Pass this message on to the app user
+if needed.&quot;, &quot;errorCode&quot; : 12345, &quot;more info&quot;:
+&quot;http://dev.teachdogrest.com/errors/12345&quot;}</span><span
+style='font-size:8.5pt;line-height:103%;font-family:"Arial",sans-serif;
+color:#383738'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>In summary, be verbose and use plain language descriptions.
+Add as many hints as your API team can think of about what's causing an error. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>We highly recommend you add a link in your description to
+more information, like Twilio does. </p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29724">Tips for versioning  </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Versioning is one of the most important considerations when
+designing your Web API. <span style='color:black'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Never release an API without a version and make the version
+mandatory.  </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Let's see how three top API providers handle versioning. </p>
+
+<p class=MsoNormal style='margin-left:-.75pt;text-indent:0in'>Twilio                                      /2010-04-01/Accounts/
+</p>
+
+<p class=MsoNormal style='margin-left:-.75pt;text-indent:0in'>salesforce.com                       /services/data/v20.0/sobjects/Account
+</p>
+
+<p class=MsoNormal style='margin-left:-.75pt;text-indent:0in'>Facebook                                ?v=1.0
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Twilio uses a timestamp in the URL (note the European format). </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>At compilation time, the developer includes the timestamp
+of the application when the code was compiled. That timestamp goes in all the
+HTTP requests. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>When a request arrives, Twilio does a look up. Based on the
+timestamp they identify the API that was valid when this code was created and
+route accordingly. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>It's a very clever and interesting approach, although we
+think it is a bit complex. For example, it can be confusing to understand
+whether the timestamp is the compilation time or the timestamp when the API was
+released.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Salesforce.com uses v20.0, placed somewhere in the middle of the URL. </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>We like the use of the <b>v.</b> notation. However, we
+don't like using the <b>.0 </b>because it implies that the interface might be
+changing more frequently than it should. The logic behind an interface can
+change rapidly but the interface itself shouldn't change frequently. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Facebook also uses the v. notation but makes the version an optional
+parameter. </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>This is problematic because as soon as Facebook forced the
+API up to the next version, all the apps that didn't include the version number
+broke and had to be pulled back and version number added.<span
+style='color:black'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.7pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:14.0pt;
+line-height:107%'>How to think about version numbers in a pragmatic way with
+REST? </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Never release an API without a version. Make the version
+mandatory. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:12.75pt;
+margin-left:-.25pt;line-height:129%'>Specify the version with a <b>'v' </b>prefix.
+Move it all the way to the left in the URL so that it has the highest scope
+(e.g. <b><span style='font-family:"Courier New"'>/</span></b><span
+style='font-family:"Courier New"'>v1/dogs</span>). </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Use a simple ordinal number. Don't use the dot notation
+like v1.2 because it implies a granularity of versioning that doesn't work well
+with APIs--it's an interface not an implementation. Stick with v1, v2, and so
+on. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>How many versions should you maintain? </b>Maintain at least one
+version back.<b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'><b>For how long should you maintain a version? </b>Give
+developers at least one cycle to react before obsoleting a version.<b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:13.35pt;
+margin-left:-.25pt'>Sometimes that's 6 months; sometimes it’s 2 years. It
+depends on your developers' development platform, application type, and
+application users. For example, mobile apps take longer to rev’ than Web apps. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.7pt;
+margin-left:-.25pt;line-height:107%'><b><span style='font-size:14.0pt;
+line-height:107%'>Should version and format be in URLs or headers? </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>There is a strong school of thought about putting format
+and version in the header. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Sometimes people are forced to put the version in the
+header because they have multiple inter-dependent APIs. That is often a symptom
+of a bigger problem, namely, they are usually exposing their internal mess
+instead of creating one, usable API facade on top. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>That’s not to say that putting the version in the header is
+a symptom of a problematic API design. It's not! </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>In fact, using headers is more correct for many reasons: it
+leverages existing HTTP standards, it's intellectually consistent with <a
+href="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm"><span
+style='color:navy'>Fielding's vision,</span></a><a
+href="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm"><span
+style='color:#1C1D1D;text-decoration:none'> </span></a>it solves some hard
+realworld problems related to inter-dependent APIs, and more. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>However, we think the reason most of the popular APIs do
+not use it is because it's less fun to hack in a browser. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Simple rules we follow: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:0in;
+margin-left:-.25pt'>If it changes the logic you write to handle the response,
+put it in the URL so you can see it easily.  </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>If it doesn't change the logic for each response, like
+OAuth information, put it in the header. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.25pt;
+margin-left:-.25pt'>These for example, all represent the same resource: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New"'>dogs/1
+</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New"'>Content-Type:
+application/json </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:417.65pt;margin-bottom:
+.5pt;margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New"'> dogs/1
+</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.5pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New"'>Content-Type:
+application/xml </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:417.65pt;margin-bottom:
+.5pt;margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New"'> dogs/1
+</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.9pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New"'>Content-Type:
+application/png</span> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The code we would write to handle the responses would be
+very different. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>There's no question the header is more correct and it is
+still a very strong API design. <br clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29725">Pagination and partial
+response </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Partial response allows you to <a
+href="http://blog.apigee.com/detail/restful_api_design_can_your_api_give_developers_just_the_information/"><span
+style='color:#1C1D1D;text-decoration:none'>give developers just the information
+they need.</span></a> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:0in;
+margin-left:-.25pt'>Take for example a request for a tweet on the Twitter API.
+You'll get much more than a typical twitter app often needs - including the
+name of person, the text of the tweet, a timestamp, how often the message was
+re-tweeted, and a lot of metadata.  </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Let's look at how several leading APIs handle giving
+developers just what they need in responses, including Google who pioneered the
+idea of <b>partial response</b>. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.3pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>LinkedIn </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.45pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/people:(id,first-name,last-name,industry) </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.35pt;
+margin-left:-.25pt'>This request on a person returns the ID, first name, last
+name, and the industry. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:4.9pt;
+margin-left:-.25pt'>LinkedIn does partial selection using this terse <span
+style='font-family:"Courier New"'>:(...)</span> syntax which isn't
+self-evident. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Plus it's difficult for a developer to reverse engineer the
+meaning using a search engine.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.3pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Facebook </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.45pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/joe.smith/friends?fields=id,name,picture </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.2pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Google </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.45pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>?fields=title,media:group(media:thumbnail) </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Google and Facebook have a similar approach, which works
+well. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>They each have an optional parameter called fields after
+which you put the names of fields you want to be returned. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:38.4pt;margin-bottom:
+5.95pt;margin-left:-.25pt;line-height:141%'>As you see in this example, you can
+also put sub-objects in responses to pull in other information from additional
+resources. <b>Add optional fields in a comma-delimited list </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The Google approach works extremely well. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.25pt;
+margin-left:-.25pt'>Here's how to get just the information we need from our
+dogs API using this approach: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.55pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/dogs?fields=name,color,location </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>It's simple to read; a developer can select just the
+information an app needs at a given time; it cuts down on bandwidth issues,
+which is important for mobile apps. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The partial selection syntax can also be used to include
+associated resources cutting down on the number of requests needed to get the
+required information. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Make it easy for developers to paginate objects in a database </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>It's almost always a bad idea to return every resource in a
+database. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Let's look at how Facebook, Twitter, and LinkedIn handle
+pagination. Facebook uses <b>offset</b> and <b>limit</b>. Twitter uses page and
+<b>rpp</b> (records per page). LinkedIn uses <b>start</b> and <b>count</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Semantically, Facebook and LinkedIn do the same thing. That
+is, the LinkedIn start &amp; count is used in the same way as the Facebook
+offset &amp; limit. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.65pt;
+margin-left:-.25pt'>To get records 50 through 75 from each system, you would
+use: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.0pt;
+margin-left:.5in;text-align:justify;text-justify:inter-ideograph;text-indent:
+-.25in;line-height:103%'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Facebook
+- <b>offset 50</b> and <b>limit 25</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.05pt;
+margin-left:.5in;text-align:justify;text-justify:inter-ideograph;text-indent:
+-.25in'><span style='font-family:"Arial",sans-serif'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Twitter - <b>page 3</b> and <b>rpp 25</b> (records per page) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:.5in;text-align:justify;text-justify:inter-ideograph;text-indent:
+-.25in;line-height:103%'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>LinkedIn
+- <b>start 50 </b>and <b>count 25</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Use limit and offset </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.45pt;
+margin-left:-.25pt'>We recommend limit and offset. It is more common, well
+understood in leading databases, and easy for developers. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.45pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/dogs?limit=25&amp;offset=50 </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Metadata </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>We also suggest including metadata with each response that
+is paginated that indicated to the developer the total number of records
+available. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>What about defaults? </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:.6pt;
+margin-left:-.25pt'>My loose rule of thumb for default pagination is <b>limit=10
+</b>with<b> offset=0. </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.35pt;
+margin-left:-.25pt;line-height:103%'>(<span style='font-family:"Courier New"'>limit=10&amp;offset=0</span>)<b>
+</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The pagination defaults are of course dependent on your
+data size. If your resources are large, you probably want to limit it to fewer
+than 10; if resources are small, it can make sense to choose a larger limit. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>In summary: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:.6pt;
+margin-left:-.25pt'>Support <b>partial response</b> by adding optional fields
+in a <b>comma delimited list.</b> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Use <b>limit and offset</b> to make it easy for developers
+to paginate objects. <br clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29726">What about responses that
+don’t involve resources? </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>API calls that send a response that's not a resource <b><i>per
+se</i></b> are not uncommon depending on the domain. We've seen it in financial
+services, Telco, and the automotive domain to some extent. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Actions like the following are your clue that you might not
+be dealing with a &quot;resource&quot; response. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:.6pt;
+margin-left:36.5pt'>Calculate </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:.6pt;
+margin-left:36.5pt'>Translate </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:36.5pt'>Convert </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>For example, you want to make a simple algorithmic
+calculation like how much tax someone should pay, or do a natural language
+translation (one language in request; another in response), or convert one
+currency to another. None involve resources returned from a database. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>In these cases: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Use verbs not nouns  </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.25pt;
+margin-left:-.25pt'>For example, an API to convert 100 euros to Chinese Yen: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.55pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/convert?from=EUR&amp;to=CNY&amp;amount=100 </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Make it clear in your API documentation that these “non-resource”
+scenarios are different.  </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Simply separate out a section of documentation that makes
+it clear that you use verbs in cases like this – where some action is taken to
+generate or calculate the response, rather than returning a resource directly. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29727">Supporting multiple formats 
+</a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>We recommend that you support more than one format - that
+you push things out in one format and accept as many formats as necessary. You
+can usually automate the mapping from format to format. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Here's what the syntax looks like for a few key APIs. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:334.6pt;margin-bottom:
+1.7pt;margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;
+line-height:183%'><b>Google Data </b><span style='font-family:"Courier New";
+color:#383738'>?alt=json </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.2pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Foursquare </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.55pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/venue.json </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.2pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Digg* </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:216.05pt;margin-bottom:
+15.6pt;margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>Accept: application/json ?type=json </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:4.7pt;
+margin-left:-.25pt'>* The type argument, if present, overrides the <span
+style='font-family:"Courier New"'>Accept</span> header. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:0in;
+margin-left:-.25pt'>Digg allows you to specify in two ways: in a pure RESTful
+way in the Accept header or in the type parameter in the URL. This can be
+confusing - at the very least you need to document what to do if there are
+conflicts. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>We recommend the Foursquare approach. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.25pt;
+margin-left:-.25pt'>To get the JSON format from a collection or specific
+element: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.5pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>dogs.json </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.45pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/dogs/1234.json </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Developers and even casual users of any file system are
+familiar to this dot notation. It also requires just one additional character
+(the period) to get the point across. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>What about default formats? </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>In my opinion, JSON is winning out as the default format.
+JSON is the closest thing we have to universal language. Even if the back end
+is built in Ruby on Rails, PHP, Java, Python etc., most projects probably touch
+JavaScript for the front-end. It also has the advantage of being terse - less
+verbose than XML. </p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29728">What about attribute names? </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>In the previous section, we talked about formats -<a
+href="http://blog.apigee.com/detail/restful_api_design_support_multiple_formats/"><span
+style='color:#1C1D1D;text-decoration:none'> supporting multiple formats </span></a>and
+working with JSON as the default. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>This time, let's talk about what happens when a response
+comes back. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>You have an object with data attributes on it. How should you name the
+attributes? </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Here are API responses from a few leading APIs: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Twitter </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.8pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New"'>&quot;created_at&quot;:
+&quot;Thu Nov 03 05:19;38 +0000 2011&quot;<b> </b></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Bing </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.9pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New"'>&quot;DateTime&quot;:
+&quot;2011-10-29T09:35:00Z&quot;</span><b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Foursquare </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.8pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New"'>&quot;createdAt&quot;:
+1320296464<b> </b></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>They each use a different code convention. Although the
+Twitter approach is familiar to me as a Ruby on Rails developer, we think that
+Foursquare has the best approach. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.45pt;
+margin-left:-.25pt'>How does the API response get back in the code? You parse
+the response (JSON parser); what comes back populates the Object. It looks like
+this </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.55pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>var myObject = JSON.parse(response); </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.45pt;
+margin-left:-.25pt'>If you chose the Twitter or Bing approach, your code looks
+like this. Its not JavaScript convention and looks weird - looks like the name
+of another object or class in the system, which is not correct. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:208.85pt;margin-bottom:
+.75pt;margin-left:-.25pt;line-height:188%'><span style='font-family:"Courier New";
+color:#383738'>timing = myObject.created_at; timing - myObject.DateTime; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.6pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Recommendations </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.05pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Use
+JSON as default </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:.5in;text-indent:-.25in'><span style='font-family:"Arial",sans-serif'>•<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Follow
+JavaScript conventions for naming attributes </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:42.6pt;text-indent:-6.6pt'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Use medial capitalization (aka CamelCase) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:42.6pt;text-indent:-6.6pt'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>Use uppercase or lowercase depending on type of object </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.45pt;
+margin-left:-.25pt'>This results in code that looks like the following,
+allowing the JavaScript developer to write it in a way that makes sense for
+JavaScript. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:252.05pt;margin-bottom:
+4.7pt;margin-left:-.25pt;line-height:188%'><span style='font-family:"Courier New";
+color:#383738'>&quot;createdAt&quot;: 1320296464 timing = myObject.createdAt; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.5pt;
+margin-left:0in;text-indent:0in;line-height:107%'><b><span style='font-size:
+16.0pt;line-height:107%;font-family:"Calibri",sans-serif;color:#FF2100'> </span></b></p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29729">Tips for search  </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:8.05pt;
+margin-left:-.25pt;line-height:127%'>While a simple search could be modeled as
+a resourceful API (for example, <span style='font-family:"Courier New"'>dogs/?q=red</span>),
+a more complex search across multiple resources requires a different design. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>This will sound familiar if you've read the topic about
+using verbs not nouns when results don't return a resource from the database -
+rather the result is some action or calculation.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>If you want to do a global search across resources, we
+suggest you follow the Google model: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.2pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Global search </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.45pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/search?q=fluffy+fur </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Here, search is the verb; <b>?q</b> represents the query. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Scoped search </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.45pt;
+margin-left:-.25pt'>To add scope to your search, you can prepend with the scope
+of the search. For example, search in dogs owned by resource ID 5678 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.55pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/owners/5678/dogs?q=fluffy+fur </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Notice that we’ve dropped the explicit search in the URL
+and rely on the parameter ‘q’ to indicate the scoped query. (Big thanks to the
+contributors on the <a
+href="https://groups.google.com/forum/?fromgroups#!topic/api-craft/hXYPmlgFTQQ"><span
+style='color:navy'>API Craft</span></a><a
+href="https://groups.google.com/forum/?fromgroups#!topic/api-craft/hXYPmlgFTQQ"><span
+style='color:#1C1D1D;text-decoration:none'> </span></a>Google group for helping
+refine this approach.) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Formatted results </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.45pt;
+margin-left:-.25pt'>For search or for any of the action oriented (non-resource)
+responses, you can prepend with the format as follows: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/search.xml?q=fluffy+fur </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.5pt;
+margin-left:0in;text-indent:0in;line-height:107%'><b><span style='font-size:
+16.0pt;line-height:107%;font-family:"Calibri",sans-serif;color:#FF2100'> </span></b></p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29730">Consolidate API requests in
+one subdomain </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>We’ve talked about things that come after the top-level
+domain. This time, let's explore stuff on the other side of the URL.<b><span
+style='font-size:8.5pt;line-height:102%;font-family:"Arial",sans-serif;
+color:#383738'> </span></b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Here's how Facebook, Foursquare, and Twitter handle this:<b><span
+style='font-size:8.5pt;line-height:102%;font-family:"Arial",sans-serif;
+color:#383738'> </span></b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Facebook provides two APIs. They started with <a
+href="http://api.facebook.com/"><span style='color:navy'>api.facebook.com,</span></a><a
+href="http://api.facebook.com/"><span style='color:#1C1D1D;text-decoration:
+none'> </span></a>then modified it to orient around the social graph <a
+href="http://graph.facebook.com/"><span style='color:navy'>graph.facebook.com.</span></a><a
+href="http://graph.facebook.com/"><span style='color:navy'> </span></a><a
+href="http://graph.facebook.com/"><span style='color:#1C1D1D;text-decoration:
+none'> </span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:216.05pt;margin-bottom:
+12.6pt;margin-left:-.25pt;line-height:103%'><a href="http://api.facebook.com/"><span
+style='font-family:"Courier New";color:#383738;text-decoration:none'>graph.facebook.com
+</span></a><a href="http://api.facebook.com/"><span style='font-family:"Courier New";
+color:#383738;text-decoration:none'>api.facebook.com </span></a><span
+style='font-family:"Courier New";color:#383738'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.4pt;
+margin-left:-.25pt'>Foursquare has one API.<a href="http://api.foursquare.com/"><span
+style='color:#1C1D1D;text-decoration:none'>  </span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.45pt;
+margin-left:-.25pt;line-height:103%'><a href="http://api.foursquare.com/"><span
+style='font-family:"Courier New";color:#383738;text-decoration:none'>api.foursquare.com
+</span></a><span style='font-family:"Courier New";color:#383738'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.25pt;
+margin-left:-.25pt'>Twitter has three APIs; two of them focused on search and
+streaming<a href="http://search.twitter.com/"><span style='color:#1C1D1D;
+text-decoration:none'>. </span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:223.25pt;margin-bottom:
+12.55pt;margin-left:-.25pt;line-height:103%'><a
+href="http://search.twitter.com/"><span style='font-family:"Courier New";
+color:#383738;text-decoration:none'>stream.twitter.com </span></a><a
+href="http://search.twitter.com/"><span style='font-family:"Courier New";
+color:#383738;text-decoration:none'>api.twitter.com </span></a><a
+href="http://search.twitter.com/"><span style='font-family:"Courier New";
+color:#383738;text-decoration:none'>search.twitter.com </span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>It's easy to understand how Facebook and Twitter ended up
+with more than one API. It has a lot to do with timing and acquisition, and
+it's easy to reconfigure a CName entry in your DNS to point requests to
+different clusters. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>But if we're making design decisions about what's in the
+best interest of app developer, we recommend following Foursquare's lead: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Consolidate all API requests under one API subdomain.  </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>It's cleaner, easier and more intuitive for developers who
+you want to build cool apps using your API. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.25pt;
+margin-left:-.25pt'>Facebook, Foursquare, and Twitter also all have dedicated
+developer portals. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:172.85pt;margin-bottom:
+12.55pt;margin-left:-.25pt;line-height:103%'><a
+href="http://developers.facebook.com/"><span style='font-family:"Courier New";
+color:#383738;text-decoration:none'>developers.facebook.com </span></a><a
+href="http://developers.foursquare.com/"><span style='font-family:"Courier New";
+color:#383738;text-decoration:none'>developers.foursquare.com </span></a><a
+href="http://dev.twitter.com/"><span style='font-family:"Courier New";
+color:#383738;text-decoration:none'>dev.twitter.com </span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:12.95pt;
+margin-left:-.25pt'>How to organize all of this?  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:.6pt;
+margin-left:-.25pt'>Your API gateway should be the top-level domain. For
+example, <a href="http://api.teachdogrest.com/"><span style='font-size:11.0pt;
+line-height:102%;font-family:"Courier New";color:#1C1D1D;text-decoration:none'>api.teachdogrest.com</span></a><a
+href="http://api.teachdogrest.com/"><span style='color:#1C1D1D;text-decoration:
+none'> </span></a> In keeping with the spirit of REST, your developer portal
+should follow this pattern: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:8.35pt;margin-bottom:
+0in;margin-left:0in;text-indent:0in;line-height:196%'><span style='font-size:
+11.0pt;line-height:196%;font-family:"Courier New"'>developers.yourtopleveldomain</span><sup><span
+style='font-size:18.5pt;line-height:196%'>. For example, </span></sup><a
+href="http://developers.teachdogrest.com/"><span style='font-family:"Courier New";
+color:#383738;text-decoration:none'>developers.teachdogrest.com </span></a><span
+style='font-family:"Courier New";color:#383738'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Do Web redirects </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:15.1pt;
+margin-left:-.25pt'>Then optionally, if you can sense from requests coming in
+from the browser where the developer really needs to go, you can redirect. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Say a developer types <a href="http://api.teachdogrest.com/"><b><span
+style='font-family:"Courier New";color:#1C1D1D;text-decoration:none'>api.teachdogrest.com</span></b></a><a
+href="http://api.teachdogrest.com/"><span style='color:#1C1D1D;text-decoration:
+none'> </span></a>in the browser but there's no other information for the GET
+request, you can probably safely redirect to your developer portal and help get
+the developer where they really need to be.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:286.35pt;margin-bottom:
+11.55pt;margin-left:-.25pt;line-height:184%'>api  <span style='font-family:
+Wingdings'>à</span>developers (if from browser) dev <span style='font-family:
+Wingdings'>à</span> developers developer <span style='font-family:Wingdings'>à</span>
+developers <br clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29731"></a><a
+href="http://blog.apigee.com/detail/restful_api_design_tips_for_handling_exceptional_behavior/"><span
+style='color:#FF2100;text-decoration:none'>Tips for handling exceptional
+behavior  </span></a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>So far, we've dealt with baseline, standard behaviors. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Here we’ll explore some of the <b>exceptions</b> that can
+happen - when clients of Web APIs can't handle all the things we've discussed.
+For example, sometimes clients intercept HTTP error codes, or support limited
+HTTP methods. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>What are ways to handle these situations and work within
+the limitations of a specific client? </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>When a client intercepts HTTP error codes </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>One common thing in some versions of Adobe Flash - if you
+send an HTTP response that is anything other than HTTP 200 OK, the Flash
+container intercepts that response and puts the error code in front of the end
+user of the app. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Therefore, the app developer doesn't have an opportunity to
+intercept the error code. App developers need the API to support this in some
+way. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:14.15pt;
+margin-left:-.25pt'>Twitter does an excellent job of handling this. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:8.15pt;
+margin-left:-.25pt;line-height:150%'>They have an optional parameter <b><span
+style='font-family:"Courier New"'>suppress_response_codes</span></b>. If <b><span
+style='font-family:"Courier New"'>suppress_response_codes</span></b> is set to
+true, the HTTP response is always 200. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/public_timelines.json? </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:28.85pt;margin-bottom:
+12.7pt;margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>suppress_response_codes=true HTTP status code: 200
+{&quot;error&quot;:&quot;Could not authenticate you.&quot;} </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:13.45pt;
+margin-left:-.25pt;line-height:133%'>Notice that this parameter is a big
+verbose response code. (They could have used something like <b><span
+style='font-family:"Courier New"'>src</span></b>, but they opted to be
+verbose.) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>This is important because when you look at the URL, you
+need to see that the response codes are being suppressed as it has huge
+implications about how apps are going to respond to it. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Overall recommendations: </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:9.25pt;text-indent:-9.25pt'>1<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>- Use suppress_response_codes = true </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:9.25pt;text-indent:-9.25pt'>2<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>- The HTTP code is no longer just for the code </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The rules from our previous Handling Errors section change.
+In this context, the HTTP code is no longer just for the code - the program -
+it's now to be ignored. Client apps are never going to be checking the HTTP
+status code, as it is always the same. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:9.25pt;text-indent:-9.25pt'>3<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>- Push any response code that we would have put in the HTTP response
+down into the response message </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.2pt;
+margin-left:-.25pt'>In my example below, the response code is 401. You can see
+it in the response message. Also include additional error codes and verbose
+information in that message. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt;line-height:105%'><b><span style='font-family:"Courier New";
+color:#383738'>Always return OK</span></b><span style='font-family:"Courier New";
+color:#383738'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:165.65pt;margin-bottom:
+.75pt;margin-left:-.25pt;line-height:187%'><span style='font-family:"Courier New";
+color:#383738'>/dogs?suppress_response_codes = true  <b>Code for ignoring</b> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.1pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>200 - OK  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt;line-height:105%'><b><span style='font-family:"Courier New";
+color:#383738'>Message for people &amp; code</span></b><span style='font-family:
+"Courier New";color:#383738'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.55pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>{response_code&quot; : 401, &quot;message&quot; : &quot;Verbose,
+plain language description of the problem with hints about how to fix it.&quot;
+&quot;more_info&quot; : &quot;http://dev.tecachdogrest.com/errors/12345&quot;,
+&quot;code&quot; : 12345} </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>When a client supports limited HTTP methods </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>It is common to see support for GET and POST and not PUT
+and DELETE. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>To maintain the integrity of the four HTTP methods, we
+suggest you use the following methodology commonly used by Ruby on Rails
+developers: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Make the method an optional parameter in the URL. </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.45pt;
+margin-left:-.25pt'>Then the HTTP verb is always a GET but the developer can
+express rich HTTP verbs and still maintain a RESTful clean API. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt;line-height:105%'><b><span style='font-family:"Courier New";
+color:#383738'>Create</span></b><span style='font-family:"Courier New";
+color:#383738'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:309.65pt;margin-bottom:
+.75pt;margin-left:-.25pt;line-height:191%'><span style='font-family:"Courier New";
+color:#383738'>/dogs?method=post <b>Read</b>  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.6pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/dogs </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt;line-height:105%'><b><span style='font-family:"Courier New";
+color:#383738'>Update</span></b><span style='font-family:"Courier New";
+color:#383738'>  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:165.65pt;margin-bottom:
+.75pt;margin-left:-.25pt;line-height:189%'><span style='font-family:"Courier New";
+color:#383738'>/dogs/1234?method=put&amp;location=park <b>Delete</b>  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.45pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/dogs/1234?method=delete </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;line-height:103%'><b>WARNING: </b><i>It can be dangerous to
+provide post or delete capabilities using a GET method because if the URL is in
+a Web page then a Web crawler like the Googlebot can create or destroy lots of
+content inadvertently. Be sure you understand the implications of supporting
+this approach for your applications' context.</i><b> </b></p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29732"></a><a
+href="http://blog.apigee.com/detail/restful_api_design_authentication/"><span
+style='color:#FF2100;text-decoration:none'>Authentication  </span></a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>There are many schools of thought. My colleagues at Apigee
+and I don't always agree on how to handle authentication - but overall here's
+my take. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Let's look at these three top services. See how each of
+these services handles things differently: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>PayPal </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Permissions Service API<b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:379.95pt;margin-bottom:
+11.45pt;margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;
+line-height:103%'><b>Facebook </b>OAuth 2.0<b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Twitter </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>OAuth 1.0a<b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Note that PayPal's proprietary three-legged permissions API
+was in place long before OAuth was conceived. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>What should you do? </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Use the latest and greatest OAuth - OAuth 2.0 (as of this
+writing). It means that Web or mobile apps that expose APIs don’t have to share
+passwords. It allows the API provider to revoke tokens for an individual user,
+for an entire app, without requiring the user to change their original
+password. This is critical if a mobile device is compromised or if a rogue app
+is discovered.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Above all, OAuth 2.0 will mean improved security and better
+end-user and consumer experiences with Web and mobile apps. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Don't do something *like* OAuth, but different. It will be
+frustrating for app developers if they can't use an OAuth library in their
+language because of your variation.  </p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29733"></a><a
+href="http://blog.apigee.com/detail/restful_api_design_making_requests/"><span
+style='color:#FF2100;text-decoration:none'>Making requests on your API </span></a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Lets take a look at what some API requests and responses
+look like for our dogs API. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:306.45pt;margin-bottom:
+0in;margin-left:0in;text-align:justify;text-justify:inter-ideograph;text-indent:
+0in;line-height:157%'><b>Create a brown dog named Al </b><span
+style='font-family:"Courier New";color:#383738'>POST /dogs
+name=Al&amp;furColor=brown <b>Response</b> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:417.65pt;margin-bottom:
+.75pt;margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>200 OK  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>{ </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;dog&quot;:{ </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;id&quot;: &quot;1234&quot;, </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;name&quot;: &quot;Al&quot;, </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;furColor&quot;: &quot;brown&quot; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>} </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.55pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>}  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:310.25pt;margin-bottom:
+0in;margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;
+line-height:157%'><b>Rename Al to Rover - Update </b><span style='font-family:
+"Courier New";color:#383738'>PUT /dogs/1234 name=Rover <b>Response</b>  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:417.65pt;margin-bottom:
+.75pt;margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>200 OK  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>{ </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;dog&quot;:{ </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;id&quot;:&quot;1234&quot;, </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;name&quot;: &quot;Rover&quot;, </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.5pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;furColor&quot;: &quot;brown&quot; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>} </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>}  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.2pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Tell me about a particular dog </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.6pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>GET /dogs/1234 </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt;line-height:105%'><b><span style='font-family:"Courier New";
+color:#383738'>Response</span></b><span style='font-family:"Courier New";
+color:#383738'>  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:417.65pt;margin-bottom:
+.75pt;margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>200 OK  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>{ </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;dog&quot;:{ </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;id&quot;:&quot;1234&quot;, </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;name&quot;: &quot;Rover&quot;, </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;furColor&quot;: &quot;brown&quot; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>} </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.45pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>} </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.3pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Tell me about all the dogs </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.5pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>GET /dogs </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.35pt;
+margin-left:-.25pt;line-height:105%'><b><span style='font-family:"Courier New";
+color:#383738'>Response</span></b><span style='font-family:"Courier New";
+color:#383738'>  </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:424.85pt;margin-bottom:
+.75pt;margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>200 OK  { </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;dogs&quot;: </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>[{&quot;dog&quot;:{ </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;id&quot;:&quot;1233&quot;, </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;name&quot;: &quot;Fido&quot;, </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;furColor&quot;: &quot;white&quot;}}, </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>{&quot;dog&quot;:{ </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;id&quot;:&quot;1234&quot;, </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;name&quot;: &quot;Rover&quot;, </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.5pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;furColor&quot;: &quot;brown&quot;}}] </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.35pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>&quot;_metadata&quot;: </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>[{&quot;totalCount&quot;:327,&quot;limit&quot;:25,&quot;offset&quot;:100}]
+</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:12.45pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>} </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.3pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Delete Rover :-( </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:11.25pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>DELETE /dogs/1234 </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:381.65pt;margin-bottom:
+.35pt;margin-left:-.25pt;line-height:105%'><b><span style='font-family:"Courier New";
+color:#383738'>Response</span></b><span style='font-family:"Courier New";
+color:#383738'> 200 OK </span></p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29734">Chatty APIs </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:0in;
+margin-left:-.25pt'>Let’s think about how app developers use that API you're
+designing and dealing with chatty APIs. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.55pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Imagine how developers will use your API</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>When designing your API and resources, try to imagine how
+developers will use it to say construct a user interface, an iPhone app, or
+many other apps. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Some API designs become very chatty - meaning just to build
+a simple UI or app, you have dozens or hundreds of API calls back to the
+server. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The API team can sometimes decide not to deal with creating
+a nice, resource-oriented RESTful API, and just fall back to a mode where they
+create the 3 or 4 Java-style getter and setter methods they know they need to
+power a particular user interface.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:0in;
+margin-left:-.25pt;line-height:184%'>We don't recommend this. You can design a
+RESTful API and still mitigate the chattiness.<b> Be complete and RESTful and
+provide shortcuts </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:0in;
+margin-left:-.25pt'>First design your API and its resources according to <a
+href="http://blog.apigee.com/taglist/restful"><span style='color:navy'>pragmatic
+RESTful design principles</span></a><a
+href="http://blog.apigee.com/taglist/restful"><span style='color:#1C1D1D;
+text-decoration:none'> </span></a>and then provide shortcuts. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>What kind of shortcut? Say you know that 80% of all your
+apps are going to need some sort of composite response, then build the kind of
+request that gives them what they need. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Just don't do the latter instead of the former. First
+design using good pragmatic RESTful principles! </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Take advantage of the partial response syntax </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The partial response syntax discussed in a previous section
+can help. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>To avoid creating one-off base URLs, you can use the
+partial response syntax to drill down to dependent and associated resources. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.45pt;
+margin-left:-.25pt'>In the case of our dogs API, the dogs have association with
+owners, who in turn have associations with veterinarians, and so on. Keep
+nesting the partial response syntax using dot notation to get back just the
+information you need. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.05pt;margin-bottom:.75pt;
+margin-left:-.25pt;line-height:103%'><span style='font-family:"Courier New";
+color:#383738'>/owners/5678?fields=name,dogs.name </span></p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29735">Complement with an SDK </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>It’s a common question for API providers - do you need to
+complement your API with code libraries and software development kits (<a
+href="http://en.wikipedia.org/wiki/Software_development_kit"><span
+style='color:navy'>SDKs</span></a><a
+href="http://en.wikipedia.org/wiki/Software_development_kit"><span
+style='color:#1C1D1D;text-decoration:none'>)</span></a>? </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>If your API follows good design practices, is self
+consistent, standards-based, and well documented, developers may be able to get
+rolling without a client SDK. Well-documented code samples are also a critical
+resource. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>On the other hand, what about the scenario in which
+building a UI requires a lot of domain knowledge? This can be a challenging
+problem for developers even when building UI and apps on top of APIs with
+pretty simple domains – think about the Twitter API with it’s primary object of
+140 characters of text. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>You shouldn't change your API to try to overcome the domain
+knowledge hurdle. Instead, you can<b> </b>complement your API with code
+libraries and a software development kit (SDK). </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>In this way, you don't overburden your API design. Often, a
+lot of what's needed is on the client side and you can push that burden to an
+SDK. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The SDK can provide the platform-specific code, which
+developers use in their apps to invoke API operations - meaning you keep your
+API clean. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Other reasons you might consider complementing your API
+with an SDK include the following: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:6.25pt;margin-bottom:
+11.55pt;margin-left:-.25pt'><b>Speed adoption on a specific platform. </b>(For
+example Objective C SDK for iPhone.)  Many experienced developers are just
+starting off with objective C+ so an SDK might be helpful. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'><b>Simplify integration effort required to work with your
+API</b> - If key use cases are complex or need to be complemented by standard
+on-client processing.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>An SDK can help</b> <b>reduce bad or inefficient code</b> that might
+slow down service for everyone. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:10.45pt;
+margin-left:-.25pt'><b>As a developer resource</b> - good SDKs are a forcing
+function to create good source code examples and documentation.  Yahoo! and
+Paypal are good examples: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.35pt;
+margin-left:-.25pt;line-height:112%'><span style='font-family:"Courier New";
+color:#383738'>Yahoo! </span><a href="http://developer.yahoo.com/social/sdk/"><span
+style='font-family:"Courier New";color:navy'>http://developer.yahoo.com/social/sdk/</span></a><a
+href="http://developer.yahoo.com/social/sdk/"><span style='font-family:"Courier New";
+color:#383738;text-decoration:none'> </span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;
+margin-left:-.25pt;line-height:112%'><span style='font-family:"Courier New";
+color:#383738'>Paypal </span><a
+href="https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&amp;content_ID=developer/library_download_sdks"><span
+style='font-family:"Courier New";color:navy'>https://cms.paypal.com/us/cgi-bin/?cmd=_render</span></a><a
+href="https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&amp;content_ID=developer/library_download_sdks"><span
+style='font-family:"Courier New";color:navy'>content&amp;content_ID=developer/library_download_sdks</span></a><a
+href="https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&amp;content_ID=developer/library_download_sdks"><b><span
+style='font-family:"Courier New";color:#383738;text-decoration:none'> </span></b></a><b><span
+style='font-family:"Courier New";color:#383738'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'><b>To</b> <b>market your API to a specific community </b>-
+you upload the SDK to a samples or plugin page on a platform’s existing
+developer community. </p>
+
+<h1 style='margin-left:-.25pt'><a name="_Toc29736">The API Façade Pattern </a></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>At this point, you may be asking -   </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;line-height:103%'><i>What should we be thinking from an
+architectural perspective?  </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;line-height:103%'><i>How do we follow all these best
+practice guidelines, expose my internal services and systems in a way that’s
+useful to app developers, and still iterate and maintain my API?  </i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Back-end systems of record are often too complex to expose
+directly to application developers.  They are stable (have been hardened over
+time) and dependable (they are running key aspects of you business), but they
+are often based on legacy technologies and not always easy to expose to Web
+standards like HTTP. These systems can also have complex interdependencies and
+they change slowly meaning that they can’t move as quickly as the needs of
+mobile app developers and keep up with changing formats.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:3.25pt;
+margin-left:-.25pt'>In fact, the problem is not creating an API for just one
+big system but creating an API for an array of complementary systems that all
+need to be used to make an API valuable to a developer.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.75pt;
+margin-left:23.25pt;text-indent:0in;line-height:107%'><span style='font-size:
+11.0pt;line-height:107%;font-family:"Calibri",sans-serif;color:black'><img
+border=0 width=564 height=80
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image006.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>It’s useful to talk through a few anti-patterns that we’ve
+seen. Let’s look at why we believe they don’t work well. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>The Build Up Approach </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:1.3pt;
+margin-left:-.25pt'>In the build-up approach, a developer exposes the core
+objects of a big system and puts an XML parsing layer on top.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.55pt;
+margin-left:114.0pt;text-indent:0in;line-height:107%'><span style='font-size:
+11.0pt;line-height:107%;font-family:"Calibri",sans-serif;color:black'><img
+border=0 width=249 height=143
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image007.gif"></span></p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>This approach has merit in that it can get you to market
+with version 1 quickly. Also, your API team members (your internal developers)
+already understand the details of the system. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:0in;
+margin-left:-.25pt'>Unfortunately, those details of an internal system at the
+object level are fine grained and can be confusing to external developers.
+You’re also exposing details of internal </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>architecture, which is rarely a good idea. This approach
+can be inflexible because you have 1:1 mapping to how a system works and how it
+is exposed to API.  In short, building up from the systems of record to the API
+can be overly complicated. <b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>The Standards Committee Approach</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:1.65pt;
+margin-left:-.25pt'>Often the internal systems are owned and managed by
+different people and departments with different views about how things should
+work. Designing an API by a standards committee often involves creating a
+standards document, which defines the schema and URLs and such. All the
+stakeholders build toward that common goal. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.6pt;
+margin-left:100.5pt;text-indent:0in;line-height:107%'><span style='font-size:
+11.0pt;line-height:107%;font-family:"Calibri",sans-serif;color:black'><img
+border=0 width=357 height=294
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image008.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The benefits of this approach include getting to version 1
+quickly. You can also create a sense of unification across an organization and
+a comprehensive strategy, which can be significant accomplishments when you
+have a large organization with a number of stakeholders and contributors.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>A drawback of the standards committee pattern is that it
+can be slow. Even if you get the document created quickly, getting everybody to
+implement against it can be slow and can lack adherence. This approach can also
+lead to a mediocre design as a result of too many compromises.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>The Copy Cat Approach</b> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:6.8pt;
+margin-left:-.25pt'>We sometimes see this pattern when an organization is late
+to market – for example, when their close competitor has already delivered a
+solution. Again, this approach can get you to version 1 quickly and you may
+have a built-in adoption curve if the app developers who will use your API are
+already familiar with your competitor’s API.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.3pt;
+margin-left:78.0pt;text-indent:0in;line-height:107%'><span style='font-size:
+11.0pt;line-height:107%;font-family:"Calibri",sans-serif;color:black'><img
+border=0 width=353 height=289
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image009.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>However, you can end up with an undifferentiated product
+that is considered an inferior offering in the market of APIs. You might have
+missed exposing your own key value and differentiation by just copying someone
+else’s API design.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.45pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Solution – The API façade pattern </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The best solution starts with thinking about the
+fundamentals of product management. Your product (your API) needs to be
+credible, relevant, and differentiated. Your product manager is a key member of
+your API team  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Once your product manager has decided what the big picture
+is like, it’s up to the architects. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>We recommend you implement an <b>API façade pattern</b>.
+This pattern gives you a buffer or virtual layer between the interface on top
+and the API implementation on the bottom. You essentially create a façade – a
+comprehensive view of what the API should be and importantly from the
+perspective of the app developer and end user of the apps they create. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:25.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.25pt;
+margin-left:40.9pt;text-indent:0in;line-height:107%'><span style='font-size:
+11.0pt;line-height:107%;font-family:"Calibri",sans-serif;color:black'><img
+border=0 width=517 height=184
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image010.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.85pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>The developer and the app that consume the API are on top.
+The API façade isolates the developer and the application and the API.  Making
+a clean design in the facade allows you to decompose one really hard problem
+into a few simpler problems. </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:normal'><i><span
+style='color:black'>“Use the façade pattern when you want to provide a simple
+interface to a complex subsystem. Subsystems often get more complex as they
+evolve.” </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:138.65pt;margin-bottom:
+12.55pt;margin-left:0in;text-indent:0in;line-height:95%'><i><span
+style='font-size:11.0pt;line-height:95%;color:black'>Design Patterns – Elements
+of Reusable Object-Oriented Software </span></i><span style='font-size:11.0pt;
+line-height:95%;color:black'>(Erich Gamma, Richard Helm, Ralph Johnson, John
+Vlissides</span><span style='font-size:9.0pt;line-height:95%;color:#818181'>)</span><i><span
+style='color:black'> </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Implementing an API façade pattern involves three basic
+steps.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:9.25pt;text-indent:-9.25pt'>1<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>- Design the ideal API – design the URLs, request parameters and
+responses, payloads, headers, query parameters, and so on. The API design
+should be self-consistent. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:9.25pt;text-indent:-9.25pt'>2<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>- Implement the design with data stubs. This allows application
+developers to use your API and give you feedback even before your API is
+connected to internal systems. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:9.25pt;text-indent:-9.25pt'>3<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span>- Mediate or integrate between the façade and the systems. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.85pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:2.05pt;
+margin-left:54.4pt;text-indent:0in;line-height:107%'><span style='font-size:
+11.0pt;line-height:107%;font-family:"Calibri",sans-serif;color:black'><img
+border=0 width=481 height=280
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image011.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Using the three-step approach you’ve decomposed one big
+problem to three smaller problems.  If you try to solve the one big problem,
+you’ll be starting in code, and trying to build up from your business logic
+(systems of record) to a clean API interface. You would be exposing objects or
+tables or RSS feeds from each silo, mapping each to XML in the right format
+before exposing to the app. It is a machine–to-machine orientation focused
+around an app and is difficult to get this right. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Taking the façade pattern approach helps shift the thinking
+from a silo approach in a number of important ways. First, you can get buy in
+around each of the three separate steps and have people more clearly understand
+how you’re taking a pragmatic approach to the design. Secondly, the orientation
+shifts from the app to the app developer. The goal becomes to ensure that the
+app developer can use your API because the design is selfconsistent and
+intuitive.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Because of where it is in the architecture, the façade
+becomes an interesting gateway. You can now have the façade implement the
+handling of common patterns (for pagination, queries, ordering, sorting, etc.),
+authentication, authorization, versioning, and so on, uniformly across the API.
+(This is a big topic and a full discussion is beyond the scope of this
+article.) </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Other benefits for the API team include being more easily
+able to adapt to different use cases regardless of whether they are internal
+developer, partner, or open scenarios. The API team will be able to keep pace
+with the changing needs of developers, including the ever-changing protocols
+and languages. It is also easier to extend an API by building out more
+capability from your enterprise or plugging in additional existing systems.  </p>
+
+</div>
+
+<span style='font-size:12.0pt;line-height:102%;font-family:"Cambria",serif;
+color:#1C1D1D'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Web API Design - Crafting Interfaces that Developers Love </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:6.65pt;margin-left:
+-.25pt'><span style='font-family:"Cambria",serif;color:#1C1D1D'>Resources  </span></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.55pt;
+margin-left:-.25pt;line-height:107%'><a
+href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm"><span
+style='color:navy'>Representational State Transfer (REST)</span></a><a
+href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm"><span
+style='color:#1C1D1D;text-decoration:none'>,</span></a><a
+href="http://www.ics.uci.edu/~fielding/"><span style='color:#1C1D1D;text-decoration:
+none'> </span></a><a href="http://www.ics.uci.edu/~fielding/"><span
+style='color:navy'>Roy Thomas Fielding</span></a><a
+href="http://www.ics.uci.edu/~fielding/"><span style='color:#1C1D1D;text-decoration:
+none'>,</span></a> 2000 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'><a
+href="http://blog.apigee.com/detail/slides_for_restful_api_design_second_edition_webinar/"><span
+style='color:navy'>RESTful API Design Webinar</span></a><a
+href="http://blog.apigee.com/detail/slides_for_restful_api_design_second_edition_webinar/"><span
+style='color:#1C1D1D;text-decoration:none'>,</span></a> 2<sup>nd</sup> edition,
+Brian Mulloy, 2011 </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.55pt;
+margin-left:-.25pt;line-height:107%'><a href="http://blog.apigee.com/"><span
+style='color:navy'>Apigee API Tech &amp; Best Practices Blog</span></a><a
+href="http://blog.apigee.com/"><span style='color:#1C1D1D;text-decoration:none'>
+</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'><a href="http://groups.google.com/group/api-craft/"><span
+style='color:navy'>API Craft </span></a><a
+href="http://groups.google.com/group/api-craft/"><span style='color:#1C1D1D;
+text-decoration:none'> </span></a>Google Group </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.45pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:-.25pt'><span
+style='font-family:"Cambria",serif;color:#1C1D1D'>About Brian Mulloy </span></h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:1.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'><b> </b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:7.1pt;
+margin-left:-.25pt;text-align:justify;text-justify:inter-ideograph;line-height:
+103%'><b>Brian Mulloy, Apigee</b><b><span style='font-size:16.0pt;line-height:
+103%'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.65pt;margin-bottom:
+11.55pt;margin-left:-.25pt'>Brian has 15 years of experience ranging from
+enterprise software to founding a Web startup. He co-founded and was CEO of
+Swivel, a Website for social data analysis. He was President and General
+Manager of Grand Central, a cloud-based offering for application infrastructure
+(before we called it the cloud). And was Director of Product Marketing at BEA
+Systems. Brian holds a degree in Physics from the University of Michigan. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:-.25pt'>Brian is a frequent contributor on the <a
+href="http://blog.apigee.com/"><span style='color:navy'>Apigee API Tech &amp;
+best practices blog</span></a><a href="http://blog.apigee.com/"><span
+style='color:#1C1D1D;text-decoration:none'>,</span></a> the Apigee <a
+href="http://www.youtube.com/apigee"><span style='color:navy'>YouTube</span></a><a
+href="http://www.youtube.com/apigee"><span style='color:#1C1D1D;text-decoration:
+none'> </span></a>channel, the <a
+href="http://groups.google.com/group/api-craft/"><span style='color:navy'>API
+Craft </span></a><a href="http://groups.google.com/group/api-craft/"><span
+style='color:#1C1D1D;text-decoration:none'> </span></a>Google Group, and <a
+href="http://blog.apigee.com/taglist/webinar"><span style='color:navy'>Webinars</span></a><a
+href="http://blog.apigee.com/taglist/webinar"><span style='color:#1C1D1D;
+text-decoration:none'>.</span></a> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:288.05pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal align=right style='margin:0in;text-align:right;text-indent:
+0in;line-height:107%'>  <img border=0 width=107 height=20 id="Picture 2659"
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image012.jpg"><a
+href="http://creativecommons.org/licenses/by-sa/3.0/"><span style='color:#1C1D1D;
+text-decoration:none'> </span></a>   <span style='color:#A7A8A8'> </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:4.25pt;
+margin-left:0in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:.15in;
+margin-left:.55in;text-indent:0in;line-height:107%'><i><span style='font-family:
+"Calibri",sans-serif;color:#4F81BC'> </span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.4pt;
+margin-left:.55in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.55in;text-indent:0in;line-height:107%'><b><span style='font-family:
+"Arial",sans-serif;color:#383738'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:13.4pt;
+margin-left:36.05pt;text-indent:0in;line-height:107%'><img border=0 width=208
+height=70 id="Picture 2798"
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image013.gif"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.9pt;
+margin-left:.55in;text-indent:0in;line-height:107%'><b><span style='font-family:
+"Arial",sans-serif;color:#383738'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.9pt;
+margin-left:.55in;text-indent:0in;line-height:107%'><b><span style='font-family:
+"Arial",sans-serif;color:#383738'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.9pt;
+margin-left:.55in;text-indent:0in;line-height:107%'><b><span style='font-family:
+"Arial",sans-serif;color:#383738'> </span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.9pt;
+margin-left:.55in;text-indent:0in;line-height:107%'><b><span style='font-family:
+"Arial",sans-serif;color:#383738'> </span></b></p>
+
+<h3>About Apigee <span style='color:#1C1D1D'> </span></h3>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:8.0pt;margin-bottom:0in;
+margin-left:40.1pt'>Apigee is the leading provider of API products and
+technology for enterprises and developers. Hundreds of enterprises like
+Comcast, GameSpy, TransUnion Interactive, Guardian Life and Constant Contact
+and thousands of developers use </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.4pt;margin-bottom:11.55pt;
+margin-left:40.1pt'>Apigee's technology. Enterprises use Apigee for visibility,
+control and scale of their API strategies. Developers use Apigee to learn,
+explore and develop API-based applications. Learn more at <a
+href="http://www.apigee.com/"><span style='color:navy'>http://apigee.com</span></a><a
+href="http://www.apigee.com/"><span style='color:#1C1D1D;text-decoration:none'>.</span></a>
+</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:.55in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:.55in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:.55in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.85pt;
+margin-left:.55in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:.55in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:10.75pt;
+margin-left:.55in;text-indent:0in;line-height:107%'> </p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:12.45pt;
+margin-bottom:.15in;margin-left:.5pt;text-align:right;line-height:107%'><a
+href="http://apigee.com/about/resources"><span style='color:navy'>Accelerate
+your API Strategy</span></a><a href="http://apigee.com/about/resources"><span
+style='color:#1C1D1D;text-decoration:none'> </span></a></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:12.45pt;
+margin-bottom:5.05pt;margin-left:.5pt;text-align:right;line-height:107%'><a
+href="http://apigee.com/about/products/enterprise"><span style='color:navy'>Scale
+Control and Secure your Enterprise</span></a><a
+href="http://apigee.com/about/products/enterprise"><span style='color:#1C1D1D;
+text-decoration:none'> </span></a></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:5.5pt;
+margin-bottom:.15in;margin-left:.5pt;text-align:right;line-height:107%'><a
+href="http://apigee.com/providers"><span style='color:navy'>Developers –
+Consoles for the APIs yo</span></a><a href="http://apigee.com/providers"><span
+style='color:navy'>u</span></a><span style='font-size:11.0pt;line-height:107%;
+font-family:"Calibri",sans-serif;color:black'><img border=0 width=43 height=28
+id="Group 24760"
+src="Web%20API%20Design%20-%20Crafting%20Interfaces%20that%20Developers%20Love_files/image014.gif"></span><a
+href="http://apigee.com/providers"><span style='color:#1C1D1D;text-decoration:
+none'> </span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:47.0pt;
+margin-left:0in;text-indent:0in;line-height:107%'><b><span style='font-size:
+16.0pt;line-height:107%;font-family:"Arial",sans-serif;color:black'> </span></b></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:10.55pt;
+margin-bottom:0in;margin-left:0in;text-align:right;text-indent:0in;line-height:
+107%'><span style='color:#A7A8A8'> </span></p>
+
+</div>
+
+</body>
+
+</html>
