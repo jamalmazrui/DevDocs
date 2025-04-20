@@ -1,0 +1,332 @@
+﻿
+
+Contents
+About	1
+Chapter 1: Getting started with Java EE	2
+Section 1.1: What is Java EE?	2
+Section 1.2: Installation	3
+Section 1.3: Installing Payara Server Full	3
+Section 1.4: Building my First JavaEE Application (Hello World)	4
+Chapter 2: Java RESTful Web Services (JAX-RS)	6
+Section 2.1: Simple Resource	6
+Section 2.2: GET method types	6
+Section 2.3: POST Method	7
+Section 2.4: Name binding	8
+Section 2.5: Exception Mapper	9
+Section 2.6: DELETE method	9
+Section 2.7: Custom parameter converters	10
+Section 2.8: SubResources	11
+Section 2.9: UriInfo	11
+Chapter 3: The WebSockets API	13
+Section 3.1: Creating a WebSocket communication	13
+Section 3.2: Encoders and Decoder: Object-Oriented WebSockets	14
+Chapter 4: Java Messaging Service (JMS)	21
+Section 4.1: Using ActiveMQ library for messaging (activemq jms provider specific implementations) 	21
+Section 4.2: Creating ConnectionFactory	23
+Section 4.3: Using jndi based lookup for messaging (Non-implementation-specific example)	24
+Chapter 5: Java Connector Architecture (JCA)	26
+Section 5.1: Example Resource Adapter	26
+Chapter 6: The JavaMail API	27
+Section 6.1: Send HTML Formatted Mail	27
+Section 6.2: Send Simple Email	27
+Credits	29
+You may also like	30
+
+
+About
+Please feel free to share this PDF with anyone for free, latest version of this book can be downloaded from:
+https://goalkicker.com/JavaEEBook
+This Java(r) EE Notes for Professionals book is compiled from Stack Overflow
+Documentation, the content is written by the beautiful people at Stack Overflow.
+Text content is released under Creative Commons BY-SA, see credits at the end of this book whom contributed to the various chapters. Images may be copyright of their respective owners unless otherwise specified
+This is an unofficial free book created for educational purposes and is not affiliated with official Java(r) EE group(s) or company(s) nor Stack Overflow. All
+trademarks and registered trademarks are the property of their respective company owners
+The information presented in this book is not guaranteed to be correct nor accurate, use at your own risk
+Please send feedback and corrections to web@petercv.com
+Chapter 1: Getting started with Java EE
+Section 1.1: What is Java EE?
+Java EE stands for Java Enterprise Edition. Java EE extends the Java SE (which stands for Java Standard Edition). Java EE is a set of technologies and related specifications that are oriented towards the development of large-scale enterprise applications. Java EE is developed in a community driven process. So far the following versions of Java EE have been released:
+J2EE 1.2 (December12, 1999)
+J2EE 1.3 (September 24, 2001)
+J2EE 1.4 (November 11, 2003)
+Java EE 5 (May 11, 2006)
+Java EE 6 (December 10, 2009)
+Java EE 7 (April 5, 2013)
+Java EE 8 (August 31, 2017)
+A key concept of the Java EE is that every Java EE version is comprised by a set of specific technologies. These technologies address specific JSRs (Java Specification Requests). In order for a programmer to use these technologies he needs to download an implementation of the Java EE technology specifications. The Java
+Community provides a reference implementation for each technology but other Java EE compliant technologies are developed and can also be used. The community provides a set of tests, namely the Java Compatibility Kit (JCK) that can be used by the developers of a JSR implementation to check if it is compliant or not with the JSR. The following table gives an overview of the technologies that comprise Java EE 7 and the related JSR that define the specs.
+Java EE 7 TechnologyJSRJava Platform, Enterprise Edition 7 (Java EE 7)JSR 342Java API for WebSocketJSR 356Java API for JSON ProcessingJSR 353Java Servlet 3.1JSR 340JavaServer Faces 2.2JSR 344Expression Language 3.0JSR 341JavaServer Pages 2.3JSR 245Standard Tag Library for JavaServer Pages (JSTL) 1.2JSR 52Batch Applications for the Java PlatformJSR 352Concurrency Utilities for Java EE 1.0JSR 236Contexts and Dependency Injection for Java 1.1JSR 346Dependency Injection for Java 1.0JSR 330Bean Validation 1.1JSR 349Enterprise JavaBeans 3.2JSR 345Interceptors 1.2 (Maintenance Release)JSR 318Java EE Connector Architecture 1.7JSR 322Java Persistence 2.1JSR 338Common Annotations for the Java Platform 1.2JSR 250Java Message Service API 2.0JSR 343Java Transaction API (JTA) 1.2JSR 907JavaMail 1.5JSR 919Java API for RESTful Web Services (JAX-RS) 2.0JSR 339Implementing Enterprise Web Services 1.3JSR 109Java API for XML-Based Web Services (JAX-WS) 2.2JSR 224Web Services Metadata for the Java PlatformJSR 181Java API for XML-Based RPC (JAX-RPC) 1.1 (Optional)JSR 101Java APIs for XML Messaging 1.3JSR 67Java API for XML Registries (JAXR) 1.0JSR 93Java Authentication Service Provider Interface for Containers 1.1 JSR 196
+Java Authorization Contract for Containers 1.5JSR 115Java EE Application Deployment 1.2 (Optional)JSR 88J2EE Management 1.1JSR 77Debugging Support for Other Languages 1.0JSR 45Java Architecture for XML Binding (JAXB) 2.2JSR 222Java API for XML Processing (JAXP) 1.3JSR 206Java Database Connectivity 4.0JSR 221Java Management Extensions (JMX) 2.0JSR 003JavaBeans Activation Framework (JAF) 1.1JSR 925Streaming API for XML (StAX) 1.0JSR 173Section 1.2: Installation
+First of all, you cannot "install" Java EE. Java EE consists of a number of specifications. You can install implementations of those specifications however.
+Depending on your needs, there are lots of possibilities. To install most (or all) of the specifications, you can choose a Java EE 7 compatible Application Server. Depending on your needs, you can choose between application servers that implement the web profile or application servers that implement the full profile. For a list of Java EE7 compatible application servers see Java EE Compatibility.
+Section 1.3: Installing Payara Server Full
+Prerequisites
+ JDK 1.7 or later installed. You can find the Oracle JDK's here.
+Steps
+\payara41Download Payara Server Full.
+payara41Unzip the Payara Server at some location on your computer. We will use C: as INSTALL_DIR for Windows users and / for Linux/Mac users.
+Starting / stopping Payara from the command prompt
+ Windows: Open a command prompt and execute the following command to start/stop Payara:
+"C:\payara41\bin\asadmin" start-domain"C:\payara41\bin\asadmin" stop-domain Linux/Max: Open a terminal and execute the following command to start/stop Payara:
+payara41/bin/asadmin start-domain/
+payara41/bin/asadmin stop-domain/
+Starting Payara from Netbeans
+Add the Payara server to Netbeans (see previous chapter) Go to the 'Services' tab (Windows -> Services).
+Expand the 'Servers' item.
+Right-click on the Payara server and select 'Start'.
+(Optional) Right-click on the Payara server and select 'View Domain Admin Console' to go to the console.
+To check that you're running the Application Server, open a browser and go to http://localhost:4848 to see the Payara Server Console.
+Voila! Now it's time to build your first application using JavaEE and deploy it to your server!
+Section 1.4: Building my First JavaEE Application (Hello World)
+Let's understand something. JavaEE consists of a number of specifications. When you install an Application Server (Payara for example), you install all of the specifications at once. For example there's a specification for an ORM called JPA (Java Persistence API), a specification to build Component Based Web Applications called JSF (Java Server Faces), a specification to build REST web services and clients called JAX-RS.
+So as you might guess, there's not only one way to build a simple Hello World application in JavaEE.
+Secondly, the JavaEE spec has a specific structure of folders that looks something like this (simplified):
+
+projectname/src/main/javaInside the / we put all the java classes that we need.
+projectname/src/main/webappInside the / we put html files, css files, javascript files, etc.
+projectname/src/main/webapp/WEB-INFInside the /goes some optional configuration files, such as web.xml and beans.xml.
+For simplicity we will use the NetBeans IDE (it's free) to build our first JavaEE Application. You can find it here. Choose the JavaEE version and install it.
+Create new project
+Open NetBeans IDE
+Go to File > New Project > Maven > Web Application and click Next. Change project name to HelloJavaEE, then click Next and Finish.
+Clean and build the project
+ Go to Run > Clean and Build Project (HelloJavaEE).
+Deploy the WAR file
+In a browser, go to http://localhost:4848 (follow instructions to install payara server).
+../NetBeansProjects/HelloJavaEE/targetGo to Applications > Click Deploy, Click on Select File and choose your war file (HelloJavaEE-1.0SNAPSHOT.war) under .
+Deploy the WAR file directly from Netbeans
+Install Payara (see next chapter).
+In Netbeans, go to the 'Services' tab (Window-> Services if you don't see it).
+Right-click on Servers and select 'Add Server...'
+Select 'GlassFish Server', give it a name and click next.
+Point to your local Payara installation, select 'Local Domain' and click next.
+Leave the domain location settings as they are (Domain: domain1, Host: localhost, DAS Port: 4848, HTTP Port: 8080).
+Go to the 'Projects' tab (Windows -> Projects).
+Right-click on your project and select 'Properties'.
+In the left hand pane, go to 'Run' and select the Server you just added.
+(Optional) Change the context path. If you set the context path to '/MyFirstApplication' the default URL will be 'http://localhost:8080/MyFirstApplication'.
+View results
+ In a browser, go to http://localhost:8080/HelloJavaEE-1.0-SNAPSHOT
+Voila! That's your first app using JavaEE technology. You should now start creating other "Hello World" apps using different specifications like JPA, EJB, JAX-RS, JavaBatch, etc...
+
+Chapter 2: Java RESTful Web Services (JAX-RS)
+Section 2.1: Simple Resource
+First of all for a JAX-RS application must be set a base URI from which all the resources will be available. For that
+javax.ws.rs.core.Applicationpurpose the  class must be extended and annotated with the
+javax.ws.rs.ApplicationPath annotation. The annotation accepts a string argument which defines the base URI.
+
+Resources are simple POJO classes which are annotated with the @Path annotation.
+
+/hello, the resource responds with a Hello StackOverflow!When a HTTP GET request is sent to  message.
+Section 2.2: GET method types
+
+
+GET without a parameter gives all content ("Hello World!") and GET with path parameter gives the specific letter out of that String.
+Some examples:
+$ curl http://localhost/hello Hello World! $ curl http://localhost/hello/0 H $ curl http://localhost/hello/4 o
+Note: if you leave out the method-type annotation (e.g. the @GET above), a request method defaults to being a GET request handler.
+Section 2.3: POST Method
+
+First method can be invoked through HTML form submission by sending captured input parameters. Form submit action should point to -
+
+Second method requires Message POJO with getters/setters. Any REST client can call this method with JSON input as -
+
+POJO should have the same property as JSON to make serialization work.
+
+
+Section 2.4: Name binding
+Name binding is a concept that allows to say to a JAX-RS runtime that a specific filter or interceptor will be executed only for a specific resource method. When a filter or an interceptor is limited only to a specific resource method we say that it is name-bound. Filters and interceptors that do not have such a limitation are called global.
+Defining a name binding annotation
+Filters or interceptors can be assigned to a resource method using the @NameBinding annotation. This annotation is used as meta annotation for other user implemented annotations that are applied to a providers and resource methods. See the following example:
+
+The example above defines a new @Compress annotation which is a name binding annotation as it is annotated with @NameBinding. The @Compress annotation can be used to bind filters and interceptor to endpoints.
+Binding a filter or interceptor to an endpoint
+Consider you have an interceptor that performs GZIP compression and you want to bind such interceptor to a resource method. To do it, annotate both the resource method and the interceptor, as following:
+
+
+getVeryLongStringThe @Compress is applied on the resource method () and on the interceptor
+GZIPWriterInterceptor. The interceptor will be executed only if any resource method with such a annotation will be executed.
+getVeryLongStringgetHelloIn above example, the interceptor will be executed only for the () method. The interceptor will not be executed for method (). In this example the reason is probably clear. We would like to compress only long data and we do not need to compress the short response of "Hello World!".
+Name binding can be applied on a resource class. In the example HelloWorldResource would be annotated with @Compress. This would mean that all resource methods will use compression in this case.
+Note that global filters are executed always, so even for resource methods which have any name binding annotations.
+Documentation
+@NameBinding annotation documentation
+ Jersey documentation about filters and interceptors
+ Section 2.5: Exception Mapper
+
+This exception mapper will catch all IllegalArgumentExceptions thrown in the application, and show the user a clear message instead of a stacktrace.
+Section 2.6: DELETE method
+
+
+Consume it with curl:
+
+Section 2.7: Custom parameter converters
+java.timeThis is an example of how to implement custom parameter converters for JAX-RS endpoints. The example shows two classes from Java 8's  library.
+
+
+Section 2.8: SubResources
+Sometimes for organizational or other reasons it makes sense to have your top level resource return a subresource that would look like this. (Your sub-resource does not need to be an inner class)
+
+Section 2.9: UriInfo
+ContextIn order to get information about the URI the user agent used to access your resource, you can use the @ parameter annotation with a UriInfo parameter. The UriInfo object has a few methods that can be used to get different parts of the URI.
+
+
+https://localhost:8080/webapp/servlet/class/resourceoutput of a GET to :
+
+
+Chapter 3: The WebSockets API
+Section 3.1: Creating a WebSocket communication
+WebSocket provides a duplex/bidirectional communication protocol over a single TCP connection.
+the client opens a connection to a server that is listening for a WebSocket request a client connects to a server using a URI.
+A server may listen to requests from multiple clients.
+Server Endpoint
+You can create a WebSocket server entpoint by just annotate a POJO with @ServerEndpoint. @OnMessage decorates a method that receives incoming messages. @OnOpen can be used to decorate a method to be called when a new connection from a peer is received. Similarly, a method annotated with @OnClose is called when a connection is closed.
+
+Client Endpoint
+Similar to the server endpoint you can create a WebSocket client endpoint by annotate a POJO with
+
+
+Section 3.2: Encoders and Decoder: Object-Oriented WebSockets
+Thanks to encoders and decoders, the JSR 356 offers a object oriented communication models.
+Messages definition
+Let's assume all received messages have to be transformed by the server before being sent back to all connected sessions:
+
+Let's now assume that the server manage two message types: a text-based message and an integer-based message.
+Integer messages multiply the content by itself.
+
+
+String message prepend some text:
+
+Encoders and Decoder
+Encoder.XXX<Type> interface when Decoder must implements Decoder.XXX<TypeThere is one encoder per message type and a single decoder for all messages. Encoders must implements >.
+Encoding is fairly straightforward: from a message, the encode method must output a JSON formatted String. Here is the example for IntegerMsg.
+
+Similar encoding for StringMsg class. Obviously, encoders can be factorized via abstract classes.
+
+Decoder proceeds in two steps: checking if the received message fits the excepted format with willDecode and then transform the received raw message into a object with decode:
+public class MsgDecoder implements Decoder.Text {
+
+
+}
+ServerEndPoint
+The Server EndPoint pretty looks like the WebSocket communication with three main differences:
+1. ServerEndPoint annotation has the encoders and decoders attributes
+2. Messages are not sent with sendText but with sendObject
+3. OnError annotation is used. If there was an error thrown during willDecode, it will be processed here and error information is sent back to the client
+@ServerEndpoint(value = "/webSocketObjectEndPoint", decoders = {MsgDecoder.class}, encoders =
+{StringMsgEncoder.class, IntegerMsgEncoder.class}) public class ServerEndPoint {
+
+
+}
+As I was quite verbose, here is a basic JavaScript client for those who want to have a visual example. Please note that this is a chat-like example: all the connected parties will received the answer.
+
+
+                background: floralwhite;
+            }
+        </style>
+        <script>             var ws = null;             window.onload = function () {
+                // replace the 'websocket-object' with the                 // context root of your web application.
+                ws = new WebSocket("ws://localhost:8080/websocket-object/webSocketObjectEndPoint");                 ws.onopen = onOpen;                 ws.onclose = onClose;                 ws.onmessage = onMessage;             };
+            function onOpen() {                 printText("", "connected to server");             }
+            function onClose() {                 printText("", "disconnected from server");
+            }
+            function onMessage(event) {                 var msg = JSON.parse(event.data);                 printText("server", JSON.stringify(msg.content));
+            }
+            function sendNumberMessage() {                 var content = new Number(document.getElementById("inputNumber").value);                 var json = {content: content};                 ws.send(JSON.stringify(json));                 printText("client", JSON.stringify(json));
+            }
+            function sendTextMessage() {                 var content = document.getElementById("inputText").value;                 var json = {content: content};                 ws.send(JSON.stringify(json));                 printText("client", JSON.stringify(json));
+            }
+            function printText(sender, text) {                 var table = document.getElementById("outputTable");                 var row = table.insertRow(1);                 var cell1 = row.insertCell(0);                 var cell2 = row.insertCell(1);                 var cell3 = row.insertCell(2);
+                switch (sender) {                     case "client":
+                        row.style.color = "orange";                         break;                     case "server":
+                        row.style.color = "green";                         break;                     default:
+                        row.style.color = "powderblue";                 }                 cell1.innerHTML = new Date().toISOString();                 cell2.innerHTML = sender;                 cell3.innerHTML = text;
+Code is complete and was tested under Payara 4.1. Example is pure standard (no external library/framework)
+Chapter 4: Java Messaging Service (JMS)
+The Java Message Service is a Java API that allows applications to create, send, receive, and read messages. The JMS API defines a common set of interfaces and associated semantics that allow programs written in the Java programming language to communicate with other messaging implementations. JMS enables communication that is not only loosely coupled but also asynchronous and reliable.
+Section 4.1: Using ActiveMQ library for messaging (activemq jms provider specific implementations)
+Setup ActiveMQ
+Download a ActiveMQ distribution from activemq.apache.org and unpack it somewhere
+You can start the server immediately, running unsecured on localhost, using the script bin/activemq
+When it is running, you can access your local server's console on http://localhost:8161/admin/
+Configure it by modifying conf/activemq.xml
+As the title suggests following examples user activemq jms provider specific implementations and hence activemq-all.jar needs to be added to the classpath.
+Sending a message through standalone client
+
+
+Polling for messages
+
+Using MessageListener
+
+
+Section 4.2: Creating ConnectionFactory
+Connection factories are the managed objects that allows application to connect to provider by creating Connection
+javax.jms.ConnectionFactoryobject.  is an interface that encapsulates configuration parameters defined by an administrator.
+For using ConnectionFactory client must execute JNDI lookup (or use injection). The following code gets JNDI InitialContext object and uses it to lookup for ConnectionFactory object under JNDI name:
+Context ctx = new InitialContext();
+ConnectionFactory connectionFactory =
+                    (ConnectionFactory) ctx.lookup("jms/javaee7/ConnectionFactory");
+createConnectioncreateContextThe methods available in this interface are () methods that return a Connection object and new JMS 2.0 () methods that return a JMSContext.
+It's possible to create a Connection or a JMSContext either with the default user identity or by specifying a username and password:
+public interface ConnectionFactory {     Connection createConnection() throws JMSException;
+    Connection createConnection(String userName, String password) throws JMSException;
+    JMSContext createContext();
+    JMSContext createContext(String userName, String password);
+    JMSContext createContext(String userName, String password, int sessionMode);
+    JMSContext createContext(int sessionMode);
+}
+Section 4.3: Using jndi based lookup for messaging (Nonimplementation-specific example)
+This method allows non-implementation-specific code to be written and deployed across multiple jms platforms. Below basic example connects to activemq jms server and sends a message.
+
+
+
+Chapter 5: Java Connector Architecture (JCA)
+Section 5.1: Example Resource Adapter
+
+
+Chapter 6: The JavaMail API
+Section 6.1: Send HTML Formatted Mail
+msg.setContent()You can use the same Example above Send Simple Mail with a little modification. Use  instead of
+msg.setText() and use content type html as text/html.
+check this
+
+instead of
+
+Section 6.2: Send Simple Email
+public class GoogleMailTest {     GoogleMailTest() {     }
+    public static void Send(final String username, final String password, String recipientEmail, String title, String message) throws AddressException, MessagingException {
+        GoogleMailTest.Send(username, password, recipientEmail, "", title, message);     }
+    public static void Send(final String username, final String password, String recipientEmail, String ccEmail, String title, String message) throws AddressException, MessagingException {         Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());         final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+        // Get a Properties object
+        Properties props = System.getProperties();         props.setProperty("mail.smtps.host", "smtp.gmail.com");         props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);         props.setProperty("mail.smtp.socketFactory.fallback", "false");         props.setProperty("mail.smtp.port", "465");         props.put("mail.debug", "true");         props.setProperty("mail.smtp.socketFactory.port", "465");         props.setProperty("mail.smtps.auth", "true");         props.put("mail.smtps.quitwait", "false");
+        Session session = Session.getInstance(props, null);
+        // -- Create a new message -        final MimeMessage msg = new MimeMessage(session);
+        // -- Set the FROM and TO fields -        msg.setFrom(new InternetAddress(username));
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail, false));         JOptionPane.showMessageDialog(null, msg.getSize());         if (ccEmail.length() > 0) {             msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(ccEmail, false));         }         msg.setSubject(title);         msg.setText(message);         msg.setSentDate(new Date());         SMTPTransport t = (SMTPTransport) session.getTransport("smtps");
+        t.connect("smtp.gmail.com", username, password);
+        t.sendMessage(msg, msg.getAllRecipients());
+
+
+Credits
+Thank you greatly to all the people from Stack Overflow Documentation who helped provide this content, more changes can be sent to web@petercv.com for new content to be published or updated
+Adrian KrebsChapter 3Al1Chapter 3BarathonChapter 1Cassio Mazzochi MolinChapter 2Daniel KäferChapter 2DimaSanChapter 4efreitoraChapter 2Eric FinnChapter 2Inzimam Tariq ITChapter 6Jeff HutchinsChapter 2Jesse van BekkumChapter 2Johannes BChapter 6justderbChapter 2kannChapter 2M. A. KishawyChapter 5micoChapter 2mylenereinersChapter 1Pablo Andrés Martínez VargasChapter 1RobAuChapter 2sargueChapter 2SetuChapter 4Spyros KChapter 1Stephen CChapters 2, 3, 4 and 6
+You may also like
+
+
+
+
+
+
+
+GoalKicker.com - Java(r) EE Notes for Professionals	1
+
+GoalKicker.com - Java(r) EE Notes for Professionals	1
+
+GoalKicker.com - Java(r) EE Notes for Professionals	1
+
+
+
+
+
+
+
