@@ -1,0 +1,2240 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>The SQL Handbook</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Georgia;
+	panose-1:2 4 5 2 5 4 5 2 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.15pt;
+	margin-left:.5pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-.5pt;
+	line-height:138%;
+	font-size:13.5pt;
+	font-family:"Georgia",serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:109.2pt;
+	margin-bottom:6.3pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:27.0pt;
+	font-family:"Georgia",serif;
+	color:black;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.7pt;
+	margin-left:.5pt;
+	text-indent:-.5pt;
+	line-height:105%;
+	page-break-after:avoid;
+	font-size:24.5pt;
+	font-family:"Georgia",serif;
+	color:black;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Georgia",serif;
+	color:black;
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Georgia",serif;
+	color:black;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.0pt 842.0pt;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+@page WordSection2
+	{size:594.95pt 840.95pt;
+	margin:56.0pt 66.95pt 55.95pt 67.0pt;}
+div.WordSection2
+	{page:WordSection2;}
+@page WordSection3
+	{size:594.95pt 840.95pt;
+	margin:56.0pt 1.0in 55.95pt 1.0in;}
+div.WordSection3
+	{page:WordSection3;}
+@page WordSection4
+	{size:594.95pt 840.95pt;
+	margin:56.0pt 67.0pt 75.3pt 67.0pt;}
+div.WordSection4
+	{page:WordSection4;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:523.0pt;
+margin-bottom:0in;margin-left:-1.0in;text-align:left;text-indent:0in;
+line-height:107%'><img width=793 height=1123
+src="SQL%20Handbook_files/image001.jpg"><br clear=ALL>
+</p>
+
+</div>
+
+<span style='font-size:13.5pt;line-height:138%;font-family:"Georgia",serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection2>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:109.2pt;
+margin-bottom:10.05pt;margin-left:0in;text-align:right;text-indent:0in;
+line-height:107%'><b><span style='font-size:27.0pt;line-height:107%'>Table of
+Contents</span></b></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:26.75pt;text-align:left;line-height:107%'><span
+style='color:#4183C4'>Preface</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:26.7pt;text-align:left;text-indent:0in;
+line-height:107%'><img width=579 height=68 id="Picture 29424"
+src="SQL%20Handbook_files/image002.gif"><br clear=all style='page-break-before:
+always'>
+</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:6.3pt;margin-left:
+-.25pt'>Preface</h1>
+
+<p class=MsoNormal style='margin-left:1.25pt'>The SQL Handbook follows the
+80/20 rule: learn in 20% of the time the 80% of a topic.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>In particular, the goal is to get you up
+to speed quickly with SQL.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>This book is written by Flavio. I
+<b>publish programming tutorials</b> on my blog <a
+href="https://flaviocopes.com/"><span style='color:#4183C4;text-decoration:
+none'>flaviocopes.com</span></a> and I organize a yearly bootcamp at <a
+href="https://bootcamp.dev/"><span style='color:#4183C4;text-decoration:none'>bootcamp.dev</span></a>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>You can reach me on Twitter <a
+href="https://twitter.com/flaviocopes"><span style='color:#4183C4;text-decoration:
+none'>@flaviocopes</span></a><a href="https://twitter.com/flaviocopes"><span
+style='color:black;text-decoration:none'>.</span></a></p>
+
+<p class=MsoNormal style='margin-left:1.25pt;line-height:107%'>Enjoy!<br
+clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:6.3pt;margin-left:
+-.25pt'>The SQL Handbook</h1>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><img width=6 height=566 src="SQL%20Handbook_files/image003.gif"
+align=left hspace=12><span style='color:#4183C4'>Information systems, data and
+information</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4183C4'>What is a Database? And a DBMS?</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4183C4'>Do you always need a database?</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4183C4'>Relational Databases</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4183C4'>Introduction to SQL</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4183C4'>Creating a table</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>7.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4183C4'>Inserting data into a table</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>8.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='color:#4183C4'>Querying data</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>9.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4183C4'>Handling empty cell</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>10.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+style='color:#4183C4'>Unique and Primary keys</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>11.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='color:#4183C4'>Update data in a table</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>12.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='color:#4183C4'>Update a table structure</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>13.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='color:#4183C4'>Deleting data and tables</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>14.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='color:#4183C4'>Joins</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>15.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='color:#4183C4'>Removing duplicates using DISTINCT</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>16.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='color:#4183C4'>Using wildcards with LIKE</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>17.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='color:#4183C4'>Indexes</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>18.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='color:#4183C4'>Aggregating data</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>19.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='color:#4183C4'>Grouping data</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:4.3pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>20.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='color:#4183C4'>Limit and offset</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:15.55pt;margin-left:48.95pt;text-align:left;text-indent:-22.7pt;
+line-height:107%'><span style='line-height:107%;color:#4183C4'>21.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='color:#4183C4'>Comments</span></p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>The goal of this handbook is to
+get you up and running with SQL, starting from zero knowledge.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>You will learn the terms and the
+main ideas, what is a DBMS, how to structure a database, how to insert data
+into it, how to query the database.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>I will only teach you the basics,
+and once you’re done with this you’ll have the knowledge you need to dive
+deeper.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:37.85pt;
+margin-left:1.25pt'>I called this “SQL Handbook” but I assume zero database
+knowledge, so I’m first going to give you an introduction to databases, in
+particular relational databases.</p>
+
+<h2 style='margin-left:-.25pt'>1. Information systems, data and information</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>The modern world is completely centered
+around <b>information</b> and <b>data.</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>What's the difference between information
+and data?</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'><b>Data</b> is a singular unit of
+knowledge. It has no intrinsic value on its own. We can't extract meaning out
+of it, without knowing more about it.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'><b>Information</b> is something
+that we can link to data, to be able to attach a meaning to it.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Let me make an example. The
+number 36 is <i>data</i>. Knowing that 36 is the age of Joe is <i>information</i>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:37.85pt;
+margin-left:1.25pt'>Information that the data represents the age is essential
+knowledge that is key in an information system.</p>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:.6pt;margin-left:-.25pt'>2.
+What is a Database? And a</h2>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:10.7pt;margin-left:-.25pt;text-align:left;line-height:105%'><b><span
+style='font-size:24.5pt;line-height:105%'>DBMS?</span></b></p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>A <b>database</b> is a collection
+of <b>information</b> carefully organized into a system.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>The technology that in a computer
+system lets us organize data and represent the information that's essential for
+an information system is called <b>DataBase Management System</b> (<b>DBMS</b>).</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>A DBMS is a software that
+encapsulates the data of a database, and provides us a way to store it,
+retrieve it, edit it, persist it, and much more.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:37.85pt;
+margin-left:1.25pt'>We ask a DBMS to be efficient, to privately and securely
+store data, to handle large amounts of data.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:10.7pt;margin-left:-.25pt;text-align:left;line-height:105%'><b><span
+style='font-size:24.5pt;line-height:105%'>3. Do you always need a database?</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>Do you always need a database for your
+app? Of course not.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>Many times you don't even need to store
+data.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>But if you need to store data, you have
+various solutions.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>As with everything in technology, nothing
+is ideal in every situation.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Computers offer many various ways
+to store data. The most obvious alternative is <b>files</b>.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>A common example is a website.
+Some websites use a database to store data (like WordPress), some do not.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Not using a database in that case
+means a simpler deploy to a hosting service, since you won’t need to use and
+maintain a database in the first place.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>But when handling lots of data, a
+database is definitely a great way to simplify your life in the long term.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:38.4pt;
+margin-left:1.25pt'>As always, it's all a balance of complexity vs convenience.</p>
+
+<h2 style='margin-left:-.25pt'>4. Relational Databases</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>We have many different kinds of DBMS.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Computer professionals
+experimented with many different options in the past, and one of these options
+got very popular: the <b>Relational</b> <b>Database Management System (</b>RDBMS).</p>
+
+<p class=MsoNormal style='margin-left:1.25pt;line-height:107%'>For simplicity
+we generally call them <b>relational databases</b>.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>You might have heard of
+PostgreSQL, MySQL, Oracle, SQLite, MariaDB, SQL Server.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>Those are all relational databases.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Note the “SQL” in their name.
+They are also called SQL databases, to contrast NoSQL databases (like MongoDB
+or DynamoDB for example), which are DBMS that do not use this relational model
+and do not use SQL as their <i>language</i>.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Relational databases under the
+hood organize data using two simple concepts: <b>tables</b> and <b>relations</b>.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>This makes them very intuitive to
+use, because we are used to using tables to organize things. Think about an
+Excel or Google Sheets, for example.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>A relational database, at a first glance,
+is similar.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>Data is stored in one or more tables.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.15pt;
+margin-left:1.25pt'>A <b>table</b> is a collection of items organized in rows
+and columns:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Name   | Age | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| ------ | --- | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Tony   | 36  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Rose   | 28  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Juliet | 16  | </span></p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Each table contains one or more <b>columns</b>,
+that hold data of a specific <b>type</b>, like strings, numbers and so on.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>The set of a table and all the
+rules about its columns, like the type of data stored, is called <b>schema</b>.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Each table can define <b>constrains</b>
+upon the data that each row can contain. For example, in the simplest case we
+can say that the value of a column cannot be empty.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt;line-height:107%'>Tables can
+reference each other, forming relationships.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>For example we can say the row of
+the <span style='font-size:10.0pt;line-height:138%;font-family:"Courier New";
+background:#F7F7F7'> car </span> table with <span style='font-size:10.0pt;
+line-height:138%;font-family:"Courier New";background:#F7F7F7'> id </span> <span
+style='font-size:10.0pt;line-height:138%;font-family:"Courier New";background:
+#F7F7F7'> 1 </span> is owned by the user assigned to <span style='font-size:
+10.0pt;line-height:138%;font-family:"Courier New";background:#F7F7F7'> id </span> <span
+style='font-size:10.0pt;line-height:138%;font-family:"Courier New";background:
+#F7F7F7'> 2 </span> in the table <span style='font-size:10.0pt;line-height:
+138%;font-family:"Courier New";background:#F7F7F7'> users </span>.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>In this way we can link data together and
+build more complex applications.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Relational databases offer us,
+users, the ability to interact with them through the <b>SQL language.</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.9pt;
+margin-left:1.25pt'>It looks like this:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> * </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> cars </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.35pt;margin-left:12.75pt;text-align:left;text-indent:0in;
+line-height:107%;background:#F7F7F7'><span style='font-size:10.0pt;line-height:
+107%;font-family:"Courier New"'> </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.75pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>INSERT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>INTO</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> cars </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>VALUES</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> (</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Lamborghini'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>, </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>2010</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>) </span></p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>We use this language to define
+the tables <b>schema</b>, fill tables with data, and finally query the data
+when needed.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>The rest of this handbook will be focused
+on SQL.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:37.1pt;
+margin-left:1.25pt'>SQL is rather old, being born in 1986, and it's a
+battle-tested technology used in all sorts of applications.</p>
+
+<h2 style='margin-left:-.25pt'>5. Introduction to SQL</h2>
+
+<p class=MsoNormal style='margin-left:1.25pt'>SQL (Structured Query Language)
+is a language we use to interact with a Database Management System (DBMS) to
+exchange information with it, in a standardized way.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>As the name suggests, it's not a
+programming language, but it was born as a querying language, and later evolved
+to an interface to doing more advanced operations with a database than just
+performing queries.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>I said &quot;evolved&quot;, but
+in reality SQL is always evolving. It's a standard that was first published in
+1986, then updated in 1989, 1992, 1999, 2003, 2006, 2008, 2011, 2016 and as its
+latest version, 2019.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>SQL is implemented in many
+popular DBMS: Postgres, MySQL, Oracle, SQLite, MicroSoft SQL Server, and many
+more.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Each different database
+implements the standard, or a particular version of it, and adds custom
+features on top of it, to simplify creating queries or adding a specific
+functionality.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>SQL is a huge subject, and you
+can literally spend years to master all its features.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>In this handbook we'll only cover the
+basics to get you up and running.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>I recommend you try running the
+SQL I explain in an online playground experimenting tool like <a
+href="https://www.db-fiddle.com/"><span style='color:#4183C4;text-decoration:
+none'>DB Fiddle</span></a> or similar.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>A great application to run SQL locally on
+your own database is <a href="https://tableplus.com/"><span style='color:#4183C4;
+text-decoration:none'>TablePlus</span></a>.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>As a developer in your
+applications in your day-to-day you might use a ORM (object relational mapping)
+library that abstracts SQL and simplifies your life, but it's absolutely
+essential to know how things work under the hood, and much of the terminology of
+ORMs reflect the underlying SQL naming conventions.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>Plus, some things are just doable using
+&quot;plain SQL&quot;.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:37.65pt;
+margin-left:1.25pt'>So, let's go!</p>
+
+<h2 style='margin-left:-.25pt'>6. Creating a table</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.3pt;
+margin-left:1.25pt;line-height:107%'>A database is composed by one or more
+tables.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.65pt;
+margin-left:1.25pt;line-height:107%'>Creating a table in SQL is done using the <span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New";background:
+#F7F7F7'> CREATE TABLE </span> command.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>At creation time you need to
+specify the table columns names, and the type of data they are going to hold.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>SQL defines several kinds of data.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>The most important and the ones you'll see
+more often are:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.15pt;margin-left:14.25pt;text-align:left;line-height:107%'><span
+style='font-size:11.0pt;line-height:107%;font-family:"Calibri",sans-serif'><img
+border=0 width=6 height=34 id="Group 23849"
+src="SQL%20Handbook_files/image004.gif"></span><span style='font-size:10.0pt;
+line-height:107%;font-family:"Courier New";background:#F7F7F7'> CHAR </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.15pt;margin-left:14.25pt;text-align:left;line-height:107%'><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New";background:
+#F7F7F7'> VARCHAR </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:442.75pt;
+margin-bottom:0in;margin-left:-67.0pt;text-align:left;text-indent:0in;
+line-height:107%'>&nbsp;</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=628
+ style='width:471.0pt;margin-left:-5.0pt;border-collapse:collapse'>
+ <tr style='height:23.5pt'>
+  <td width=628 colspan=3 style='width:471.0pt;border:none;border-bottom:solid #EEEEEE 1.0pt;
+  background:white;padding:4.8pt 0in 0in 0in;height:23.5pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:18.75pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+  "Calibri",sans-serif'><img border=0 width=6 height=6 id="Group 24291"
+  src="SQL%20Handbook_files/image005.gif"></span><span style='font-size:10.0pt;
+  line-height:107%;font-family:"Courier New";background:#F7F7F7'> DATE </span></p>
+  </td>
+ </tr>
+ <tr style='height:17.0pt'>
+  <td width=43 rowspan=2 valign=bottom style='width:32.25pt;border:none;
+  border-bottom:solid #EEEEEE 1.0pt;background:white;padding:4.8pt 0in 0in 0in;
+  height:17.0pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:59.25pt;margin-left:18.75pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+  "Calibri",sans-serif'><img border=0 width=6 height=62 id="Group 24313"
+  src="SQL%20Handbook_files/image006.gif"></span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:43.8pt;margin-left:18.75pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+  "Calibri",sans-serif'><img border=0 width=6 height=90 id="Group 24314"
+  src="SQL%20Handbook_files/image007.gif"></span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:5.0pt;text-align:left;text-indent:0in;
+  line-height:107%'>be. or <span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New";background:#F7F7F7'> </span></p>
+  <table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=16
+   style='width:12.0pt;margin-left:18.75pt;border-collapse:collapse'>
+   <tr style='height:12.0pt'>
+    <td width=16 valign=top style='width:12.0pt;background:#F7F7F7;padding:
+    2.05pt .05pt 0in 0in;height:12.0pt'>
+    <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:
+    0in;margin-left:-.25pt;text-indent:0in;line-height:107%'><span
+    style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>);</span></p>
+    </td>
+   </tr>
+  </table>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:5.0pt;text-indent:0in;line-height:107%'><b><span
+  style='font-size:24.5pt;line-height:107%'>7</span></b></p>
+  </td>
+  <td width=47 valign=top style='width:35.25pt;border:none;background:#F7F7F7;
+  padding:4.8pt 0in 0in 0in;height:17.0pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:1.25pt;text-indent:0in;line-height:107%'><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'> TIME </span></p>
+  </td>
+  <td width=538 rowspan=2 valign=top style='width:403.5pt;border:none;
+  border-bottom:solid #EEEEEE 1.0pt;background:white;padding:4.8pt 0in 0in 0in;
+  height:17.0pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.6pt;margin-left:18.8pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";background:#F7F7F7'> </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:19.1pt;margin-left:24.9pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";background:#F7F7F7'> </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:15.55pt;margin-left:-62.5pt;text-align:left;text-indent:0in;
+  line-height:107%'>Numeric types include:</p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.6pt;margin-left:18.8pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";background:#F7F7F7'> </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.6pt;margin-left:12.75pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";background:#F7F7F7'> </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.6pt;margin-left:12.75pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";background:#F7F7F7'> </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:19.1pt;margin-left:.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";background:#F7F7F7'> </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:36.55pt;margin-left:-62.5pt;text-align:left;text-indent:0in;
+  line-height:107%'>Those above all hold numbers. What changes is the size that
+  this number can</p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:11.05pt;
+  margin-left:-62.5pt;text-indent:0in;line-height:135%'>Consult the manual of
+  your DBMS to see the exact values because this is one of the implementation
+  details that can change.</p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:.9pt;margin-bottom:
+  10.35pt;margin-left:-10.95pt;text-indent:-51.55pt;line-height:136%'>Also,
+  each DBMS can introduce non-standard types like <span style='font-size:10.0pt;
+  line-height:136%;font-family:"Courier New";background:#F7F7F7'> BIGINT </span> or
+  <span style='font-size:10.0pt;line-height:136%;font-family:"Courier New";
+  background:#F7F7F7'> TINYINT </span>, and even advanced ones like JSON or
+  array types.</p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:5.35pt;margin-bottom:
+  11.5pt;margin-left:-62.5pt;text-indent:0in;line-height:135%'>You can
+  absolutely use those, as long as you know that switching DBMS to a different
+  one, say from PostgreSQL to SQLite, could be problematic if those nonstandard
+  types (and features) are used.</p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:-62.5pt;text-indent:0in;line-height:107%'>This is the syntax to
+  create a <span style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  background:#F7F7F7'> people </span> table with 2 columns, one an integer and
+  the other a variable length string:</p>
+  <table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=614
+   style='width:460.5pt;border-collapse:collapse'>
+   <tr style='height:86.25pt'>
+    <td width=614 valign=top style='width:460.5pt;background:#F7F7F7;
+    padding:14.8pt 5.75pt 0in 55.9pt;height:86.25pt'>
+    <p class=MsoNormal align=left style='margin-top:0in;margin-right:301.3pt;
+    margin-bottom:0in;margin-left:12.2pt;text-align:left;text-indent:-12.2pt;
+    line-height:137%'><span style='font-size:10.0pt;line-height:137%;
+    font-family:"Courier New";color:#8959A8'>TABLE</span><span
+    style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> people
+    ( , </span></p>
+    <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+    0in;line-height:107%'><span style='font-size:10.0pt;line-height:107%;
+    font-family:"Courier New";color:#F5871F'>VARCHAR</span><span
+    style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>(</span><span
+    style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+    color:#F5871F'>20</span><span style='font-size:10.0pt;line-height:107%;
+    font-family:"Courier New"'>) </span></p>
+    </td>
+   </tr>
+  </table>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:10.6pt;margin-left:-48.8pt;text-align:left;text-indent:0in;
+  line-height:107%'><b><span style='font-size:24.5pt;line-height:107%'>.
+  Inserting data into a table</span></b></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:-62.5pt;text-align:left;text-indent:0in;
+  line-height:107%'>Once you have a table, you can insert data into it.</p>
+  </td>
+ </tr>
+ <tr style='height:679.7pt'>
+  <td width=47 valign=bottom style='width:35.25pt;border:none;border-bottom:
+  solid #EEEEEE 1.0pt;background:white;padding:4.8pt 0in 0in 0in;height:679.7pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:-18.8pt;
+  margin-bottom:8.6pt;margin-left:1.25pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";background:#F7F7F7'> DATETIME</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:-24.9pt;
+  margin-bottom:51.35pt;margin-left:1.25pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";background:#F7F7F7'> TIMESTAMP</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:-18.8pt;
+  margin-bottom:8.6pt;margin-left:1.25pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";background:#F7F7F7'> SMALLINT</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:-12.75pt;
+  margin-bottom:8.6pt;margin-left:1.25pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";background:#F7F7F7'> INTEGER</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:-12.75pt;
+  margin-bottom:8.6pt;margin-left:1.25pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";background:#F7F7F7'> DECIMAL</span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:-.55pt;margin-bottom:
+  145.85pt;margin-left:1.25pt;text-indent:0in;line-height:107%'><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  background:#F7F7F7'> FLOAT</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:153.35pt;margin-left:-5.65pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";background:#F7F7F7'>TEXT </span></p>
+  <p class=MsoNormal align=center style='margin-top:0in;margin-right:12.45pt;
+  margin-bottom:0in;margin-left:-13.75pt;text-align:center;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";color:#8959A8'>CREATE</span><span style='font-size:10.0pt;
+  line-height:107%;font-family:"Courier New"'> </span></p>
+  <table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=81
+   style='width:60.75pt;border-collapse:collapse'>
+   <tr style='height:12.0pt'>
+    <td width=81 valign=top style='width:60.75pt;background:#F7F7F7;padding:
+    2.05pt 5.75pt 0in 0in;height:12.0pt'>
+    <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+    margin-bottom:0in;margin-left:-.25pt;text-align:left;text-indent:0in;
+    line-height:107%'><span style='font-size:10.0pt;line-height:107%;
+    font-family:"Courier New"'>  age </span><span style='font-size:10.0pt;
+    line-height:107%;font-family:"Courier New";color:#F5871F'>INT</span></p>
+    </td>
+   </tr>
+  </table>
+  <p class=MsoNormal align=center style='margin-top:0in;margin-right:12.45pt;
+  margin-bottom:3.35pt;margin-left:-13.75pt;text-align:center;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'>  name </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:129.35pt;margin-left:-1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'> </span></p>
+  <p class=MsoNormal align=center style='margin-top:0in;margin-right:-28.85pt;
+  margin-bottom:0in;margin-left:-27.25pt;text-align:center;text-indent:0in;
+  line-height:107%'>Take this table:</p>
+  </td>
+ </tr>
+ <tr style='height:8.8pt'>
+  <td width=628 colspan=3 valign=top style='width:471.0pt;border:none;
+  background:white;padding:4.8pt 0in 0in 0in;height:8.8pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.0pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<span style='font-size:13.5pt;line-height:138%;font-family:"Georgia",serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection3>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-10.05pt;
+margin-bottom:0in;margin-left:-10.0pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img border=0 width=629 height=972
+src="SQL%20Handbook_files/image008.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-10.05pt;
+margin-bottom:0in;margin-left:-10.0pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img border=0 width=629 height=972
+src="SQL%20Handbook_files/image009.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-10.05pt;
+margin-bottom:0in;margin-left:-10.0pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img border=0 width=629 height=972
+src="SQL%20Handbook_files/image010.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:-10.05pt;
+margin-bottom:0in;margin-left:-10.0pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;font-family:
+"Calibri",sans-serif'><img border=0 width=629 height=972
+src="SQL%20Handbook_files/image011.gif"></span></p>
+
+</div>
+
+<span style='font-size:13.5pt;line-height:138%;font-family:"Georgia",serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection4>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=614
+ style='width:460.5pt;margin-left:.25pt;border-collapse:collapse'>
+ <tr style='height:86.25pt'>
+  <td width=614 style='width:460.5pt;background:#F7F7F7;padding:0in 5.75pt 0in 13.25pt;
+  height:86.25pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:289.1pt;
+  margin-bottom:0in;margin-left:0in;text-align:left;text-indent:0in;line-height:
+  137%'><span style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#8959A8'>CREATE</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'> </span><span style='font-size:10.0pt;line-height:
+  137%;font-family:"Courier New";color:#8959A8'>TABLE</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> people
+  (   age </span><span style='font-size:10.0pt;line-height:137%;font-family:
+  "Courier New";color:#F5871F'>INT</span><span style='font-size:10.0pt;
+  line-height:137%;font-family:"Courier New"'> </span><span style='font-size:
+  10.0pt;line-height:137%;font-family:"Courier New";color:#8959A8'>NOT</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> </span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#8959A8'>NULL</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'>, </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'>  name </span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New";color:#F5871F'>VARCHAR</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>(</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#F5871F'>20</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>) </span><span style='font-size:10.0pt;line-height:
+  107%;font-family:"Courier New";color:#8959A8'>NOT</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#8959A8'>NULL</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'> </span><span style='font-size:10.0pt;line-height:
+  107%;font-family:"Courier New";color:#8959A8'>PRIMARY</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> KEY </span></p>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>); </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.7pt;
+margin-left:1.25pt;line-height:107%'>The primary key can be an email in a list
+of users, for example.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>The primary key can be a unique <span
+style='font-size:10.0pt;line-height:138%;font-family:"Courier New";background:
+#F7F7F7'> id </span> that we assign to each record automatically.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:38.4pt;
+margin-left:1.25pt'>Whatever that value is, we know we can use it to reference
+a row in the table.</p>
+
+<h2 style='margin-left:-.25pt'>11. Update data in a table</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.95pt;
+margin-left:1.25pt'>The data stored in a table can be updated using the <span
+style='font-size:10.0pt;line-height:138%;font-family:"Courier New";background:
+#F7F7F7'> UPDATE </span> command:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.85pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>UPDATE people </span><span style='font-size:10.0pt;line-height:
+110%;font-family:"Courier New";color:#8959A8'>SET</span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New"'> age=</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>2</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>WHERE</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> name=</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Ruby'</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.2pt;
+margin-left:1.25pt'>It's important to add the <span style='font-size:10.0pt;
+line-height:138%;font-family:"Courier New";background:#F7F7F7'> WHERE </span> clause,
+otherwise this instruction:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>UPDATE people </span><span style='font-size:10.0pt;line-height:
+110%;font-family:"Courier New";color:#8959A8'>SET</span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New"'> age=</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>2</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:38.4pt;
+margin-left:1.25pt'>would update all rows in the table.</p>
+
+<h2 style='margin-left:-.25pt'>12. Update a table structure</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.35pt;
+margin-left:1.25pt'>We can alter an existing table structure using the <span
+style='font-size:10.0pt;line-height:138%;font-family:"Courier New";background:
+#F7F7F7'> ALTER TABLE </span> command, followed by the alteration you want to
+make:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>ALTER</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>TABLE</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>ADD</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>COLUMN</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> born_year </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>INT</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>; </span></p>
+
+<p class=MsoNormal style='margin-left:1.25pt;line-height:107%'>This will add a
+new column with empty values:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'> age |  name  | born_year </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>-----+--------+----------- </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>  37 | Joe    | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>   8 | Ruby   | </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.9pt;
+margin-left:1.25pt'>To drop a column:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.75pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>ALTER</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>TABLE</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>DROP</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>COLUMN</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> born_year;
+</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.15pt;
+margin-left:1.25pt'>This will result in:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:13.25pt;text-align:left;line-height:137%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:137%;font-family:
+"Courier New"'> age |  name -----+-------- </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>  37 | Joe </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:56.35pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>   8 | Ruby </span></p>
+
+<h2 style='margin-top:0in;margin-right:0in;margin-bottom:11.75pt;margin-left:
+-.25pt'>13. Deleting data and tables</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.9pt;
+margin-left:1.25pt;line-height:107%'>To remove data from a table, use the <span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New";background:
+#F7F7F7'> DELETE FROM </span> command.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.9pt;
+margin-left:1.25pt'>This deletes all rows:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.75pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>DELETE</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.2pt;
+margin-left:1.25pt'>You can use the <span style='font-size:10.0pt;line-height:
+138%;font-family:"Courier New";background:#F7F7F7'> WHERE </span> clause to
+only remove specific rows:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:35.0pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>DELETE</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>WHERE</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> name=</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Joe'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.35pt;
+margin-left:1.25pt'>To delete a table instead of the data inside the table, use
+the <span style='font-size:10.0pt;line-height:138%;font-family:"Courier New";
+background:#F7F7F7'> DROP TABLE </span>command:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.75pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>DROP</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>TABLE</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people; </span></p>
+
+<h2 style='margin-left:-.25pt'>14. Joins</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:16.3pt;
+margin-left:1.25pt;line-height:107%'>Joins are a very powerful tool to merge
+data contained into 2 different tables.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:1.25pt;line-height:107%'>Suppose you have 2 tables, <span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New";background:
+#F7F7F7'> people </span> and <span style='font-size:10.0pt;line-height:107%;
+font-family:"Courier New";background:#F7F7F7'> cars </span>:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=614
+ style='width:460.5pt;margin-left:.25pt;border-collapse:collapse'>
+ <tr style='height:180.75pt'>
+  <td width=614 style='width:460.5pt;background:#F7F7F7;padding:0in 5.75pt 0in 13.25pt;
+  height:180.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:289.1pt;
+  margin-bottom:0in;margin-left:0in;text-align:left;text-indent:0in;line-height:
+  137%'><span style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#8959A8'>CREATE</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'> </span><span style='font-size:10.0pt;line-height:
+  137%;font-family:"Courier New";color:#8959A8'>TABLE</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> people
+  (   age </span><span style='font-size:10.0pt;line-height:137%;font-family:
+  "Courier New";color:#F5871F'>INT</span><span style='font-size:10.0pt;
+  line-height:137%;font-family:"Courier New"'> </span><span style='font-size:
+  10.0pt;line-height:137%;font-family:"Courier New";color:#8959A8'>NOT</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> </span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#8959A8'>NULL</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'>, </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'>  name </span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New";color:#F5871F'>VARCHAR</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>(</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#F5871F'>20</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>) </span><span style='font-size:10.0pt;line-height:
+  107%;font-family:"Courier New";color:#8959A8'>NOT</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#8959A8'>NULL</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'> </span><span style='font-size:10.0pt;line-height:
+  107%;font-family:"Courier New";color:#8959A8'>PRIMARY</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> KEY </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'>); </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'> </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:264.75pt;
+  margin-bottom:0in;margin-left:0in;text-align:left;text-indent:0in;line-height:
+  137%'><span style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#8959A8'>CREATE</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'> </span><span style='font-size:10.0pt;line-height:
+  137%;font-family:"Courier New";color:#8959A8'>TABLE</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> cars (  
+  brand </span><span style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#F5871F'>VARCHAR</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'>(</span><span style='font-size:10.0pt;line-height:
+  137%;font-family:"Courier New";color:#F5871F'>20</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>) </span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#8959A8'>NOT</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'> </span><span style='font-size:10.0pt;line-height:
+  137%;font-family:"Courier New";color:#8959A8'>NULL</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>,   model
+  </span><span style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#F5871F'>VARCHAR</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'>(</span><span style='font-size:10.0pt;line-height:
+  137%;font-family:"Courier New";color:#F5871F'>20</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>) </span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#8959A8'>NOT</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'> </span><span style='font-size:10.0pt;line-height:
+  137%;font-family:"Courier New";color:#8959A8'>NULL</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>, </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'>  owner </span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New";color:#F5871F'>VARCHAR</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>(</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#F5871F'>20</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>) </span><span style='font-size:10.0pt;line-height:
+  107%;font-family:"Courier New";color:#8959A8'>NOT</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#8959A8'>NULL</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'> </span><span style='font-size:10.0pt;line-height:
+  107%;font-family:"Courier New";color:#8959A8'>PRIMARY</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> KEY </span></p>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>); </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:1.25pt;line-height:107%'>We add some data:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=614
+ style='width:460.5pt;margin-left:.25pt;border-collapse:collapse'>
+ <tr style='height:85.5pt'>
+  <td width=614 style='width:460.5pt;background:#F7F7F7;padding:0in 5.75pt 0in 13.25pt;
+  height:85.5pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:167.25pt;
+  margin-bottom:0in;margin-left:0in;text-align:left;text-indent:0in;line-height:
+  137%'><span style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#8959A8'>INSERT</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'> </span><span style='font-size:10.0pt;line-height:
+  137%;font-family:"Courier New";color:#8959A8'>INTO</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> people </span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#8959A8'>VALUES</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'> (</span><span style='font-size:10.0pt;line-height:
+  137%;font-family:"Courier New";color:#F5871F'>37</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>, </span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#718C00'>'Joe'</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'>); </span><span style='font-size:10.0pt;
+  line-height:137%;font-family:"Courier New";color:#8959A8'>INSERT</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> </span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#8959A8'>INTO</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'> people </span><span style='font-size:10.0pt;
+  line-height:137%;font-family:"Courier New";color:#8959A8'>VALUES</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> (</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#F5871F'>8</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'>, </span><span style='font-size:10.0pt;line-height:
+  137%;font-family:"Courier New";color:#718C00'>'Ruby'</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>); </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";color:#8959A8'>INSERT</span><span style='font-size:10.0pt;
+  line-height:107%;font-family:"Courier New"'> </span><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New";color:#8959A8'>INTO</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> cars </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#8959A8'>VALUES</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'> (</span><span style='font-size:10.0pt;line-height:
+  107%;font-family:"Courier New";color:#718C00'>'Ford'</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>, </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#718C00'>'Bronco'</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>, </span><span style='font-size:10.0pt;line-height:
+  107%;font-family:"Courier New";color:#718C00'>'Joe'</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>); </span></p>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New";color:#8959A8'>INSERT</span><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'> </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#8959A8'>INTO</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'> cars </span><span style='font-size:10.0pt;
+  line-height:107%;font-family:"Courier New";color:#8959A8'>VALUES</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> (</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#718C00'>'Ford'</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>, </span><span style='font-size:10.0pt;line-height:
+  107%;font-family:"Courier New";color:#718C00'>'Mustang'</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>, </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#718C00'>'Ruby'</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>); </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Now say that we want to correlate
+the two tables, because the police stopped Ruby driving, looks young, and want
+to know his age from their database.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.9pt;
+margin-left:1.25pt'>We can create a <b>join</b> with this syntax:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> age </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>JOIN</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> cars </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>ON</span><span style='font-size:10.0pt;line-height:
+110%;font-family:"Courier New"'> people.name = cars.owner </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>WHERE</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> cars.model = </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Mustang'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.9pt;
+margin-left:1.25pt'>We'll get this result back:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:193.25pt;
+margin-bottom:0in;margin-left:13.25pt;text-align:left;line-height:137%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:137%;font-family:
+"Courier New"'> age ----- </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:193.25pt;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>   8 </span></p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>What is happening? We are joining
+the two tables cars on two specific columns: <span style='font-size:10.0pt;
+line-height:138%;font-family:"Courier New";background:#F7F7F7'> name </span> from
+the <span style='font-size:10.0pt;line-height:138%;font-family:"Courier New";
+background:#F7F7F7'> people </span> table, and <span style='font-size:10.0pt;
+line-height:138%;font-family:"Courier New";background:#F7F7F7'> owner </span> from
+the <span style='font-size:10.0pt;line-height:138%;font-family:"Courier New";
+background:#F7F7F7'> cars </span> table.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:37.85pt;
+margin-left:1.25pt'>Joins are a topic that can grow in complexity because there
+are many different kind of joins that you can use to do fancier things with
+multiple tables.</p>
+
+<h2 style='margin-left:-.25pt'>15. Removing duplicates using DISTINCT</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>Sometimes you want to filter duplicate
+values in a table.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.15pt;
+margin-left:1.25pt'>For example say you have the following schema:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:144.5pt;
+margin-bottom:0in;margin-left:13.25pt;text-align:left;line-height:137%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:137%;font-family:
+"Courier New";color:#8959A8'>CREATE</span><span style='font-size:10.0pt;
+line-height:137%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:137%;font-family:"Courier New";color:#8959A8'>TABLE</span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> people (  
+name </span><span style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+color:#F5871F'>VARCHAR</span><span style='font-size:10.0pt;line-height:137%;
+font-family:"Courier New"'>(</span><span style='font-size:10.0pt;line-height:
+137%;font-family:"Courier New";color:#F5871F'>20</span><span style='font-size:
+10.0pt;line-height:137%;font-family:"Courier New"'>) </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:144.5pt;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>); </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>and we add entries to this table.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.15pt;
+margin-left:1.25pt'>We have lots of &quot;Joe&quot;, apparently:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>INSERT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>INTO</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>VALUES</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>(</span><span style='font-size:10.0pt;line-height:110%;
+font-family:"Courier New";color:#718C00'>'Joe'</span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New"'>), (</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Anna'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>), </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>(</span><span style='font-size:10.0pt;line-height:110%;
+font-family:"Courier New";color:#718C00'>'Roxanne'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>), (</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Paul'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>), </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>(</span><span style='font-size:10.0pt;line-height:110%;
+font-family:"Courier New";color:#718C00'>'Joe'</span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New"'>), (</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Joe'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>), (</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Joe'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>), </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>(</span><span style='font-size:10.0pt;line-height:110%;
+font-family:"Courier New";color:#718C00'>'Joe'</span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New"'>), (</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Joe'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>), (</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Joe'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>), </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>(</span><span style='font-size:10.0pt;line-height:110%;
+font-family:"Courier New";color:#718C00'>'Joe'</span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New"'>), (</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Joe'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>), (</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Joe'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>); </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.9pt;
+margin-left:1.25pt'>If we run the query</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.75pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> * </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people; </span></p>
+
+<p class=MsoNormal style='margin-left:1.25pt;line-height:107%'>we get all the
+duplicates:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| name                 | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| -------------------- | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Joe                  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Anna                 | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Roxanne              | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Paul                 | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Joe                  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Joe                  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Joe                  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Joe                  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Joe                  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Joe                  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Joe                  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Joe                  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:35.05pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Joe                  | </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:19.0pt;
+margin-left:1.25pt'>Adding the <span style='font-size:10.0pt;line-height:138%;
+font-family:"Courier New";background:#F7F7F7'> DISTINCT </span> keyword filters
+out the duplicates:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:42.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>DISTINCT</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> * </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people; </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| name                 | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| -------------------- | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Joe                  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Anna                 | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Roxanne              | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:56.35pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Paul                 | </span></p>
+
+<h2 style='margin-left:-.25pt'>16. Using wildcards with LIKE</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.6pt;
+margin-left:1.25pt;line-height:107%'>Using <span style='font-size:10.0pt;
+line-height:107%;font-family:"Courier New";background:#F7F7F7'> LIKE </span> you
+can select rows from a table using wildcards.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt;line-height:107%'>For example you
+have this schema and this data:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=614
+ style='width:460.5pt;margin-left:.25pt;border-collapse:collapse'>
+ <tr style='height:117.75pt'>
+  <td width=614 style='width:460.5pt;background:#F7F7F7;padding:0in 5.75pt 0in 13.25pt;
+  height:117.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:283.05pt;
+  margin-bottom:0in;margin-left:0in;text-align:left;text-indent:0in;line-height:
+  137%'><span style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#8959A8'>CREATE</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'> </span><span style='font-size:10.0pt;line-height:
+  137%;font-family:"Courier New";color:#8959A8'>TABLE</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> people
+  (   name </span><span style='font-size:10.0pt;line-height:137%;font-family:
+  "Courier New";color:#F5871F'>VARCHAR</span><span style='font-size:10.0pt;
+  line-height:137%;font-family:"Courier New"'>(</span><span style='font-size:
+  10.0pt;line-height:137%;font-family:"Courier New";color:#F5871F'>20</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>) </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'>); </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'> </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";color:#8959A8'>INSERT</span><span style='font-size:10.0pt;
+  line-height:107%;font-family:"Courier New"'> </span><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New";color:#8959A8'>INTO</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> people </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#8959A8'>VALUES</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'> </span></p>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>(</span><span style='font-size:10.0pt;line-height:
+  107%;font-family:"Courier New";color:#718C00'>'Joe'</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>), (</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#718C00'>'John'</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>), (</span><span style='font-size:10.0pt;
+  line-height:107%;font-family:"Courier New";color:#718C00'>'Johanna'</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>), (</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#718C00'>'Zoe'</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>); </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.9pt;
+margin-left:1.25pt'>This query will return the first 3 rows, as they all start
+with &quot;Jo&quot;:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.75pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> * </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>WHERE</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> name </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>LIKE</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Jo%'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.2pt;
+margin-left:1.25pt'>Looking for rows like <span style='font-size:10.0pt;
+line-height:138%;font-family:"Courier New";background:#F7F7F7'> Joh% </span> will
+only select John and Johanna:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.75pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> * </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>WHERE</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> name </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>LIKE</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Joh%'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.65pt;
+margin-left:1.25pt;line-height:107%'>Notice I used the <span style='font-size:
+10.0pt;line-height:107%;font-family:"Courier New";background:#F7F7F7'> % </span> sign
+to match multiple characters.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:17.6pt;
+margin-left:1.25pt'>You can also use <span style='font-size:10.0pt;line-height:
+138%;font-family:"Courier New";background:#F7F7F7'> _ </span> to match one
+character, so you can pick Joe and Zoe using:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:56.35pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> * </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>WHERE</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> name </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>LIKE</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'_oe'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>; </span></p>
+
+<h2 style='margin-left:-.25pt'>17. Indexes</h2>
+
+<p class=MsoNormal style='margin-left:1.25pt'>When the data in a database table
+becomes a lot the database could start becoming slow in doing some operations.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>To prevent this you can add indexes.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>When you try to look for specific
+information in book, you look at the index and jump to the page it tells you.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>That's pretty similar to what
+indexes do in databases. It's a way to tell the database what to optimize for
+when looking for data.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Indexes start to become a rather
+advanced topic especially when relations between tables get complex.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>To put things simply, which
+indexes to add does not depend on the schema, but rather on the queries you do.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>For example if you have a <span
+style='font-size:10.0pt;line-height:138%;font-family:"Courier New";background:
+#F7F7F7'> users </span> table with a <span style='font-size:10.0pt;line-height:
+138%;font-family:"Courier New";background:#F7F7F7'> name </span> field, and you
+frequently get that value in a SELECT, then <span style='font-size:10.0pt;
+line-height:138%;font-family:"Courier New";background:#F7F7F7'> name </span> should
+be an index.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.9pt;
+margin-left:1.25pt'>You create an index using this syntax:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>CREATE</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> INDEX index_name </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>ON</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> users
+(name); </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>The same goes for rows using in WHERE
+clauses on big tables.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>Indexes can improve performance,
+at a cost however: they make selection faster, but slow down insertions and
+updates.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>Also, they increase disk space usage.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt'>As with everything, it's a
+tradeoff and the performance benefits must be carefully measured.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:37.85pt;
+margin-left:1.25pt'>The good thing is you can add and remove indexes when you
+run into performance issues, so it's not something you have to optimize for in
+the beginning.</p>
+
+<h2 style='margin-left:-.25pt'>18. Aggregating data</h2>
+
+<p class=MsoNormal style='margin-left:1.25pt'>You can ask the database to
+perform a few operations on the data stored in a table.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>For example doing a sum of the values of a
+numeric field.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>Or calculating the average.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt;line-height:107%'>For example
+let's take this database schema and sample data:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=614
+ style='width:460.5pt;margin-left:.25pt;border-collapse:collapse'>
+ <tr style='height:180.75pt'>
+  <td width=614 style='width:460.5pt;background:#F7F7F7;padding:0in 5.75pt 0in 13.25pt;
+  height:180.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:301.3pt;
+  margin-bottom:0in;margin-left:0in;text-align:left;text-indent:0in;line-height:
+  137%'><span style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#8959A8'>CREATE</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'> </span><span style='font-size:10.0pt;line-height:
+  137%;font-family:"Courier New";color:#8959A8'>TABLE</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> people
+  (   name </span><span style='font-size:10.0pt;line-height:137%;font-family:
+  "Courier New";color:#F5871F'>VARCHAR</span><span style='font-size:10.0pt;
+  line-height:137%;font-family:"Courier New"'>(</span><span style='font-size:
+  10.0pt;line-height:137%;font-family:"Courier New";color:#F5871F'>20</span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>),   age </span><span
+  style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+  color:#F5871F'>INT</span><span style='font-size:10.0pt;line-height:137%;
+  font-family:"Courier New"'> </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'>); </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'> </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New";color:#8959A8'>INSERT</span><span style='font-size:10.0pt;
+  line-height:107%;font-family:"Courier New"'> </span><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New";color:#8959A8'>INTO</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> people </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#8959A8'>VALUES</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'> </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'>(</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New";color:#718C00'>'Joe'</span><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>, </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#F5871F'>20</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>), </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'>(</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New";color:#718C00'>'John'</span><span style='font-size:
+  10.0pt;line-height:107%;font-family:"Courier New"'>, </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#F5871F'>30</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>), </span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:3.35pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%;font-family:
+  "Courier New"'>(</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New";color:#718C00'>'Johanna'</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>, </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#F5871F'>25</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>), </span></p>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>(</span><span style='font-size:10.0pt;line-height:
+  107%;font-family:"Courier New";color:#718C00'>'Zoe'</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>, </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#F5871F'>23</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'>); </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.65pt;
+margin-left:1.25pt;line-height:107%'><span style='font-size:10.0pt;line-height:
+107%;font-family:"Courier New";background:#F7F7F7'> AVG() </span> calculates
+the average.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.15pt;
+margin-left:1.25pt'>If you want to get the average age of those people, you can
+do this:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>AVG</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>(age) </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.9pt;
+margin-left:1.25pt'>And here's the result:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| avg  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| ---- | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| 24.5 | </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.15pt;
+margin-left:1.25pt'>You typically alias the result of the function to a name of
+your choosing:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:42.85pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>AVG</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>(age) </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>as</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> average </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people; </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| average | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| ------- | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:35.0pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| 24.5    | </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.25pt;
+margin-left:1.25pt'>In the same vein, <span style='font-size:10.0pt;line-height:
+138%;font-family:"Courier New";background:#F7F7F7'> SUM() </span> calculates
+the sum.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>SUM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>(age) </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>as</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> total </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people; </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| total | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| ----- | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:35.15pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| 98    | </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:19.0pt;
+margin-left:1.25pt'>Use <span style='font-size:10.0pt;line-height:138%;
+font-family:"Courier New";background:#F7F7F7'> MAX() </span> or <span
+style='font-size:10.0pt;line-height:138%;font-family:"Courier New";background:
+#F7F7F7'> MIN() </span> to get the maxiumum or minumum value:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:42.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>MAX</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>(age), </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>MIN</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>(age) </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people; </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| max | min | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| --- | --- | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:56.35pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| 30  | 20  | </span></p>
+
+<h2 style='margin-left:-.25pt'>19. Grouping data</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:19.0pt;
+margin-left:1.25pt'>You can group data using the <span style='font-size:10.0pt;
+line-height:138%;font-family:"Courier New";background:#F7F7F7'> GROUP BY </span> clause:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> &lt;...&gt; </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>GROUP</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>BY</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>
+department; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.9pt;
+margin-left:1.25pt'>For example let's take this database schema and sample
+data:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:0in;margin-left:13.25pt;text-align:left;line-height:137%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:137%;font-family:
+"Courier New";color:#8959A8'>CREATE</span><span style='font-size:10.0pt;
+line-height:137%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:137%;font-family:"Courier New";color:#8959A8'>TABLE</span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> people (  
+name </span><span style='font-size:10.0pt;line-height:137%;font-family:"Courier New";
+color:#F5871F'>VARCHAR</span><span style='font-size:10.0pt;line-height:137%;
+font-family:"Courier New"'>(</span><span style='font-size:10.0pt;line-height:
+137%;font-family:"Courier New";color:#F5871F'>20</span><span style='font-size:
+10.0pt;line-height:137%;font-family:"Courier New"'>),   department </span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New";color:#F5871F'>VARCHAR</span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>(</span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New";color:#F5871F'>20</span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>),   age </span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New";color:#F5871F'>INT</span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'> </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>); </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:3.35pt;margin-left:12.75pt;text-align:left;text-indent:0in;
+line-height:107%;background:#F7F7F7'><span style='font-size:10.0pt;line-height:
+107%;font-family:"Courier New"'> </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>INSERT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>INTO</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>VALUES</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>(</span><span style='font-size:10.0pt;line-height:110%;
+font-family:"Courier New";color:#718C00'>'Joe'</span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New"'>, </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'Sales'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>, </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>20</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>), </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:0in;margin-left:13.25pt;text-align:left;line-height:137%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:137%;font-family:
+"Courier New"'>(</span><span style='font-size:10.0pt;line-height:137%;
+font-family:"Courier New";color:#718C00'>'John'</span><span style='font-size:
+10.0pt;line-height:137%;font-family:"Courier New"'>, </span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New";color:#718C00'>'Sales'</span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>, </span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New";color:#F5871F'>30</span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>), (</span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New";color:#718C00'>'Johanna'</span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>, </span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New";color:#718C00'>'IT'</span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>, </span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New";color:#F5871F'>25</span><span
+style='font-size:10.0pt;line-height:137%;font-family:"Courier New"'>), </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:240.25pt;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>(</span><span style='font-size:10.0pt;line-height:110%;
+font-family:"Courier New";color:#718C00'>'Zoe'</span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New"'>, </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#718C00'>'IT'</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>, </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>23</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>); </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>We want to get the average age of each
+department.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt;line-height:107%'>Here's how we
+can do that:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> department, </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>AVG</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>(age) </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>as</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> total </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>GROUP</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>BY</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>
+department; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.9pt;
+margin-left:1.25pt'>And here's the result:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| department | total  | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| ---------- | ------ | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.1pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| Sales      | 25     | </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:56.35pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New"'>| IT         | 24     | </span></p>
+
+<h2 style='margin-left:-.25pt'>20. Limit and offset</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.35pt;
+margin-left:1.25pt'>You can limit the number of rows retrieved. This is not a
+standard SQL and each database does this differently. MySQL and PostgreSQL use <span
+style='font-size:10.0pt;line-height:138%;font-family:"Courier New";background:
+#F7F7F7'> LIMIT </span>:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.6pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> * </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>ORDER</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>BY</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> name LIMIT
+</span><span style='font-size:10.0pt;line-height:110%;font-family:"Courier New";
+color:#F5871F'>10</span><span style='font-size:10.0pt;line-height:110%;
+font-family:"Courier New"'>; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.15pt;
+margin-left:1.25pt'>and you can set an offset to return, in this case, the rows
+from 11 to 20:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:56.35pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> * </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>ORDER</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>BY</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> name LIMIT
+</span><span style='font-size:10.0pt;line-height:110%;font-family:"Courier New";
+color:#F5871F'>10</span><span style='font-size:10.0pt;line-height:110%;
+font-family:"Courier New"'> </span><span style='font-size:10.0pt;line-height:
+110%;font-family:"Courier New";color:#8959A8'>OFFSET</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#F5871F'>10</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>; </span></p>
+
+<h2 style='margin-left:-.25pt'>21. Comments</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:17.6pt;
+margin-left:1.25pt'>You can add comments to SQL queries using two hyphens at
+the beginning of a line:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.35pt;margin-left:13.15pt;text-align:left;text-indent:0in;
+line-height:107%;background:#F7F7F7'><span style='font-size:10.0pt;line-height:
+107%;font-family:"Courier New";color:#8E908C'>-- just a test</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.75pt;margin-left:13.65pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> * </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> people; </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:18.35pt;
+margin-left:1.25pt'>Or use <span style='font-size:10.0pt;line-height:138%;
+font-family:"Courier New";background:#F7F7F7'> /* */ </span> to comment a
+portion of SQL inside a line, or to add multiple lines comments:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:34.75pt;margin-left:13.25pt;text-align:left;line-height:110%;
+background:#F7F7F7'><span style='font-size:10.0pt;line-height:110%;font-family:
+"Courier New";color:#8959A8'>SELECT</span><span style='font-size:10.0pt;
+line-height:110%;font-family:"Courier New"'> * </span><span style='font-size:
+10.0pt;line-height:110%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'> </span><span
+style='font-size:10.0pt;line-height:110%;font-family:"Courier New";color:#8E908C'>/*
+test */</span><span style='font-size:10.0pt;line-height:110%;font-family:"Courier New"'>
+people; </span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:.25pt;
+margin-bottom:0in;margin-left:-67.0pt;text-align:left;text-indent:0in;
+line-height:107%'>&nbsp;</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=614
+ style='width:460.5pt;margin-left:.25pt;border-collapse:collapse'>
+ <tr style='height:70.5pt'>
+  <td width=614 style='width:460.5pt;background:#F7F7F7;padding:0in 5.75pt 0in 13.25pt;
+  height:70.5pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:307.4pt;
+  margin-bottom:0in;margin-left:0in;text-align:left;text-indent:0in;line-height:
+  107%'><span style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#8959A8'>SELECT</span><span style='font-size:10.0pt;line-height:107%;
+  font-family:"Courier New"'> * </span><span style='font-size:10.0pt;
+  line-height:107%;font-family:"Courier New";color:#8959A8'>FROM</span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'> </span><span
+  style='font-size:10.0pt;line-height:107%;font-family:"Courier New";
+  color:#8E908C'>/* this is just a test */</span><span style='font-size:10.0pt;
+  line-height:107%;font-family:"Courier New"'> people; </span></p>
+  </td>
+ </tr>
+</table>
+
+<span style='font-size:13.5pt;line-height:138%;font-family:"Georgia",serif;
+color:black'><br clear=all style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:6.3pt;margin-left:
+-.25pt'>Conclusion</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:15.55pt;
+margin-left:1.25pt;line-height:107%'>Thanks a lot for reading this book.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.8pt;
+margin-left:1.25pt;line-height:107%'>For more, head over to <a
+href="https://flaviocopes.com/"><span style='color:#4183C4;text-decoration:
+none'>flaviocopes.com</span></a>.</p>
+
+<p class=MsoNormal style='margin-left:1.25pt;line-height:107%'>Send any
+feedback, errata or opinions at <span style='color:#4183C4'>flavio@flaviocopes.com</span></p>
+
+</div>
+
+</body>
+
+</html>
