@@ -1,0 +1,1044 @@
+﻿ 
+ 
+ 
+ 
+Introduction to 
+Microsoft Office Access 2010 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+	Introduction to Microsoft Office Access 2010 bCommons Attribution-NonCommerciay Himmelfarb Health Sciences Librarl-NoDerivs 3.0 Unported Licensy is licensed under e. 	a Creative 
+ 	 
+
+ 
+ 
+ 	 
+
+Table of Contents 
+ 
+ 
+Introduction to Access Databases	1 
+Create a new database	2 
+About the Access Window	4 
+Tables	8 
+The Lookup wizard	11 
+Primary keys	11 
+Field Properties	15 
+Input mask	16 
+Relationships	19 
+Referential integrity	20 
+Forms	22 
+Queries	26 
+Sorting records	30 
+Filters	31 
+Reports	32 
+Import an Excel file into Access	38 
+Online Help	41 
+Open an Access file	41 
+
+ 
+
+Introduction to Microsoft Office Access 2010 
+ 
+ 
+INTRODUCTION TO ACCESS DATABASES 
+ 
+What is a relational database? 
+Microsoft Office Access 2010-a relational database-is made up of groups of related data stored in individual tables.  Users can selectively combine pieces information from any or all of those tables through a process known as querying.  You could query GW's payroll database, which lists the salary of thousands of employees, to determine which of these employees earn over a certain dollar figure each year.  You could query a hardware store's inventory database to see how many flathead screwdrivers were sold last month.  
+ 
+How is an Access database structured? 
+A database is made up of different objects, such as tables, forms and queries.  Listed below are descriptions of the object types that can be found in databases. 
+ 
+ 
+Object Purpose Tables Where data is entered and stored. Queries Organize, combine and filter data in order to retrieve just the information you want. Forms Allow you to view, enter and update data outside of a table.  Reports Allow you to print information assembled from Tables/Queries in a custom layout. Pages Data displayed in a web page. Macros Automated tasks created by a series of instructions. Modules Run Visual Basic Code.  
+In most applications, these objects would be saved as separate files.  In Access, however, the entire database is saved as one file, using the extension of .mdb.  Access, therefore, functions like a big container. 
+ 
+The basic building blocks of a database are its tables, where data is initially entered.  A separate table is created for each type of information.  For instance, if you were a business keeping track of inventory bought and sold, you might create three separate tables: one with information about your suppliers, one with buyer information, and one listing your current inventory.  The inventory table would likely contain a list of suppliers and buyers for the items.  In this way, the inventory table shares common information with the two other tables.  They are linked. 
+ 
+About saving in Access 
+Access automatically saves data as you move from one record to another.  (NOTE: This means once you type over old information, that old information is lost and you'd need to re-enter it to get it back.)   Access does prompt the user to save newly created objects before closing them out, and to save objects to which you made structural changes.  The user can choose to save those changes or not. 
+CREATE A NEW DATABASE 
+ 
+ 
+• Open Access.   
+ 
+ 
+ 
+• Choose Blank Database, located beneath the Available Templates heading. 
+
+ 
+o If you don't see Available Templates, Click on New on the left side of the screen and it will appear. 
+  
+ 
+• On the right side of the window, create a filename in place of the default filename (usually Database1) and click on the folder icon to the right to locate where you'd like to save the file on your computer.  
+• Click Create when done. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+A blank table appears onscreen, ready to be populated with data. 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+ABOUT THE ACCESS WINDOW 
+  
+
+ 
+ 
+ 
+ 
+Ribbon 
+The ribbon, which spans across the top of the Access screen, replaces the old Menu Bar and toolbars used in Microsoft Office programs up through version 2003.   
+
+ 
+It organizes related functions into tabs.  Those related functions are further organized into groups.  The Home tab, for instance, has a Text Formatting group that contains formatting options for adjusting font, font size, bold face, underline and italics.  
+ 
+ 
+Quick Access Toolbar: 
+ 
+ 
+* This is a customizable toolbar at the top of the screen that provides access to commonly use functions 
+such as Save or Undo Last Action. 
+* Clicking on the down arrow gives you access to other common functions that you can add to the toolbar. 
+ 
+ 
+Contextual Command Tabs: 
+ 
+
+ 
+* Contextual command tabs display in yellow and provide access to options that pertain to a just completed action.  If you open up a table, for instance, a Table Tools tab appears, offering you functions 
+for manipulating the datasheet.  This tab would not be necessary if the table were not open, and so it 
+doesn't appear otherwise. 
+ 
+The Navigation Pane: 
+
+List of saved tables  
+Navigate among database objects 
+ 
+The Navigation Pane is the area on screen where you go to access or create your tables, forms, queries, reports, etc.  Clicking on the down arrow in the upper right corner of the pane provides access to these various objects. 
+ 
+ 
+Security Warnings: 
+
+ 
+When you open a database, you'll see a Security Warning beneath the ribbon.  Access explains that database content that could be harmful has been disabled.  If you trust the source of the database, you can enable the content by clicking on Options and choosing Enable content.  By not clicking it, you will be unable to access certain features that would involve the disabled "active content."  
+You may get additional security warnings asking if you want to make the database a Trusted Document (for instance, if the database is located on a network server and therefore vulnerable to malicious programming by others).  
+If you feel safe to do so, you can click Yes, which means that the database will open in the future without any warnings or prompts about potentially harmful content. 
+ 
+ 
+ 
+
+TABLES 
+ 
+Table structure 
+A table in Access is basically a datasheet made up of columns and rows.  The columns contain fields and the rows contain records.  A field is a category, such as unit price, phone number, user ID, into which you enter information.  A record is all the pieces of information from the various fields that apply to one entity, such as an employee, a department, or a vendor.   An employee record, for example, might include Employee ID, Phone, E-mail address, and Department.  The intersection of a row and a column is referred to as a cell. 
+ 
+
+ 
+ 
+ 
+Create a table 
+ 
+ 
+ 
+Methods for creating a table: 
+ 
+Table Design  
+(Format first in Design view) Offers the most control and flexibility in the creation of your table.  You'll set up the table and format how data is entered before actually entering data. Create Table  
+(enter directly into datasheet) "From scratch" method.  You'll type data into a datasheet without prior formatting. You'll likely need to use Design view to refine.  
+Selecting Table Design allows you first to define the structure of your table in one area and then to enter data in another.  Even if you use another method, you'll likely need to turn to Design view to refine the structure and layout of the table.  It's the most useful method to become familiar with. 
+ 
+ 
+ 
+When you create a brand new database in Access, the program opens up a blank table for you to add information to. 
+ 
+ 
+ 
+NOTE: To create additional tables, you will need each time to click on the Create tab and choose Table Design from the Tables group.  
+
+ 
+ 
+ 
+ 
+Create a table using Table Design 
+ 
+By selecting Table Design, you will initially see what is called Design View.  The Design View screen allows you to enter field names, define the data type for each, and add an optional description. 
+
+ 
+ 
+Field Name A category heading, such as Address or Phone Number Data Type The type of data being entered, such as text, numbers, currency, date/time, etc. Description Describes the category and/or how to enter data in a consistent way (e.g., "Enter 12/pk rather than 12/pack or pack of 12").  
+• Enter your first field name in the upper-left cell, beneath the Field Name heading.  (NOTE: it's recommended that you use no spaces when typing a field name.  Type SocialSecurityNumber, for example, rather than Social Security Number. A field property discussed shortly will enable you to display the spaces between words.) o 	It's advisable that the first fieldname contain a unique identifier, such as a SSN, employee ID, or invoice number so that each record can be clearly distinguished from all others.   • 	Press Enter to move to the Data Type field for that entry.  Click on the down arrow that now appears and choose from the list of Data Type options, which are explained below. 
+ 
+ 
+Data Type Use Text Text and/or numbers not used in calculations (e.g., phone numbers, street addresses, zip codes, & social security numbers).  Limit of 255 characters per entry. Memo Text and/or numbers requiring more than 255 characters per entry (e.g., notes) Number Numeric data being used in calculations, excluding currency AND excluding numbers that should not be rounded off during calculations. Date/Time Date or time Currency Currency (e.g., $5.00 or $0.75) or numbers that should not be rounded off during calculations. AutoNumber Usually sequential, auto-generated numbers, each which uniquely identifies a record.  A new number is generated as each new record is created. Yes/No Use in fields where the entry can only be one of two values, such as Yes/No or True/False. OLE Object Formatted text, long documents, images, or other objects created in other applications that are being inserted into or linked to from Access. Hyperlink A link usually to a website. Attachment Attached files such as pictures, charts, or spreadsheets. Calculated Perform basic calculations on existing fields in a table.  Fields automatically update as values are changed in an individual record. Lookup Wizard... A field that allows you to choose an entry from another table or from a list of values that you determine.     
+• NOTE: If you are prompted at any point to save your table, choose Yes. 
+ 
+ 
+ 
+ 
+THE LOOKUP WIZARD 
+ 
+The Lookup Wizard creates what's called a lookup column. The lookup column lets you see the contents of a linked table so that you can pull info in directly from that table, rather than having to type it out each time.  Not only does this simplify data entry, it also cuts down on typos and inconsistencies in how data is entered.   
+ 
+Let's say you've created a Supplier table with a Supplier Name field.  Next, you create an Inventory table with a Supplier Name field in it. When you click on the Supplier Name field in your Inventory Table, a combo box containing a drop-down list of all the supplier names from the Suppliers table appears for you to choose from.  Click on your choice and the name appears in the field in the Inventory table.  NOTE: Should you later add names to the Supplier Name field in the Supplier table, those names will then automatically appear the next time you click on the combo box for that field in the Inventory Table. 
+ 
+ 
+To use the Lookup wizard, 
+• Choose Lookup Wizard... from the Data Type list in Design view.  
+• Choose I want the Lookup column to choose the values in a table or query. 
+• Select the table you want to use as your source table to link from and click Next. 
+• Click on the field you want to link to your table and then press > to move it into the Selected Fields window and press Next. 
+• To sort the listings, click on the down arrow by the first Sort Order window and click on your field. 
+• To sort in Ascending order, click Next.  To sort in Descending order, click on the Ascending button next to the window-this changes it to Descending-and click Next. 
+• Click Next again and then click Finish. 
+• Press Yes when prompted to save your table. 
+ 
+ 
+ 
+ 
+PRIMARY KEYS 
+ 
+A primary key is used to establish links between tables that allow you to combine and retrieve data from them.  It is a field (or multiple fields) that uniquely identifies each record in your table.  A SSN field, for instance, could be used as a primary key field in an employee database, since no two people have the same one.  A primary key is all but essential for your database to operate efficiently.   
+ 
+If the primary key field in a table cannot guarantee all unique entries (Last Name field, for instance, in an employee table that lacks an SSN or GWid field), you may set up an Auto Number ID field.  Each entry is assigned its own number (1, 2, 3 and so on).  The numbers are meaningless in and of themselves; they simply serve to provide each record with a unique identifier.  This minimizes the risk that the wrong record will be pulled into another table by accident.  If employee last name were designated as the primary key, for example, there could be two or more people who share the same last name.  And the database operator wouldn't clearly know which record is the one to select. 
+ 
+
+To assign a Primary Key: 
+When you create a brand new database, Access creates a blank table for you automatically, and they have generated an Auto ID field and assigned it as a primary key.   
+
+ 
+ 
+If you want to rename that field as something else and make it the primary key,  
+• Click the Design View icon. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+You'll be prompted to save the table, if you haven't already.   
+• Assign it a name and press OK. 
+ 
+
+ 
+ 
+ 
+• Rename the ID field by clicking in it and over the existing text. 
+• Click on the down arrow beneath the Type column header and choose the 
+you are using for this field (usually 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Any subsequent tables you create using Table Design will not have a primary key field automatically created, and you can create your own, without needing to overwrite anything. 
+ 
+ 
+ 
+ 
+ 
+Designating a Primary Key field: 
+ 
+• Create the field name and then, with that field selected (cursor is blinking in it), click on the Primary Key button on the ribbon in the Tools group.  
+• The primary key icon will appear next to your field name.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+NOTE: The primary key should be the top field on the list.  To change a row's position,  
+• Click once inside the light blue cell to the left of that row.  
+• Click again in the cell and hold down the left mouse button. 
+• Drag the row to its new location and release the mouse button. 
+ 
+ 
+ 
+ 
+NOTE: To remove a primary key from a field, click anywhere inside the field name and click on the primary key icon from the Tools group under the Design tab.  To designate a different field name, click inside that field name and click on the primary key icon. 
+ 
+ 
+ 
+ 
+ 
+ 	 
+
+FIELD PROPERTIES 
+ 
+Field properties in the Design View Screen allow you to control even further how data is entered in the fields of your table.  If, for instance, you've set a data type to Date/Time, you can dictate in Field Properties exactly how a date should be typed.  For example, you may want all years to be typed out completely rather than entered using only the last two digits (2006, rather than 06).   
+ 
+Here are some of the more commonly used Field Properties: 
+ 
+Field property Use Field size Limits how many characters/numbers you can type in an entry. Format Sets a consistent pattern for how various types of data display.  For instance, regardless of how a date is entered-with hyphens or slashes-it will appear uniformly as one way or the other.  Pre-defined formats are not available for text fields. Input mask Establishes a pattern for how non-calculated numbers-phone numbers, zip codes, SSNs, etc.-or dates/times are to be entered.  For instance, you may choose a pattern in which the entry of years must include all four numbers (2008), rather than just the last two (08).  Data entered incorrectly will be rejected. Caption The label for a field, used in place of the field name, where desired.  Since field names are usually typed without spaces, you might choose to type the caption Phone Number to appear as a label in tables, forms, reports, etc., rather than the field name PhoneNumber. Required Designate whether data entry is required or not in a particular field Indexed Marks the data in selected fields for faster sorting and searching.  If you index a Last Name field, it will be quicker in a large database to search out that name from amongst all the records.  
+NOTE: Field properties may display down arrows with drop-down menu lists, or, in the case of input masks, you'll be prompted to click on the Build button           to the right of the window.  
+ 
+ 
+ 
+INPUT MASK 
+ 
+The input mask sets rules for how non-calculated numbers such as dates and phone numbers are entered in a field.  For instance, to display 9/25/1925, you might require users to type it as 09/25/1925.  If a value is entered incorrectly, Access rejects it.   
+ 
+To select an input mask for a field 
+• In Design view, click in the Data Type window for the field to which you want to apply the input mask. 
+• In the Field Properties window below, click on Input Mask and then click on the Build button           that now appears.   
+• The Input Mask Wizard appears.  Scroll through the list of input masks. 
+• Select the appropriate one and click Finish. 
+• The input mask field now displays a series of characters representing how text/numbers are to be entered.  The default syntax for entering a phone number, for instance, is:   
+!\(999") "000\-0000;;_ 
+ 
+ 
+ 
+ 
+ 
+Syntax 
+Here is a list of common characters used to create masks, borrowed from Microsoft Office Access 2007 Inside Out (pp170-171): 
+ 
+Character Description 0 Required digit (0 through 9). 9 Optional digit or space. # Optional digit or space; blank positions are converted to spaces; plus and minus signs are allowed. L Required letter (A through Z). ? Optional letter (A through Z). A Required letter or digit. a Optional letter or digit. & Required character (any kind) or a space. C Optional character (any kind) or a space. . Decimal placeholder , Thousands separator : ; - / Date and time separators < All characters that follow are converted to lowercase. > All characters that follow are converted to uppercase. ! Characters typed into the mask fill it from left to right.  You can include the exclamation point anywhere in the input mask. \ Character that follows is displayed as a literal character. "literal" Everything inside double quotation marks is displayed literally.  
+It is not necessary to know what each bit of syntax means, since Access creates masks automatically for you.  But it can be useful to understand the syntax behind a mask.   For example, one of the date mask defaults is: 99/99/0000;0;_     In this mask the year, represented by 0000, must be entered using all four digits.  If you wanted the year to be configured so that you'd only need to enter the last two digits, you could delete two of the zeroes in the year portion of the mask.  The mask would now look like this:  
+99/99/00;0;_  and a date would change in its appearance from, say, 10/29/1960 to 10/29/60. 
+ 
+To insert a new field name between rows 
+• Position the mouse pointer on the light blue cell (row selector) in front of the row above which you want to add a new field name. 
+• Click with the right mouse button and select Insert Rows (with the left mouse button). 
+• Click inside the Field Name cell for that new row and enter the new field name. 
+ 
+Save the table 
+Before moving ahead, you will be prompted to save your table.  Go ahead and do so. 
+ 
+To enter data in your table 
+You will need to return to datasheet view in order to fill in your data. 
+• Click on the Datasheet View icon from the View group under the Design tab. 
+ 
+ 
+ 
+ 
+• Type your data in the table, pressing Enter to move from field to field and then from record to record.  (NOTE: Access automatically adds additional rows as necessary to accommodate your data.) 
+ 
+To freeze a column or columns so that they remain in view as you type across your datasheet 
+If you have many fields to enter information into, you may wish to freeze your initial column so that you know you're entering data on the correct row. 
+ 
+• Click inside the column you want to freeze.  (NOTE: To select multiple columns, click and hold down the left mouse button on the field name-a column selector-and drag the mouse across the other adjacent column selectors. Then release the mouse button.)  
+• Click on Home from the ribbon, select More and then choose Freeze Fields. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+To unfreeze a column or columns 
+• Click inside the column you want to freeze.  (NOTE: To select multiple columns, click and hold down the left mouse button on the field name-a column selector-and drag the mouse across the other adjacent column selectors. Then release the mouse button.)  
+• Click on Datasheet from the ribbon, select More and then choose Unfreeze. 
+ 
+When done creating your table, 
+• 	Close the table by clicking on the red x in the table's (not the program's!) upper right corner. 
+ 
+NOTE: You are only prompted to resave the table if you made structural or layout changes to it.  Additions, deletions, and changes in data entry are saved automatically. 
+ 
+All tables you've created so far appear in a list on the left hand side beneath the ribbon in the Database window. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+To delete a table 
+• Right mouse click on the table listing and choose Delete. 
+• Click Yes to confirm the deletion. 
+ 
+ 
+ 
+RELATIONSHIPS 
+ 
+Setting up relationships between tables links them so that you can combine the data stored in each.  One way of linking tables was already mentioned: the Lookup Wizard.  Another way to establish relationships is to choose Relationships from the Relationships group in the Database Tools tab.  
+But first, 
+ 
+In order to set up relationships, 
+• Two tables must have a field in common.  (Note the example below.  The Publisher and Bibliographic Record tables have the "Publisher" field in common.) 
+ 
+
+ 
+ 
+• The field in one table is usually designated as the primary key (each entry in that field uniquely identifies its record).   
+• The matching field in the second table references that in the first, and is known as a foreign key.  
+ 
+In the Publisher table above, the Publisher field is the primary key.  In the Bibliographic Record table beneath it, the Publisher field is a foreign key. 
+ 
+ 
+One-to-many relationship 
+• This relationship is an example of the most common type in Access: the one-to-many relationship.  That is, the item chalk only has one supplier, Demco.  But Demco may supply many additional products besides just chalk to the business setting up this database.  Demco may supply erasers, chalkboards, pens and pencils, each of which would appear in the Item column, with Demco listed in the next column over as its supplier. 
+ 
+Set up relationships between tables • 	Make sure all tables are closed. 
+• Choose Relationships from the Database Tools tab (look in the Show/Hide group).   
+ 
+The field lists from the tables in your database will appear side-by-side in the Relationships window. If during the creation of any tables, you used the Lookup wizard to create a lookup column in a data type field in Design view (see earlier section on the Lookup wizard), then you'll see a join line that connects the tables.  Access has in this case already set up a relationship between the two tables. 
+ 
+
+ 
+If no relationship exist between tables, 
+• Position your mouse pointer on the field name in common in one of the field lists, hold down the left mouse button and drag it over the same field name in the other field list.  (TIP:  If the field name in either or both field lists isn't displaying, use the vertical scroll bar to scroll down until you see the field name displayed.) 
+• The line that appears connecting the two represents the link between tables. 
+ 
+ 
+ 
+ 
+ 
+REFERENTIAL INTEGRITY 
+ 
+You will likely want to maintain the consistency of the link between tables by enforcing referential integrity.  This rule ensures that a record cannot be added to the foreign key field unless the record already exists in the primary key field. 
+ 
+When enforcing referential integrity, you may also choose to enforce the rule by which any changes made to records in the primary key-e.g., change in a supplier's name listed in the field-will also be changed automatically in the linked table.  This rule is known as: Cascade Update Related Fields.  Another rule- Cascade Delete Related Records-guarantees that any deletions made to entries in the primary key field will also be deleted in linked tables.  This, however, is usually not a good idea!  If a company stops selling a particular product, they'd want to delete that product from the Products List table.  But they wouldn't want that product entry to disappear from the Sales History table.  Choosing Cascade Delete... would cause that to happen.  Be careful when considering this option. 
+ 
+To enforce referential integrity, as well as the cascading options, 
+• Place the mouse pointer tip directly on any part of the join line between field lists. 
+• Double-click on the line to open the Edit Relationships window. 
+• In the Edit Relationships window, the fields in common will appear side-by-side. 
+• Checkmark Enforce Referential Integrity (and likely Cascade Update Related Fields as well).  
+• Click OK. 
+You will see a 1 on one end of the join line and the ∞ symbol at the other in the Relationships window. 
+ 
+
+ 
+ 
+ 
+ 
+These designate the link as a one-to-many relationship.  (A book title in an online catalog can only have one publisher, for example, but the publisher may supply many book titles to the library managing the inventory.) 
+ 
+• Press Save and close out the Relationships window by clicking on the Close icon on the ribbon.   
+ 
+To delete a relationship 
+• Position the mouse pointer tip anywhere on the join line in the Relationships window and rightmouse click. 
+• Choose Delete from the pop-up menu. 
+• Choose Yes to confirm the deletion. 
+ 
+NOTE: You can add new relationships and edit/delete old ones at any point by re-opening the Relationships window and repeating the steps listed above. 
+ 
+ 
+ 
+FORMS 
+ 
+Forms allow for easier data entry and editing than tables do.  In a large table, with so many rows and columns, it's possible to type information in the wrong column or in the wrong row accidentally.  Forms allow you to edit and add data in a format that displays fields for just one record at a time.  NOTE: Any information typed in a form is automatically added to the source table. 
+ 
+TIP: If you'd rather enter all your data in a form than type it directly in the source table, feel free.  Simply set up your field names, data types, and field properties in the table's Design view, save and close the table, and then create your form.  As information is entered into the form, it is added automatically to the source table.   
+ 
+Create a form 
+The Form wizard is a useful method for creating forms.  It allows you to determine whether or not all fields appear in the form.  If, for instance, your form contains an auto-numbered ID field, you might not want it to appear on your form if other users are adding data.  They might think they need to enter a value in that field, not realizing that those numbers are generated automatically. 
+ 
+• Choose Create from the ribbon. 
+• Choose Form Wizard.  
+ 
+Select tables/queries: 
+• Click on the down arrow beside the Tables/Queries selection window and choose the table or query you're using to create your form.  (NOTE: You can select more than one.  Repeat the step to add any additional tables/queries.) 
+ 
+Add fields: 
+• All the fields from your selected tables/queries appear in the Available Fields: window.   
+• Use the          button to add fields to the Selected Fields window, one-at-a-time. 
+• Use the           button to move all available fields into the Selected Fields window. 
+• To remove individual fields from Selected Fields, click on each field and press         . 
+• To remove all fields, press          . 
+NOTE: The order in which you add fields to the Selected Fields window determines their default order in the form. 
+• When done, click Next. 
+ 
+Choose a layout 
+• Choose from the various layout options and click Next. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Assign a title 
+• Assign a title to your form, or accept the default already entered at the top.  
+• Make sure that Open the Form to view or enter information is selected and then click Finish to view your form. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+• All the fields chosen from the source table appear on the form. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+• Type your data, pressing enter between fields. 
+• To bring up a new record, press Enter after you've completed the last field of the current record. 
+ 
+
+ 
+ 
+The record navigator at the bottom of the form allows you to move from record to record, or to create a new record into which you can enter information (see diagram below). 
+ 
+Navigate through a form  
+ 
+ Move forward or backward between records.  Move to the first or last record.  	Create a new record.   	Type a record number in this box and press Enter to locate that record.  
+ 
+Change the look of your form 
+You can change the look of your form, as well as the placement of fields within the form. For example: 
+ 
+
+ 
+The forms above contain the same field names and data.  But the background and color scheme of the second form have changed. 
+ 
+• Click on the down arrow beneath the View tab on the left side of the screen and select Layout View.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+• Select from list of thumbnails to change the form's design.   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+To Return to Form View 
+ 
+• Click on the down arrow beneath the View tab on the left side of the screen and select Form View 
+ 
+• Next, click on View on the left side of the screen and select Form View. 
+ 
+ 
+ 
+ 
+ 
+ 
+To exit a form 
+You only need to press Save if you've made changes to the physical layout or design of the form.  Data entries are automatically saved. 
+• Press Save if necessary. 
+• Close out the form by clicking on the x in the form's upper right corner. 
+ 
+ 
+A list of created forms appears under the Forms heading on the left side of the screen. 
+ 
+
+ 
+ 
+ 
+To delete a form 
+• Right mouse click on the form and choose Delete. 
+• Click Yes to confirm the deletion. 
+ 
+ 
+ 
+QUERIES 
+ 
+Queries in Access allow you to combine data from multiple tables (and/or other queries) into a new datasheet.  It also allows you to extract data from an individual table or other query.  Users can create a number of different types of queries, but this section will focus on the most common type: Select Queries. 
+ 
+• To create a query, click on the Create tab and then choose Query Design.   
+ 
+
+
+The Show Table window appears. 
+ 
+
+ 
+ 
+• Click on the Tables, Queries, or Both tab, depending upon what you're basing your query on. 
+• A list of tables and/or queries appears. 
+• Double-click on each query/table from which you'd like to build your query. 
+
+ 
+ 
+ As you double-click on each, a field list for the table or query appears in the upper section of the Query window. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+• Close the Show Table window once all tables/queries have been added. 
+• To choose fields to appear in your query, double-click on each field you want to include from each field list.  (NOTE: You may need to scroll through the list to see every field listed.) 
+• As you double-click, field names appear below in the Field window, one beside the other, and the tables/queries they come from are listed in the row beneath. 
+ 
+
+ 
+ 
+ 
+Notice the other options listed in this screen beneath Field and Table: Sort, Show, and Criteria. 
+ 
+Sort allows you to sort listings in a field in ascending or descending order. 
+ 
+Show gives you the option to display or hide a particular field on the query datasheet. 
+ 
+Criteria lets you set limits to which data from a field will appear on the query datasheet.  For example, you may wish to display only those items whose unit price is less than $10.00.  Or, in an employee database, you may only wish to display in a State Residence field those employees who live in Virginia.   
+ 
+NOTE: the Criteria field lets you add additional limits-note the "or" row beneath it. 
+ 
+Common syntax used to limit query searches 
+• To search for a range of values-such as a price range-in a field, use any of the following operators: > (greater than), < (less than), >= (greater than or equal to), or <= (less than or equal to).  
+• To search for all entries in a field which have a particular word or name, type an asterisk followed by the word.  (NOTE: Access enters it as Like "*word", but you don't have to type it that way.) 
+• To search for listings that start with a given letter, type the letter, followed by an asterisk. 
+ 
+ 
+ 
+ 
+ 
+ 
+ Let's look at the following query: 
+ 
+This is a query based on Himmelfarb Library's audiovisual heart sounds titles.  The query is designed to limit results to titles produced prior to 2000. 
+ 
+In the Criteria row, <"2000" was added beneath the year field. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Run the query 
+• To run the query, press Run. 
+ 
+ 
+ 
+Once the query was run, the following list of titles appeared: 
+ 
+
+ 
+ 
+ 
+ 
+• If you need to tinker with the design of your query, click on Design View.  
+ 
+ 
+ 
+• To run the query again, press  
+ 
+ 
+ 
+Save your query 
+• Press Save to store your query. 
+• Enter a name in the Query Name window and click OK.  
+ 
+ 
+ 
+ 
+ 
+ 
+Close your query 
+• 	Click on the x in the upper right corner of the Query window. 
+ 
+A list of created forms appears under the Forms heading on the left side of the screen. 
+ 
+
+ 
+ 
+To delete a query 
+• Right mouse click on the table listing and choose Delete. 
+• Click Yes to confirm the deletion. 
+ 
+ 
+ 
+ 
+SORTING RECORDS 
+ 
+To sort records in a datasheet in ascending or descending order (either alphabetically or numerically) by a particular field, 
+• Click on the column selector above the column whose field you wish to sort on. 
+• Choose the Sort Ascending or the Sort Descending button in the Sort & Filter group.   
+ 
+ 
+To undo a sort, 
+• Click on the Remove Sort icon.  
+ 
+ 
+ 
+ 
+NOTE: Numbers in fields that have Text set as their Data Type, will not sort in numeric order.  To sort these kinds of numbers, you'll need to change the Data Type to Number or Currency in Design view. 
+ 
+FILTERS 
+ 
+You can also limit data to a table or query by filtering records for a selected value.  For instance, you might only want to display in an inventory table those items purchased from a particular manufacturer.  The easiest filtering method is called Filter by Selection. 
+ 
+To filter by selection 
+ 
+• Click directly on the down arrow by a field name and you'll see a list of all entries for that field, with checkboxes beside them.  
+• Deselect all the entries you want to filter out and click OK. 
+ 
+ 
+In the following example, bibliographic records are being filtered so that only titles withdrawn from the library's collection appear. 
+ 
+
+ 
+ 	 
+
+The resulting list has shrunk from 16 entries to 5.  See below. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The bottom of the table window indicates that a filter has been applied. 
+ 
+
+ 
+ 
+ 
+The result resembles that of a query in which records are limited.  Filters, however, are temporary.  Once you close the table or query, the filter is automatically removed, even if you are prompted to save.  Unfiltered data reappears once you reopen the table or query. 
+ 
+To remove a filter 
+ 
+
+ 
+ 
+ 
+• Click directly on the down arrow beside the field name. 
+• Select Clear filter from Location/Status and press OK. 
+ 
+ 
+ 
+ 
+REPORTS 
+ 
+Reports in Access allow you to print assembled data in a custom layout.  You can create reports based on tables and/or queries. 
+ 
+There are several methods for creating a report.  We will focus on the Reports wizard. 
+ 
+ 
+To create a report 
+ 
+
+ 
+ 
+• Click on the Create tab and then select Report Wizard from the Reports group. 
+• The Report wizard launches. 
+ 
+ 
+ 
+ 
+ 
+Select tables/queries: 
+• Click on the down arrow beside the Tables/Queries selection window and choose the table or query you're basing your report on.  (NOTE: You can select more than one.  Repeat the step to add any additional table/queries.) 
+ 
+Add fields: 
+• All the fields from your selected tables/queries appear in the Available Fields: window.   
+• Use the          button to add fields to the Selected Fields window, one-at-a-time. 
+• Use the           button to move all available fields into the Selected Fields window at once. 
+• To remove individual fields from Selected Fields, click on each field and press         . 
+• To remove all fields, press          . 
+ 
+NOTE: The order in which you add fields to the Selected Fields window determines their default order in the report. 
+• When done, click Next. 
+ 
+Create grouping levels 
+• If desired, use the right arrow button to create grouping levels (group your report listing by a category or categories), and use the up and down arrow buttons to promote or demote a field's position.  The left arrow button removes selected fields from grouping levels.   
+ 
+
+ 
+ 
+• When done, click Next.  
+ 
+ 
+Sort by category (field) 
+• You can select a sort order for up to four 
+fields.  Click on the down arrow to select a field and then choose ascending or descending order.  
+• When done, click Next.  
+ 
+ 
+ 
+ 
+ 
+ 
+Choose a layout 
+• Choose from the various layout options and click Next.  
+• Choose a page orientation-portrait or landscape.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Assign a title 
+• Enter a title for your report, or stick with the default title assigned by Access.  
+• Make sure that Preview the report is selected and click Finish. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The report appears in Print Preview. 
+ 
+ 
+ 
+ 
+NOTE: Any changes to data in the source tables/queries are automatically updated in your report. 
+ 
+ 
+ 
+ 
+Reformat your report 
+Notice in the example below that the text in the Title field appears truncated (part of the title in several row is cut off).   
+ 
+ 
+ 
+ 
+ 
+If you need to make adjustments to any column widths: 
+ 
+ 
+• Press Close Print Preview on the right side of the screen. 
+ 
+ 
+ 
+• Click on the down arrow beneath View on the left side of the screen and then select Layout View.  
+ 
+
+ 
+• Click once inside the column you wish to resize, in order to select it. 
+• Position the pointer between that column and the one beside it, as seen in the figure below. 
+• Hold down the left mouse button and drag the mouse to re-size the column, releasing the mouse button when done. 
+ 
+ 
+
+ 
+ 
+ 
+ 
+Return to Report View 
+• 	Click on the down arrow beneath View on the left side of the screen and then select Report View.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Close your report 
+• Click on the x in the upper right corner of the report. 
+• If prompted to save, choose Yes or No depending on what you want to do. 
+ 
+ 
+All reports you've created so far appear in a list in the Objects menu on the left side of the screen. 
+ 
+
+ 
+ 
+ 
+ 
+To delete a report 
+• Right mouse click on the table listing and choose Delete. 
+• Click Yes to confirm the deletion. 
+ 
+ 
+ 
+ 
+ 
+IMPORT AN EXCEL FILE INTO ACCESS 
+ 
+ 
+• Click on the External Data tab and select Excel from the Import group. 
+ 
+This launches the import wizard. 
+ 
+ 
+ 
+ 
+ 
+ 
+Find the file on your computer and select: Import the source data into a new table in the current database. 
+ 
+ 
+• Click OK. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The next step of the wizard asks you to select the worksheet or named range you'd like to import from the Excel file (usually a worksheet is selected).   
+• Click on the worksheet you intend to import.  
+ 
+ 
+Data from the worksheet is partially displayed below.  Do not be concerned by its appearance in this window.  It won't look like this in Access. 
+ 
+• Click Next. 
+ 
+ 
+ 
+ 
+• If your first rows are headings, click on the First row contains column headings option and they will be converted to field names in Access.  
+• Click Next. 
+• Choose whether the data is going into a new table or an existing one (a combo box lets you select the table). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+• The next screen lets you specify information about your fields.  (You can change the field names here as well.)  
+ 
+ 
+• When done with this screen, click Next. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+• You can specify a primary key (a combo box lets you select which field) or you can have Access create one for you.  (NOTE: If you assign the primary key, make sure all entries in that field are unique.) 
+• Click Next. 
+• Choose a name for the table under Import to Table and click Finish.  
+ 
+NOTE: Excel spreadsheets do not always translate well in the importing process.  You may need to consult Access's Online Help menu to troubleshoot any problems you encounter. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+You'll be asked if you want to save the steps you just followed when importing.   
+• Just choose Close without checking the box. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+• Choose Tables from the Objects menu and you should see the name of your converted Excel file. 
+• Double-click to open the table.  
+ 
+ 
+ONLINE HELP 
+ 
+• Click on the Help button in the upper right corner of the screen. 
+• Enter a topic in the Search window and press Enter. 
+• Choose from the list of topics offered to see help for your question or problem.  
+• Close Online Help when done. 
+ 
+ 
+OPEN AN ACCESS FILE 
+ 
+• Click on File button at the top left of the screen and choose Open from the list of menu options. 
+ 
+ 
+ 
+• Locate your file using the Look in window, click on the file, and then choose Open. 
+ 
+ 
+ 
+ 
+You may see a Security Warning beneath the ribbon. 
+• Click Enable Content if you trust the source of the database. 
+
+ 
+ 
+You may get additional security warnings asking if you want to make the database a Trusted Document (for instance, if the database is located on a network server and therefore vulnerable to malicious programming by others).  If you feel safe to do so, you can click Yes, which means that the database will open in the future without any warnings or prompts about potentially harmful content. 
+ 
+ 
+(11/6/2015) 
+
+
+
+
+
+
+1 
+
+1 
+
+1 
+
