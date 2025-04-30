@@ -1,0 +1,2262 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>R Markdown Guide</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:46.7pt;
+	margin-bottom:8.2pt;
+	margin-left:1.25pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-.05pt;
+	line-height:103%;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:3.25pt;
+	margin-left:2.15pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:14.5pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:.55pt;
+	margin-left:2.15pt;
+	text-indent:-.5pt;
+	line-height:103%;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Calibri",sans-serif;
+	color:black;
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Calibri",sans-serif;
+	color:black;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:74.15pt .2pt 77.7pt 70.35pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:70.15pt;
+margin-bottom:15.45pt;margin-left:0in;text-align:center;text-indent:0in;
+line-height:107%'><span style='font-size:20.5pt;line-height:107%'>R Markdown
+Guide</span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:70.15pt;
+margin-bottom:14.1pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:110%'><span style='font-size:14.5pt;line-height:110%'>Isaac
+Quintanilla Salinas</span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:70.15pt;
+margin-bottom:23.45pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:110%'><span style='font-size:14.5pt;line-height:110%'>2020-12-20</span></p>
+
+<h1 style='margin-left:1.4pt'>Introduction</h1>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:58.95pt;
+margin-bottom:6.4pt;margin-left:1.0pt;text-align:left;text-indent:-.1pt;
+line-height:103%'>This document contains an introduction on R Markdown files
+and creating PDF files. For more information, go to <a
+href="https://bookdown.org/yihui/rmarkdown/"><span style='color:black;
+text-decoration:none'>https://bookdown.org/yihui/rmarkdown/</span></a> for a
+complete guide on R Markdown. Other useful materials can be found on RStudio’s
+website: <a href="https://rmarkdown.rstudio.com/lesson-1.html"><span
+style='color:black;text-decoration:none'>https://rmarkdown.rs </span></a><a
+href="https://rmarkdown.rstudio.com/lesson-1.html"><span style='color:black;
+text-decoration:none'>tudio.com/lesson-1.html.</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:58.95pt;
+margin-bottom:19.5pt;margin-left:1.0pt;text-align:left;text-indent:-.1pt;
+line-height:103%'>Before reading this document, download the Rmd, bib, and PDF
+files. Reading the Rmd file and PDF file simultaneously provides a better
+context on the syntax and formatting for an Rmd file. The syntax in an Rmd file
+may be difficult to understand, so looking at the Rmd file simultaneously may
+clarify the explanations. Lastly, to knit the R Markdown file, make sure LaTex,
+formatR, and xtable are installed. Additionally, have the Example.bib file
+located in the same folder as the Rmd File. More information on each item is
+provided below.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.25pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:107%'><b><span style='font-size:14.5pt;line-height:107%'>What is R
+Markdown?</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+19.7pt;margin-left:.95pt'>R Markdown is a file type used to create technical
+reports while including both R code and output in a document. An Rmd file is
+just a really fancy R Script containing extra capabilities. R Markdown also
+allows for citations, footnotes, mathematical expressions, links, and many
+more. Once the document is finished, it can be rendered to a word file, pdf, or
+html file.</p>
+
+<h1 style='margin-left:1.4pt'>Anatomy of R Markdown</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+6.7pt;margin-left:.95pt'>There are three main components in an R Markdown file:
+the YAML header, R code, and basic text.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+6.4pt;margin-left:.95pt'>The YAML header contains information on how to render
+the document. It is usually located at the beginning of the document. The YAML
+header is usually surrounded by 3 dashes (---) above and below it. For
+starters, the YAML header will contain a ‘title’, ‘author’, ‘date’, and
+‘output’ line. Visit the R Markdown website for more information.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+5.5pt;margin-left:.95pt;line-height:124%'>The R code is located in a block
+known as chunks. A chunk tells RStudio to read the next lines as code. A chunk
+begins with three back ticks followed by {r} and ends with three back ticks.
+Everything in between is R code. A chunk with R code will render like below:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:101.0pt;
+margin-bottom:11.6pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:110%;background:#F8F8F8'><b><span style='color:#214A87'>mean</span></b>(mtcars<b><span
+style='color:#CF5C00'>$</span></b>mpg)</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:5.6pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:105%'>## [1] 20</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+6.45pt;margin-left:.95pt'>Notice the chunk includes the code in a block
+followed by the output from the console.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+19.7pt;margin-left:.95pt'>The last component of an R Markdown document is the
+text. Just write anywhere in the document, and it will be rendered as is.</p>
+
+<h1 style='margin-left:1.4pt'>Chunk Options</h1>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:58.95pt;
+margin-bottom:16.15pt;margin-left:1.0pt;text-align:left;text-indent:-.1pt;
+line-height:103%'>The code chunks in R have options that will alter how the
+code or the output is rendered. The chunk options can be set either globally to
+affect the entire R Markdown document or locally to affect only an individual
+chunk. For more information about chunk options visit <a
+href="https://yihui.name/knitr/options/"><span style='color:black;text-decoration:
+none'>https://yihui.name/knitr/options/</span></a></p>
+
+<h2 style='margin-top:0in;margin-right:41.15pt;margin-bottom:6.95pt;margin-left:
+1.4pt'>Global Chunk Options</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+6.1pt;margin-left:.95pt'>To set up chunk options globally, create a chunk at
+the beginning and use the knitr::opts_chunk$set() function to set chunk
+options.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:101.0pt;
+margin-bottom:6.15pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:110%;background:#F8F8F8'>knitr<b><sub><span style='font-size:18.5pt;
+line-height:110%;color:#CF5C00'>::</span></sub></b>opts_chunk<b><sub><span
+style='font-size:18.5pt;line-height:110%;color:#CF5C00'>$</span></sub></b><b><sub><span
+style='font-size:18.5pt;line-height:110%;color:#214A87'>set</span></sub></b>(<span
+style='color:#214A87'>cache = </span>T)</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:58.95pt;
+margin-bottom:8.0pt;margin-left:1.0pt;text-align:left;text-indent:-.1pt;
+line-height:103%'>A couple of recommended chunk options set globally are cache=T
+and tidy=T. These options make rendering the document easier. The cache=T option
+tells RStudio to run the chunk and save the output in an RData file when it is
+rendered. When re-rendering a document, RStudio will only run chunks that are
+new or chunks that were altered. All other chunks’ output will be obtained from
+the RData file. This speeds up the rendering process by not running code that
+was not altered.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:58.95pt;
+margin-bottom:5.7pt;margin-left:1.0pt;text-align:left;text-indent:-.1pt;
+line-height:103%'>The other chunk option is tidy=T. More specifically: tidy.opts=list(width.cutoff=60)
+and tidy=TRUE. This tells RStudio to prevent code from printing off the page.
+For example, look at the output of this chunk:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:14.2pt;margin-left:1.65pt;text-align:left;text-indent:0in;
+line-height:107%'><i><span style='color:#8F5903;background:#F8F8F8'>## This
+comment is designed to show what happens when all your code is in 1 </span></i><i><span
+style='color:#8F5903'>line. This</span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:7.4pt;margin-bottom:1.5pt;
+margin-left:.95pt;line-height:124%'>Notice the comment being printed off the
+page. Using the options tidy.opts=list(width.cutoff=60) and tidy=TRUE, the
+chunk is rendered as</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.55pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+background:#F8F8F8'><i><span style='color:#8F5903'>## This comment is designed
+to show what happens when all your</span></i></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.55pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+background:#F8F8F8'><i><span style='color:#8F5903'>## code is in 1 line. This
+is fine when you are coding, but</span></i></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:15.4pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+background:#F8F8F8'><i><span style='color:#8F5903'>## when you are putting it
+in a report, it will run off the ## page.</span></i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:.95pt'>Notice the comment being printed on 4 lines of code
+instead of 1. The width.cutoff=60 option may need to be adjusted to get all the
+code one the page. To use this tidy option, install the formatR package once:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:209.6pt;
+margin-bottom:11.7pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:110%;background:#F8F8F8'><b><span style='color:#214A87'>install.packages</span></b>(<span
+style='color:#4F9905'>&quot;formatR&quot;</span>)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+5.7pt;margin-left:.95pt'>To set these two options as global options, place this
+in a setup chunk at the beginning of the document.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:101.0pt;
+margin-bottom:4.85pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:110%;background:#F8F8F8'>knitr<b><sub><span style='font-size:18.5pt;
+line-height:110%;color:#CF5C00'>::</span></sub></b>opts_chunk<b><sub><span
+style='font-size:18.5pt;line-height:110%;color:#CF5C00'>$</span></sub></b><b><sub><span
+style='font-size:18.5pt;line-height:110%;color:#214A87'>set</span></sub></b>(<span
+style='color:#214A87'>cache = </span>T) knitr<b><sub><span style='font-size:
+18.5pt;line-height:110%;color:#CF5C00'>::</span></sub></b>opts_chunk<b><sub><span
+style='font-size:18.5pt;line-height:110%;color:#CF5C00'>$</span></sub></b><b><sub><span
+style='font-size:18.5pt;line-height:110%;color:#214A87'>set</span></sub></b>(<span
+style='color:#214A87'>tidy.opts = </span><b><sub><span style='font-size:18.5pt;
+line-height:110%;color:#214A87'>list</span></sub></b>(<span style='color:#214A87'>width.cutoff
+= </span><span style='color:#0000CF'>60</span>), <span style='color:#214A87'>tidy
+= </span><span style='color:#8F5903'>TRUE</span>)</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:41.15pt;
+margin-bottom:9.65pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt'><b>Note:
+Sometimes, the cutoff may stop working and your code is running off the page.
+To fix this, change the value for the width.cutoff. Then change it back.</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+16.0pt;margin-left:.95pt'>One last option to include is options(digits=2) This
+is used for inline code. This is discussed later in the document.</p>
+
+<h2 style='margin-top:0in;margin-right:41.15pt;margin-bottom:6.95pt;margin-left:
+1.4pt'>Local Chunk Options</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+10.7pt;margin-left:.95pt'>There are local chunk options that may be beneficial
+to put in each individual chunk. Each option is placed in {r} separated by
+commas.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+3.75pt;margin-left:.95pt;line-height:127%'>One option is the eval option. When
+set to FALSE, RStudio will only display the code but not run the line. For
+example, this chunk contains {r,eval=FALSE}:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:101.0pt;
+margin-bottom:14.55pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:110%;background:#F8F8F8'><b><span style='color:#214A87'>mean</span></b>(mtcars<b><span
+style='color:#CF5C00'>$</span></b>mpg)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+7.1pt;margin-left:.95pt'>Nothing is printed out. When the chunk contains {r,eval=TRUE}:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:101.0pt;
+margin-bottom:11.6pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:110%;background:#F8F8F8'><b><span style='color:#214A87'>mean</span></b>(mtcars<b><span
+style='color:#CF5C00'>$</span></b>mpg)</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:9.6pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:105%'>## [1] 20</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+3.9pt;margin-left:.95pt;line-height:125%'>Another option is the echo option.
+When set to FALSE, the code will disappear from the document. This next chunk
+contains {r,echo=TRUE}:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:101.0pt;
+margin-bottom:11.6pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:110%;background:#F8F8F8'><b><span style='color:#214A87'>mean</span></b>(mtcars<b><span
+style='color:#CF5C00'>$</span></b>mpg)</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:9.15pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:105%'>## [1] 20</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:170.1pt;margin-bottom:
+0in;margin-left:.95pt;line-height:155%'>Everything looks the same. Now the
+chunk contains {r,echo=FALSE} ## [1] 20</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+2.55pt;margin-left:.95pt;line-height:140%'>The R Code disappears. There are
+chunk options for figures as well. A few options are fig.height, fig.width, fig.align,
+and fig.cap.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:5.6pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:105%'>This chunk contains {r,fig.height=3.5,fig.width=3.5,fig.align='left'}.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:101.0pt;
+margin-bottom:11.6pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:110%;background:#F8F8F8'><b><span style='color:#214A87'>plot</span></b>(mtcars<b><sub><span
+style='font-size:18.5pt;line-height:110%;color:#CF5C00'>$</span></sub></b>mpg,
+mtcars<b><sub><span style='font-size:18.5pt;line-height:110%;color:#CF5C00'>$</span></sub></b>drat)</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:17.7pt;margin-left:5.95pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%'><img
+border=0 width=291 height=207 src="R%20Markdown%20Guide_files/image001.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:25.5pt;margin-left:109.0pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-family:"Arial",sans-serif'>mtcars$mpg</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:.95pt'>The chunk options tells RStudio to create an image
+that is 3.5 inches in height and width, and align the image to the left.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:5.6pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:105%'>The following chunk contains {r, fig.height=3.5,
+fig.width=3.5, fig.align='center', fig.cap=&quot;\\label{fig1}This is a scatter
+plot of MTCARS' MPG and DRAT&quot;}.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:101.0pt;
+margin-bottom:43.1pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:110%;background:#F8F8F8'><b><span style='color:#214A87'>plot</span></b>(mtcars<b><sub><span
+style='font-size:18.5pt;line-height:110%;color:#CF5C00'>$</span></sub></b>mpg,
+mtcars<b><sub><span style='font-size:18.5pt;line-height:110%;color:#CF5C00'>$</span></sub></b>drat)</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:17.7pt;margin-left:113.95pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%'><img
+border=0 width=291 height=207 src="R%20Markdown%20Guide_files/image002.gif"></span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:41.35pt;
+margin-bottom:28.25pt;margin-left:0in;text-align:center;text-indent:0in;
+line-height:107%'><span style='font-family:"Arial",sans-serif'>mtcars$mpg</span></p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:70.15pt;
+margin-bottom:12.65pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:107%'>Figure 1: This is a scatter plot of MTCARS’ MPG and DRAT</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+2.7pt;margin-left:.95pt'>This figure may be placed on a different page. The
+chunk contains an additional option: fig.cap=&quot;\\label{fig1}This is a
+scatter plot of MTCARS' MPG and DRAT&quot;. It adds</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:58.95pt;
+margin-bottom:19.5pt;margin-left:1.0pt;text-align:left;text-indent:-.1pt;
+line-height:103%'>a caption to the figure. At the beginning of the caption, the
+option contains \\label{fig1}. This labels the plot to be referenced later in
+the document. Figure 1 can be referenced with \ref{fig1}.</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:7.05pt;margin-left:
+1.4pt'>Formatting</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:.95pt;line-height:130%'>R Markdown contain basic formatting
+capabilities. The use of the # followed by text creates a heading. Using two or
+more # symbols will create subheadings based on the number of #. A text is <i>italicized
+</i>by surrounding the text with one asterisk (*italicized*). A text is <b>boldfaced
+</b>by surrounding it with 2 asterisk (**boldfaced**).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:.95pt'>To create an unordered list, use the + symbol at the
+beginning of each line. To create a sub-item, press the tab button twice (4
+spaces), then the + symbol. Repeat this method for further sub-items.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:30.9pt;text-indent:-14.95pt'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>First Item</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:30.9pt;text-indent:-14.95pt'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Second Item</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:44.1pt'><b>– </b>First Sub-Item</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:66.9pt'>&#8727; First Sub-Sub-Item</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+7.05pt;margin-left:83.55pt'>· First Sub-Sub-Sub-Item</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:.95pt'>To created an ordered list, type the number followed
+by a period for each line. To create sub-lists, press the tab button twice and
+order them appropriately.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:30.9pt;text-indent:-14.95pt'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span>First</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:30.9pt;text-indent:-14.95pt'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span>Second</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:56.95pt;text-indent:-15.6pt'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>First</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:56.95pt;text-indent:-15.6pt'>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Second</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+1.2pt;margin-left:78.55pt;text-indent:-16.25pt'>1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>First</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+.15in;margin-left:78.55pt;text-indent:-16.25pt'>2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Second</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+11.35pt;margin-left:30.95pt'>A block quote is created with the &gt; symbol at
+the beginning of a line.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+6.3pt;margin-left:.95pt;line-height:126%'>R Markdown allows a table to be
+constructed in 2 ways, manually or with the xtable package. A table is manually
+created by using |, :, and -. The first line contains | and the column names in
+between. The second line contains |:-|:-| which indicates how the table is
+aligned. The location of : symbol just tells RStudio about the alignment. Go to
+the math section for more elaborate examples.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:.95pt;line-height:128%'>The xtable::xtable function creates a
+table from a dataframe or R object. Here is an example a table using the mtcars
+dataset.</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=632
+ style='width:474.0pt;margin-left:-1.35pt;border-collapse:collapse'>
+ <tr style='height:44.75pt'>
+  <td width=632 colspan=14 valign=top style='width:474.0pt;background:#F8F8F8;
+  padding:.4pt 5.75pt 0in 3.0pt;height:44.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:26.35pt;
+  margin-bottom:0in;margin-left:24.6pt;text-align:left;text-indent:-24.6pt;
+  line-height:90%'><b><span style='color:#214A87'>print</span></b>(xtable<b><span
+  style='color:#CF5C00'>::</span></b><b><sub><span style='font-size:18.5pt;
+  line-height:90%;color:#214A87'>xtable</span></sub></b>(<b><span
+  style='color:#214A87'>head</span></b>(mtcars), <span style='color:#214A87'>caption
+  = </span><span style='color:#4F9905'>&quot;The MTCARS Dataset&quot;</span>, <span
+  style='color:#214A87'>label = </span><span style='color:#4F9905'>&quot;mtcarsdata&quot;</span>,
+  <span style='color:#214A87'>digits = </span><span style='color:#0000CF'>1</span>,
+  <span style='color:#214A87'>align = </span><b><sub><span style='font-size:
+  18.5pt;line-height:90%;color:#214A87'>c</span></sub></b>(<span
+  style='color:#4F9905'>&quot;l&quot;</span>, <b><sub><span style='font-size:
+  18.5pt;line-height:90%;color:#214A87'>rep</span></sub></b>(<span
+  style='color:#4F9905'>&quot;c&quot;</span>,</p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:49.2pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='color:#0000CF'>11</span>))), <span
+  style='color:#214A87'>comment = </span>F)</p>
+  </td>
+ </tr>
+ <tr style='height:14.85pt'>
+  <td style='border:none;padding:0in 0in 0in 0in' width=6><p class='MsoNormal'>&nbsp;</td>
+  <td width=154 valign=top style='width:115.15pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.9pt 5.75pt 0in 0in;height:14.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.0pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+  <td width=45 valign=top style='width:34.05pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.9pt 5.75pt 0in 0in;height:14.85pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>mpg</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.9pt 5.75pt 0in 0in;height:14.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.15pt;text-align:left;text-indent:0in;
+  line-height:107%'>cyl</p>
+  </td>
+  <td width=51 valign=top style='width:38.6pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.9pt 5.75pt 0in 0in;height:14.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:2.9pt;text-align:left;text-indent:0in;
+  line-height:107%'>disp</p>
+  </td>
+  <td width=52 valign=top style='width:38.65pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.9pt 5.75pt 0in 0in;height:14.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:6.85pt;text-align:left;text-indent:0in;
+  line-height:107%'>hp</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.9pt 5.75pt 0in 0in;height:14.85pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>drat</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.9pt 5.75pt 0in 0in;height:14.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.95pt;text-align:left;text-indent:0in;
+  line-height:107%'>wt</p>
+  </td>
+  <td width=44 valign=top style='width:33.15pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.9pt 5.75pt 0in 0in;height:14.85pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>qsec</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.9pt 5.75pt 0in 0in;height:14.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:2.1pt;text-align:left;text-indent:0in;
+  line-height:107%'>vs</p>
+  </td>
+  <td width=37 valign=top style='width:27.55pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.9pt 5.75pt 0in 0in;height:14.85pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>am</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.9pt 5.75pt 0in 0in;height:14.85pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>gear</p>
+  </td>
+  <td width=37 valign=top style='width:28.1pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.9pt 5.75pt 0in 0in;height:14.85pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>carb</p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=9><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td style='border:none;padding:0in 0in 0in 0in' width=6><p class='MsoNormal'>&nbsp;</td>
+  <td width=154 valign=top style='width:115.15pt;border:none;padding:1.9pt 5.75pt 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:6.0pt;text-align:left;text-indent:0in;
+  line-height:107%'>Mazda RX4</p>
+  </td>
+  <td width=45 valign=top style='width:34.05pt;border:none;padding:1.9pt 5.75pt 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.65pt;text-align:left;text-indent:0in;
+  line-height:107%'>21.0</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;border:none;padding:1.9pt 5.75pt 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>6.0</p>
+  </td>
+  <td width=51 valign=top style='width:38.6pt;border:none;padding:1.9pt 5.75pt 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>160.0</p>
+  </td>
+  <td width=52 valign=top style='width:38.65pt;border:none;padding:1.9pt 5.75pt 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>110.0</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;border:none;padding:1.9pt 5.75pt 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>3.9</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;border:none;padding:1.9pt 5.75pt 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>2.6</p>
+  </td>
+  <td width=44 valign=top style='width:33.15pt;border:none;padding:1.9pt 5.75pt 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.2pt;text-align:left;text-indent:0in;
+  line-height:107%'>16.5</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;border:none;padding:1.9pt 5.75pt 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>0.0</p>
+  </td>
+  <td width=37 valign=top style='width:27.55pt;border:none;padding:1.9pt 5.75pt 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.35pt;text-align:left;text-indent:0in;
+  line-height:107%'>1.0</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;border:none;padding:1.9pt 5.75pt 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>4.0</p>
+  </td>
+  <td width=37 valign=top style='width:28.1pt;border:none;padding:1.9pt 5.75pt 0in 0in;
+  height:14.5pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.05in;text-align:left;text-indent:0in;
+  line-height:107%'>4.0</p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=9><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td style='border:none;padding:0in 0in 0in 0in' width=6><p class='MsoNormal'>&nbsp;</td>
+  <td width=154 valign=top style='width:115.15pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:6.0pt;text-align:left;text-indent:0in;
+  line-height:107%'>Mazda RX4 Wag</p>
+  </td>
+  <td width=45 valign=top style='width:34.05pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.65pt;text-align:left;text-indent:0in;
+  line-height:107%'>21.0</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>6.0</p>
+  </td>
+  <td width=51 valign=top style='width:38.6pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>160.0</p>
+  </td>
+  <td width=52 valign=top style='width:38.65pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>110.0</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>3.9</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>2.9</p>
+  </td>
+  <td width=44 valign=top style='width:33.15pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.2pt;text-align:left;text-indent:0in;
+  line-height:107%'>17.0</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>0.0</p>
+  </td>
+  <td width=37 valign=top style='width:27.55pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.3pt;text-align:left;text-indent:0in;
+  line-height:107%'>1.0</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>4.0</p>
+  </td>
+  <td width=37 valign=top style='width:28.1pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.05in;text-align:left;text-indent:0in;
+  line-height:107%'>4.0</p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=9><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td style='border:none;padding:0in 0in 0in 0in' width=6><p class='MsoNormal'>&nbsp;</td>
+  <td width=154 valign=top style='width:115.15pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:6.0pt;text-align:left;text-indent:0in;
+  line-height:107%'>Datsun 710</p>
+  </td>
+  <td width=45 valign=top style='width:34.05pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.65pt;text-align:left;text-indent:0in;
+  line-height:107%'>22.8</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>4.0</p>
+  </td>
+  <td width=51 valign=top style='width:38.6pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>108.0</p>
+  </td>
+  <td width=52 valign=top style='width:38.65pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:2.9pt;text-align:left;text-indent:0in;
+  line-height:107%'>93.0</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>3.9</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>2.3</p>
+  </td>
+  <td width=44 valign=top style='width:33.15pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.2pt;text-align:left;text-indent:0in;
+  line-height:107%'>18.6</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>1.0</p>
+  </td>
+  <td width=37 valign=top style='width:27.55pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.35pt;text-align:left;text-indent:0in;
+  line-height:107%'>1.0</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>4.0</p>
+  </td>
+  <td width=37 valign=top style='width:28.1pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.55pt;text-align:left;text-indent:0in;
+  line-height:107%'>1.0</p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=9><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td style='border:none;padding:0in 0in 0in 0in' width=6><p class='MsoNormal'>&nbsp;</td>
+  <td width=154 valign=top style='width:115.15pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:6.0pt;text-align:left;text-indent:0in;
+  line-height:107%'>Hornet 4 Drive</p>
+  </td>
+  <td width=45 valign=top style='width:34.05pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.65pt;text-align:left;text-indent:0in;
+  line-height:107%'>21.4</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>6.0</p>
+  </td>
+  <td width=51 valign=top style='width:38.6pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>258.0</p>
+  </td>
+  <td width=52 valign=top style='width:38.65pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>110.0</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>3.1</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>3.2</p>
+  </td>
+  <td width=44 valign=top style='width:33.15pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.2pt;text-align:left;text-indent:0in;
+  line-height:107%'>19.4</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>1.0</p>
+  </td>
+  <td width=37 valign=top style='width:27.55pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.35pt;text-align:left;text-indent:0in;
+  line-height:107%'>0.0</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>3.0</p>
+  </td>
+  <td width=37 valign=top style='width:28.1pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.55pt;text-align:left;text-indent:0in;
+  line-height:107%'>1.0</p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=9><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td style='border:none;padding:0in 0in 0in 0in' width=6><p class='MsoNormal'>&nbsp;</td>
+  <td width=154 valign=top style='width:115.15pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:6.0pt;text-align:left;text-indent:0in;
+  line-height:107%'>Hornet Sportabout</p>
+  </td>
+  <td width=45 valign=top style='width:34.05pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.65pt;text-align:left;text-indent:0in;
+  line-height:107%'>18.7</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>8.0</p>
+  </td>
+  <td width=51 valign=top style='width:38.6pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>360.0</p>
+  </td>
+  <td width=52 valign=top style='width:38.65pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>175.0</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>3.1</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>3.4</p>
+  </td>
+  <td width=44 valign=top style='width:33.15pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.2pt;text-align:left;text-indent:0in;
+  line-height:107%'>17.0</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>0.0</p>
+  </td>
+  <td width=37 valign=top style='width:27.55pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.35pt;text-align:left;text-indent:0in;
+  line-height:107%'>0.0</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>3.0</p>
+  </td>
+  <td width=37 valign=top style='width:28.1pt;padding:1.9pt 5.75pt 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.55pt;text-align:left;text-indent:0in;
+  line-height:107%'>2.0</p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=9><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr style='height:14.75pt'>
+  <td style='border:none;padding:0in 0in 0in 0in' width=6><p class='MsoNormal'>&nbsp;</td>
+  <td width=154 valign=top style='width:115.15pt;border:none;border-bottom:
+  solid black 1.0pt;padding:1.9pt 5.75pt 0in 0in;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:6.0pt;text-align:left;text-indent:0in;
+  line-height:107%'>Valiant</p>
+  </td>
+  <td width=45 valign=top style='width:34.05pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.9pt 5.75pt 0in 0in;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.65pt;text-align:left;text-indent:0in;
+  line-height:107%'>18.1</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.9pt 5.75pt 0in 0in;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>6.0</p>
+  </td>
+  <td width=51 valign=top style='width:38.6pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.9pt 5.75pt 0in 0in;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>225.0</p>
+  </td>
+  <td width=52 valign=top style='width:38.65pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.9pt 5.75pt 0in 0in;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>105.0</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.9pt 5.75pt 0in 0in;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>2.8</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.9pt 5.75pt 0in 0in;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>3.5</p>
+  </td>
+  <td width=44 valign=top style='width:33.15pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.9pt 5.75pt 0in 0in;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.2pt;text-align:left;text-indent:0in;
+  line-height:107%'>20.2</p>
+  </td>
+  <td width=36 valign=top style='width:26.9pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.9pt 5.75pt 0in 0in;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>1.0</p>
+  </td>
+  <td width=37 valign=top style='width:27.55pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.9pt 5.75pt 0in 0in;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.3pt;text-align:left;text-indent:0in;
+  line-height:107%'>0.0</p>
+  </td>
+  <td width=45 valign=top style='width:33.4pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.9pt 5.75pt 0in 0in;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:3.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>3.0</p>
+  </td>
+  <td width=37 valign=top style='width:28.1pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.9pt 5.75pt 0in 0in;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:.05in;text-align:left;text-indent:0in;
+  line-height:107%'>1.0</p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=9><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr height=0>
+  <td width=6 style='border:none'></td>
+  <td width=154 style='border:none'></td>
+  <td width=45 style='border:none'></td>
+  <td width=36 style='border:none'></td>
+  <td width=51 style='border:none'></td>
+  <td width=52 style='border:none'></td>
+  <td width=45 style='border:none'></td>
+  <td width=36 style='border:none'></td>
+  <td width=44 style='border:none'></td>
+  <td width=36 style='border:none'></td>
+  <td width=37 style='border:none'></td>
+  <td width=45 style='border:none'></td>
+  <td width=37 style='border:none'></td>
+  <td width=9 style='border:none'></td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:70.15pt;
+margin-bottom:12.65pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:107%'>Table 1: The MTCARS Dataset</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:.95pt'>Notice that Table 1 is produced easily. Table 1 is
+referenced by using the label created in the function and the \ref{mtcarsdata}.
+The xtable::xtable() function can be used to create tables from commonly used R
+functions such as lm(). The xtable requires the print() function and comment=F argument
+to prevent a note from printing. Additionally, the chunk options results='asis'
+is needed. To install xtable run the following line:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:209.6pt;
+margin-bottom:24.9pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:110%;background:#F8F8F8'><b><span style='color:#214A87'>install.packages</span></b>(<span
+style='color:#4F9905'>&quot;xtable&quot;</span>)</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:4.65pt;margin-left:
+1.4pt'>References</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+0in;margin-left:.95pt;line-height:125%'>R Markdown contains capabilities to add
+citations and a bibliography. For example, to cite your textbook (Mendenhall
+and Sincich 2012), use the @ symbol followed by a citation identifier from the .bib
+file surrounded by square brackets, [@mendenhallSecondCourseStatistics2012]. To
+cite your textbook again (2012) without the authors names, use a - sign in
+front of the @ symbol, [-@mendenhallSecondCourseStatistics2012]. To cite
+multiple books (Casella and</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+10.3pt;margin-left:.95pt'>Berger 1990; Rohatgi and Saleh 2015; Resnick 2014;
+Lehmann and Casella 1998; Lehmann and Romano 2005), add each citation inside
+the square brackets with the @ symbol and separate them with semicolons, [@casellaStatisticalInference1990;
+@rohatgiIntroductionProbabilityStatistics2015; @resnickProbabilityPath2014;
+@lehmannTheoryPointEstimation1998; @lehmannTestingStatisticalHypotheses2005].</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+3.8pt;margin-left:.95pt;line-height:130%'>A reference page can be added at the
+end of your document by adding the following line: # References. R Markdown
+will automatically add references at the end.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:.95pt;line-height:127%'>To use citations and references, R
+Markdown needs to know the references. This is done by providing a .bib file
+containing all the information needed to construct the citations and
+references. First, save the .bib file in the same folder (directory) as your Rmd
+file. Then add the line bibliography: Example.bib to the YAML header. Make any
+changes appropriately to the line, such as the name of the .bib file.</p>
+
+<h2 style='margin-top:0in;margin-right:41.15pt;margin-bottom:10.35pt;
+margin-left:1.4pt'>Bib File</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+19.3pt;margin-left:.95pt'>The .bib file is just a normal text file that
+contains the extension .bib. All you will do is add your references to the
+file. Open the Example.bib file and notice that it contains a bunch of lines
+indicating certain things about a reference. Creating a .bib file is tedious.
+However, there are reference managers that can help. I recommend Zotero. It is
+an open-source reference manager designed to help with many things. With
+Zotero, you can import citations easily with their browser extension. Once a
+citation is in Zotero, you can export your library to a .bib file. That’s it! A
+couple tips is to check your citations in Zotero and fix them as needed.
+Importing citations from UCR’s library seem to provide accurate citations.
+Other online resources may provide weird results.</p>
+
+<h1 style='margin-left:1.4pt'>Math</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+0in;margin-left:.95pt;line-height:125%'>R Markdown is capable of writing
+mathematical formulas using LaTeX code. A mathematical symbol can be written
+inline using single $ signs. For example, $\alpha$ is viewed as <i>&#945; </i>in
+a document. To write mathematical formulas on its own line use either $$ or \[\].
+For example, $$Y=mX+b$$ is viewed as</p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:70.15pt;
+margin-bottom:7.8pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:107%'><i>Y </i>= <i>mX </i>+ <i>b</i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+1.4pt;margin-left:.95pt'>or \[Y=mX+b\] is viewed as</p>
+
+<p class=MsoNormal align=center style='margin-top:0in;margin-right:70.15pt;
+margin-bottom:5.75pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:107%'><i>Y </i>= <i>mX </i>+ <i>b.</i></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:.95pt'>The next page contain tables of LaTeX syntax for
+mathematical symbols.<br clear=all style='page-break-before:always'>
+</p>
+
+<h2 style='margin-top:0in;margin-right:41.15pt;margin-bottom:.55pt;margin-left:
+1.4pt'>Mathematical Notation</h2>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=354
+ style='width:265.7pt;margin-left:102.75pt;border-collapse:collapse'>
+ <tr style='height:20.6pt'>
+  <td width=100 valign=top style='width:75.0pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:0in 0in 0in 0in;height:20.6pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Notation</p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:0in 0in 0in 0in;height:20.6pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>code</p>
+  </td>
+ </tr>
+ <tr style='height:16.75pt'>
+  <td width=100 valign=top style='width:75.0pt;border:none;padding:0in 0in 0in 0in;
+  height:16.75pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x </i>= <i>y</i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;border:none;padding:0in 0in 0in 0in;
+  height:16.75pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$x=y$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x &gt; y</i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$x&gt;y$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x &lt; y</i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$x&lt;y$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x &#8805; y</i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$x\geq y$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x &#8804; y</i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$x\leq y$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x</i><i><span style='font-size:8.0pt;line-height:
+  107%'>y</span></i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$xˆ{y}$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x<sub>y</sub></i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$x_{y}$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x</i>¯</p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$\bar x$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x</i>ˆ</p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$\hat x$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x</i>˜</p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$\tilde x$</p>
+  </td>
+ </tr>
+ <tr style='height:31.05pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:31.05pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:62.15pt;
+  margin-bottom:0in;margin-left:-1.15pt;text-align:left;text-indent:2.35pt;
+  line-height:107%'><i><u><span style='font-size:8.0pt;line-height:107%'>x </span></u></i><img
+  border=0 width=14 height=22 id="Picture 18459"
+  src="R%20Markdown%20Guide_files/image003.gif"><i><span style='font-size:8.0pt;
+  line-height:107%'>y</span></i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:31.05pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:.15pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>$\frac{x}{y}$</p>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>$\frac{\partial
+  x}{\partial y}$</p>
+  </td>
+ </tr>
+ <tr style='height:15.1pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:15.1pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x &#8712; A</i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:15.1pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$x\in A$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x &#8834; A</i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$x\subset A$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x &#8838; A</i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$x\subseteq A$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x &#8746; A</i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$x\cup A$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>x &#8745; A</i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$x\cap A$</p>
+  </td>
+ </tr>
+ <tr style='height:14.85pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.85pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>{</i>1<i>,</i>2<i>,</i>3<i>}</i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.85pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$\{1,2,3\}$</p>
+  </td>
+ </tr>
+ <tr style='height:16.2pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:16.2pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:22.2pt;
+  margin-bottom:0in;margin-left:4.7pt;text-align:left;text-indent:-4.7pt;
+  line-height:107%'><sup><span style='font-size:15.5pt;line-height:107%'>R</span><i>b
+  </i></sup><i>f</i>(<i>x</i>)<i>dx </i><i><span style='font-size:8.0pt;
+  line-height:107%'>a</span></i></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:16.2pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$\int_aˆbf(x)dx$</p>
+  </td>
+ </tr>
+ <tr style='height:16.2pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:16.2pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:10.0pt;line-height:107%'>nR</span><i><span
+  style='font-size:8.0pt;line-height:107%'>ab </span>f</i>(<i>x</i>)<i>dx</i><span
+  style='font-size:10.0pt;line-height:107%'>o</span></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:16.2pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>$\left\{\int_aˆbf(x)dx\right\}$</p>
+  </td>
+ </tr>
+ <tr style='height:15.2pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:15.2pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:25.05pt;
+  margin-bottom:0in;margin-left:10.5pt;text-align:left;text-indent:-10.5pt;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%'>P</span><i><span
+  style='font-size:8.0pt;line-height:107%'>n </span>x<sub>i </sub></i><i><span
+  style='font-size:8.0pt;line-height:107%'>i</span></i><span style='font-size:
+  8.0pt;line-height:107%'>=1</span></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:15.2pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$\sumˆn_{i=1}x_i$</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:26.15pt;
+  margin-bottom:0in;margin-left:9.4pt;text-align:left;text-indent:-9.4pt;
+  line-height:107%'><span style='font-size:10.0pt;line-height:107%'>Q</span><i><span
+  style='font-size:8.0pt;line-height:107%'>n           </span>x<sub>i </sub></i><i><span
+  style='font-size:8.0pt;line-height:107%'>i</span></i><span style='font-size:
+  8.0pt;line-height:107%'>=1</span></p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$\prodˆn_{i=1}x_i$</p>
+  </td>
+ </tr>
+ <tr style='height:14.05pt'>
+  <td width=100 valign=top style='width:75.0pt;padding:0in 0in 0in 0in;
+  height:14.05pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>lim<i><sub>x&#8594;</sub></i><sub>0 </sub><i>f</i>(<i>x</i>)</p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;padding:0in 0in 0in 0in;
+  height:14.05pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$\lim_{x\to0}f(x)$</p>
+  </td>
+ </tr>
+ <tr style='height:18.3pt'>
+  <td width=100 valign=top style='width:75.0pt;border:none;border-bottom:solid black 1.0pt;
+  padding:0in 0in 0in 0in;height:18.3pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><i>X &#8764; </i>&#915;(<i>&#945;,&#946;</i>)</p>
+  </td>
+  <td width=254 valign=top style='width:190.7pt;border:none;border-bottom:solid black 1.0pt;
+  padding:0in 0in 0in 0in;height:18.3pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>$X\sim \Gamma(\alpha,\beta)$</p>
+  </td>
+ </tr>
+</table>
+
+<h2 style='margin-top:0in;margin-right:41.15pt;margin-bottom:.55pt;margin-left:
+1.4pt'>Greek Letters</h2>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=427
+ style='width:320.15pt;margin-left:75.55pt;border-collapse:collapse'>
+ <tr style='height:20.6pt'>
+  <td width=84 valign=top style='width:63.05pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:0in 0in 0in 0in;height:20.6pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Letter</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:0in 0in 0in 0in;height:20.6pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Lowercase</p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:0in 0in 0in 0in;height:20.6pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:20.65pt;text-align:left;text-indent:0in;
+  line-height:107%'>Code</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:0in 0in 0in 0in;height:20.6pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Uppercase</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;border-top:solid black 1.0pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:0in 0in 0in 0in;height:20.6pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:11.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>Code</p>
+  </td>
+ </tr>
+ <tr style='height:16.75pt'>
+  <td width=84 valign=top style='width:63.05pt;border:none;padding:0in 0in 0in 0in;
+  height:16.75pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>alpha</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;border:none;padding:0in 0in 0in 0in;
+  height:16.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.05pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#945;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;border:none;padding:0in 0in 0in 0in;
+  height:16.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:15.4pt;text-align:left;text-indent:0in;
+  line-height:107%'>\alpha</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;border:none;padding:0in 0in 0in 0in;
+  height:16.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;border:none;padding:0in 0in 0in 0in;
+  height:16.75pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>beta</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.15pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#946;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:18.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>\beta</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>gamma</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.45pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#947;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:15.4pt;text-align:left;text-indent:0in;
+  line-height:107%'>\gamma</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.7pt;text-align:left;text-indent:0in;
+  line-height:107%'>&#915;</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:6.15pt;text-indent:0in;line-height:107%'>\Gamma</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>delta</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.0pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#948;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:15.4pt;text-align:left;text-indent:0in;
+  line-height:107%'>\delta</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:21.5pt;text-align:left;text-indent:0in;
+  line-height:107%'>&#8710;</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:6.15pt;text-indent:0in;line-height:107%'>\Delta</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>epsilon</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:9.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>\epsilon</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>zeta</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.8pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#950;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:18.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>\zeta</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>eta</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.7pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#951;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:21.55pt;text-align:left;text-indent:0in;
+  line-height:107%'>\eta</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>theta</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.9pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#952;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:15.4pt;text-align:left;text-indent:0in;
+  line-height:107%'>\theta</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:21.8pt;text-align:left;text-indent:0in;
+  line-height:107%'>&#920;</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:6.15pt;text-indent:0in;line-height:107%'>\Theta</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>iota</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.75pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#953;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:18.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>\iota</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>kappa</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.45pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#954;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:15.4pt;text-align:left;text-indent:0in;
+  line-height:107%'>\kappa</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>lambda</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.4pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#955;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:12.3pt;text-align:left;text-indent:0in;
+  line-height:107%'>\lambda</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.3pt;text-align:left;text-indent:0in;
+  line-height:107%'>&#923;</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:3.1pt;text-indent:0in;line-height:107%'>\Lambda</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>mu</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.3pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>µ</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:24.6pt;text-align:left;text-indent:0in;
+  line-height:107%'>\mu</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>nu</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#957;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:24.6pt;text-align:left;text-indent:0in;
+  line-height:107%'>\nu</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>xi</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.95pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#958;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:24.6pt;text-align:left;text-indent:0in;
+  line-height:107%'>\xi</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>&#926;</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>\Xi</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>pi</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.25pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#960;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:24.6pt;text-align:left;text-indent:0in;
+  line-height:107%'>\pi</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.0pt;text-align:left;text-indent:0in;
+  line-height:107%'>&#928;</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>\pi</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>rho</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.8pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#961;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:21.55pt;text-align:left;text-indent:0in;
+  line-height:107%'>\rho</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>sigma</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.25pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#963;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:15.4pt;text-align:left;text-indent:0in;
+  line-height:107%'>\sigma</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.15pt;text-align:left;text-indent:0in;
+  line-height:107%'>&#931;</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:6.15pt;text-indent:0in;line-height:107%'>\Sigma</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>tau</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.6pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#964;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:21.55pt;text-align:left;text-indent:0in;
+  line-height:107%'>\tau</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>upsilon</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.45pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#965;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:9.25pt;text-align:left;text-indent:0in;
+  line-height:107%'>\upsilon</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:21.8pt;text-align:left;text-indent:0in;
+  line-height:107%'>&#933;</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'>\Upsilon</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>phi</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.35pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#966;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:21.55pt;text-align:left;text-indent:0in;
+  line-height:107%'>\phi</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.15pt;text-align:left;text-indent:0in;
+  line-height:107%'>&#934;</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:12.3pt;text-align:left;text-indent:0in;
+  line-height:107%'>\Phi</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>chi</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.15pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#967;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:21.55pt;text-align:left;text-indent:0in;
+  line-height:107%'>\chi</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>psi</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:21.8pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#968;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:21.55pt;text-align:left;text-indent:0in;
+  line-height:107%'>\psi</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:21.8pt;text-align:left;text-indent:0in;
+  line-height:107%'>&#936;</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:12.3pt;text-align:left;text-indent:0in;
+  line-height:107%'>\Psi</p>
+  </td>
+ </tr>
+ <tr style='height:14.45pt'>
+  <td width=84 valign=top style='width:63.05pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>omega</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:21.95pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#969;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:15.4pt;text-align:left;text-indent:0in;
+  line-height:107%'>\omega</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:22.15pt;text-align:left;text-indent:0in;
+  line-height:107%'>&#8486;</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;padding:0in 0in 0in 0in;
+  height:14.45pt'>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+  margin-left:6.15pt;text-indent:0in;line-height:107%'>\Omega</p>
+  </td>
+ </tr>
+ <tr style='height:18.3pt'>
+  <td width=84 valign=top style='width:63.05pt;border:none;border-bottom:solid black 1.0pt;
+  padding:0in 0in 0in 0in;height:18.3pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>varepsilon</p>
+  </td>
+  <td width=85 valign=top style='width:63.55pt;border:none;border-bottom:solid black 1.0pt;
+  padding:0in 0in 0in 0in;height:18.3pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.05pt;text-align:left;text-indent:0in;
+  line-height:107%'><i>&#949;</i></p>
+  </td>
+  <td width=106 valign=top style='width:79.65pt;border:none;border-bottom:solid black 1.0pt;
+  padding:0in 0in 0in 0in;height:18.3pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>\varepsilon</p>
+  </td>
+  <td width=86 valign=top style='width:64.7pt;border:none;border-bottom:solid black 1.0pt;
+  padding:0in 0in 0in 0in;height:18.3pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:23.45pt;text-align:left;text-indent:0in;
+  line-height:107%'>–</p>
+  </td>
+  <td width=66 valign=top style='width:49.2pt;border:none;border-bottom:solid black 1.0pt;
+  padding:0in 0in 0in 0in;height:18.3pt'>
+  <p class=MsoNormal align=center style='margin:0in;text-align:center;
+  text-indent:0in;line-height:107%'>–</p>
+  </td>
+ </tr>
+</table>
+
+<h1 style='margin-left:1.4pt'>Rendering a Document</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:.95pt'>An R Markdown can be rendered into either an html
+file, pdf document or word document. Rendering the R Markdown to an html file
+or word document can be easily done using the knit button above. However,
+rendering the R Markdown file to a pdf document requires LaTeX to be installed.
+There are two methods to install LaTeX: from the LaTeX website or from R. I
+recommend installing the full LaTeX distribution from the <a
+href="https://www.latex-project.org/get/"><span style='color:black;text-decoration:
+none'>https://www.latex-project.org/get/. </span></a>This provides you with
+everything you may need. You can also install it from R:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:209.6pt;
+margin-bottom:11.7pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt;
+line-height:110%;background:#F8F8F8'><b><span style='color:#214A87'>install.packages</span></b>(<span
+style='color:#4F9905'>&quot;tinytex&quot;</span>) tinytex<b><span
+style='color:#CF5C00'>::</span></b><b><span style='color:#214A87'>install_tinytex</span></b>()</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+16.2pt;margin-left:.95pt'>You will only need to run these lines of code once
+and then you can render pdf documents easily.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:41.15pt;
+margin-bottom:8.35pt;margin-left:1.4pt;text-align:left;text-indent:-.5pt'><b>Tips</b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+25.3pt;margin-left:16.0pt'>• Render your document often so it easier to
+identify problems with rendering</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:5.0pt;margin-left:
+1.65pt;text-indent:0in'><span style='font-size:17.0pt;line-height:107%'>References</span></h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:18.45pt;text-indent:-17.55pt'>Casella, George, and Roger L.
+Berger. 1990. <i>Statistical Inference</i>. The Wadsworth &amp; Brooks/Cole
+Statistics/Probability Series. Pacific Grove, Calif: Brooks/Cole PubCo.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:18.45pt;text-indent:-17.55pt'>Lehmann, E. L., and Joseph P.
+Romano. 2005. <i>Testing Statistical Hypotheses</i>. 3rd ed. Springer Texts in
+Statistics. New York: Springer.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:18.45pt;text-indent:-17.55pt'>Lehmann, Erich L., and George
+Casella. 1998. <i>Theory of Point Estimation</i>. Second Edition. Springer
+Texts in Statistics. New York, NY: Springer New York.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:17.6pt;text-indent:-16.7pt'>Mendenhall, William, and Terry
+Sincich. 2012. <i>A Second Course in Statistics: Regression Analysis</i>.
+Seventh edition. Boston: Prentice Hall.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:18.45pt;text-indent:-17.55pt'>Resnick, Sidney I. 2014. <i>A
+Probability Path</i>. Modern Birkhäuser Classics. New York: Birkhäuser.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:69.4pt;margin-bottom:
+8.2pt;margin-left:17.85pt;text-indent:-16.95pt'>Rohatgi, V. K., and A. K. Md
+Ehsanes Saleh. 2015. <i>An Introduction to Probability and Statistics</i>.
+Third edition. Wiley Series in Probability and Statistics. Hoboken, New Jersey:
+Wiley.</p>
+
+</div>
+
+</body>
+
+</html>
