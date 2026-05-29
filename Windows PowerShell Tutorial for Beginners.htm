@@ -1,0 +1,3154 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Windows PowerShell Tutorial for Beginners</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:5.05pt;
+	margin-bottom:.25pt;
+	margin-left:1.5pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-.5pt;
+	line-height:111%;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;
+	color:#2F353D;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:7.35pt;
+	margin-left:1.5pt;
+	text-indent:-.5pt;
+	line-height:109%;
+	page-break-after:avoid;
+	font-size:25.0pt;
+	font-family:"Calibri",sans-serif;
+	color:#1B75BB;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.35pt;
+	margin-left:1.5pt;
+	text-indent:-.5pt;
+	line-height:111%;
+	page-break-after:avoid;
+	font-size:17.0pt;
+	font-family:"Calibri",sans-serif;
+	color:#0C70B8;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Calibri",sans-serif;
+	color:#0C70B8;
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Calibri",sans-serif;
+	color:#1B75BB;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:101.65pt 47.25pt 35.95pt 60.15pt;}
+div.WordSection1
+	{page:WordSection1;}
+@page WordSection2
+	{size:8.5in 11.0in;
+	margin:102.65pt 47.85pt 31.1pt 61.15pt;}
+div.WordSection2
+	{page:WordSection2;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:-8.55pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=678 height=856
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image001.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+0in;line-height:107%'><b><span style='font-size:25.0pt;line-height:107%;
+color:#0C70B8'>Table of Contents</span></b></p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=664
+ style='width:497.8pt;margin-left:.6pt;border-collapse:collapse'>
+ <tr style='height:10.6pt'>
+  <td width=648 valign=top style='width:486.35pt;padding:0in 0in 0in 0in;
+  height:10.6pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>Introduction <span style='font-size:11.0pt;line-height:
+  107%;color:black'><img width=558 height=1 id="Group 29590"
+  src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image002.gif"></span></p>
+  </td>
+  <td width=15 valign=top style='width:11.45pt;padding:0in 0in 0in 0in;
+  height:10.6pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:5.75pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='color:#1B75BB'>4</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:5.5pt;
+margin-bottom:11.55pt;margin-left:1.5pt;text-align:right;line-height:110%'><span
+style='color:#1B75BB'>5</span></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:5.5pt;
+margin-bottom:11.55pt;margin-left:1.5pt;text-align:right;line-height:110%'><span
+style='color:#1B75BB'>5</span></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:5.5pt;
+margin-bottom:11.55pt;margin-left:1.5pt;text-align:right;line-height:110%'><span
+style='color:#1B75BB'>6</span></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:5.5pt;
+margin-bottom:11.55pt;margin-left:1.5pt;text-align:right;line-height:110%'><span
+style='color:#1B75BB'>7</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:12.0pt;margin-left:0in;text-align:left;text-indent:0in'><img
+width=642 height=178
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image003.gif"
+align=left hspace=12>       1.4 Comments                                                                                                                                                                                           <span
+style='color:#1B75BB'>11</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:20.9pt;margin-left:0in;text-align:left;text-indent:0in'>      
+1.5 Pipes                                                                                                                                                                                                    <span
+style='color:#1B75BB'>11</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:11.0pt;text-align:left;text-indent:-11.0pt;
+line-height:107%'><span style='line-height:107%'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span>Top 10 Active Directory Management Tasks with PowerShell                <span
+style='color:#1B75BB'>12</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:11.5pt;margin-left:0in;text-align:left;text-indent:0in'><span
+style='position:relative;z-index:-1895824384'><span style='position:absolute;
+left:1px;top:-23px;width:645px;height:334px'><img width=645 height=334
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image004.gif"></span></span>      
+2.1 Creating New User and Computer Accounts                                                                                                                                <span
+style='color:#1B75BB'>12</span></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:5.5pt;
+margin-bottom:11.55pt;margin-left:1.5pt;text-align:right;line-height:110%'><span
+style='color:#1B75BB'>18</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>2.3<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Renaming a
+Computer                <span style='color:#1B75BB'>19</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>2.4<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Resetting a
+Computer Account  <span style='color:#1B75BB'>20</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>2.5<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Disabling User
+and Computer Accounts  <span style='color:#1B75BB'>20</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>2.6<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Deleting a
+Computer from Active Directory            <span style='color:#1B75BB'>21</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>2.7<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Creating and
+Deleting an Active Directory Group  <span style='color:#1B75BB'>22</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>2.8<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Adding Users
+and Computers to a Group                <span style='color:#1B75BB'>24</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>2.9<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Removing Users
+and Computers from a Group      <span style='color:#1B75BB'>25</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>2.10<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Moving Users and Computers to a New Organizational Unit      <span
+style='color:#1B75BB'>26 28</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>3.1<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><img width=643
+height=347
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image005.gif"
+align=left hspace=12>Viewing Objects in a Directory  <span style='color:#1B75BB'>28</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>3.2<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Creating Files
+and Folders          <span style='color:#1B75BB'>29</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>3.3<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Deleting Files
+and Folders          <span style='color:#1B75BB'>29</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>3.4<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Copying Files
+and Folders           <span style='color:#1B75BB'>31</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>3.5<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Moving Files
+and Directories      <span style='color:#1B75BB'>32</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>3.6<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Renaming Files             <span
+style='color:#1B75BB'>33</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>3.7<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Setting File
+and Folder Permissions          <span style='color:#1B75BB'>33</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+11.5pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>3.8<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Removing User
+Permissions       <span style='color:#1B75BB'>36</span></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:5.5pt;
+margin-bottom:11.55pt;margin-left:1.5pt;text-align:right;line-height:110%'><span
+style='color:#1B75BB'>37</span></p>
+
+<p class=MsoNormal align=right style='margin-top:0in;margin-right:5.5pt;
+margin-bottom:34.15pt;margin-left:1.5pt;text-align:right;line-height:110%'><span
+style='color:#1B75BB'>38</span></p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 align=left
+ width=663 style='width:497.4pt;border-collapse:collapse;margin-left:-2.25pt;
+ margin-right:-2.25pt'>
+ <tr style='height:10.6pt'>
+  <td width=648 valign=top style='width:485.95pt;padding:0in 0in 0in 0in;
+  height:10.6pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'>4. Automating PowerShell Scripts</p>
+  </td>
+  <td width=15 valign=top style='width:11.45pt;padding:0in 0in 0in 0in;
+  height:10.6pt'>
+  <p class=MsoNormal style='margin:0in;text-indent:0in;line-height:107%'><span
+  style='color:#1B75BB'>39</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:.2in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>4.1<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><img width=430
+height=67
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image006.gif"
+align=left hspace=12>Creating Scheduled Tasks with PowerShell Scripts                <span
+style='color:#1B75BB'>39</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+32.0pt;margin-left:17.7pt;text-indent:-16.7pt'><span style='line-height:111%'>4.2<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Running
+PowerShell Scripts with Task Scheduler   <span style='color:#1B75BB'>40</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:32.0pt;margin-left:0in;text-align:left;text-indent:0in'>Final
+Word           <span style='font-size:11.0pt;line-height:111%;color:black'><img
+width=566 height=1 id="Group 29589"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image007.gif"></span><span
+style='color:#1B75BB'> 45</span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.25pt;margin-left:0in;text-align:left;text-indent:0in'>About
+Netwrix           <span style='font-size:11.0pt;line-height:111%;color:black'><img
+width=545 height=1 id="Group 29591"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image008.gif"></span><span
+style='color:#1B75BB'> 47</span></p>
+
+<h1 style='margin-left:.75pt;text-indent:0in'>Introduction</h1>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:226.3pt;
+margin-bottom:20.85pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:129%'><b><span style='font-size:12.0pt;line-height:129%'>Automate
+it. Now, where’s that script… Warning: PowerShell is addictive.</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.0pt;margin-left:1.5pt;line-height:139%'>Windows PowerShell is an
+object-oriented automation engine and scripting language with an interactive command-line
+shell designed to help IT professionals configure systems and automate
+administrative tasks. You can find it in every modern Windows OS starting with
+Windows 2008R2. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.0pt;margin-left:1.5pt;line-height:139%'>Learning Windows PowerShell is like
+learning to use a universal multi-tool. In this eBook, we’ll walk you through
+PowerShell scripting basics, show you PowerShell commands and scripts for
+performing the most common administrative tasks, and explain how you can
+schedule your PowerShell scripts and commands.</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>So, let’s start learning
+PowerShell!<br clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:28.0pt;text-indent:-27.75pt'><span style='line-height:
+109%'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>PowerShell Scripting Basics</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+34.9pt;margin-left:1.5pt;line-height:139%'>In this part, we’ll cover PowerShell
+scripting basics so you can more easily perform virtually any administration
+task in your Windows IT environment.</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>1.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Launching
+the PowerShell</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.65pt;margin-left:1.5pt'>PowerShell offers both a command-line option and an
+integrated scripting environment (ISE):</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:13.55pt;text-indent:-12.55pt;line-height:139%'><span
+style='font-size:11.0pt;line-height:139%;color:black'><img width=5 height=5
+id="Group 33812"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image009.gif"></span> To
+launch the PowerShell command line, type <b>powershell.exe</b> in the Windows
+Start menu. You’ll see a screen like the following:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.4pt;margin-left:-.2pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=668 height=156
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image010.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:12.85pt;line-height:139%'>preferred way to work with the
+scripting language because it provides syntax highlighting, auto-filling of commands
+and other automation features that simplify script development and testing.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:11.95pt;text-align:left;text-indent:0in;
+line-height:107%'><img width=603 height=317 id="Picture 343"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image011.jpg"></p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>1.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Preparing
+to Run PowerShell Scripts</h2>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:.75pt;text-align:left;line-height:114%'>PowerShell
+scripts are stored in.ps1 files. You cannot run a script by simply
+double-clicking a file; this design helps avoid accidental harm to your
+systems. Instead, to execute a script, right-click it and choose <b>Run with
+PowerShell</b>:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:25.05pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><img width=212 height=155 id="Picture 368"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image012.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+1.95pt;margin-left:1.5pt'>In addition, there is a policy that restricts script
+execution. You can check this policy by running the <b>Get-ExecutionPolicy</b>
+command in PowerShell:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:25.1pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><img width=603 height=111 id="Picture 378"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image013.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.55pt;margin-left:1.5pt'>You will get one of the following values:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+6.2pt;margin-left:13.55pt;text-indent:-12.55pt;line-height:139%'><span
+style='font-size:11.0pt;line-height:139%;color:black'><img width=5 height=5
+id="Group 34305"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image009.gif"></span><b>    Restricted</b>
+— No scripts are allowed. This is the default setting, so you will see it the
+first time you run the command.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+5.55pt;margin-left:13.55pt;text-indent:-12.55pt;line-height:139%'><span
+style='font-size:11.0pt;line-height:139%;color:black'><img width=5 height=5
+id="Group 34306"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image009.gif"></span><b> AllSigned</b>
+— You can run scripts signed by a trusted developer. Before executing, a script
+will ask you to confirm that you want to run it.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.05pt;margin-left:1.5pt'><img width=5 height=35
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image014.gif"
+align=left hspace=12><b>RemoteSigned</b> — You can run your own scripts or
+scripts signed by a trusted developer.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+19.2pt;margin-left:1.5pt'><b>Unrestricted</b> — You can run any script you
+want.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+2.2pt;margin-left:1.5pt'>To start working with PowerShell, you’ll need to
+change the policy setting from Restricted to RemoteSigned using the <b>Set-ExecutionPolicy
+RemoteSigned</b> command:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.0pt;text-align:left;text-indent:0in;line-height:
+107%'><img width=602 height=62 id="Picture 394"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image015.jpg"></p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>1.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>PowerShell
+Cmdlets</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.2pt;margin-left:1.5pt'>A cmdlet is a PowerShell command with a predefined
+function, similar to an operator in a programming language. Here are some key
+things to know about cmdlets:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><img width=5 height=66
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image016.gif"
+align=left hspace=12>There are system, user and custom cmdlets.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.05pt;margin-left:1.5pt'>Cmdlets output results as an object or as an array of
+objects.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+6.05pt;margin-left:1.5pt;line-height:139%'>Cmdlets can get data for analysis or
+transfer data to another cmdlet using pipes (I’ll discuss pipes more in a
+moment).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+5.85pt;margin-left:13.55pt;text-indent:-12.55pt;line-height:139%'><span
+style='font-size:11.0pt;line-height:139%;color:black'><img width=5 height=5
+id="Group 33888"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image009.gif"></span> Cmdlets
+are case-insensitive. For example, it doesn’t matter whether you type <b>Get-ADUser</b>,
+<b>get-aduser</b> or <b>gEt-AdUsEr</b>.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:24.85pt;margin-left:0in;text-align:left;text-indent:0in'><span
+style='font-size:11.0pt;line-height:111%;color:black'><img width=5 height=5
+id="Group 33889"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image009.gif"></span>                 If
+you want to use several cmdlets in one string, you must separate them with a
+semicolon (;).</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+16.85pt;margin-left:1.5pt'>A cmdlet always consists of a verb (or a word that
+functions as a verb) and a noun, separated with a hyphen (the “verb-noun”
+rule). For example, some of the verbs include:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><img width=5 height=156
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image017.gif"
+align=left hspace=12><b>Get</b> — To get something</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><b>Set</b> — To define something</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><b>Start</b> — To run something</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><b>Stop</b> — To stop something that is running</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><b>Out</b> — To output something</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+24.05pt;margin-left:1.5pt'><b>New</b> — To create something (“new” is not a
+verb, of course, but it functions as one)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+6.45pt;margin-left:1.5pt'>For practice, try executing the following cmdlets:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.0pt;text-align:left;text-indent:0in;line-height:
+107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=486 height=183
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image018.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.95pt;margin-left:1.5pt'><img width=5 height=44
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image019.gif"
+align=left hspace=12><b>Get-Service</b> — Shows the list of services with their
+status</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:24.05pt;margin-left:1.5pt;text-align:left;line-height:139%'><b>Get-Content</b>
+        —            Shows    the          content  of            the          file
+         you         specify   (for         example,                <b>Get-Content
+C:\Windows\System32\drivers\etc\hosts</b>)</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Good news — you don’t need to
+memorize all cmdlets. You can list all cmdlets by executing the <b>Get Help
+-Category </b>cmdlet, which will return the following:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><img width=467 height=387 id="Picture 492"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image020.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.5pt;margin-left:1.5pt'>You can also create your own custom cmdlets.</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Each cmdlet has several
+parameters that customize what it does. The PowerShell ISE will automatically suggest
+all valid parameters and their types after you type a cmdlet and a hyphen (-):</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.0pt;text-align:left;text-indent:0in;line-height:
+107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=347 height=189 id="Group 34202"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image021.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:66.7pt;margin-bottom:
+14.35pt;margin-left:1.5pt'>For example, the following cmdlet shows all services
+whose names start with “W”: <b>Get-Service -Name W*</b></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>If you forget a cmdlet’s
+parameters, just use a script like the following, which will display the
+parameters for the <b>Get-Process</b> cmdlet: </p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=467 height=474
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image022.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.4pt;margin-left:1.5pt'>If you still don’t find the cmdlet you need, you can
+make sure the help is current and then get examples for a cmdlet (such as <b>Get-Process</b>)
+using a script like this:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.8pt'><span style='position:relative;z-index:-1895817216'><span
+style='left:0px;position:absolute;left:1px;top:-11px;width:260px;height:52px'><img
+width=260 height=52
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image023.gif"></span></span>Update-Help 
+#to update the help data</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.8pt'>Get-Help  Get-Process  -Examples </p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><img width=467 height=342 id="Picture 574"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image024.jpg"></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>You can also use aliases, which
+are shortened cmdlet names. For instance, instead of <b>Get-Help</b> you can
+use just <b>Help</b>. Try running the following two commands and see whether
+you get the same result:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=161 height=78
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image025.gif"></span></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Similarly, to stop this process,
+you can use either of the following commands:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=209 height=78
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image026.gif"></span></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>To see all aliases, execute the <b>Get-Alias</b>
+cmdlet.</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>1.4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Comments</h2>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Leaving comments in a script
+will help you — and your colleagues — better understand what the script does. A
+string comment is a single line that starts with a number sign (#); block
+comments spread across multiple lines, starting and ending with number signs
+and angle brackets:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:39.9pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><img width=535 height=320 id="Picture 601"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image027.jpg"></p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>1.5<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Pipes</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.5pt;margin-left:1.5pt'>A pipe passes data from one cmdlet to another. I used
+a pipe earlier to get all properties of an object. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.45pt;margin-left:1.5pt'>For example, if you execute the following script,
+you’ll get all services sorted by their status:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.8pt'><span style='position:relative;z-index:-1895816192'><span
+style='left:0px;position:absolute;left:1px;top:-12px;width:293px;height:34px'><img
+width=293 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image028.gif"></span></span>Get-Service 
+|  Sort-Object  -property  Status</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.45pt;margin-left:1.5pt'>You can also use a pipe to output text to a file
+using a script like the following:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+16.85pt;margin-left:8.8pt'><span style='position:relative;z-index:-1895815168'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:267px;height:34px'><img
+width=267 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image029.gif"></span></span>&quot;Hello,
+World!&quot;  |  Out-File  C:\ps\test.txt</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.7pt;margin-left:1.5pt'>You can use multiple pipes. For instance, the
+following script lists all services, with the first pipe excluding stopped
+services and the second pipe limiting the list to display names only:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.8pt'><span style='position:relative;z-index:-1895814144'><span
+style='left:0px;position:absolute;left:1px;top:-11px;width:458px;height:52px'><img
+width=458 height=52
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image030.gif"></span></span>Get-Service 
+|  WHERE {$_.status -eq &quot;Running&quot;} | SELECT  displayname </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.8pt'># “$_.” defines current element in the pipe</p>
+
+<h1 style='margin-left:.75pt'><span style='line-height:109%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Top 10 Active Directory Management Tasks with PowerShell</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.0pt;margin-left:1.5pt;line-height:139%'>The easiest way to manage objects in
+an Active Directory domain is using the Active Directory Users and Computers
+(ADUC) MMC snap-in. However, what if you need to create multiple user accounts
+in bulk, or ADUC is not available for some reason? In this part, we’ll explore
+how to perform most common AD management tasks with PowerShell.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:1.5pt;line-height:139%'>Keep in mind that before you can
+work with Active Directory and its objects, you need to import the Active
+Directory module for Windows PowerShell. In Microsoft Windows Server 2008 R2,
+you need to enable this module by running the following command:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+29.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895813120'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:216px;height:34px'><img
+width=216 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image031.gif"></span></span>Import-Module 
+ActiveDirectory</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+39.3pt;margin-left:1.5pt'>In Microsoft Windows Server 2012 and later, this
+module is enabled by default.</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>2.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Creating
+New User and Computer Accounts</h2>
+
+<p class=MsoNormal style='margin-right:4.35pt'>You can create new user accounts
+in Active Directory using the cmdlet <b>New-ADUser</b>. You can get its full syntax
+by running the following command:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.1pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=467 height=209
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image032.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.55pt;margin-left:1.5pt'>When you know the syntax, it’s easy to add users to
+Active Directory:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895812096'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:169px;height:34px'><img
+width=169 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image033.gif"></span></span>New-ADUser 
+B.Johnson</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.1pt;margin-left:1.5pt'>Accounts are created with the following default
+properties:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><img width=5 height=126
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image034.gif"
+align=left hspace=12>Account is created in the “Users” container.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'>Account is disabled.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'>Account is a member of Domain Users group.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.0pt;margin-left:1.5pt'>No password is set.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+24.05pt;margin-left:1.5pt'>User must reset the password at the first logon.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.0pt;margin-left:1.5pt;line-height:139%'>Therefore, to make a new account
+that’s actually usable, you need to enable it using the <b>Enable-ADAccount</b>
+cmdlet and give it a password using the <b>Set-ADAccountPassword</b> cmdlet.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.15pt;margin-left:1.5pt'>Let’s create a new account with the following
+attributes:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><img width=5 height=216
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image035.gif"
+align=left hspace=12><b>Name</b> — Jack Robinson</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:9.4pt;margin-left:1.5pt;text-align:left;line-height:107%'><b>Given
+Name</b> — Jack</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><b>Surname</b> — Robinson</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.0pt;margin-left:1.5pt'><b>Account Name</b> — J.Robinson</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.05pt;margin-left:1.5pt'><b>User Principal Name</b> —
+J.Robinson@enterprise.com</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><b>Path </b>— “OU=Managers,DC=enterprise,DC=com”</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:9.4pt;margin-left:1.5pt;text-align:left;line-height:107%'><b>Password
+Input </b>— Required</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+24.05pt;margin-left:1.5pt'><b>Status </b>— Enabled</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.5pt;margin-left:1.5pt'>Here’s the script we’ll use:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.8pt'>New-ADUser -Name &quot;Jack Robinson&quot; -GivenName
+&quot;Jack&quot; -Surname &quot;Robinson&quot; -SamAccountName  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.8pt'>&quot;J.Robinson&quot; -UserPrincipalName
+&quot;J.Robinson@enterprise.com&quot; -Path  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+32.6pt;margin-left:8.8pt'><span style='position:relative;z-index:-1895809024'><span
+style='left:0px;position:absolute;left:1px;top:-48px;width:622px;height:89px'><img
+width=622 height=89
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image036.gif"></span></span>&quot;OU=Managers,DC=enterprise,DC=com&quot;
+-AccountPassword(Read-Host -AsSecureString &quot;Input Password&quot;) -Enabled
+$true</p>
+
+<p class=MsoNormal style='margin-right:4.35pt;line-height:139%'>The <b>Read-Host</b>
+parameter will ask you to input new password. Note that the password should
+meet the length, complexity and history requirements of your domain security
+policy. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.05pt;margin-left:1.5pt;line-height:139%'>Now, let’s create ten similar
+Active Directory accounts in bulk and set a default password (P@ssw0rd) for each
+of them. To send the default password in a protected state, we must use the <b>ConvertTo-SecureString</b>
+parameter. Here’s the script to use:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.8pt'>parameter. Here’s the script to use:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.8pt'>$path=&quot;OU=IT,DC=enterprise,DC=com&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.8pt'>$username=&quot;ITclassuser&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:397.75pt;margin-bottom:
+.25pt;margin-left:8.8pt'>$count=1..10 foreach ($i in $count)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.8pt'><span style='position:relative;z-index:-1895808000'><span
+style='left:0px;position:absolute;left:2px;top:-105px;width:627px;height:148px'><img
+width=627 height=148
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image037.gif"></span></span>{
+New-AdUser -Name $username$i -Path $path -Enabled $True -ChangePasswordAtLogon
+$true  `</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+34.8pt;margin-left:8.8pt'>-AccountPassword (ConvertTo-SecureString
+&quot;P@ssw0rd&quot; -AsPlainText -force) -passThru } </p>
+
+<p class=MsoNormal style='margin-right:4.35pt;line-height:139%'>To make the
+script more flexible, add the <b>Read-Host</b> parameter, which will ask for
+the number of users to be added:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.0pt;text-align:left;text-indent:0in;line-height:
+107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=629 height=463
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image038.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+13.5pt;margin-left:1.5pt;line-height:139%'>Another option for creating users in
+AD is to import them from a CSV file. This option is great when you have a list
+of users with predefined personal details such as:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><img width=5 height=156
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image039.gif"
+align=left hspace=12>FirstName</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'>LastName</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'>Username</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.0pt;margin-left:1.5pt'>Department</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.05pt;margin-left:1.5pt'>Password</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+24.2pt;margin-left:1.5pt'>OU</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>The CSV file must be in UTF8
+encoding and contain contact data that looks like this:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=603 height=170 id="Group 30803"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image040.gif"></span></p>
+
+<p class=MsoNormal style='margin-right:4.35pt;line-height:139%'>The following
+script will create enabled user objects for any users in the CSV that don’t
+already have accounts in AD. The “Reset password at the next logon” option will
+be enabled for the new accounts, so you can use your default password:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.0pt;text-align:left;text-indent:0in;line-height:
+107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=597 height=744
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image041.gif"></span></p>
+
+<p class=MsoNormal style='margin-right:4.35pt;line-height:139%'>After script
+execution, we have two new users, Edward Franklin and Bill Jackson, in our
+Active Directory domain:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><img width=603 height=419 id="Picture 903"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image042.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:1.5pt;line-height:139%'>To create a computer object, use the
+<b>New-ADComputer</b> cmdlet. For example, execute the following cmdlet parameters
+to create a computer object with “WKS932” as its name and the default LDAP path
+value:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895805952'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:433px;height:34px'><img
+width=433 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image043.gif"></span></span>New-ADComputer
+–Name “WKS932” –SamAccountName “WKS932” </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+12.0pt;margin-left:1.5pt;line-height:139%'>If you have a list of computers that
+should be imported into Active Directory, save the list to a CSV file with the
+heading “computer” and the list of computer names in the column below it. Run
+the following PowerShell script on your domain controller to add computers from
+the CSV file, making sure you have the <b>Path</b> and <b>File</b> variables
+set correctly:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$File=&quot;C:\scripts\Computers.csv&quot; # Specify
+the import CSV position.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$Path=&quot;OU=Devices,DC=enterprise,DC=com&quot; #
+Specify the path to the OU.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:86.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895804928'><span
+style='left:0px;position:absolute;left:2px;top:-48px;width:530px;height:89px'><img
+width=530 height=89
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image044.gif"></span></span>Import-Csv
+-Path $File <span style='color:#868887'>|</span> ForEach-Object {
+New-ADComputer -Name $_.Computer -Path $Path -Enabled $True} </p>
+
+<h2 style='margin-top:0in;margin-right:81.85pt;margin-bottom:10.35pt;
+margin-left:.75pt'><span style='line-height:111%'>2.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Joining a Computer to a Domain and Removinga Computer from a
+Domain</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.15pt;margin-left:1.5pt'>Another common task is joining a computer to a
+domain controller. To join a PC to an Active Directory domain, run the
+following PowerShell script locally:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$dc = &quot;ENTERPRISE&quot; # Specify the domain to
+join.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:31.9pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895803904'><span
+style='left:0px;position:absolute;left:2px;top:-29px;width:622px;height:143px'><img
+width=622 height=143
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image045.gif"></span></span>$pw
+= &quot;Password123&quot; | ConvertTo-SecureString -asPlainText –Force #
+Specify the password for the domain admin.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$usr = &quot;$dc\T.Simpson&quot; # Specify the domain
+admin account.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$creds = New-Object
+System.Management.Automation.PSCredential($usr,$pw)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+31.4pt;margin-left:8.9pt'>Add-Computer -DomainName $dc -Credential $creds
+-restart -force -verbose # Note that the computer will be restarted
+automatically.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.5pt;margin-left:1.5pt'>The computer will restart and then join the domain;
+it will be added to the default container. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.4pt;margin-left:1.5pt'>To join a computer to a DC remotely, you need to
+enhance this script this way:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$dc = &quot;ENTERPRISE&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$pw = &quot;Password123&quot; | ConvertTo-SecureString
+-asPlainText -Force</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$usr = &quot;$dc\T.Simpson&quot; </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$pc = &quot;R07GF&quot; # Specify the computer that
+should be joined to the domain.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$creds = New-Object
+System.Management.Automation.PSCredential($usr,$pw)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:20.1pt;margin-bottom:
+31.4pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895802880'><span
+style='left:0px;position:absolute;left:2px;top:-104px;width:622px;height:143px'><img
+width=622 height=143
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image045.gif"></span></span>Add-Computer
+-ComputerName $pc -LocalCredential $pc\admin -DomainName $dc -Credential $creds
+-Verbose -Restart -Force</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.35pt;margin-left:1.5pt'>The <b>$pc</b> variable and <b>–LocalCredential</b>
+parameter are used to authenticate the computer to the domain. Note that in
+order to use this method, you must disable the firewall on the local computer.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.35pt;margin-left:1.5pt'>You can add more than one computer to the domain by
+either specifying them in the command line as a comma-delimited list or
+importing their names from a text file. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.5pt;margin-left:1.5pt'>Here’s how to specify the computers in a
+comma-delimited list:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$dc = &quot;ENTERPRISE&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$pw = &quot;Password123&quot; | ConvertTo-SecureString
+-asPlainText -Force</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$usr = &quot;$dc\T.Simpson&quot; </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$pc = &quot;WKS034, WKS052, WKS057&quot; # Specify the
+computers that should be joined to the domain.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$creds = New-Object
+System.Management.Automation.PSCredential($usr$pw)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:10.75pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895801856'><span
+style='left:0px;position:absolute;left:2px;top:-105px;width:622px;height:143px'><img
+width=622 height=143
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image046.gif"></span></span>Add-Computer
+-ComputerName $pc -LocalCredential $pc\admin -DomainName $dc -Credential $creds
+-Restart -Force</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.55pt;margin-left:1.5pt'>And here’s how to use a text file with the list of
+computers that should be joined:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$dc = &quot;ENTERPRISE&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$pw = &quot;Password123&quot; | ConvertTo-SecureString
+-asPlainText -Force</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$usr = &quot;$dc\T.Simpson&quot; </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$pc = Get-Content -Path C:\Computers.txt # Specify the
+path to the computers list.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$creds = New-Object
+System.Management.Automation.PSCredential($usr,$pw)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.1pt;margin-bottom:
+31.4pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895800832'><span
+style='left:0px;position:absolute;left:2px;top:-104px;width:622px;height:143px'><img
+width=622 height=143
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image047.gif"></span></span>Add-Computer
+-ComputerName $pc -LocalCredential $pc\admin -DomainName $dc -Credential $creds
+-Restart -Force </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.3pt;margin-left:1.5pt'>To remove a computer from a domain remotely, use the <b>Remove-Computer</b>
+cmdlet. Here, we’re removing a computer from a domain, so no local credentials
+are needed and we can skip the <b>–LocalCredential</b> parameter:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$dc = &quot;ENTERPRISE&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$pw = &quot;Password123&quot; | ConvertTo-SecureString
+-asPlainText -Force</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$usr = &quot;$dc\T.Simpson&quot; </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$pc = &quot;R07GF&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$creds = New-Object
+System.Management.Automation.PSCredential($usr,$pw)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+31.95pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895799808'><span
+style='left:0px;position:absolute;left:2px;top:-104px;width:622px;height:125px'><img
+width=622 height=125
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image048.gif"></span></span>Remove-Computer
+-ComputerName $pc -Credential $creds –Verbose –Restart –Force</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+39.25pt;margin-left:1.5pt'>To remove multiple computers using a list in a TXT
+file, use the script above for joining computers to a DC, replacing the <b>Add-Computer</b>
+cmdlet with <b>Remove-Computer</b>. Note that you will still need domain admin
+credentials to complete this unjoin operation.</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>2.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Renaming
+a Computer</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.3pt;margin-left:1.5pt'>To change a computer name, use the <b>Rename-Computer</b>
+cmdlet. Note that the computer must be online and connected to Active
+Directory.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895798784'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:392px;height:34px'><img
+width=392 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image049.gif"></span></span>Rename-Computer
+–ComputerName &quot;FS1&quot; -NewName &quot;FS2&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.55pt;margin-left:1.5pt'>If you want to run this script locally, it will look
+like this:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895797760'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:562px;height:34px'><img
+width=562 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image050.gif"></span></span>Rename-Computer
+-NewName &quot;newname&quot; -DomainCredential &quot;Domain\Administrator&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.2pt;margin-left:1.5pt'>You can improve the renaming script by joining the
+computer to the domain and putting it into the specified OU simultaneously. The
+script should be run on the target machine, not on the domain controller.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$NewComputerName = &quot;Server3&quot; # Specify the
+new computer name.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$DC = &quot;contoso.com&quot; # Specify the domain to
+join.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895796736'><span
+style='left:0px;position:absolute;left:2px;top:-48px;width:622px;height:125px'><img
+width=622 height=125
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image048.gif"></span></span>$Path
+= &quot;OU=TestOU,DC=contoso,DC=com&quot; # Specify the path to the OU where to
+put the computer account in the domain. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.55pt;margin-bottom:
+31.7pt;margin-left:8.9pt'>Add-Computer -DomainName $DC -OUPath $Path -NewName
+$NewComputerName –Restart –Force</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+39.35pt;margin-left:1.5pt'>The script will prompt for the credentials of an
+account that has permissions to join computers to the domain, and then the
+computer will be renamed, restarted and joined to the domain.</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>2.4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Resetting
+a Computer Account</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.35pt;margin-left:1.5pt'>Like a user account, a computer account interacts
+with Active Directory using a password. But for computer accounts, a password
+change is initiated every 30 days by default and the password is exempted from
+the domain’s password policy. Password changes are driven by the client
+(computer), not AD. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.4pt;margin-left:1.5pt'>Computer credentials usually unknown to the user
+because they are randomly set by the computer. But you can set your own
+password; here is a PowerShell script for doing so:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:49.75pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895795712'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:622px;height:90px'><img
+width=622 height=90
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image051.gif"></span></span>$pc
+= read-host –Prompt “Input computer name to reset“ # Specify the computer name.
+$pw = read-host –Prompt “Input random characters for temp password“
+–AsSecureString # Specify the password.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+48.55pt;margin-left:8.9pt'>Get-ADComputer $pc | Set-ADAccountPassword
+–NewPassword:$pw -Reset:$true</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>2.5<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Disabling
+User and Computer Accounts</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.45pt;margin-left:1.5pt'>To disable user, computer or service accounts, use
+the <b>Disable-ADAccount</b> cmdlet. The <b>-Identity</b> parameter specifies
+which account to disable. You can specify an account by its distinguished name,
+security identifier (SIDs), globally unique identifier (GUID) or Security
+Account Manager (SAM) account name.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895794688'><span
+style='left:0px;position:absolute;left:1px;top:-11px;width:246px;height:34px'><img
+width=246 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image052.gif"></span></span>Disable-AdAccount
+-Identity RussellS</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.2pt;margin-left:1.5pt'>If you specify a computer account name, remember to
+append a dollar sign ($) at the end of the name; otherwise, you’ll get an error
+after script execution.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+34.35pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895793664'><span
+style='left:0px;position:absolute;left:2px;top:-12px;width:224px;height:34px'><img
+width=224 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image053.gif"></span></span>Disable-ADAccount
+-Identity fs1$</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>You can also disable accounts in
+bulk using a list in a text file:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:39.9pt;margin-left:1.1pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=562 height=147
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image054.gif"></span></p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>2.6<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Deleting
+a Computer from Active Directory</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.3pt;margin-left:1.5pt'>To delete a computer account from AD, use the <b>Remove-ADObject</b>
+cmdlet:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895792640'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:252px;height:34px'><img
+width=252 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image055.gif"></span></span>Remove-ADObject
+-Identity &quot;WKS932&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.5pt;margin-left:1.5pt'>You will be prompted to confirm the deletion.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.4pt;margin-left:1.5pt'>If you have a text file with a list of old computers,
+you can streamline the task of removing them using PowerShell. The following
+script will read the computer names from a TXT file and delete the
+corresponding accounts via a pipeline:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895791616'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:561px;height:51px'><img
+width=561 height=51
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image056.gif"></span></span>Get-Content
+C:\scripts\computersfordeletion.txt | % { Get-ADComputer -Filter { Name </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>-eq $_ } } | Remove-ADObject -Recursive</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Stale accounts in Active
+Directory can be compromised, leading to security incidents, so it is critical
+to keep an eye on them. This PowerShell script will query Active Directory and
+return all computers that have not been logged in to for the past 30 days. It
+also will remove those accounts to keep your AD clean.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.1pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+width=666 height=213
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image057.gif"></span></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>There is one computer, FS1, that
+has been not been logged on to for more than 30 days. The system will prompt
+for confirmation before deleting it from the domain:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><img width=439 height=95 id="Picture 1190"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image058.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+31.8pt;margin-left:1.5pt'>If you want to disable, rather than delete, the
+inactive computer accounts, replace the <b>Remove-ADComputer</b> cmdlet with <b>Set-ADComputer</b>
+and <b>-Enabled $false</b> parameter and value.</p>
+
+<div style='border:none;border-left:solid #0C70B8 4.5pt;padding:0in 0in 0in 0in;
+background:whitesmoke;margin-left:18.6pt;margin-right:0in'>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:53.8pt;margin-left:.5pt;text-align:left;line-height:114%;
+background:whitesmoke;border:none;padding:0in'>Remember that it is critical to
+closely track all changes to computer accounts, so you can quickly spot any unwanted
+modifications and respond appropriately. Here’s <a
+href="https://www.netwrix.com/how_to_detect_who_deleted_a_computer_account.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#0C70B8;text-decoration:none'>how to monitor computer account
+deletions</span></a><a
+href="https://www.netwrix.com/how_to_detect_who_deleted_a_computer_account.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#2F353D;text-decoration:none'>.</span></a></p>
+
+</div>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>2.7<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Creating
+and Deleting an Active Directory Group</h2>
+
+<p class=MsoNormal style='margin-right:4.35pt'>In Active Directory, access to
+network resources is granted to security principals, such as user accounts and
+computer accounts, and those permissions can change over time. To simplify
+access management and improve security, medium and large companies often use
+Active Directory security groups, which can contain user and computer accounts
+as well as other groups. They also often use distribution groups to manage
+email distribution lists. Both security and distribution groups have unique
+SIDs and GUIDs. </p>
+
+<div style='border:none;border-left:solid #0C70B8 4.5pt;padding:0in 0in 0in 0in;
+background:whitesmoke;margin-left:18.6pt;margin-right:0in'>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:36.75pt;margin-left:.5pt;text-align:left;line-height:114%;
+background:whitesmoke;border:none;padding:0in'>If you’re not already familiar
+with AD groups and group management, please read the <a
+href="https://www.netwrix.com/active_directory_group_management.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#0C70B8;text-decoration:none'>Active Directory </span></a><a
+href="https://www.netwrix.com/active_directory_group_management.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#0C70B8;text-decoration:none'>Group Management Best Practice</span></a><a
+href="https://www.netwrix.com/active_directory_group_management.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#2F353D;text-decoration:none'> g</span></a>uide.</p>
+
+</div>
+
+<p class=MsoNormal style='margin-right:0in'>To create an AD group, use the <b>New-ADGroup</b>
+cmdlet. You can get its syntax by running the following command:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:30.45pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=603 height=120
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image059.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.65pt;margin-left:1.5pt'>The easiest way to create a group is to run this
+short script:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895790592'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:203px;height:34px'><img
+width=203 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image060.gif"></span></span>New-ADGroup
+&quot;Group Name&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+16.9pt;margin-left:1.5pt'>The system will ask you to specify the <b>GroupScope</b>
+parameter and then it will create a new group. However, this group will have
+default values, such as:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><img width=5 height=66
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image061.gif"
+align=left hspace=12>It will be created in the default LDAP container called
+“Users”.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'>It will have the “Security” group type.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+24.05pt;margin-left:1.5pt'>The Members, Member of, Description, Email and Notes
+fields will all be blank.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.4pt;margin-left:1.5pt'>Let’s create a security group called “Quality” in the
+“Production” OU (<b>-Path</b>); it should be a security group (<b>-GroupCategory</b>)
+and it should be global (<b>-GroupScope</b>):</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:26.65pt;margin-bottom:
+33.15pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895788544'><span
+style='left:0px;position:absolute;left:1px;top:-11px;width:603px;height:52px'><img
+width=603 height=52
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image062.gif"></span></span>New-ADGroup
+&quot;Quality&quot; -Path &quot;OU=Production,DC=enterprise,dc=com&quot;
+-GroupCategory Security -GroupScope Global -PassThru –Verbose</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.35pt;margin-left:1.5pt'>If you want to make a universal distribution group,
+simply change the <b>–GroupCategory</b> parameter to “Distribution” and the <b>–GroupScope</b>
+parameter to “Universal”. You can also change the LDAP path by changing the <b>–Path</b>
+parameter.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.5pt;margin-left:1.5pt'>To delete an AD group, use the <b>Remove-ADGroup</b>
+cmdlet. The easiest script for that will look like this:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+18.8pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895787520'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:235px;height:34px'><img
+width=235 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image063.gif"></span></span>Remove-ADGroup
+-Identity Quality</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>You’ll be prompted to confirm
+the deletion of the group.</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>2.8<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Adding
+Users and Computers to a Group</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.15pt;margin-left:1.5pt'>You can add users to an AD group with the <b>Add-AdGroupMember</b>
+cmdlet. For instance, if you needed to add two users, B.Jackson and E.Franklin,
+to the “Quality” group, here is what the script would look like:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895786496'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:457px;height:34px'><img
+width=457 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image064.gif"></span></span>Add-AdGroupMember
+-Identity Quality -Members B.Jackson, E.Franklin </p>
+
+<p class=MsoNormal style='margin-right:0in'>Once you’ve added users to a
+security group, you can run this script to verify that they are listed as
+members:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=442 height=231
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image065.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.2pt;margin-left:1.5pt'>If you need to add users to another security or
+distribution group, such as Domain Admins, specify “Domain Admins” as the 
+value for the <b>–Identit</b>y parameter. If you need one group to be a member
+of another, specify the group name as the value for the <b>–Members</b>
+parameter. The same principle applies to computer accounts, but you’ll need to
+append a dollar sign ($) to the end of the computer account name. For example,
+to add the computer “WKS043” to a group, specify “WKS043$” as the value for the
+<b>–Member</b> parameter:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895785472'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:388px;height:34px'><img
+width=388 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image066.gif"></span></span>Add-AdGroupMember
+-Identity Quality -Members WKS043$</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.45pt;margin-left:1.5pt'>To add a user to multiple groups at once, run the
+following script.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:172.75pt;margin-bottom:
+30.85pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895784448'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:388px;height:51px'><img
+width=388 height=51
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image067.gif"></span></span>&quot;Managers&quot;,&quot;Quality&quot;
+| Add-ADGroupMember -Members `     (Read-Host -Prompt &quot;Enter User
+Name&quot;)</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.5pt;margin-left:1.5pt'>You’ll be prompted to input the username. </p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>If you want to add a large
+number of users to a group, you can specify them in a CSV file and then import
+that file. Note that the list of the usernames in the CSV file must contain the
+<b>SamAccountNames</b> in the “users” column, as shown below:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.0pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=166 height=89 id="Group 31152"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image068.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.55pt;margin-left:1.5pt'>To add users to group from a CSV file, run the
+following PowerShell script:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.95pt;margin-bottom:
+32.55pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895783424'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:603px;height:51px'><img
+width=603 height=51
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image069.gif"></span></span>Import-CSV
+C:\scripts\users.csv -Header users | ForEach-Object {Add-AdGroupMember
+-Identity &quot;Quality&quot; -members $_.users} </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.55pt;margin-left:1.5pt'>If you want to copy all members from one group to
+another group, run the following script:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:16.95pt;margin-bottom:
+47.85pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895782400'><span
+style='left:0px;position:absolute;left:2px;top:-10px;width:603px;height:51px'><img
+width=603 height=51
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image069.gif"></span></span>Get-ADGroupMember
+“Quality” | Get-ADUser | ForEach-Object {Add-ADGroupMember -Identity
+“QualityControl” -Members $_}</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>2.9<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Removing
+Users and Computers from a Group</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.45pt;margin-left:1.5pt'>To remove a user from a group, use the <b>Remove-ADGroupMember</b>
+cmdlet:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895781376'><span
+style='left:0px;position:absolute;left:2px;top:-12px;width:424px;height:34px'><img
+width=424 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image070.gif"></span></span>Remove-ADGroupMember
+-Identity Quality -Members J.Robinson </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.35pt;margin-left:1.5pt'>To remove a computer account from a group, specify
+the computer name with a dollar sign ($) at the end as the value for the <b>-Members</b>
+parameter.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.35pt;margin-left:1.5pt'>An easy way to remove multiple users from an AD
+group is to create a CSV file with the list of usernames and then remove those
+users from the group object using this script:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:17.0pt;margin-bottom:
+32.55pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895780352'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:603px;height:51px'><img
+width=603 height=51
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image069.gif"></span></span>Import-CSV
+C:\scripts\users.csv -Header users | ForEach-Object {Remove-ADGroupMember
+-Identity &quot;Quality&quot; -members $_.users}</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.55pt;margin-left:1.5pt'>To remove a user from all groups, run this script:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>Get-ADUser -Identity E.Franklin -Properties MemberOf |
+ForEach-Object {</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895779328'><span
+style='left:0px;position:absolute;left:2px;top:-29px;width:603px;height:73px'><img
+width=603 height=73
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image071.gif"></span></span> 
+$_.MemberOf | Remove-ADGroupMember -Members $_.DistinguishedName
+-Confirm:$false</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>} </p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.5pt;text-align:left;text-indent:0in;
+line-height:107%'><img border=0 width=603 height=73 id="Picture 1464"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image072.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+31.6pt;margin-left:1.5pt'>Note that the user will lose all group membership
+except Domain Users, which can be removed manually if needed.</p>
+
+<div style='border:none;border-left:solid #0C70B8 4.5pt;padding:0in 0in 0in 0in;
+background:whitesmoke;margin-left:18.6pt;margin-right:0in'>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:53.8pt;margin-left:.5pt;text-align:left;line-height:114%;
+background:whitesmoke;border:none;padding:0in'>Don’t forget to <a
+href="https://www.netwrix.com/how_to_restore_active_directory_users.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#0C70B8;text-decoration:none'>enable the Active Directory Recycle
+Bin feature</span></a><a
+href="https://www.netwrix.com/how_to_restore_active_directory_users.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#2F353D;text-decoration:none'> s</span></a>o you can easily roll
+back your changes if something goes wrong.</p>
+
+</div>
+
+<h2 style='margin-left:36.5pt;text-indent:-36.25pt'><span style='line-height:
+111%'>2.10<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Moving
+Users and Computers to a New Organizational Unit</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.35pt;margin-left:1.5pt'>The PowerShell <b>Move-ADObject</b> cmdlet moves any
+object or set of objects (such as a user, a computer, a group or an OU) to a
+specified OU. The <b>-Identity</b> parameter specifies which Active Directory
+object or container to move. Note that you need to enter the full LDAP path or
+SID of the object; you cannot use its SamAccountName. Here’s how to move the
+user “John Brown” to the “Districts” OU:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+32.9pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895778304'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:586px;height:52px'><img
+width=586 height=52
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image073.gif"></span></span>Move-ADObject
+-Identity &quot;CN=John Brown,CN=Users,DC=enterprise,DC=com&quot; -TargetPath
+&quot;OU=Districts,OU=IT,DC=Enterprise,DC=Com&quot;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.5pt;margin-left:1.5pt'>Use the same syntax to move computer objects. The
+following command will move the computer “R07GF” to the “Computers” container:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+32.9pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895777280'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:586px;height:52px'><img
+width=586 height=52
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image073.gif"></span></span>Move-ADObject
+-Identity &quot;CN=R07GF,OU=CEO,DC=enterprise,DC=com&quot; -TargetPath
+&quot;CN=Computers,DC=Enterprise,DC=Com&quot;</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>If you have a predefined list of
+objects to move, you can save it as a CSV file and then import that file to
+Active Directory. The CSV list should be in the following format:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.0pt;text-align:left;text-indent:0in;line-height:
+107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=166 height=123 id="Group 32493"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image074.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.45pt;margin-left:1.5pt'>Use this PowerShell script to move AD user accounts
+listed in a CSV file:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'># Specify target OU. This is where users will be
+moved. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$TargetOU = 
+&quot;OU=Districts,OU=IT,DC=enterprise,DC=com&quot; </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'># Specify CSV path. Import CSV file and assign it to a
+variable.  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$Imported_csv = Import-Csv -Path
+&quot;C:\temp\MoveList.csv&quot;  </p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.8pt;margin-left:8.4pt;text-align:left;text-indent:0in;
+line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:330.85pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$Imported_csv | ForEach-Object {      # Retrieve DN of
+user. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:179.75pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895776256'><span
+style='left:0px;position:absolute;left:2px;top:-141px;width:430px;height:222px'><img
+width=430 height=222
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image075.gif"></span></span>    
+$UserDN  = (Get-ADUser -Identity $_.Name).distinguishedName      # Move user to
+target OU. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>     Move-ADObject  -Identity $UserDN  -TargetPath
+$TargetOU </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+34.4pt;margin-left:8.9pt'>} </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.45pt;margin-left:1.5pt'>To move AD computer accounts listed in a text file,
+use the following PowerShell script:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895775232'><span
+style='left:0px;position:absolute;left:2px;top:-10px;width:430px;height:184px'><img
+width=430 height=184
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image076.gif"></span></span>#
+Specify path to the text file with the computer account names. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$computers = Get-Content C:\Temp\Computers.txt </p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:.8pt;margin-left:8.4pt;text-align:left;text-indent:0in;
+line-height:107%'> </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'># Specify the path to the OU where computers will be
+moved.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$TargetOU   = 
+&quot;OU=Districts,OU=IT,DC=enterprise,DC=com&quot;  </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>ForEach( $computer in $computers){ </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>    Get-ADComputer $computer | </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>    Move-ADObject -TargetPath $TargetOU </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>} </p>
+
+<h1 style='margin-left:.75pt'><span style='line-height:109%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Top 10 File System Management Tasks Using PowerShell</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.0pt;margin-left:1.5pt;line-height:139%'>Every day, system administrators
+have to perform a range of standard operations on the numerous files and folders
+on their Windows servers, from managing user data on shared resources to
+maintaining backups properly. Using the following information, you can automate
+many of these tasks and save time for more important projects.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+35.95pt;margin-left:1.5pt;line-height:139%'>In this part, we explain how to
+automate file management and NTFS permissions management tasks with the help of
+PowerShell scripts.</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>3.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Viewing
+Objects in a Directory</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.35pt;margin-left:1.5pt'>To view the content of a directory on a Windows file
+server, use the <b>Get-ChildItem</b> cmdlet. To show all hidden files, add the <b>-Force</b>
+parameter. The command below shows all root objects in the Shared folder:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.9pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895774208'><span
+style='left:0px;position:absolute;left:1px;top:-11px;width:221px;height:34px'><img
+width=221 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image077.gif"></span></span>Get-ChildItem
+-Force \\fs\Shared</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.35pt;margin-left:1.5pt'>If you want to also check all subfolders and their
+content, add the <b>-Recurse</b> parameter:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895773184'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:278px;height:34px'><img
+width=278 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image078.gif"></span></span>Get-ChildItem
+-Force \\fs\Shared -Recurse</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.25pt;margin-left:1.5pt'>To filter the output, add the <b>Filter, Exclude,
+Include</b> and <b>Path</b> parameters to the <b>Get-ChildItem</b> cmdlet. For advanced
+object filtering, use the <b>Where-Object</b> cmdlet. The script below searches
+for all executable files in the IT folder that were modified after April 1,
+2018:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895772160'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:563px;height:52px'><img
+width=563 height=52
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image079.gif"></span></span>Get-ChildItem
+-Path \\fs\Shared\IT -Recurse -Include *.exe | Where-Object -FilterScript
+{($_.LastWriteTime -gt '2018-04-01')}</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>3.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Creating
+Files and Folders</h2>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:25.95pt;margin-left:.75pt;text-align:left;line-height:175%'><span
+style='position:absolute;z-index:-1895771136;left:0px;margin-left:2px;
+margin-top:46px;width:393px;height:34px'><img width=393 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image080.gif"></span>To
+create new objects with Windows PowerShell, you can use the <b>New-Item</b>
+cmdlet and specify the type of item you want to create, such as a directory,
+file or registry key. For example, this command creates a folder: New-Item
+-Path '\\fs\Shared\NewFolder' -ItemType Directory</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.35pt;margin-left:1.5pt'>And this command creates an empty file:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895770112'><span
+style='left:0px;position:absolute;left:2px;top:-12px;width:427px;height:34px'><img
+width=427 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image081.gif"></span></span>New-Item
+-Path '\\fs\Shared\NewFolder\newfile.txt' -ItemType File </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.55pt;margin-left:1.5pt'>If you need to create a file and write data to it,
+there are at least two built-in methods. The first is to use the <b>Out-File</b>
+cmdlet:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895769088'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:400px;height:34px'><img
+width=400 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image082.gif"></span></span>$text
+= 'Hello World!' | Out-File $text -FilePath C:\data\text.txt </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.5pt;margin-left:1.5pt'>To overwrite an existing file, use the –Force switch
+parameter.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.3pt;margin-left:1.5pt'>Alternatively, you can create files using the <b>Export-Csv</b>
+cmdlet, which exports the output to a csv file that can be opened in Excel:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+48.55pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895768064'><span
+style='left:0px;position:absolute;left:1px;top:-11px;width:387px;height:34px'><img
+width=387 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image083.gif"></span></span>Get-ADuser
+-Filter * | Export-Csv -Path C:\data\ADusers.csv</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>3.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Deleting
+Files and Folders</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.35pt;margin-left:1.5pt'>To delete objects, use the <b>Remove-Item</b>
+cmdlet. If the object is not empty, you’ll be prompted to confirm the deletion.
+Here’s how to delete the “IT” folder and all the subfolders and files inside
+it:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>Remove-Item -Path '\\fs\shared\it\' </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>Confirm</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:65.95pt;
+margin-bottom:0in;margin-left:8.4pt;text-align:left;text-indent:0in;line-height:
+114%'><span style='position:relative;z-index:-1895767040'><span
+style='left:0px;position:absolute;left:2px;top:-48px;width:593px;height:126px'><img
+width=593 height=126
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image084.gif"></span></span>The
+item at \\pdc\shared\it has children and the Recurse parameter was not
+specified. If you continue, all children will be removed with the item. Are you
+sure you want to continue? [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S]
+Suspend  [?] Help (default is &quot;Y&quot;):</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.35pt;margin-left:1.5pt'>If you have already made sure that every object
+inside the folder should be deleted, you can use the <b>-Recurse </b>switch to
+skip the confirmation step:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.9pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895766016'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:292px;height:34px'><img
+width=292 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image085.gif"></span></span>Remove-Item
+-Path '\\fs\shared\it\' -Recurse</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Sometimes you need to clean up
+old files from a certain directory. Here’s the way to accomplish that:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.1pt;text-align:left;text-indent:0in;line-height:
+107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=465 height=351
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image086.gif"></span></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Here’s how to check whether a
+file exists and delete it if it does:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:39.9pt;margin-left:1.1pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=666 height=313
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image087.gif"></span></p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>3.4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Copying
+Files and Folders</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.4pt;margin-left:1.5pt'>The <b>Copy-Item</b> cmdlet enables you to copy
+objects from one path to another. The following command creates a backup by
+copying the file users.xlsx from one remote computer (fs) and saving it to
+another (fs2) over the network:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895764992'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:519px;height:34px'><img
+width=519 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image088.gif"></span></span>Copy-Item
+-Path \\fs\Shared\it\users.xlsx -Destination \\fs2\Backups\it\users.xlsx</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.4pt;margin-left:1.5pt'>If the target file already exists, the copy attempt
+will fail. To overwrite the existing file, even if it is in Read-Only mode, use
+the <b>-Force</b> parameter:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895763968'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:560px;height:34px'><img
+width=560 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image089.gif"></span></span>Copy-Item
+-Path \\fs\Shared\it\users.xlsx -Destination \\fs2\Backups\it\users.xlsx -Force</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.4pt;margin-left:1.5pt'>If you’re copying files to or from remote computers,
+be sure to use UNC paths. For example, use this command to copy files from a
+remote file server to the local C: directory:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895762944'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:275px;height:34px'><img
+width=275 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image090.gif"></span></span>Copy-Item
+\\fs\c$\temp -Recurse C:\data\</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.35pt;margin-left:1.5pt'>To copy files from your local directory to the
+remote folder, simply reverse the source and destination locations:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895761920'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:274px;height:34px'><img
+width=274 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image091.gif"></span></span>Copy-Item
+C:\data\ -Recurse \\fs\c$\temp</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.35pt;margin-left:1.5pt'>You can also copy files from one remote server to
+another. The following script recursively copies the \\fs\Shared\temp folder to
+\\fs\Shared\test: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895760896'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:353px;height:34px'><img
+width=353 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image092.gif"></span></span>Copy-Item
+\\fs\Shared\temp -Recurse \\fs\Shared\test</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.35pt;margin-left:1.5pt'>To copy only certain files from the source content
+to the destination, use the <b>-Filter </b>parameter. For instance, the
+following command copies only txt files from one folder to another:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895759872'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:523px;height:34px'><img
+width=523 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image093.gif"></span></span>Copy-Item
+-Filter *.txt -Path \\fs\Shared\it -Recurse -Destination \\fs2\Shared\text</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.35pt;margin-left:1.5pt'>You can also run the <b>XCOPY</b> and <b>ROBOCOPY</b>
+commands to copy files, or use COM objects as in the example below:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+48.55pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895758848'><span
+style='left:0px;position:absolute;left:1px;top:-12px;width:567px;height:34px'><img
+width=567 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image094.gif"></span></span>(New-Object
+-ComObject Scripting.FileSystemObject).CopyFile('\\fs\Shared', 'fs2\Backup') </p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>3.5<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Moving
+Files and Directories</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.35pt;margin-left:1.5pt'>The <b>Move-Item</b> cmdlet moves an item, including
+its properties, contents, and child items, from one location to another. It can
+also move a file or subdirectory from one directory to another location. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.5pt;margin-left:1.5pt'>The following command moves a specific backup file
+from one location to another:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895757824'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:547px;height:34px'><img
+width=547 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image095.gif"></span></span>Move-Item
+-Path \\fs\Shared\Backups\1.bak -Destination \\fs2\Backups\archive\1.bak</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.45pt;margin-left:1.5pt'>This script moves the entire Backups folder and its
+content to another location:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+33.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895756800'><span
+style='left:0px;position:absolute;left:2px;top:-12px;width:471px;height:34px'><img
+width=471 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image096.gif"></span></span>Move-Item
+-Path \\fs\Shared\Backups -Destination \\fs2\Backups\archive</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>The Backups directory and all
+its files and subfolders will then appear in the archive directory. </p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>3.6<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Renaming
+Files</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+10.3pt;margin-left:1.5pt;line-height:152%'>The <b>Rename-Item</b> cmdlet
+enables you to change the name of an object while leaving its content intact.
+It’s not possible to move items with the <b>Rename-Item</b> command; for that
+functionality, you should use the <b>Move-Item</b> cmdlet as described above. The
+following command renames a file:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:159.85pt;margin-bottom:
+.25pt;margin-left:1.0pt;text-indent:7.4pt;line-height:383%'><span
+style='position:relative;z-index:-1895755776'><span style='left:0px;position:
+absolute;left:1px;top:-11px;width:453px;height:34px'><img width=453 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image097.gif"></span></span>Rename-Item
+-Path &quot;\\fs\Shared\temp.txt&quot; -NewName &quot;new_temp.txt&quot; To
+rename multiple files at once, use a script like this:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:39.9pt;margin-left:1.1pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=453 height=128
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image098.gif"></span></p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>3.7<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Setting
+File and Folder Permissions</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.4pt;margin-left:1.5pt'>In order to implement a least-privilege model, which
+is a best practice for system security, IT security specialists and system
+administrators configure NTFS access control lists (ACLs) by adding access
+control entries (ACEs) on NTFS file servers. There are both basic and advanced
+NTFS permissions. You can set each of the permissions to “Allow” or “Deny”. You
+can find all these user permissions by running the following PowerShell script:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+40.75pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895754752'><span
+style='left:0px;position:absolute;left:2px;top:-11px;width:495px;height:34px'><img
+width=495 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image099.gif"></span></span>[system.enum]::getnames([System.Security.AccessControl.FileSystemRights])</p>
+
+<div style='border:none;border-left:solid #0C70B8 4.5pt;padding:0in 0in 0in 0in;
+background:whitesmoke;margin-left:18.6pt;margin-right:0in'>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:36.75pt;margin-left:.5pt;text-align:left;line-height:114%;
+background:whitesmoke;border:none;padding:0in'>If you’re not familiar with NTFS
+permissions management, check out this <a
+href="https://www.netwrix.com/ntfs_permissions_management.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#0C70B8;text-decoration:none'>NTFS Permissions </span></a><a
+href="https://www.netwrix.com/ntfs_permissions_management.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#0C70B8;text-decoration:none'>Management Best Practice guide</span></a><a
+href="https://www.netwrix.com/ntfs_permissions_management.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#2F353D;text-decoration:none'>.</span></a></p>
+
+</div>
+
+<p class=MsoNormal style='margin-right:4.35pt'>The PowerShell <b>set-acl</b>
+cmdlet is used to change the security descriptor of a specified item, such as a
+file, folder or a registry key; in other words, it is used to modify file or
+folder permissions. The following script sets the “FullControl” permission to
+“Allow” for the user “ENTERPRISE\T.Simpson” to the folder “Sales”:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:26.95pt;margin-left:1.1pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=666 height=109
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image100.gif"></span></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Note that the <b>SetAccessRule</b>
+parameter completely overwrites the permissions for a user or group, so you can
+change folder permissions using this parameter. If you just want to add
+permissions, use the <b>AddAccessRule</b> parameter instead. For instance, the
+following script adds the “FullControl” permission for the
+“ENTERPRISE\J.Carter” user account to the “Accounting” folder:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:26.95pt;margin-left:1.1pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=666 height=109
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image101.gif"></span></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Here are the other permissions
+you can assign to users or security groups:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=665
+ style='width:498.45pt;margin-left:1.1pt;border-collapse:collapse'>
+ <tr style='height:1.85pt'>
+  <td width=291 valign=top style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  padding:0in 5.75pt 0in 7.0pt;height:1.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.0pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+  <td width=374 valign=top style='width:280.45pt;border:none;padding:0in 5.75pt 0in 7.0pt;
+  height:1.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.0pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+ </tr>
+ <tr style='height:23.15pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  background:#0D72B9;padding:0in 5.75pt 0in 7.0pt;height:23.15pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><b><span style='font-size:9.0pt;line-height:107%;
+  color:white'>Access Right</span></b></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;background:#0D72B9;
+  padding:0in 5.75pt 0in 7.0pt;height:23.15pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><b><span style='font-size:9.0pt;line-height:107%;
+  color:white'>Access Right’s Name in PowerShell</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:22.5pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  padding:0in 5.75pt 0in 7.0pt;height:22.5pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Full Control</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;padding:0in 5.75pt 0in 7.0pt;
+  height:22.5pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>FullControl</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  background:#F3F3F4;padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Traverse Folder / Execute File</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;background:#F3F3F4;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>ExecuteFile</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>List Folder / Read Data</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;padding:0in 5.75pt 0in 7.0pt;
+  height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>ReadData</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  background:#F3F3F4;padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Read Attributes</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;background:#F3F3F4;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>ReadAttributes</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Read Extended Attributes</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;padding:0in 5.75pt 0in 7.0pt;
+  height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>ReadExtendedAttributes</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  background:#F3F3F4;padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Create Files / Write Data</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;background:#F3F3F4;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>CreateFiles</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Create Folders / Append Data</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;padding:0in 5.75pt 0in 7.0pt;
+  height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>AppendData</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  background:#F3F3F4;padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Write Attributes</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;background:#F3F3F4;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>WriteAttributes</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Write Extended Attributes</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;padding:0in 5.75pt 0in 7.0pt;
+  height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>WriteExtendedAttributes</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  background:#F3F3F4;padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Delete Subfolders and Files</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;background:#F3F3F4;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>DeleteSubdirectoriesAndFiles</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Delete</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;padding:0in 5.75pt 0in 7.0pt;
+  height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Delete</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  background:#F3F3F4;padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Read Permissions</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;background:#F3F3F4;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>ReadPermissions</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Change Permissions</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;padding:0in 5.75pt 0in 7.0pt;
+  height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>ChangePermissions</span></p>
+  </td>
+ </tr>
+ <tr style='height:22.95pt'>
+  <td width=291 style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  background:#F3F3F4;padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Take Ownership</span></p>
+  </td>
+  <td width=374 style='width:280.45pt;border:none;background:#F3F3F4;
+  padding:0in 5.75pt 0in 7.0pt;height:22.95pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>TakeOwnership</span></p>
+  </td>
+ </tr>
+ <tr style='height:2.15pt'>
+  <td width=291 valign=top style='width:218.05pt;border:none;border-right:solid white 1.0pt;
+  padding:0in 5.75pt 0in 7.0pt;height:2.15pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.0pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+  <td width=374 valign=top style='width:280.45pt;border:none;padding:0in 5.75pt 0in 7.0pt;
+  height:2.15pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.0pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-right:4.35pt'>There are also sets of basic
+access rights that can be applied:</p>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=665
+ style='width:498.45pt;margin-left:1.1pt;border-collapse:collapse'>
+ <tr style='height:1.85pt'>
+  <td width=188 valign=top style='width:141.25pt;border:none;border-right:solid white 1.0pt;
+  padding:7.25pt 5.75pt 0in 7.0pt;height:1.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.0pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+  <td width=247 valign=top style='width:185.35pt;border:none;border-right:solid white 1.0pt;
+  padding:7.25pt 5.75pt 0in 7.0pt;height:1.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.0pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+  <td width=229 valign=top style='width:171.9pt;border:none;padding:7.25pt 5.75pt 0in 7.0pt;
+  height:1.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.0pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+ </tr>
+ <tr style='height:23.15pt'>
+  <td width=188 style='width:141.25pt;border:none;border-right:solid white 1.0pt;
+  background:#0D72B9;padding:7.25pt 5.75pt 0in 7.0pt;height:23.15pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><b><span style='font-size:9.0pt;line-height:107%;
+  color:white'>Access Rights Set</span></b></p>
+  </td>
+  <td width=247 style='width:185.35pt;border:none;border-right:solid white 1.0pt;
+  background:#0D72B9;padding:7.25pt 5.75pt 0in 7.0pt;height:23.15pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><b><span style='font-size:9.0pt;line-height:107%;
+  color:white'>Rights Included in the Set</span></b></p>
+  </td>
+  <td width=229 style='width:171.9pt;border:none;background:#0D72B9;padding:
+  7.25pt 5.75pt 0in 7.0pt;height:23.15pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><b><span style='font-size:9.0pt;line-height:107%;
+  color:white'>Name of the Set in PowerShell</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:91.4pt'>
+  <td width=188 valign=top style='width:141.25pt;border:none;border-right:solid white 1.0pt;
+  padding:7.25pt 5.75pt 0in 7.0pt;height:91.4pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Read</span></p>
+  </td>
+  <td width=247 style='width:185.35pt;border:none;border-right:solid white 1.0pt;
+  padding:7.25pt 5.75pt 0in 7.0pt;height:91.4pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>List
+  Folder / Read Data</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Read
+  Attributes</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Read
+  Extended Attributes</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Read
+  Permissions</span></p>
+  </td>
+  <td width=229 valign=top style='width:171.9pt;border:none;padding:7.25pt 5.75pt 0in 7.0pt;
+  height:91.4pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Read</span></p>
+  </td>
+ </tr>
+ <tr style='height:91.8pt'>
+  <td width=188 valign=top style='width:141.25pt;border:none;border-right:solid white 1.0pt;
+  background:#F3F3F4;padding:7.25pt 5.75pt 0in 7.0pt;height:91.8pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Write</span></p>
+  </td>
+  <td width=247 style='width:185.35pt;border:none;border-right:solid white 1.0pt;
+  background:#F3F3F4;padding:7.25pt 5.75pt 0in 7.0pt;height:91.8pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Create
+  Files / Write Data</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Create
+  Folders / Append Data</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Write
+  Attributes</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Write
+  Extended Attributes</span></p>
+  </td>
+  <td width=229 valign=top style='width:171.9pt;border:none;background:#F3F3F4;
+  padding:7.25pt 5.75pt 0in 7.0pt;height:91.8pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Write</span></p>
+  </td>
+ </tr>
+ <tr style='height:114.85pt'>
+  <td width=188 valign=top style='width:141.25pt;border:none;border-right:solid white 1.0pt;
+  padding:7.25pt 5.75pt 0in 7.0pt;height:114.85pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Read and Execute</span></p>
+  </td>
+  <td width=247 style='width:185.35pt;border:none;border-right:solid white 1.0pt;
+  padding:7.25pt 5.75pt 0in 7.0pt;height:114.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Traverse
+  folder / Execute File</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>List
+  Folder / Read Data</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Read
+  Attributes</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Read
+  Extended Attributes</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Read
+  Permissions</span></p>
+  </td>
+  <td width=229 valign=top style='width:171.9pt;border:none;padding:7.25pt 5.75pt 0in 7.0pt;
+  height:114.85pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>ReadAndExecute</span></p>
+  </td>
+ </tr>
+ <tr style='height:229.9pt'>
+  <td width=188 valign=top style='width:141.25pt;border:none;border-right:solid white 1.0pt;
+  background:#F3F3F4;padding:7.25pt 5.75pt 0in 7.0pt;height:229.9pt'>
+  <p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+  0in;line-height:107%'><span style='font-size:9.0pt;line-height:107%;
+  color:#404041'>Modify</span></p>
+  </td>
+  <td width=247 style='width:185.35pt;border:none;border-right:solid white 1.0pt;
+  background:#F3F3F4;padding:7.25pt 5.75pt 0in 7.0pt;height:229.9pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Traverse
+  folder / Execute File</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>List
+  Folder / Read Data</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Read
+  Attributes</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Read
+  Extended Attributes</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Create
+  Files / Write Data</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Create
+  Folders / Append Data</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Write
+  Attributes</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Write
+  Extended Attributes</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:11.15pt;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Delete</span></p>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Read
+  Permissions</span></p>
+  </td>
+  <td width=229 valign=top style='width:171.9pt;border:none;background:#F3F3F4;
+  padding:7.25pt 5.75pt 0in 7.0pt;height:229.9pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:0in;margin-left:1.55pt;text-align:left;text-indent:0in;
+  line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#404041'>Modify</span></p>
+  </td>
+ </tr>
+ <tr style='height:3.65pt'>
+  <td width=188 valign=top style='width:141.25pt;border:none;border-right:solid white 1.0pt;
+  padding:7.25pt 5.75pt 0in 7.0pt;height:3.65pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.0pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+  <td width=247 valign=top style='width:185.35pt;border:none;border-right:solid white 1.0pt;
+  padding:7.25pt 5.75pt 0in 7.0pt;height:3.65pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.0pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+  <td width=229 valign=top style='width:171.9pt;border:none;padding:7.25pt 5.75pt 0in 7.0pt;
+  height:3.65pt'>
+  <p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+  margin-bottom:8.0pt;margin-left:0in;text-align:left;text-indent:0in;
+  line-height:107%'>&nbsp;</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:5.1pt;
+margin-bottom:32.75pt;margin-left:.75pt;text-align:left;line-height:175%'><span
+style='position:absolute;z-index:-1895753728;left:0px;margin-left:2px;
+margin-top:46px;width:385px;height:34px'><img width=385 height=34
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image102.gif"></span>To
+copy permissions, a user must own both the source and target folders. The
+following command will copy the permissions from the “Accounting” folder to the
+“Sales” folder: get-acl \\fs1\shared\accounting | Set-Acl \\fs1\shared\sales</p>
+
+<div style='border:none;border-left:solid #0C70B8 4.5pt;padding:0in 0in 0in 0in;
+background:whitesmoke;margin-left:18.6pt;margin-right:0in'>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:52.05pt;margin-left:.5pt;text-align:left;line-height:114%;
+background:whitesmoke;border:none;padding:0in'>If you want to get a list of
+NTFS permissions via PowerShell, you can follow this easy how-to about <a
+href="https://www.netwrix.com/how_to_export_folder_permissions.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#0C70B8;text-decoration:none'>exporting NTFS permissions to CSV</span></a><a
+href="https://www.netwrix.com/how_to_export_folder_permissions.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#2F353D;text-decoration:none'>.</span></a></p>
+
+</div>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>3.8<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Removing
+User Permissions</h2>
+
+<p class=MsoNormal style='margin-right:4.35pt'>To remove permissions, use the <b>RemoveAccessRule</b>
+parameter. Let’s delete the “Allow FullControl” permission for T.Simpson to the
+“Sales” folder:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.1pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=662 height=111
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image103.gif"></span></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Note that <b>RemoveAccessRule</b>
+deletes only specific permissions. To completely wipe T.Simpson’s permissions
+to the “Sales” folder, use the <b>PurgeAccessRules</b> command:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.1pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=662 height=92
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image104.gif"></span></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Note that <b>PurgeAccessRules</b>
+doesn’t work with a string user name; it works only with SIDs. Therefore, we
+used the “Ntaccount” class to convert the user account name from a string into
+a SID. Also note that <b>PurgeAccessRules</b> works only with explicit
+permissions; it does not purge inherited ones.</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>3.9<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Enabling
+and Disabling Permissions Inheritance</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+16.9pt;margin-left:1.5pt'>NTFS permissions can be either explicit or inherited.
+Explicit permissions are permissions that are configured individually, while
+inherited permissions are inherited from the parent folder. The hierarchy for
+permissions is as follows:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><img width=5 height=96
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image105.gif"
+align=left hspace=12>Explicit Deny</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'>Explicit Allow</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'>Inherited Deny</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+24.0pt;margin-left:1.5pt'>Inherited Allow</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.6pt;margin-left:1.5pt'>To manage inheritance, we use the <b>SetAccessRuleProtection</b>
+method. It has two parameters:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.5pt;margin-left:0in;text-align:left;text-indent:0in'><span
+style='font-size:11.0pt;line-height:111%;color:black'><img border=0 width=5
+height=5 id="Group 34803"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image106.gif"></span>                                              The
+first parameter is responsible for blocking inheritance from the parent folder.
+It has two states: </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.6pt;margin-left:14.05pt'>“$true” and “$false”.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:3.5pt;margin-left:0in;text-align:left;text-indent:0in'><span
+style='font-size:11.0pt;line-height:111%;color:black'><img border=0 width=5
+height=5 id="Group 34804"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image107.gif"></span>                                      The
+second parameter determines whether the current inherited permissions are
+retained or removed. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+24.1pt;margin-left:14.05pt'>It has the same two states: “$true” and “$false”.</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Let’s disable inheritance for
+the “Sales” folder and delete all inherited permissions as well:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.1pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=668 height=72
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image108.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.5pt;margin-left:1.5pt'>All inherited permissions were removed; only access
+permissions added explicitly are left.</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Let’s revert this change and
+re-enable inheritance for the “Sales” folder:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.1pt;text-align:left;text-indent:0in;line-height:
+107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=668 height=72
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image109.gif"></span></p>
+
+<h2 style='margin-left:38.45pt;text-indent:-38.2pt'><span style='line-height:
+111%'>3.10<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Changing File and Folder Ownership</h2>
+
+<p class=MsoNormal style='margin-right:4.35pt'>If you want to set an owner for
+a folder, you need to run the <b>SetOwner</b> method. Let’s make “ENTERPRISE\J.Carter”
+the owner of the “Sales” folder:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.1pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=666 height=91
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image110.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.5pt;margin-left:1.5pt'>Notice that we again used the <b>Ntaccount</b> class
+to convert the user account name from a string into a SID.</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Note that the <b>SetOwner</b>
+method does not enable you to change the owner to any account you want; the
+account must have the “Take Ownership”, “Read” and “Change Permissions” rights.<br
+clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-top:0in;margin-right:0in;margin-bottom:3.3pt;margin-left:
+28.0pt;text-indent:-27.75pt'><span style='line-height:109%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Automating
+PowerShell Scripts</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+31.95pt;margin-left:1.5pt;line-height:139%'>Now let’s explore you how to create
+scheduled tasks using PowerShell scripts and Microsoft Windows Task Scheduler.</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>4.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Creating
+Scheduled Tasks with PowerShell Scripts</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.35pt;margin-left:1.5pt'>Suppose that each day at 10 AM, we want to execute a
+PowerShell script that monitors changes to group membership in an Active
+Directory site. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+15.15pt;margin-left:1.5pt'>In Windows Powershell 2.0 (Windows 7 or Windows
+Server 2008 R2), to create a scheduled job, you must use the <b>Task Scheduler</b>
+module. Install the module by running the <b>Import-Module TaskScheduler</b>
+command, and then use the following script to create a task that will execute
+the PowerShell script named “GroupMembershipChanges.ps1” daily at 10 AM:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>Import-Module TaskScheduler $task = New-Task</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>$task.Settings.Hidden = $true</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'><span style='position:relative;z-index:-1895751680'><span
+style='left:0px;position:absolute;left:1px;top:-48px;width:665px;height:126px'><img
+width=665 height=126
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image111.gif"></span></span>Add-TaskAction
+-Task $task -Path C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>–Arguments “-File
+C:\Scripts\GroupMembershipChanges.ps1”</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+.25pt;margin-left:8.9pt'>Add-TaskTrigger -Task $task -Daily -At “10:00”</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+30.8pt;margin-left:8.9pt'>Register-ScheduledJob –Name ”Monitor Group
+Management” -Task $task</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Windows PowerShell 3.0 and 4.0
+(Windows Server 2012 R2 and above) don’t include the Task Scheduler module, so
+this script will not work. Instead, PowerShell 3.0 and 4.0 include new cmdlets
+for creating scheduled tasks, <b>New-ScheduledTaskTrigger</b> and <b>Register-ScheduledTask</b>,
+which make creating a scheduled task much easier and more convenient. So let’s
+create a task that will execute our script daily at 10 AM using the system
+account (SYSTEM), which has elevated privileges:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.1pt;text-align:left;text-indent:0in;line-height:
+107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=666 height=241
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image112.gif"></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+16.7pt;margin-left:1.5pt'>Other trigger options that could be useful in
+creating new tasks include:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><img width=5 height=96
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image113.gif"
+align=left hspace=12><b>-AtStartup</b> — Triggers the task at Windows startup.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><b>-AtLogon</b> — Triggers the task when the user
+signs in.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:14.9pt;
+margin-left:1.5pt;line-height:185%'><b>-Once</b> — Triggers the task once. You
+can set a repetition interval using the –RepetitionInterval parameter. <b>-Weekly</b>
+— Triggers the task once a week.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+39.2pt;margin-left:1.5pt'>Note that, it is not possible to trigger execution
+“on an event” using these cmdlets; PowerShell scripts with “on an event”
+triggers are much more complicated. However, it is possible to do so with the
+Task Scheduler tool, so this is a real disadvantage of using PowerShell rather
+than Task Scheduler.</p>
+
+<h2 style='margin-left:28.75pt;text-indent:-28.5pt'><span style='line-height:
+111%'>4.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>Running
+PowerShell Scripts with Task Scheduler</h2>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.35pt;margin-left:1.5pt'>Task Scheduler can help you automatically launch a
+program or PowerShell script at a certain time or when certain conditions are
+met. You can also schedule sending emails and even displaying certain messages.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+23.9pt;margin-left:1.5pt'>To create a task, open Task Scheduler by pressing
+“Windows+R” and typing <b>taskschd.msc</b> in the window that opens. Then take
+the following steps:</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'><span style='line-height:111%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Click <b>Create a task</b> and enter a name and description for
+the new task. To run the program with administrator privileges, check the <b>Run
+with the highest privileges</b> box. In our example, we’ll assign a service
+account to run the task and run it regardless of whether the user is logged on.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.0pt;text-align:left;text-indent:0in;line-height:
+107%'><img border=0 width=422 height=317 id="Picture 2287"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image114.jpg"></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'><span style='line-height:111%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Switch to the <b>Triggers</b> tab and click the <b>New</b>…
+button. Here you can specify the conditions that trigger the task to be
+executed. For example, you can have it executed on schedule, at logon, on idle,
+at startup or whenever a particular event occurs. We want our task to be
+triggered by any new software installation, so we choose <b>On an event</b>
+from the drop-down menu and select <b>Application</b> from the <b>Log</b>
+drop-down. Leave the <b>Source</b> parameter blank and enter “11707” for the <b>EventID</b>.
+Click <b>OK</b> to save your changes.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.1pt;text-align:left;text-indent:0in;line-height:
+107%'><img border=0 width=422 height=365 id="Picture 2334"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image115.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.35pt;margin-left:1.5pt'><span style='line-height:111%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Navigate to the <b>Actions</b> tab and click <b>New</b>…. Here
+you can specify the actions that will be executed whenever the trigger
+conditions are met. For instance, you can send an email or display a message.
+In our case, we want to start a program. You can find the script <a
+href="https://www.netwrix.com/how_to_detect_software_installations.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#0C70B8;text-decoration:none'>here</span></a><a
+href="https://www.netwrix.com/how_to_detect_software_installations.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='color:#2F353D;text-decoration:none'>;</span></a> it will send an alert
+with the event details about the installed software.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.1pt;margin-left:1.5pt'>To schedule the PowerShell script, specify the
+following parameters:</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+9.1pt;margin-left:1.5pt'><img width=5 height=66
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image116.gif"
+align=left hspace=12><b>Action </b>— Start a program</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:9.4pt;margin-left:1.5pt;text-align:left;line-height:107%'><b>Program\script
+</b>— powershell</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+24.1pt;margin-left:1.5pt'><b>Add arguments (optional) </b>— -File [Specify the
+file path to the script here]</p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>Click <b>OK</b> to save your
+changes.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.1pt;text-align:left;text-indent:0in;line-height:
+107%'><img border=0 width=312 height=338 id="Picture 2374"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image117.jpg"></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'><span style='line-height:111%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The <b>Conditions</b> tab enables you to specify the conditions
+that, along with the trigger, determine whether the task should be run. In our
+case, we should leave the default settings on this tab.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:29.95pt;margin-left:1.1pt;text-align:left;text-indent:0in;
+line-height:107%'><img border=0 width=422 height=315 id="Picture 2400"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image118.jpg"></p>
+
+<p class=MsoNormal style='margin-right:4.35pt'><span style='line-height:111%'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>You can also set up additional parameters for your scheduled task
+on the <b>Settings</b> tab. For our example, though, we’ll leave them
+unchanged.</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:0in;margin-left:1.0pt;text-align:left;text-indent:0in;line-height:
+107%'><img border=0 width=422 height=317 id="Picture 2406"
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image119.jpg"></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+13.9pt;margin-left:1.5pt'><span style='line-height:111%'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>When the task is completely set up, the system will ask you for
+the service account password. Note that this account must have the “Log on as
+Batch Job” right. Enter the password and click <b>OK</b> to save the task. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+24.1pt;margin-left:1.5pt'><span style='line-height:111%'>7.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>For Task Scheduler to function properly, the Job Scheduler
+service must be set to start automatically. Run <b>Services.msc</b>. In the
+list of services, find Task Scheduler and double-click it. On the <b>General</b>
+tab, set the startup type to “Automatic” and click <b>OK</b> to save your
+change.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+14.35pt;margin-left:1.5pt'>Now whenever new software is installed on your
+Microsoft Windows Server, you will be notified via an email that details the
+time of the installation, the name of the software and the user ID (SID) of the
+person who installed it. </p>
+
+<p class=MsoNormal style='margin-right:4.35pt'>To modify an existing task,
+right-click it in the list, select <b>Properties</b>, edit the required
+settings and click <b>OK</b>. To delete a scheduled task, right-click it,
+select <b>Delete</b> and confirm the action.<br clear=all style='page-break-before:
+always'>
+</p>
+
+<h1 style='margin-left:.75pt;text-indent:0in'>Final Word</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+2.85pt;margin-left:1.5pt;line-height:139%'>Let’s quickly summarize the key
+points of this Windows PowerShell tutorial. Now you know the basics of PowerShell
+scripting, how to perform the most common Active Directory and file system
+management tasks using PowerShell, and how to schedule PowerShell scripts. You
+might also want to check out the following PowerShell scripts used by IT
+professionals to address specific cases:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><img
+width=5 height=1
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image120.gif"
+align=left hspace=12><a
+href="https://blog.netwrix.com/2017/07/20/how-to-collect-ad-site-information-using-powershell/?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Collect AD Site Information Using PowerShell</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://blog.netwrix.com/2017/06/15/powershell-find-disabled-or-inactive-users-and-computers-in-ad/?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+Find Disabled or Inactive Users and Computers in AD</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://blog.netwrix.com/2017/07/20/how-to-find-locked-out-user-accounts-in-active-directory-using-powershell/?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Find Locked Out User Accounts in AD</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_find_account_lockout_source.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Find Account Lockout Source</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_get_list_of_users_with_password_never_expires.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Get a List of AD Users Whose Passwords Never Expire</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_list_all_computers_in_ou.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Get a List of All Computers in an OU</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:7.15pt;margin-left:1.5pt;text-align:left;line-height:107%'><a
+href="https://www.netwrix.com/how_to_get_all_users_from_a_specific_ou.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:107%;color:#1B75BB;text-decoration:none'>How
+to Get a List of All Users from a Specific OU</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_generate_active_directory_ou_permissions_report.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Get an Active Directory OU Permissions Report</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_export_active_directory_objects_to_csv.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Export Active Directory Objects to CSV</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_export_members_from_active_directory.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Export Members of a Particular AD Group</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_report_on_gpo_security_settings.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Export Group Policy Settings </span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_determine_last_logon_date.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Determine Every AD User’s Last Logon Date</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_get_user_login_history.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Get User Login History</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_monitor_ad_group_membership_changes.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Monitor AD Group Membership Changes</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_detect_changes_to_organizational_units_and_groups_in_active_directory.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Detect Changes to OUs and Groups in AD</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:7.15pt;margin-left:1.5pt;text-align:left;line-height:107%'><a
+href="https://www.netwrix.com/how_to_detect_who_modified_security_permission.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:107%;color:#1B75BB;text-decoration:none'>How
+to Determine Who Modified Permissions to an OU</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_count_files_in_a_folder.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Count Files in a Folder or a Directory</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_get_acl_for_a_folder.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Get the ACL for a Folder</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_monitor_a_folder_for_new_files.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Monitor a Folder for New Files</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_find_dublicate_files.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Find Duplicate Files</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_collect_server_inventory.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Get Server Inventory Across Your Network</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_get_local_group_membership_report.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Get Local Group Membership Reports</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:6.9pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://www.netwrix.com/how_to_list_all_user_accounts_on_a_windows_system.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to List All User Accounts on a Windows System</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:27.65pt;margin-left:1.5pt;text-align:left;line-height:110%'><a
+href="https://blog.netwrix.com/2017/06/29/how-to-get-rid-of-ransomware-at-no-cost/?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:110%;color:#1B75BB;text-decoration:none'>How
+to Get Rid of Ransomware Using Free Tools and PowerShell</span></a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+6.35pt;margin-left:1.5pt'>You can also further expand your knowledge of
+PowerShell by reviewing the following resources:</p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:353.5pt;
+margin-bottom:7.15pt;margin-left:1.5pt;text-align:left;line-height:172%'><img
+width=5 height=1
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image121.gif"
+align=left hspace=12><a
+href="https://blog.netwrix.com/tag/powershell/?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:172%;color:#1B75BB;text-decoration:none'>Netwrix
+Blog: PowerShell </span></a><a
+href="https://www.netwrix.com/how_to_guides.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='font-size:9.0pt;line-height:172%;color:#1B75BB;text-decoration:none'>Netwrix
+How-To Guides</span></a></p>
+
+</div>
+
+<span style='font-size:10.0pt;line-height:111%;font-family:"Calibri",sans-serif;
+color:#2F353D'><br clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection2>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:564.15pt;
+margin-bottom:0in;margin-left:-61.15pt;text-align:left;text-indent:0in;
+line-height:107%'><img width=816 height=1
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image122.jpg"><br
+clear=ALL>
+<br clear=all style='page-break-before:always'>
+</p>
+
+<h1 style='margin-left:.75pt;text-indent:0in'>About Netwrix</h1>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.0pt;margin-left:1.5pt;line-height:139%'>Netwrix Corporation is a software
+company focused exclusively on providing IT security and operations teams with
+pervasive visibility into user behavior, system configurations and data
+sensitivity across hybrid IT infrastructures to protect data regardless of its
+location. Over 9,000 organizations worldwide rely on Netwrix to detect and
+proactively mitigate data security threats, pass compliance audits with less
+effort and expense, and increase the productivity of their IT teams. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+17.0pt;margin-left:1.5pt;line-height:139%'>Founded in 2006, Netwrix has earned
+more than 140 industry awards and been named to both the Inc. 5000 and Deloitte
+Technology Fast 500 lists of the fastest growing companies in the U.S.</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:4.35pt;margin-bottom:
+385.35pt;margin-left:1.5pt'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=613 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=133 height=1
+  src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image123.gif"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+For more information about Netwrix, visit <a
+href="https://www.netwrix.com/?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='color:#1B75BB;text-decoration:none'>www.netwrix.com</span></a><a
+href="https://www.netwrix.com/?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><span
+style='color:#2F353D;text-decoration:none'>.</span></a></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:1.4pt;margin-left:2.6pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:11.0pt;line-height:107%;color:black'><img
+border=0 width=668 height=28
+src="Windows%20PowerShell%20Tutorial%20for%20Beginners_files/image124.gif"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:0in;margin-right:0in;
+margin-bottom:1.6pt;margin-left:2.6pt;text-align:left;text-indent:0in;
+line-height:107%'><span style='font-size:9.0pt;line-height:107%;color:#1978B7'>300
+Spectrum Center Drive, Suite 200, Irvine, CA 92618</span></p>
+
+<p class=MsoNormal align=left style='margin:0in;text-align:left;text-indent:
+0in;line-height:107%'><b><span style='font-size:9.0pt;line-height:107%;
+color:#1978B7'>Phone: </span></b><span style='font-size:9.0pt;line-height:107%;
+color:#1978B7'>1-949-407-5125<b>      Toll-free:  </b>888-638-9749      <b>EMEA:
+</b>+44 (0) 203-588-3023                                                        </span><a
+href="https://www.netwrix.com/social_communities.html?utm_source=content&amp;utm_medium=ebook&amp;utm_campaign=powershell-tutorial&amp;cID=7010g000001Yg8p"><b><span
+style='font-size:9.0pt;line-height:107%;color:#1978B7;text-decoration:none'>netwrix.com/social</span></b></a></p>
+
+</div>
+
+</body>
+
+</html>
